@@ -1,0 +1,8 @@
+HowTo Install:
+
+1) wenn kein .vim Verzeichniss in $HOME steht:
+
+mkdir -p ~/.vim
+cp -r * ~/.vim
+
+2) wenn schon, manuell ergaenzen

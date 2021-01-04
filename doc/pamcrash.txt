@@ -1,0 +1,211 @@
+*pamcrash.txt*	For Vim version 7.3. 
+
+		+============================+
+		| PAM-CRASH v.2017 Interface |
+		+============================+
+
+Author:  Roman Firt (roman.firt@yahoo.de) 
+
+=====================================================================
+List of PAM-CRASH Input Macros                       *pamcrash* *pam*
+
+Allgemein   
+
+   ,,    Lineal (Spaltenzaehler)
+
+Contact
+
+   ,c<n> Contact Type <n>
+
+Material
+
+   ,la     LAYER Card
+   ,m<n>   Material Type <n>
+   ,ma<n>  VA Material Type <n>
+   ,mp     Porous Material Card
+   ,mt     Thermal Material Card
+   ,ply<n> PLY Material Card of Type <n>
+
+Auxiliaries
+
+   ,cd    CDATA Card
+   ,de    DELEM - Deleted Element Card
+   ,fc    FUNCT Function Card
+   ,fm<n> FRAME Type <n>
+   ,fr<n> FRICT Friction Model Type <n>
+   ,fw    FUNCSW Function Switch
+   ,gr    GROUP Group Definition
+   ,lo    LOOKU Lookup Table
+   ,nl    NLAVE - Non Local Averadge Definition
+   ,pa0   PLANE Type 0
+   ,pa1   PLANE Type 1
+   ,pa2   PLANE Type 2
+   ,pf    PYFUNC Python Function
+   ,ru<n> RUPMO Type <n>
+   ,se<n> SENSOR Type <n>
+   ,sr    SURFA Surface Definition
+   ,ud    UDATA User Data
+   ,ve0   VECTOR Type 0
+   ,ve1   VECTOR Type 1
+
+Element
+
+   ,eba   BAR Element
+   ,ebe   BEAM Element
+   ,ebs   BSHEL Element
+   ,ega   GAP Element
+   ,ehe   HEXA20 Element
+   ,ejo   JOINT Element
+   ,ekj   KJOIN Element
+   ,ele   ELINK Element
+   ,ell   LLINK Element
+   ,elp   PLINK Element
+   ,els   SLINK Element
+   ,eme   MEMBR Element
+   ,emt   MTOJNT Element
+   ,ep1   PENTA15 Element
+   ,ep6   PENTA6 Element
+   ,eph   SPHEL Element
+   ,epo   SPHELO Element
+   ,es6   SHEL6 Element
+   ,es8   SHEL8 Element
+   ,esb   SPRGBM Element
+   ,esh   SHELL Element
+   ,eso   SOLID Element
+   ,esp   SPRING Element
+   ,esu   IMPMA Super Element Matrix Import
+   ,et1   TETR10 Element
+   ,et4   TETR4 Element
+   ,ete   TETRA Element
+   ,eti   TIED Element
+   ,ets   TSHEL Element
+
+Others
+
+   ,fs    FUNCT Card with Sinus Function
+   ,gv    Gratitational Acceleration
+
+Part
+
+   ,pba   PART Type BAR
+   ,pbe   PART Type BEAM
+   ,pbs   PART Type BSHEL
+   ,pco   PART Type COS3D
+   ,pga   PART Type GAP
+   ,pjo   PART Type JOINT
+   ,pkj   PART Type KJOIN
+   ,ple   PART Type ELINK
+   ,pll   PART Type LLINK
+   ,plp   PART Type PLINK
+   ,pls   PART Type SLINK
+   ,pme   PART Type MEMBR
+   ,pmk   PART Type MBKJN
+   ,pms   PART Type MBSPR
+   ,pmt   PART Type MTOJNT
+   ,pos   MPART Type SHELL
+   ,poo   MPART Type SOLID
+   ,psb   PART Type SPRGBM
+   ,pse   PART Type SPHEL
+   ,psh   PART Type SHELL
+   ,pso   PART Type SOLID
+   ,psp   PART Type SPRING
+   ,pte   PART Type TETRA
+   ,pti   PART Type TIED
+   ,pts   PART Type TSHEL
+
+Constraint
+
+   ,lc    LINCO Linear Constraint
+   ,oo    OTMCO Constraint
+   ,rb<n> RBODY Type <n>
+   ,sew   SEWING Definition
+   ,to0   Regular MTOCO
+   ,to1   MTOCO mit User Imposed Mass and Intertia
+
+Control
+
+   ,dm    DMPEW User DMP Scaling Factors
+   ,dr    DRAPF Draping File Import
+   ,ex    EXPORT Card
+   ,im    IMPORT Card
+   ,in    INCLU Keyword
+   ,me    MERIC Keyword
+   ,mr    MSTRM Mass Trimming
+   ,or    ORTHF Orientation File Import
+   ,py    PYVAR Variable Definition
+   ,ss    RMSSOL Shell Solid Remeshing
+   ,su    SUBDF Substructure Definition
+   ,tr    TRSFM Transformation Card
+
+Load
+
+   ,3d    *3D Boundary Condition
+   ,ab    VAABSO Acoustic Absorber
+   ,ac    ACFLD Acceleration Field
+   ,am    VAMPSO Acoustic Monopole Source
+   ,ap    VAPLNW Acoustic Plane Wave
+   ,at    ACTUA Joint Actuator Definition
+   ,bc    BOUNC Displacement BC
+   ,bd    BDFOR Body Forces
+   ,bf    BFLUX Definition
+   ,bp    PRESBC Pressure Porous BC
+   ,cl    CONLO Concentrated Load
+   ,da    DAMP Nodal Damping
+   ,df    DFLUX Definition
+   ,dl    DISLIM Displacement Limitation
+   ,dp    DETOP Detonation Point
+   ,fb    FBC3D Prescribed Motion onto Fluid
+   ,fn    FBCFA Prescribed Surface Normal BC onto Fluid
+   ,hf    HFLUX Definition
+   ,hs    HTSURF Definition
+   ,ib    PREBM Beam Pressure
+   ,if    PREFA Face Pressure
+   ,ip    INPRES Initial Pressure
+   ,it    INTEM Initial Temperature
+   ,iv    INVEL Initial Velocity
+   ,kd    KINDA Kinematic Damping
+   ,pu    PFSURF Flow Exchange Surface
+   ,rm    RMLOAD Residual Modes Load
+   ,sd    LCPSD Power Spectral Density Function
+   ,tc    TEMBC Temperature BC
+   ,tu    TURBL Turbulent Boundary Layer
+
+Node
+
+   ,cn    CNODE Card
+   ,ms    MASS Card
+   ,nm    NSMAS - Nonstructural mass
+   ,nm2   NSMAS2 - Nonstructural mass Type 2
+   ,nn    NODE Card
+
+Output
+
+   ,seg   SENPTG Sensor Point (Global)
+   ,sel   SELOUT Selective Output
+   ,sen   SENPT Sensor Point (Local)
+   ,sfc   SEFCO Type CONTACT
+   ,sfl   SECFO Type LINK
+   ,sfm   SECFO Type CONT_MS
+   ,sfp   SECFO Type PLANE
+   ,sfs   SECFO Type SECTION
+   ,sfu   SECFO Type SUPPORT
+   ,sfv   SECFO Type VOLFRAC
+   ,tha   THNAC Acoustic Output
+   ,thc   THCRS Cross Spectral Density Printout
+   ,the   THELE Card
+   ,thl   THLOC Output
+   ,thn   THNOD Output
+   ,thp   THNPO Porous Nodal Output
+   ,vap   VAPANL Structural Panel
+
+Safety
+
+   ,bag   BAGIN Definition
+   ,gas   GASPEC Gas Specification
+   ,mus   MUSCL1 Muscle Bar Entity Definition
+   ,ret   RETRA Belt Retractor Definition
+   ,sli   SLIPR Slipring Definition
+
+MMC
+
+   ,mm    MMC Assign Definition
