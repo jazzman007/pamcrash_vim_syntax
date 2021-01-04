@@ -360,10 +360,13 @@ function! pamcomplete#Complete(findstart, base)
 " }}}
 " {{{ DELEM
       elseif synIDattr(slist[0], "name") =~ "pam_DELEM"
-         " ISENS
          if synIDattr(slist[1], "name") =~ "pam_DELEM_r1"
+            " ISENS
             if synIDattr(slist[2], "name") =~ "pam_17.8.*"
                let start = 16
+            " ICRIad
+            elseif synIDattr(slist[2], "name") =~ "pam_25.8.*"
+               let start = 24
             endif
          endif
 " }}}
@@ -3883,6 +3886,10 @@ function! pamcomplete#Complete(findstart, base)
             " ISENS
             if synIDattr(slist[2], "name") =~ "pam_17.8.*"
                let items = s:getTags("SENSOR",8)
+            " ICRIad
+            elseif synIDattr(slist[2], "name") =~ "pam_25.8.*"
+               call add (items,{'word':'       0','abbr':'0 (default)','menu':'No Additional Criterion Used'})
+               call add (items,{'word':'       1','abbr':'1','menu':'Additional Criterion Defined Below Used'})
             endif
          endif
 " }}}
@@ -4729,7 +4736,9 @@ function! pamcomplete#Complete(findstart, base)
             elseif synIDattr(slist[2], "name") =~ "pam_57.*"
                call add (items,{'word':'       0','menu':'Displacement'})
                call add (items,{'word':'       1','menu':'Translational Velocity'})
+               call add (items,{'word':'       2','menu':'Translational Acceleration'})
                call add (items,{'word':'      10','menu':'Absolute Distance between Nodes'})
+               call add (items,{'word':'      20','menu':'Value of the Increase or Decrease in the Absolute Distance'})
             endif
          elseif synIDattr(slist[1], "name") =~ "pam_SENSOR8_r3"
             " IDBAG
@@ -17443,6 +17452,38 @@ function! pamcomplete#pamHints()
          elseif synIDattr(slist[2], "name") =~ "pam_57.*"
             return "DMGelim - EWK Maximum Damage for Element Elimination"
          endif
+      elseif synIDattr(slist[1], "name") =~ "pam_RUPMO7_r3"
+         if synIDattr(slist[2], "name") =~ "pam_9.*"
+            return "FAILT - Failure Time"
+         elseif synIDattr(slist[2], "name") =~ "pam_17.*"
+            return "FAILD - Failure Duration"
+         elseif synIDattr(slist[2], "name") =~ "pam_25.*"
+            return "AFAILN - Ultimate Tensile Strength"
+         elseif synIDattr(slist[2], "name") =~ "pam_33.*"
+            return "AFAILS - Ultimate Shear Strength"
+         elseif synIDattr(slist[2], "name") =~ "pam_41.*"
+            return "A1 - First Exponent in Failure Model"
+         elseif synIDattr(slist[2], "name") =~ "pam_49.*"
+            return "A2 - Second Exponent in Failure Model"
+         elseif synIDattr(slist[2], "name") =~ "pam_57.*"
+            return "INTF - Failure Criterion Time Window"
+         elseif synIDattr(slist[2], "name") =~ "pam_65.*"
+            return "D1 - Energy Absorbtion Distance after Failure Initiation"
+         elseif synIDattr(slist[2], "name") =~ "pam_73.*"
+            return "D2 - Ultimate Distance at Complete Failure"
+         endif
+      elseif synIDattr(slist[1], "name") =~ "pam_RUPMO7_r4"
+         if synIDattr(slist[2], "name") =~ "pam_9.*"
+            return "AFAILT - Ultimate Torsion Strength"
+         elseif synIDattr(slist[2], "name") =~ "pam_17.*"
+            return "AFAILB - Ultimate Bending Strength"
+         elseif synIDattr(slist[2], "name") =~ "pam_25.*"
+            return "A3 - Third Exponent in Failure Model"
+         elseif synIDattr(slist[2], "name") =~ "pam_33.*"
+            return "A4 - Fourth Exponent in Failure Model"
+         elseif synIDattr(slist[2], "name") =~ "pam_41.*"
+            return "ASCALF - Scaling Factor Exponent"
+         endif
       endif
 "  }}}
 "  {{{ SENSOR
@@ -17528,6 +17569,8 @@ function! pamcomplete#pamHints()
             return "SIGSH - Target Signal Level in Compression"
          elseif synIDattr(slist[2], "name") =~ "pam_57.*"
             return "IMOTION - Nature of Motion Flag (menu)"
+         elseif synIDattr(slist[2], "name") =~ "pam_65.*"
+            return "TIMEfil - Time Interval for Acceleration Filter"
          endif
       elseif synIDattr(slist[1], "name") =~ "pam_SENSOR8_r3"
          if synIDattr(slist[2], "name") =~ "pam_9.*"
@@ -18196,6 +18239,8 @@ function! pamcomplete#pamHints()
             return 'IDDELEM'
          elseif synIDattr(slist[2], "name") =~ "pam_17.*"
             return 'ISENS - Sensor ID Triggering Element Elimination (tag)'
+         elseif synIDattr(slist[2], "name") =~ "pam_25.*"
+            return 'ICRIad - Flag for additional deletion criterion (menu)'
          endif
       endif 
 "  }}}
