@@ -1732,19 +1732,19 @@ syn region      pam_Control_OCTRL                matchgroup=pam_CardTag start="^
    syn region      pam_Control_OCTRL_DSYOUTPUT      contained containedin=pam_Control_OCTRL matchgroup=pam_Keyword start="DSYOUTPUT" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Control_OCTRL_DSYOUTPUT_arg,pam_Float,pam_Integer,pam_Error,pam_FreeError,pam_FreeVar,pam_Continue
       syn keyword     pam_Control_OCTRL_DSYOUTPUT_arg  contained containedin=pam_Control_OCTRL_DSYOUTPUT INTERVAL STATE CYCLE CURVE POINT NO FIRST
    syn region      pam_Control_OCTRL_PRTOUTPUT      contained containedin=pam_Control_OCTRL matchgroup=pam_Keyword start="PRTOUTPUT" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Control_OCTRL_DSYOUTPUT_arg,pam_Integer,pam_Error,pam_FreeError,pam_FreeVar,pam_Continue
-      syn keyword     pam_Control_OCTRL_PRTOUTPUT_arg  contained containedin=pam_Control_OCTRL_PRTOUTPUT INTERVAL CYCLE CURVE POINT NO FIRST
+      syn keyword     pam_Control_OCTRL_PRTOUTPUT_arg  contained containedin=pam_Control_OCTRL_PRTOUTPUT CYCLE NO
    syn region      pam_Control_OCTRL_RSTOUTPUT      contained containedin=pam_Control_OCTRL matchgroup=pam_Keyword start="RSTOUTPUT" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Control_OCTRL_RSTOUTPUT_arg,pam_Float,pam_Integer,pam_Error,pam_FreeError,pam_FreeVar,pam_Continue
       syn keyword     pam_Control_OCTRL_RSTOUTPUT_arg  contained containedin=pam_Control_OCTRL_RSTOUTPUT INTERVAL CYCLE NO 
    syn region      pam_Control_OCTRL_NODPLOT        contained containedin=pam_Control_OCTRL matchgroup=pam_Keyword start="NODPLOT" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Control_OCTRL_NODPLOT_arg,pam_Error,pam_FreeError,pam_FreeVar,pam_Continue
-      syn keyword     pam_Control_OCTRL_NODPLOT_arg  contained containedin=pam_Control_OCTRL_NODPLOT ALL ACOI CACC CPRE CRUP DISP FACM PCNT PRES TEMP DFLT VELO NO
+      syn keyword     pam_Control_OCTRL_NODPLOT_arg  contained containedin=pam_Control_OCTRL_NODPLOT ALL ACOI CACC CNTFRIC CNTNP CPRE CRUP DISP FACM FRIC_COEFF PCNT PRES TEMP TEMS TEMX DFLT VELO NO
    syn region      pam_Control_OCTRL_SOLPLOT        contained containedin=pam_Control_OCTRL matchgroup=pam_Keyword start="SOLPLOT" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Control_OCTRL_SOLPLOT_arg,pam_Error,pam_FreeError,pam_FreeVar,pam_Continue
-      syn keyword     pam_Control_OCTRL_SOLPLOT_arg  contained containedin=pam_Control_OCTRL_SOLPLOT ACOE ACOI CSIG DHGL DINT DPLE DVEL DXYZ EHGL EINT ELSI ENTH EPLE EPSI EPTH EVOL EXYZ FDMG FLUX IMSC LEPS LSIG NSMS PORO PSIG PSMA PSMI PSRA PSTR STSC SXYZ TEMP USRV VAUX VISC DFLT NO ALL
+      syn keyword     pam_Control_OCTRL_SOLPLOT_arg  contained containedin=pam_Control_OCTRL_SOLPLOT ACOE ACOI CSIG CSIG_ORTHO DHGL DINT DPLE DVEL DXYZ EHGL EINT ELSI ENTH EPLE EPSI EPTH EVOL EXYZ FDMG FLUX IMSC LEPS LSIG NSMS ORTHO PORO PSIG PSMA PSMI PSRA PSTR STSC SXYZ TEMP USRV VAUX VISC DFLT NO ALL
    syn region      pam_Control_OCTRL_SHLPLOT        contained containedin=pam_Control_OCTRL matchgroup=pam_Keyword start="SHLPLOT" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Control_OCTRL_SHLPLOT_arg,pam_Error,pam_FreeError,pam_FreeVar,pam_Continue
-      syn keyword     pam_Control_OCTRL_SHLPLOT_arg  contained containedin=pam_Control_OCTRL_SHLPLOT ALL BSTR CSIG EPMI EPMX NXYZ DFLD DFRC DHGL DINT DIRF DMAX DMG EHGL EINT ELSI ENER EPME EPSE EPSI EPTH ESMA ESME ESMI FANG FDMG FMAX FRSK GRUC IMSC MLEA MLEA MSTM PATH MXYZ NLAVE_RADELE PLYF PLYN RISK SHPR SIGM SMAX SRMS STRA STSC VAUX WRIN MSQV NSMS DFLT NO
+      syn keyword     pam_Control_OCTRL_SHLPLOT_arg  contained containedin=pam_Control_OCTRL_SHLPLOT ALL BSTR CSIG CSIG_ORTHO EPMI EPMX NXYZ DFLD DFRC DHGL DINT DIRF DMAX DMG EHGL EINT ELSI ENER EPME EPSE EPSI EPSI_ORTHO EPTH ESMA ESME ESMI FANG FDMG FMAX FRSK GRUC IMSC MLEA MLEA MSTM ORTHO PATH MXYZ NLAVE_RADELE PLYF PLYN RISK SHPR SIGM SIGM_ORTHO SMAX SRMS STRA STSC VAUX WRIN MSQV NSMS DFLT NO
    syn region      pam_Control_OCTRL_LAYPLOT        contained containedin=pam_Control_OCTRL matchgroup=pam_Keyword start="LAYPLOT" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Control_OCTRL_LAYPLOT_arg,pam_Error,pam_FreeError,pam_FreeVar,pam_Continue
       syn keyword     pam_Control_OCTRL_LAYPLOT_arg  contained containedin=pam_Control_OCTRL_LAYPLOT DAMF DAMX EPSF EPSL EPSP PEPS PEPTH PLYF PLYN PRUP0 PRUP1 PRUP2 PRUP3 PRUP4 PRUP5 PRUP6 PRUP7 PRUP8 PRUP9 PRUP10 PSIG SIGF SIGL SRAL USRP DFLT NO ALL
    syn region      pam_Control_OCTRL_BEAPLOT        contained containedin=pam_Control_OCTRL matchgroup=pam_Keyword start="BEAPLOT" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Control_OCTRL_BEAPLOT_arg,pam_Error,pam_FreeError,pam_FreeVar,pam_Continue
-      syn keyword     pam_Control_OCTRL_BEAPLOT_arg  contained containedin=pam_Control_OCTRL_BEAPLOT ALL ANGL DAXI ELSI EPMI EPMX EPSI ESMA ESMI FAXI FDMG FORC FSSH FTSH IMSC LENG MOMT MSN1 MSN2 MTN1 MTN2 MTOR RDIS RSN1 RSN2 RTN1 RTN2 RTOR TDIS ENTH FLUX DFLT NO
+      syn keyword     pam_Control_OCTRL_BEAPLOT_arg  contained containedin=pam_Control_OCTRL_BEAPLOT ALL ANGL DAXI ELSI EPMI EPMX EPSI ESMA ESMI FAXI FDMG FORC FSSH FTSH IMSC LENG MOMT MSN1 MSN2 MTN1 MTN2 MTOR RDIS RFCQ RSN1 RSN2 RTN1 RTN2 RTOR TDIS ENTH FLUX DFLT NO
    syn region      pam_Control_OCTRL_LNKPLOT        contained containedin=pam_Control_OCTRL matchgroup=pam_Keyword start="LNKPLOT" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Control_OCTRL_LNKPLOT_arg,pam_Error,pam_FreeError,pam_FreeVar,pam_Continue
       syn keyword     pam_Control_OCTRL_LNKPLOT_arg  contained containedin=pam_Control_OCTRL_LNKPLOT ALL DAMG FGLB FLOC MGLB MLOC
    syn region      pam_Control_OCTRL_SPHPLOT        contained containedin=pam_Control_OCTRL matchgroup=pam_Keyword start="SPHPLOT" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Control_OCTRL_SPHPLOT_arg,pam_Error,pam_FreeError,pam_FreeVar,pam_Continue
@@ -1757,19 +1757,24 @@ syn region      pam_Control_OCTRL                matchgroup=pam_CardTag start="^
    syn region      pam_Control_OCTRL_RBODYMESH          contained containedin=pam_Control_OCTRL matchgroup=pam_Keyword start="RBODY_MESH" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Control_YESNO,pam_Error,pam_FreeError,pam_FreeVar,pam_Continue
    syn region      pam_Control_OCTRL_CNTPLOT          contained containedin=pam_Control_OCTRL matchgroup=pam_Keyword start="CNTPLOT" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Control_OCTRL_CNTPLOT_arg,pam_Error,pam_FreeError,pam_FreeVar,pam_Continue
       syn keyword     pam_Control_OCTRL_CNTPLOT_arg  contained containedin=pam_Control_OCTRL_CNTPLOT ALL CNTF CNTP CNTV DFLT
+   syn region      pam_Control_OCTRL_SURFPLOT          contained containedin=pam_Control_OCTRL matchgroup=pam_Keyword start="SURFPLOT" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Control_OCTRL_SURFPLOT_arg,pam_Error,pam_FreeError,pam_FreeVar,pam_Continue
+      syn keyword     pam_Control_OCTRL_SURFPLOT_arg  contained containedin=pam_Control_OCTRL_SURFPLOT FACR MSQV PABS PRAY DFLT NO ALL
    syn region      pam_Control_OCTRL_PREFILTER          contained containedin=pam_Control_OCTRL matchgroup=pam_Keyword start="PREFILTER" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Control_OCTRL_PREFILTER_arg,pam_Control_YESNO,pam_Error,pam_FreeError,pam_FreeVar,pam_Continue
-      syn keyword     pam_Control_OCTRL_PREFILTER_arg  contained containedin=pam_Control_OCTRL_PREFILTER ALL AXYZ CNTF DFLT RACC SECF SPOT PCNT TYPE0 TYPE1
+      syn keyword     pam_Control_OCTRL_PREFILTER_arg  contained containedin=pam_Control_OCTRL_PREFILTER ALL AXYZ CNTF DFLT RACC SECF SPOT PCNT PRESU TYPE0 TYPE1
    syn region      pam_Control_OCTRL_PREFILTER_NO_SHIFT          contained containedin=pam_Control_OCTRL matchgroup=pam_Keyword start="PREFILTER_NO_SHIFT" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Continue
    syn region      pam_Control_OCTRL_GLBTHP          contained containedin=pam_Control_OCTRL matchgroup=pam_Keyword start="GLBTHP" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Control_OCTRL_GLBTHP_arg,pam_Control_YESNO,pam_Error,pam_FreeError,pam_FreeVar,pam_Continue
-      syn keyword     pam_Control_OCTRL_GLBTHP_arg  contained containedin=pam_Control_OCTRL_GLBTHP ALL ACOE AVGX AVGY AVGZ BAG6 BAGE BAGS CNTE INJP KINE MEAS MHGL MINT MKIN MLSI MMEM SSML STEP SECF SECM SPRE SSLD TCNT CNTF CNTP CNTS DLOC DMAS DMSC INTE RACC RANG RVEL RWLE RWLF SDEN TDMP TEXT THGL TOTE TRWL TSLP INTE DFLT NO
+      syn keyword     pam_Control_OCTRL_GLBTHP_arg  contained containedin=pam_Control_OCTRL_GLBTHP ALL ACOE ACOI AREA AVGX AVGY AVGZ BAG6 BAGE BAGS CACC CDIS CNTE CNTF CNTP CNTS CONV CPRE CRAC CRAN CRVE CVEL DAMP DLOC DMAS DMSC INJP INTE KINE MEAS MHGL MINT MKIN MLEA MLSI MMEM MOUT MSQV NLAVE_ENERD PFUN PRES RACC RANG RETR RFOR RVEL RWLE RWLF SDEN SECF SECM SLPR SPRE SSLD SSML STEP SECF TCNT TDMP TEMP TEMS TEMX TEXT THGL TIMER_ALL TIMER_CNSTRT TIMER_CONTAC TIMER_FPMSLV TIMER_INPINI TIMER_INTFOR TIMER_KJTMBS TIMER_NODPOS TIMER_OUTPUT TIMER_SMSSLV TIMER_SYSSLV TKED TOTE TRWL TSLP DFLT NO
    syn region      pam_Control_OCTRL_SHLTHP          contained containedin=pam_Control_OCTRL matchgroup=pam_Keyword start="SHLTHP" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Control_OCTRL_SHLTHP_arg,pam_Control_YESNO,pam_Error,pam_FreeError,pam_FreeVar,pam_Continue
-      syn keyword     pam_Control_OCTRL_SHLTHP_arg  contained containedin=pam_Control_OCTRL_SHLTHP ALL BSTR DAMF DAMX DMAX DFLT DMG ENER EPME EPMI EPMX EPSE EPSF EPSI EPSL EPSP ESMA ESME ESMI FANG FMAX FRSK GRUC MLEA MXYZ NXYZ PATH PEPS PEPTH PRUP0 PRUP1 PRUP2 PRUP3 PRUP4 PRUP5 PRUP6 PRUP7 PRUP8 PRUP9 PRUP10 PSIG RISK SHPR SIGF SIGL SIGM SMAX SRAL SRMS STRA USRP USRV VAUX WRIN DFLT ENTH FLUX NO
+      syn keyword     pam_Control_OCTRL_SHLTHP_arg  contained containedin=pam_Control_OCTRL_SHLTHP ALL BSTR DAMF DAMX DMAX DFLT DMG ENER EPME EPMI EPMX EPSE EPSF EPSI EPSI_ORTHO EPSL EPSL_ORTHO EPSP ESMA ESME ESMI FANG FMAX FRSK GRUC MLEA MXYZ NXYZ PATH PEPTH PEPTH_ORTHO PEPS PEPTH PRUP0 PRUP1 PRUP2 PRUP3 PRUP4 PRUP5 PRUP6 PRUP7 PRUP8 PRUP9 PRUP10 PSIG RISK SHPR SIGF SIGL SIGL_ORTHO SIGM SIGM_ORTHO SMAX SRAL SRMS STRA USRP USRV VAUX WRIN DFLT ENTH FLUX NO
    syn region      pam_Control_OCTRL_RANTHP          contained containedin=pam_Control_OCTRL matchgroup=pam_Keyword start="RANTHP" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Control_OCTRL_RANTHP_arg,pam_Control_YESNO,pam_Error,pam_FreeError,pam_FreeVar,pam_Continue
       syn keyword     pam_Control_OCTRL_RANTHP_arg  contained containedin=pam_Control_OCTRL_RANTHP CORR CRMS PSDF DFLT NO ALL
    syn region      pam_Control_OCTRL_BEATHP          contained containedin=pam_Control_OCTRL matchgroup=pam_Keyword start="BEATHP" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Control_OCTRL_BEATHP_arg,pam_Control_YESNO,pam_Error,pam_FreeError,pam_FreeVar,pam_Continue
-      syn keyword     pam_Control_OCTRL_BEATHP_arg  contained containedin=pam_Control_OCTRL_BEATHP ALL ANGL DAXI ELSI EPMI EMPX EPSI ESMA ESMI FAXI FDMG FORC FSSH FTSH LENG MOMT MSN1 MSN2 MTN1 MTN2 MTOR RDIS RSN1 RSN2 RTN1 RTN2 RTOR TDIS ENTH FLUX NO
+      syn keyword     pam_Control_OCTRL_BEATHP_arg  contained containedin=pam_Control_OCTRL_BEATHP ANGL CFOR CSDF CVDF EINT ELSI ENTH EMPX EPSI EPTH ESMA FDMG FLUX FORC LENG MOMT RDIS RFCQ TDIS DFLT NO ALL
+   syn region      pam_Control_OCTRL_SURFTHP          contained containedin=pam_Control_OCTRL matchgroup=pam_Keyword start="SURFTHP" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Control_OCTRL_SURFTHP_arg,pam_Control_YESNO,pam_Error,pam_FreeError,pam_FreeVar,pam_Continue
+      syn keyword     pam_Control_OCTRL_SURFTHP_arg  contained containedin=pam_Control_OCTRL_SURFTHP FACR MSQV PABS PRAY DFLT NO ALL
+      hi def link pam_Control_OCTRL_SURFTHP_arg pam_Argument
    syn region      pam_Control_OCTRL_SOLTHP          contained containedin=pam_Control_OCTRL matchgroup=pam_Keyword start="SOLTHP" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Control_OCTRL_SOLTHP_arg,pam_Control_YESNO,pam_Error,pam_FreeError,pam_FreeVar,pam_Continue
-      syn keyword     pam_Control_OCTRL_SOLTHP_arg  contained containedin=pam_Control_OCTRL_SOLTHP ALL ACOE DHGL DINT DVEL EHGL EINT ELSI EPLE FDMG IMSC NSMS PORO STSC SXYZ VAUX DFLT DPLE DXYZ EXYZ LEPS LSIG PSIG PSMA PSMI PSRA PSTR TEMP USRV NO
+      syn keyword     pam_Control_OCTRL_SOLTHP_arg  contained containedin=pam_Control_OCTRL_SOLTHP ACOE DAMF DAMX DHGL DINT DPLE DVEL DXYZ EHGL EINT ELSI ENTH EPLE EPSF EPSI EPSL EPSL_ORTHO EPSP EPTH EVOL EXYZ FDMG FLUX LEPS LSIG PEPTH PEPTH_ORTHO PORO PRUP10 PSIG PSMA PSMI PSRA PSTR SIGF SIGL SIGL_ORTHO SRAL STSC SXYZ TEMP USRV VAUX DFLT NO ALL
       hi def link pam_Control_OCTRL_SOLTHP_arg pam_Argument
    syn region      pam_Control_OCTRL_MPF_AFM         contained containedin=pam_Control_OCTRL matchgroup=pam_Keyword start="MPF_AFM" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Integer,pam_Error,pam_FreeError,pam_FreeVar,pam_Continue
    syn region      pam_Control_OCTRL_MPF_ASM         contained containedin=pam_Control_OCTRL matchgroup=pam_Keyword start="MPF_ASM" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Integer,pam_Error,pam_FreeError,pam_FreeVar,pam_Continue
@@ -1824,6 +1829,7 @@ hi def link pam_Control_OCTRL_SPHPLOT_arg pam_Argument
 hi def link pam_Control_OCTRL_FPMPLOT_arg pam_Argument
 hi def link pam_Control_OCTRL_MPCPLOT_arg pam_Argument
 hi def link pam_Control_OCTRL_CNTPLOT_arg pam_Argument
+hi def link pam_Control_OCTRL_SURFPLOT_arg pam_Argument
 hi def link pam_Control_OCTRL_PREFILTER_arg pam_Argument
 hi def link pam_Control_OCTRL_GLBTHP_arg pam_Argument
 hi def link pam_Control_OCTRL_SHLTHP_arg pam_Argument
@@ -1859,7 +1865,7 @@ syn region      pam_Control_CKCTRL                matchgroup=pam_CardTag start="
 " {{{ PRCTRL
 syn region      pam_Control_PRCTRL                matchgroup=pam_CardTag start="^\CPRCTRL/" end="^\CEND_PRCTRL[ ]*" contains=pam_Error,pam_Comment,pam_Comment_Position,pam_Continue,pam_FreeVar,pam_Control_PRCTRL_INITIAL fold keepend
    syn region    pam_Control_PRCTRL_GLOBAL           contained containedin=pam_Control_PRCTRL start="^" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Continue,pam_Error,pam_FreeError,pam_FreeVar,pam_Control_PRCTRL_GLOBAL_arg,pam_Control_YESNO
-      syn keyword pam_Control_PRCTRL_GLOBAL_arg   contained containedin=pam_Control_PRCTRL_GLOBAL ACFLD_INPUT ACTUA_INPUT BAGIN_INPUT BDFOR_INPUT BOUNC_INPUT CHEM_INPUT CNODE_INPUT CONLO_INPUT DAMP_INPUT DELEM_INPUT ELEMENT_INPUT FRAME_INPUT FUNCSW_INPUT FUNCT_INPUT HEAT_INPUT IMPMA_INPUT KINDA_INPUT LINCO_INPUT LOOKU_INPUT MATER_INPUT MBSYS_INPUT MLOAD_INPUT MTOCO_INPUT MUSC1_INPUT NLAVE_INPUT NODE_INPUT OTMCO_INPUT PFLOW_INPUT PREBM_INPUT PREFA_INPUT PYVAR_INPUT RBODY_INPUT RMLOAD_INPUT SECFO_INPUT SEWING_INPUT TIED_INPUT TRSFM_INPUT TURBL_INPUT ACFLD_GES BAGIN_GES BDFOR_GES CNTAC_GES DAMP_GES DELEM_GES KINDA_GES MBSYS_GES MTOCO_GES MUSC1_GES NLAVE_GES OTMCO_GES RBODY_GES RMLOAD_GES RMSSOL_GES SECFO_GES SEWING_GES SURFA_GES TRSFM_GES TURBL_GES USRACT_GES CNTAC_INIT ELEMENT_INIT MATER_INIT MBSYS_INIT MTOCO_INIT NODE_INIT OTMCO_INIT PLINK_INIT RBODY_INIT TIED_INIT CNTAC_DEBUG FPM_DEBUG 
+      syn keyword pam_Control_PRCTRL_GLOBAL_arg   contained containedin=pam_Control_PRCTRL_GLOBAL ACFLD_INPUT ACTUA_INPUT BAGIN_INPUT BDFOR_INPUT BOUNC_INPUT CHEM_INPUT CNODE_INPUT CONLO_INPUT DAMP_INPUT DELEM_INPUT ELEMENT_INPUT FRAME_INPUT FUNCSW_INPUT FUNCT_INPUT HEAT_INPUT IMPMA_INPUT KINDA_INPUT LINCO_INPUT LOOKU_INPUT MATER_INPUT METRIC_INPUT MBSYS_INPUT MLOAD_INPUT MTOCO_INPUT MUSCLE_INPUT NLAVE_INPUT NODE_INPUT OTMCO_INPUT PFLOW_INPUT PREBM_INPUT PREFA_INPUT PYVAR_INPUT RBODY_INPUT RMLOAD_INPUT SECFO_INPUT SEWING_INPUT TIED_INPUT TRSFM_INPUT TURBL_INPUT ACFLD_GES BAGIN_GES BDFOR_GES CNTAC_GES DAMP_GES DELEM_GES FASCI_GES KINDA_GES MBSYS_GES MTOCO_GES MUSCLE_GES NLAVE_GES OTMCO_GES RBODY_GES RMLOAD_GES RMSSOL_GES SECFO_GES SEWING_GES SURFA_GES TRSFM_GES TURBL_GES USRACT_GES CNTAC_INIT DCOMP_INIT ELEMENT_INIT MATER_INIT MBSYS_INIT MTOCO_INIT NODE_INIT OTMCO_INIT PLINK_INIT RBODY_INIT TIED_INIT CNTAC_DEBUG FPM_DEBUG 
       hi def link pam_Control_PRCTRL_GLOBAL_arg pam_Keyword
    syn region    pam_Control_PRCTRL_PRINT_ALL        contained containedin=pam_Control_PRCTRL matchgroup=pam_Keyword start="PRINT_ALL" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Integer,pam_Control_YESNO,pam_Continue,pam_Error,pam_FreeError,pam_FreeVar
 " PRCTRL end}}}
@@ -1883,6 +1889,14 @@ syn region      pam_Control_TCTRL                matchgroup=pam_CardTag start="^
    syn region    pam_Control_TCTRL_TETR4_TIMESTEP        contained containedin=pam_Control_TCTRL matchgroup=pam_Keyword start="TETR4_TIMESTEP" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Float,pam_Integer,pam_Control_TCTRL_TETR4_TIMESTEP_arg,pam_Continue,pam_Error,pam_FreeError,pam_FreeVar
       syn keyword pam_Control_TCTRL_TETR4_TIMESTEP_arg   contained containedin=pam_Control_TCTRL_TETR4_TIMESTEP LARGE SMALL
       hi def link pam_Control_TCTRL_TETR4_TIMESTEP_arg pam_Argument
+   syn region    pam_Control_TCTRL_PFLOW_VISC_SCALE       contained containedin=pam_Control_TCTRL matchgroup=pam_Keyword start="PFLOW_VISC_SCALE" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Float,pam_Continue,pam_FreeVar
+   syn region    pam_Control_TCTRL_THERMAL_SUBCYCLE        contained containedin=pam_Control_TCTRL matchgroup=pam_Keyword start="THERMAL_SUBCYCLE" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Integer,pam_Control_TCTRL_THERMAL_SUBCYCLE_arg,pam_Continue,pam_Error,pam_FreeError,pam_FreeVar
+      syn keyword pam_Control_TCTRL_THERMAL_SUBCYCLE_arg   contained containedin=pam_Control_TCTRL_THERMAL_SUBCYCLE NO MAX AUTO
+      hi def link pam_Control_TCTRL_THERMAL_SUBCYCLE_arg pam_Argument
+   syn region    pam_Control_TCTRL_TIMESTEP_REDUCTION        contained containedin=pam_Control_TCTRL matchgroup=pam_Keyword start="TIMESTEP_REDUCTION" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Float,pam_Control_TCTRL_TIMESTEP_REDUCTION,pam_Control_YESNO,pam_Continue,pam_Error,pam_FreeError,pam_FreeVar
+      syn keyword pam_Control_TCTRL_TIMESTEP_REDUCTION_arg   contained containedin=pam_Control_TCTRL_TIMESTEP_REDUCTION CNT37
+      hi def link pam_Control_TCTRL_TIMESTEP_REDUCTION_arg pam_Argument
+   syn region    pam_Control_TCTRL_TIMESTEP_RECOVERY       contained containedin=pam_Control_TCTRL matchgroup=pam_Keyword start="TIMESTEP_RECOVERY" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Integer,pam_Continue,pam_FreeVar
    syn region    pam_Control_TCTRL_AUTO_STEPSIZE       contained containedin=pam_Control_TCTRL matchgroup=pam_Keyword start="AUTO_STEPSIZE" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Float,pam_Continue,pam_FreeVar
    syn region    pam_Control_TCTRL_AUTO_CUTBACK       contained containedin=pam_Control_TCTRL matchgroup=pam_Keyword start="AUTO_CUTBACK" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Float,pam_Continue,pam_FreeVar
    syn region    pam_Control_TCTRL_AUTO_ITERATION       contained containedin=pam_Control_TCTRL matchgroup=pam_Keyword start="AUTO_ITERATION" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Float,pam_Continue,pam_FreeVar
@@ -2069,7 +2083,7 @@ syn region      pam_Control_EGM_FILE        contained containedin=pam_Control_EI
 syn region      pam_Control_CHECK        contained containedin=pam_Control_EIGEN matchgroup=pam_HeaderKW start="\CCHECK" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Control_YESNO,pam_Control_CHECK_arg,pam_Float,pam_Continue keepend
    syn keyword     pam_Control_CHECK_arg         contained containedin=pam_Control_CHECK QUALITY MASS_ORTHOGONALITY PARTICIPATION_FACTOR EFFECTIVE_MASS GENERALIZED_STIFFNESS ALL
    hi def link pam_Control_CHECK_arg pam_Argument
-syn region      pam_Control_DBASE_MATF        contained containedin=pam_Control_EIGEN matchgroup=pam_HeaderKW start="\CDBASE_MATF" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_String,pam_Continue keepend
+syn region      pam_Control_DBASE_MATF        contained containedin=pam_Control_EIGEN,pam_Control_GFRP matchgroup=pam_HeaderKW start="\CDBASE_MATF\>" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_String,pam_Continue keepend
 syn region      pam_Control_RESIDUAL_MODES        contained containedin=pam_Control_EIGEN matchgroup=pam_HeaderKW start="\CRESIDUAL_MODES" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Integer,pam_Control_RESIDUAL_MODES_arg,pam_Continue keepend
    syn keyword     pam_Control_RESIDUAL_MODES_arg         contained containedin=pam_Control_RESIDUAL_MODES LOAD RMLOAD
    hi def link pam_Control_RESIDUAL_MODES_arg pam_Argument
@@ -2086,15 +2100,15 @@ syn region      pam_Control_MASS_MATRIX        contained containedin=pam_Control
 syn region      pam_Control_IMPORT_MATRIX        contained containedin=pam_Control_EIGEN,pam_Control_GFRP matchgroup=pam_HeaderKW start="\CIMPORT_MATRIX" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Integer,pam_Control_IMPORT_MATRIX_arg,pam_Continue keepend
    syn keyword     pam_Control_IMPORT_MATRIX_arg         contained containedin=pam_Control_IMPORT_MATRIX NO STIFG MASSG SDAMG VDAMG
    hi def link pam_Control_IMPORT_MATRIX_arg pam_Argument
-syn region      pam_Control_FRQD_DYNSTIFF        contained containedin=pam_Control_EIGEN matchgroup=pam_HeaderKW start="\CFRQD_DYNSTIFF" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Control_YESNO,pam_Continue keepend
+syn region      pam_Control_FRQD_DYNSTIFF        contained containedin=pam_Control_EIGEN,pam_Control_GFRP matchgroup=pam_HeaderKW start="\CFRQD_DYNSTIFF" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Control_YESNO,pam_Continue keepend
 syn region      pam_Control_DYNSTIFF_FRANGE        contained containedin=pam_Control_EIGEN matchgroup=pam_HeaderKW start="\CDYNSTIFF_FRANGE" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Integer,pam_Continue keepend
 
 " EIGEN end }}}
 
 " {{{ GFRP
 syn region      pam_Control_GFRP                matchgroup=pam_CardTag start="^\CGFRP  /" end="^\CEND_GFRP[ ]*" contains=pam_Error,pam_Comment,pam_Comment_Position,pam_Continue,pam_Integer,pam_Float fold keepend
-syn region      pam_Control_SOLUTION        contained containedin=pam_Control_GFRP matchgroup=pam_HeaderKW start="\CSOLUTION" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Control_SOLUTION_arg,pam_Continue keepend
-   syn keyword     pam_Control_SOLUTION_arg         contained containedin=pam_Control_SOLUTION RESPONSE RESPONSE_ACOUSTIC RESPONSE_COUPLE IMPEDANCE RANDOM_RESPONSE RANDOM_RESPONSE_ACOUSTIC RANDOM_RESPONSE_COUPLE
+syn region      pam_Control_SOLUTION        contained containedin=pam_Control_GFRP matchgroup=pam_HeaderKW start="\CSOLUTION" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Control_SOLUTION_arg,pam_Integer,pam_Continue keepend
+   syn keyword     pam_Control_SOLUTION_arg         contained containedin=pam_Control_SOLUTION RESPONSE RESPONSE_ACOUSTIC RESPONSE_COUPLE RESPONSE_TL IMPEDANCE RANDOM_RESPONSE RANDOM_RESPONSE_ACOUSTIC RANDOM_RESPONSE_COUPLE RANDOM_RESPONSE_TL
    hi def link pam_Control_SOLUTION_arg pam_Argument
 syn region      pam_Control_COUPLING_DISTANCE        contained containedin=pam_Control_GFRP matchgroup=pam_HeaderKW start="\CCOUPLING_DISTANCE" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Float,pam_Continue keepend
 syn region      pam_Control_METHOD        contained containedin=pam_Control_GFRP matchgroup=pam_HeaderKW start="\CMETHOD" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Control_METHOD_arg,pam_Continue keepend
@@ -2128,6 +2142,10 @@ syn region      pam_Control_CONTOUR_PLOT_RANGE        contained containedin=pam_
 syn region      pam_Control_CORROUTPUT        contained containedin=pam_Control_GFRP matchgroup=pam_HeaderKW start="\CCORROUTPUT" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Float,pam_Continue keepend
 syn region      pam_Control_BLOCK_SIZE        contained containedin=pam_Control_GFRP matchgroup=pam_HeaderKW start="\CBLOCK_SIZE" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Float,pam_Continue keepend
 syn region      pam_Control_DBASE_RANDOM        contained containedin=pam_Control_GFRP matchgroup=pam_HeaderKW start="\CDBASE_RANDOM" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_String,pam_Continue keepend
+syn region      pam_Control_GENERAL_MATRIX_EXTERNAL        contained containedin=pam_Control_GFRP matchgroup=pam_HeaderKW start="\CGENERAL_MATRIX_EXTERNAL" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Control_GENERAL_MATRIX_EXTERNAL_arg,pam_Continue keepend
+   syn keyword     pam_Control_GENERAL_MATRIX_EXTERNAL_arg         contained containedin=pam_Control_GENERAL_MATRIX_EXTERNAL NO STR_DAMP VIS_DAMP FLU_DAMP
+   hi def link pam_Control_GENERAL_MATRIX_EXTERNAL_arg pam_Argument
+syn region      pam_Control_DBASE_MATF_EXTERNAL        contained containedin=pam_Control_GFRP matchgroup=pam_HeaderKW start="\CDBASE_MATF_EXTERNAL" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_String,pam_Continue keepend
 " GFRP end }}}
 
 " {{{ BUCKL
@@ -2158,7 +2176,7 @@ syn region      pam_Control_ARC_STOP        contained containedin=pam_Control_AC
 " {{{ HEAT
 syn region      pam_Control_HEAT                matchgroup=pam_CardTag start="^\CHEAT  /" end="^\CEND_HEAT[ ]*" contains=pam_Error,pam_Comment,pam_Comment_Position,pam_Continue,pam_Integer,pam_Float fold keepend
 syn region      pam_Control_COUPLING_TYPE        contained containedin=pam_Control_HEAT matchgroup=pam_HeaderKW start="\CCOUPLING_TYPE" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Control_COUPLING_TYPE_arg,pam_String keepend
-   syn keyword     pam_Control_COUPLING_TYPE_arg         contained containedin=pam_Control_COUPLING_TYPE UNCOUPLED 
+   syn keyword     pam_Control_COUPLING_TYPE_arg         contained containedin=pam_Control_COUPLING_TYPE UNCOUPLED COUPLED_WITH_STRESS
    hi def link pam_Control_COUPLING_TYPE_arg pam_Argument
 syn region      pam_Control_TIME_INTEGRATION        contained containedin=pam_Control_HEAT matchgroup=pam_HeaderKW start="\CTIME_INTEGRATION" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Control_TIME_INTEGRATION_arg,pam_Float keepend
    syn keyword     pam_Control_TIME_INTEGRATION_arg         contained containedin=pam_Control_TIME_INTEGRATION BACKWARD_EULER CRANK-NICOLSON GENERALIZED 
