@@ -1921,6 +1921,7 @@ syn region      pam_Control_ECTRL                matchgroup=pam_CardTag start="^
    syn region    pam_Control_ECTRL_TRIANGLE_HYBRID_STRAIN       contained containedin=pam_Control_ECTRL matchgroup=pam_Keyword start="TRIANGLE_HYBRID_STRAIN" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_CONTROL_YESNO,pam_Continue,pam_Error,pam_FreeError,pam_FreeVar
    syn region    pam_Control_ECTRL_PLANE_PLASTICITY       contained containedin=pam_Control_ECTRL matchgroup=pam_Keyword start="PLANE_PLASTICITY" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_CONTROL_YESNO,pam_Continue,pam_Error,pam_FreeError,pam_FreeVar
    syn region    pam_Control_ECTRL_MEMB_STABILIZATION       contained containedin=pam_Control_ECTRL matchgroup=pam_Keyword start="MEMB_STABILIZATION" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_CONTROL_YESNO,pam_Float,pam_Continue,pam_Error,pam_FreeError,pam_FreeVar
+   syn region    pam_Control_ECTRL_TETRA_STABILIZATION       contained containedin=pam_Control_ECTRL matchgroup=pam_Keyword start="TETRA_STABILIZATION" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_CONTROL_YESNO,pam_Continue,pam_Error,pam_FreeError,pam_FreeVar
    syn region    pam_Control_ECTRL_STRAINRATE       contained containedin=pam_Control_ECTRL matchgroup=pam_Keyword start="STRAINRATE" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_CONTROL_YESNO,pam_Continue,pam_Error,pam_FreeError,pam_FreeVar
    syn region    pam_Control_ECTRL_RATEFILTER       contained containedin=pam_Control_ECTRL matchgroup=pam_Keyword start="RATEFILTER" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Integer,pam_Continue
    syn region    pam_Control_ECTRL_RATEFILTER_CYCLE       contained containedin=pam_Control_ECTRL matchgroup=pam_Keyword start="RATEFILTER_CYCLE" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Integer,pam_Continue
@@ -1970,6 +1971,7 @@ syn region      pam_Control_CCTRL                matchgroup=pam_CardTag start="^
    syn region    pam_Control_CCTRL_NL_MATRIX_TYPE       contained containedin=pam_Control_CCTRL matchgroup=pam_Keyword start="NL_MATRIX_TYPE" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Control_CCTRL_NL_MATRIX_TYPE_arg,pam_Continue,pam_Error,pam_FreeError,pam_FreeVar
       syn keyword     pam_Control_CCTRL_NL_MATRIX_TYPE_arg        contained containedin=pam_Control_CCTRL_NL_MATRIX_TYPE UNSYMMETRIC SYMMETRIC AUTO
       hi def link pam_Control_CCTRL_NL_MATRIX_TYPE_arg pam_Argument
+   syn region    pam_Control_CCTRL_USER_OMISION         contained containedin=pam_Control_CCTRL matchgroup=pam_Keyword start="USER_OMISSION" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Continue,pam_Error,pam_FreeError,pam_FreeVar,pam_Float
 
 " CCTRL end}}}
 
@@ -2067,6 +2069,7 @@ syn region      pam_Control_EGM_FILE        contained containedin=pam_Control_EI
 syn region      pam_Control_CHECK        contained containedin=pam_Control_EIGEN matchgroup=pam_HeaderKW start="\CCHECK" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Control_YESNO,pam_Control_CHECK_arg,pam_Float,pam_Continue keepend
    syn keyword     pam_Control_CHECK_arg         contained containedin=pam_Control_CHECK QUALITY MASS_ORTHOGONALITY PARTICIPATION_FACTOR EFFECTIVE_MASS GENERALIZED_STIFFNESS ALL
    hi def link pam_Control_CHECK_arg pam_Argument
+syn region      pam_Control_DBASE_MATF        contained containedin=pam_Control_EIGEN matchgroup=pam_HeaderKW start="\CDBASE_MATF" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_String,pam_Continue keepend
 syn region      pam_Control_RESIDUAL_MODES        contained containedin=pam_Control_EIGEN matchgroup=pam_HeaderKW start="\CRESIDUAL_MODES" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Integer,pam_Control_RESIDUAL_MODES_arg,pam_Continue keepend
    syn keyword     pam_Control_RESIDUAL_MODES_arg         contained containedin=pam_Control_RESIDUAL_MODES LOAD RMLOAD
    hi def link pam_Control_RESIDUAL_MODES_arg pam_Argument
