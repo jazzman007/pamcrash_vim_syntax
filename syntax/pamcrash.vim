@@ -2053,7 +2053,7 @@ syn region      pam_Control_DAMPING_TARGET_FREQUENCY        contained containedi
 " TRANS end }}}
 
 " {{{ EIGEN
-syn region      pam_Control_EIGEN                matchgroup=pam_CardTag start="^\CEIGEN /" end="^\CEND_EIGEN[ ]*" contains=pam_Error,pam_Comment,pam_Comment_Position,pam_Continue fold keepend
+syn region      pam_Control_EIGEN                matchgroup=pam_CardTag start="^\CEIGEN /" end="^\CEND_EIGEN[ ]*" contains=pam_Error,pam_Comment,pam_Comment_Position,pam_Continue,pam_Integer fold keepend
 syn region      pam_Control_METHOD2        contained containedin=pam_Control_EIGEN matchgroup=pam_HeaderKW start="\CMETHOD" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Control_METHOD2_arg,pam_Continue keepend
    syn keyword     pam_Control_METHOD2_arg         contained containedin=pam_Control_METHOD2 BLOCK_IRAM PSM AMLS
    hi def link pam_Control_METHOD2_arg pam_Argument
@@ -2073,9 +2073,12 @@ syn region      pam_Control_DBASE_MATF        contained containedin=pam_Control_
 syn region      pam_Control_RESIDUAL_MODES        contained containedin=pam_Control_EIGEN matchgroup=pam_HeaderKW start="\CRESIDUAL_MODES" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Integer,pam_Control_RESIDUAL_MODES_arg,pam_Continue keepend
    syn keyword     pam_Control_RESIDUAL_MODES_arg         contained containedin=pam_Control_RESIDUAL_MODES LOAD RMLOAD
    hi def link pam_Control_RESIDUAL_MODES_arg pam_Argument
-syn region      pam_Control_DAMPING_MATRIX        contained containedin=pam_Control_EIGEN,pam_Control_GFRP,pam_Control_TRANS matchgroup=pam_HeaderKW start="\CDAMPING_MATRIX" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Integer,pam_Control_DAMPING_MATRIX_arg,pam_Continue keepend
+syn region      pam_Control_DAMPING_MATRIX        contained containedin=pam_Control_EIGEN,pam_Control_GFRP,pam_Control_TRANS matchgroup=pam_HeaderKW start="\CDAMPING_MATRIX" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Control_DAMPING_MATRIX_arg,pam_Continue keepend
    syn keyword     pam_Control_DAMPING_MATRIX_arg         contained containedin=pam_Control_DAMPING_MATRIX STRUCTURAL VISCOUS FLUID NO
    hi def link pam_Control_DAMPING_MATRIX_arg pam_Argument
+syn region      pam_Control_GENERAL_MATRIX        contained containedin=pam_Control_EIGEN,pam_Control_GFRP matchgroup=pam_HeaderKW start="\CGENERAL_MATRIX" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Control_GENERAL_MATRIX_arg,pam_Continue keepend
+   syn keyword     pam_Control_GENERAL_MATRIX_arg         contained containedin=pam_Control_GENERAL_MATRIX NO STR_DAMP VIS_DAMP FLU_DAMP STIFG_IMPMA MASSG_IMPMA SDAMG_IMPMA VDAMG_IMPMA
+   hi def link pam_Control_GENERAL_MATRIX_arg pam_Argument
 syn region      pam_Control_SHIFT_FREQUENCY        contained containedin=pam_Control_EIGEN matchgroup=pam_HeaderKW start="\CSHIFT_FREQUENCY" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Float,pam_Continue keepend
 syn region      pam_Control_MASS_MATRIX        contained containedin=pam_Control_EIGEN,pam_Control_TRANS matchgroup=pam_HeaderKW start="\CMASS_MATRIX" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Integer,pam_Control_MASS_MATRIX_arg,pam_Continue keepend
    syn keyword     pam_Control_MASS_MATRIX_arg         contained containedin=pam_Control_MASS_MATRIX CONSISTENT LUMPED
@@ -2083,6 +2086,8 @@ syn region      pam_Control_MASS_MATRIX        contained containedin=pam_Control
 syn region      pam_Control_IMPORT_MATRIX        contained containedin=pam_Control_EIGEN,pam_Control_GFRP matchgroup=pam_HeaderKW start="\CIMPORT_MATRIX" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Integer,pam_Control_IMPORT_MATRIX_arg,pam_Continue keepend
    syn keyword     pam_Control_IMPORT_MATRIX_arg         contained containedin=pam_Control_IMPORT_MATRIX NO STIFG MASSG SDAMG VDAMG
    hi def link pam_Control_IMPORT_MATRIX_arg pam_Argument
+syn region      pam_Control_FRQD_DYNSTIFF        contained containedin=pam_Control_EIGEN matchgroup=pam_HeaderKW start="\CFRQD_DYNSTIFF" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Control_YESNO,pam_Continue keepend
+syn region      pam_Control_DYNSTIFF_FRANGE        contained containedin=pam_Control_EIGEN matchgroup=pam_HeaderKW start="\CDYNSTIFF_FRANGE" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Integer,pam_Continue keepend
 
 " EIGEN end }}}
 
@@ -2298,6 +2303,9 @@ syn region      pam_MBSYS                matchgroup=pam_CardTag start="^\CMBSYS 
 
 " {{{ FPCTRL
 syn region      pam_Control_FPCTRL                matchgroup=pam_CardTag start="^\CFPCTRL/" end="^\CEND_FPCTRL[ ]*" contains=pam_Error,pam_Comment,pam_Comment_Position,pam_Continue fold keepend
+syn region      pam_Control_FPMPLUG        contained containedin=pam_Control_FPCTRL matchgroup=pam_HeaderKW start="\CFPMPLUG" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Control_FPMPLUG_arg keepend
+  syn keyword pam_Control_FPMPLUG_arg  contained containedin=pam_Control_FPMPLUG libfpmsp libfpmdp
+  hi def link pam_Control_FPMPLUG_arg pam_Argument
 syn region      pam_Control_VENT_MODEL        contained containedin=pam_Control_FPCTRL matchgroup=pam_HeaderKW start="\CVENT_MODEL" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Integer keepend
 syn region      pam_Control_FLUID_MODEL        contained containedin=pam_Control_FPCTRL matchgroup=pam_HeaderKW start="\CFLUID_MODEL" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Integer keepend
 syn region      pam_Control_NUMERIC_MODEL        contained containedin=pam_Control_FPCTRL matchgroup=pam_HeaderKW start="\CNUMERIC_MODEL" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Integer keepend
