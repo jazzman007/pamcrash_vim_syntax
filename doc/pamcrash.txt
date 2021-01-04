@@ -102,6 +102,7 @@ Part
    ,pmk   PART Type MBKJN
    ,pms   PART Type MBSPR
    ,pmt   PART Type MTOJNT
+   ,pmu   PART Type MUSCLE
    ,pos   MPART Type SHELL
    ,poo   MPART Type SOLID
    ,psb   PART Type SPRGBM

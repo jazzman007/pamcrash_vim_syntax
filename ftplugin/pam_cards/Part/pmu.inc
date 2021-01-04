@@ -1,15 +1,13 @@
-$PART Type SHELL
-$#         IDPRT   ATYPE   IDMAT IDVAMAT IDTHMAT  IDPMATIDNUMPAR
-PART  /        1   SHELL       0       0       0       0        
+$PART Type MUSCLE
+$#         IDPRT   ATYPE   IDMAT IDVAMAT IDTHMAT  IDPMAT
+PART  /        1  MUSCLE       0       0       0       0
 $#                                                                         TITLE
 NAME PART_1                                                                     
 $#  DTELIM    TSCALF   DTRATIO
                               
 $#   TCONT    EPSINI  COULFRIC
                               
-$#       H NINT    OFFSETNTDOF
-              5               
-$#ORTBLANK      XDIR      YDIR      ZDIR
-    0                                   
+$# BLANK     ALF    PCSA    WMAS   QUALI   L0fib 
+                                CONSTANT        
 $#      
 END_PART

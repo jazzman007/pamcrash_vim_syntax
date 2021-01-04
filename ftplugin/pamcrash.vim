@@ -519,6 +519,8 @@ map <silent> ,pmk ,,,,kk:r ~/.vim/ftplugin/pam_cards/Part/pmk.inc<CR>dd
 map <silent> ,pms ,,,,kk:r ~/.vim/ftplugin/pam_cards/Part/pms.inc<CR>dd
 "PART Type MTOJNT
 map <silent> ,pmt ,,,,kk:r ~/.vim/ftplugin/pam_cards/Part/pmt.inc<CR>dd
+"PART Type MUSCLE
+map <silent> ,pmu ,,,,kk:r ~/.vim/ftplugin/pam_cards/Part/pmu.inc<CR>dd
 "MPART Type SOLID
 map <silent> ,poo ,,,,kk:r ~/.vim/ftplugin/pam_cards/Part/poo.inc<CR>dd
 "MPART Type SHELL

@@ -1045,6 +1045,9 @@ function! pamcomplete#Complete(findstart, base)
             " IDPMAT
             elseif synIDattr(slist[2], "name") =~ "pam_49.*"
                let start = 48
+            " IDNUMPAR
+            elseif synIDattr(slist[2], "name") =~ "pam_57.*"
+               let start = 56
             endif
          " {{{ SOLID
          elseif synIDattr(slist[1], "name") =~ "pam_PART_SOLID_r5"
@@ -1077,6 +1080,13 @@ function! pamcomplete#Complete(findstart, base)
             " IORT12
             if synIDattr(slist[2], "name") =~ "pam_1.5.*"
                let start = 0
+            endif
+         " }}}
+         " {{{ MUSCLE
+         elseif synIDattr(slist[1], "name") =~ "pam_PART_MUSCLE_r5"
+            " QUALIFIER
+            if synIDattr(slist[2], "name") =~ "pam_PART.MUSCLE_r5_[ae]1"
+               let start = 32
             endif
          " }}}
          " {{{ BEAM
@@ -5126,6 +5136,7 @@ function! pamcomplete#Complete(findstart, base)
                call add (items,'   JOINT')
                call add (items,'   KJOIN')
                call add (items,'   MBKJN')
+               call add (items,'  MUSCLE')
             " IDMAT
             elseif synIDattr(slist[2], "name") =~ "pam_25.*"
                let items = s:getTags("MATER",8)
@@ -5138,6 +5149,9 @@ function! pamcomplete#Complete(findstart, base)
             " IDPMAT
             elseif synIDattr(slist[2], "name") =~ "pam_49.*"
                let items = s:getTags("PFMAT",8)
+            " IDNUMPAR
+            elseif synIDattr(slist[2], "name") =~ "pam_57.*"
+               let items = s:getTags("NUMPAR",10)
             endif
          " {{{ MEMBR
          elseif synIDattr(slist[1], "name") =~ "pam_PART_MEMBR_r[67]"
@@ -5214,6 +5228,14 @@ function! pamcomplete#Complete(findstart, base)
             if synIDattr(slist[2], "name") =~ "pam_1.5.*"
                call add (items,{'word':'    0','menu':'via Vector'})
                call add (items,{'word':'    1','menu':'via Local Element Frame'})
+            endif
+         " }}}
+         " {{{ MUSCLE
+         elseif synIDattr(slist[1], "name") =~ "pam_PART_MUSCLE_r5"
+            " QUALIFIER
+            if synIDattr(slist[2], "name") =~ "pam_PART.MUSCLE_r5_[ae]1"
+               call add (items,{'word':'CONSTANT','abbr':'CONSTANT (default)','menu':'Muscle Rest Length Specified'})
+               call add (items,{'word':'SCALE   ','abbr':'SCALE','menu':'Muscle Rest Lenght as Factor of Initial Length'})
             endif
          " }}}
          " {{{ SLINK/ELINK
@@ -8060,6 +8082,8 @@ function! pamcomplete#pamHints()
             return "IDTHMAT - Thermal Material ID (tag)"
          elseif synIDattr(slist[2], "name") =~ "pam_49.*"
             return "IDPMAT - Porous Material ID (tag)"
+         elseif synIDattr(slist[2], "name") =~ "pam_57.*"
+            return "IDNUMPAR - Numerical Parameter ID (tag)"
          endif
       elseif synIDattr(slist[1], "name") =~ "pam_PART.*_r3"
          if synIDattr(slist[2], "name") =~ "pam_1.10.*"
@@ -8369,6 +8393,20 @@ function! pamcomplete#pamHints()
             return "IRADBEN - Bending Correction of Radius Flag (menu)"
          elseif synIDattr(slist[2], "name") =~ "pam_71.*"
             return "PHYRAD - MPC PLINK Radius when Using SSR"
+         endif
+      " }}}
+      " {{{ MUSCLE
+      elseif synIDattr(slist[1], "name") =~ "pam_PART_MUSCLE_r5"
+         if synIDattr(slist[2], "name") =~ "pam_9.*"
+            return "ALF - Muscle Pennation Angle"
+         elseif synIDattr(slist[2], "name") =~ "pam_17.*"
+            return "PCSA - Physiological Cross-section Area"
+         elseif synIDattr(slist[2], "name") =~ "pam_25.*"
+            return "WMAS - Total Muscle Mass"
+         elseif synIDattr(slist[2], "name") =~ "pam_PART.MUSCLE_r5_[ae]1"
+            return "QUALIFIER - Definition of Muscle Fiber's Rest Length (menu)"
+         elseif synIDattr(slist[2], "name") =~ "pam_41.*"
+            return "L0fib - Value of Muscle Fiber's Rest Length"
          endif
       " }}}
       " {{{ GAP

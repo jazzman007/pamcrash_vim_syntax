@@ -1,6 +1,6 @@
 $PART Type TETRA
-$#         IDPRT   ATYPE   IDMAT IDVAMAT IDTHMAT  IDPMAT
-PART  /        1   TETRA       0       0       0       0
+$#         IDPRT   ATYPE   IDMAT IDVAMAT IDTHMAT  IDPMATIDNUMPAR
+PART  /        1   TETRA       0       0       0       0        
 $#                                                                         TITLE
 NAME PART_1                                                                     
 $#  DTELIM    TSCALF   DTRATIO

@@ -3985,8 +3985,8 @@ syn region      pam_PARTX        matchgroup=pam_CardTag start="^\CPART  /" end="
    " Row 3
    syn region      pam_PART_SPHEL_r3     transparent contained containedin=pam_PART_SPHEL start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,@21f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PART_SPHEL_r4 skipnl keepend
    "Row 3 (META)
-   syn region      pam_PART_SPHEL_r3     transparent contained containedin=pam_Mater2 start="^[\$\#]" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position nextgroup=pam_PART_SPHEL_r3 skipnl keepend
-   syn region      pam_PART_SPHEL_r3     transparent contained containedin=pam_Mater2 start="^META" end="^END_META" contains=pam_GroupMeta nextgroup=pam_PART_SPHEL_r3 skipnl keepend
+   syn region      pam_PART_SPHEL_r3     transparent contained containedin=pam_PART_SPHEL start="^[\$\#]" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position nextgroup=pam_PART_SPHEL_r3 skipnl keepend
+   syn region      pam_PART_SPHEL_r3     transparent contained containedin=pam_PART_SPHEL start="^META" end="^END_META" contains=pam_GroupMeta nextgroup=pam_PART_SPHEL_r3 skipnl keepend
    " Row 2 (Name)
    syn region      pam_PART_SPHEL_r2     transparent contained containedin=pam_PART_SPHEL start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_PART_SPHEL_r3 skipnl keepend
 " Row 2a (RMAT)
@@ -3994,7 +3994,7 @@ syn region      pam_PART_SPHEL_r2a    transparent contained containedin=pam_PART
    " Row 1
       " ATYPE
       syn match       pam_PART_SPHEL_r1_a2             display contained containedin=pam_PART_SPHEL_r1 "\%17c[ ]*SPHEL[ ]*\%25c"
-   syn region      pam_PART_SPHEL_r1     transparent contained containedin=pam_PART_SPHEL start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@25i8,@33i8,@41i8,@49i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PART_SPHEL_r2a,pam_PART_SPHEL_r2 skipnl keepend
+   syn region      pam_PART_SPHEL_r1     transparent contained containedin=pam_PART_SPHEL start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@25i8,@33i8,@41i8,@49i8,@57i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PART_SPHEL_r2a,pam_PART_SPHEL_r2 skipnl keepend
 syn region      pam_PART_SPHEL     matchgroup=pam_CardTag start="^\CPART  / .\{8\}[ ]*SPHEL[ ]*\%25c"rs=s+8 end="^\CEND_PART" contains=pam_PART_SPHEL_r[1-6] fold keepend
 
 hi def link pam_PART_SPHEL_r1_a2 pam_evenArgument
@@ -4008,8 +4008,8 @@ hi def link pam_PART_SPHEL_r1_a2 pam_evenArgument
    " Row 3
    syn region      pam_PART_BSHEL_r3     transparent contained containedin=pam_PART_BSHEL start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,@21f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PART_BSHEL_r4 skipnl keepend
    "Row 3 (META)
-   syn region      pam_PART_BSHEL_r3     transparent contained containedin=pam_Mater2 start="^[\$\#]" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position nextgroup=pam_PART_BSHEL_r3 skipnl keepend
-   syn region      pam_PART_BSHEL_r3     transparent contained containedin=pam_Mater2 start="^META" end="^END_META" contains=pam_GroupMeta nextgroup=pam_PART_BSHEL_r3 skipnl keepend
+   syn region      pam_PART_BSHEL_r3     transparent contained containedin=pam_PART_BSHEL start="^[\$\#]" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position nextgroup=pam_PART_BSHEL_r3 skipnl keepend
+   syn region      pam_PART_BSHEL_r3     transparent contained containedin=pam_PART_BSHEL start="^META" end="^END_META" contains=pam_GroupMeta nextgroup=pam_PART_BSHEL_r3 skipnl keepend
    " Row 2 (Name)
    syn region      pam_PART_BSHEL_r2     transparent contained containedin=pam_PART_BSHEL start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_PART_BSHEL_r3 skipnl keepend
    " Row 2a (RMAT)
@@ -4017,7 +4017,7 @@ hi def link pam_PART_SPHEL_r1_a2 pam_evenArgument
    " Row 1
       " ATYPE
       syn match       pam_PART_BSHEL_r1_a2             display contained containedin=pam_PART_BSHEL_r1 "\%17c[ ]*BSHEL[ ]*\%25c"
-   syn region      pam_PART_BSHEL_r1     transparent contained containedin=pam_PART_BSHEL start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@25i8,@33i8,@41i8,@49i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PART_BSHEL_r2a,pam_PART_BSHEL_r2 skipnl keepend
+   syn region      pam_PART_BSHEL_r1     transparent contained containedin=pam_PART_BSHEL start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@25i8,@33i8,@41i8,@49i8,@57i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PART_BSHEL_r2a,pam_PART_BSHEL_r2 skipnl keepend
 syn region      pam_PART_BSHEL     matchgroup=pam_CardTag start="^\CPART  / .\{8\}[ ]*BSHEL[ ]*\%25c"rs=s+8 end="^\CEND_PART" contains=pam_PART_BSHEL_r[1-6] fold keepend
 
 hi def link pam_PART_BSHEL_r1_a2 pam_evenArgument
@@ -4031,8 +4031,8 @@ hi def link pam_PART_BSHEL_r1_a2 pam_evenArgument
    " Row 3
    syn region      pam_PART_COS3D_r3     transparent contained containedin=pam_PART_COS3D start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,@21f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PART_COS3D_r4 skipnl keepend
    "Row 3 (META)
-   syn region      pam_PART_COS3D_r3     transparent contained containedin=pam_Mater2 start="^[\$\#]" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position nextgroup=pam_PART_COS3D_r3 skipnl keepend
-   syn region      pam_PART_COS3D_r3     transparent contained containedin=pam_Mater2 start="^META" end="^END_META" contains=pam_GroupMeta nextgroup=pam_PART_COS3D_r3 skipnl keepend
+   syn region      pam_PART_COS3D_r3     transparent contained containedin=pam_PART_COS3D start="^[\$\#]" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position nextgroup=pam_PART_COS3D_r3 skipnl keepend
+   syn region      pam_PART_COS3D_r3     transparent contained containedin=pam_PART_COS3D start="^META" end="^END_META" contains=pam_GroupMeta nextgroup=pam_PART_COS3D_r3 skipnl keepend
    " Row 2 (Name)
    syn region      pam_PART_COS3D_r2     transparent contained containedin=pam_PART_COS3D start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_PART_COS3D_r3 skipnl keepend
    " Row 2a (RMAT)
@@ -4040,7 +4040,7 @@ hi def link pam_PART_BSHEL_r1_a2 pam_evenArgument
    " Row 1
       " ATYPE
       syn match       pam_PART_COS3D_r1_a2             display contained containedin=pam_PART_COS3D_r1 "\%17c[ ]*COS3D[ ]*\%25c"
-   syn region      pam_PART_COS3D_r1     transparent contained containedin=pam_PART_COS3D start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@25i8,@33i8,@41i8,@49i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PART_COS3D_r2a,pam_PART_COS3D_r2 skipnl keepend
+   syn region      pam_PART_COS3D_r1     transparent contained containedin=pam_PART_COS3D start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@25i8,@33i8,@41i8,@49i8,@57i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PART_COS3D_r2a,pam_PART_COS3D_r2 skipnl keepend
 syn region      pam_PART_COS3D     matchgroup=pam_CardTag start="^\CPART  / .\{8\}[ ]*COS3D[ ]*\%25c"rs=s+8 end="^\CEND_PART" contains=pam_PART_COS3D_r[1-6] fold keepend
 
 hi def link pam_PART_COS3D_r1_a2 pam_evenArgument
@@ -4056,8 +4056,8 @@ hi def link pam_PART_COS3D_r1_a2 pam_evenArgument
    " Row 3
    syn region      pam_PART_SOLID_r3     transparent contained containedin=pam_PART_SOLID start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,@21f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PART_SOLID_r4 skipnl keepend
    "Row 3 (META)
-   syn region      pam_PART_SOLID_r3     transparent contained containedin=pam_Mater2 start="^[\$\#]" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position nextgroup=pam_PART_SOLID_r3 skipnl keepend
-   syn region      pam_PART_SOLID_r3     transparent contained containedin=pam_Mater2 start="^META" end="^END_META" contains=pam_GroupMeta nextgroup=pam_PART_SOLID_r3 skipnl keepend
+   syn region      pam_PART_SOLID_r3     transparent contained containedin=pam_PART_SOLID start="^[\$\#]" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position nextgroup=pam_PART_SOLID_r3 skipnl keepend
+   syn region      pam_PART_SOLID_r3     transparent contained containedin=pam_PART_SOLID start="^META" end="^END_META" contains=pam_GroupMeta nextgroup=pam_PART_SOLID_r3 skipnl keepend
    " Row 2 (Name)
    syn region      pam_PART_SOLID_r2     transparent contained containedin=pam_PART_SOLID start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_PART_SOLID_r3 skipnl keepend
    " Row 2a (RMAT)
@@ -4066,7 +4066,7 @@ hi def link pam_PART_COS3D_r1_a2 pam_evenArgument
       " ATYPE
       syn match       pam_PART_SOLID_r1_a2             display contained containedin=pam_PART_SOLID_r1 "\%17c[ ]*SOLID[ ]*\%25c"
       syn match       pam_PART_SOLID_r1_a2             display contained containedin=pam_PART_SOLID_r1 "\%17c[ ]*TETRA[ ]*\%25c"
-   syn region      pam_PART_SOLID_r1     transparent contained containedin=pam_PART_SOLID start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@25i8,@33i8,@41i8,@49i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PART_SOLID_r2a,pam_PART_SOLID_r2 skipnl keepend
+   syn region      pam_PART_SOLID_r1     transparent contained containedin=pam_PART_SOLID start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@25i8,@33i8,@41i8,@49i8,@57i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PART_SOLID_r2a,pam_PART_SOLID_r2 skipnl keepend
 syn region      pam_PART_SOLID     matchgroup=pam_CardTag start="^\CPART  / .\{8\}[ ]*SOLID[ ]*\%25c"rs=s+8 end="^\CEND_PART" contains=pam_PART_SOLID_r[1-6] fold keepend
 syn region      pam_PART_SOLID     matchgroup=pam_CardTag start="^\CPART  / .\{8\}[ ]*TETRA[ ]*\%25c"rs=s+8 end="^\CEND_PART" contains=pam_PART_SOLID_r[1-6] fold keepend
 
@@ -4083,8 +4083,8 @@ hi def link pam_PART_SOLID_r1_a2 pam_evenArgument
    " Row 3
    syn region      pam_PART_SHELL_r3     transparent contained containedin=pam_PART_SHELL start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,@21f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PART_SHELL_r4 skipnl keepend
    "Row 3 (META)
-   syn region      pam_PART_SHELL_r3     transparent contained containedin=pam_Mater2 start="^[\$\#]" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position nextgroup=pam_PART_SHELL_r3 skipnl keepend
-   syn region      pam_PART_SHELL_r3     transparent contained containedin=pam_Mater2 start="^META" end="^END_META" contains=pam_GroupMeta nextgroup=pam_PART_SHELL_r3 skipnl keepend
+   syn region      pam_PART_SHELL_r3     transparent contained containedin=pam_PART_SHELL start="^[\$\#]" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position nextgroup=pam_PART_SHELL_r3 skipnl keepend
+   syn region      pam_PART_SHELL_r3     transparent contained containedin=pam_PART_SHELL start="^META" end="^END_META" contains=pam_GroupMeta nextgroup=pam_PART_SHELL_r3 skipnl keepend
    " Row 2 (Name)
    syn region      pam_PART_SHELL_r2     transparent contained containedin=pam_PART_SHELL start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_PART_SHELL_r3 skipnl keepend
    " Row 2a (RMAT)
@@ -4092,7 +4092,7 @@ hi def link pam_PART_SOLID_r1_a2 pam_evenArgument
    " Row 1
    " ATYPE
    syn match       pam_PART_SHELL_r1_a2             display contained containedin=pam_PART_SHELL_r1 "\%17c\CSHELL   \| \CSHELL  \|  \CSHELL \|   \CSHELL"
-   syn region      pam_PART_SHELL_r1     transparent contained containedin=pam_PART_SHELL start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@25i8,@33i8,@41i8,@49i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PART_SHELL_r2a,pam_PART_SHELL_r2 skipnl keepend
+   syn region      pam_PART_SHELL_r1     transparent contained containedin=pam_PART_SHELL start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@25i8,@33i8,@41i8,@49i8,@57i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PART_SHELL_r2a,pam_PART_SHELL_r2 skipnl keepend
    syn region      pam_PART_SHELL     matchgroup=pam_CardTag start="^\CPART  / .\{8\}\(\CSHELL   \| \CSHELL  \|  \CSHELL \|   \CSHELL\)"rs=s+8 end="^\CEND_PART" contains=pam_PART_SHELL_r[1-6] fold keepend
 
    hi def link pam_PART_SHELL_r1_a2 pam_evenArgument
@@ -4111,8 +4111,8 @@ syn region      pam_PART_MEMBR_r4     transparent contained containedin=pam_PART
 " Row 3
 syn region      pam_PART_MEMBR_r3     transparent contained containedin=pam_PART_MEMBR start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,@21f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PART_MEMBR_r4 skipnl keepend
 "Row 3 (META)
-syn region      pam_PART_MEMBR_r3     transparent contained containedin=pam_Mater2 start="^[\$\#]" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position nextgroup=pam_PART_MEMBR_r3 skipnl keepend
-syn region      pam_PART_MEMBR_r3     transparent contained containedin=pam_Mater2 start="^META" end="^END_META" contains=pam_GroupMeta nextgroup=pam_PART_MEMBR_r3 skipnl keepend
+syn region      pam_PART_MEMBR_r3     transparent contained containedin=pam_PART_MEMBR start="^[\$\#]" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position nextgroup=pam_PART_MEMBR_r3 skipnl keepend
+syn region      pam_PART_MEMBR_r3     transparent contained containedin=pam_PART_MEMBR start="^META" end="^END_META" contains=pam_GroupMeta nextgroup=pam_PART_MEMBR_r3 skipnl keepend
 " Row 2 (Name)
 syn region      pam_PART_MEMBR_r2     transparent contained containedin=pam_PART_MEMBR start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_PART_MEMBR_r3 skipnl keepend
 " Row 2a (RMAT)
@@ -4120,7 +4120,7 @@ syn region      pam_PART_MEMBR_r2a    transparent contained containedin=pam_PART
 " Row 1
 " ATYPE
 syn match       pam_PART_MEMBR_r1_a2             display contained containedin=pam_PART_MEMBR_r1 "\%17c\CMEMBR   \| \CMEMBR  \|  \CMEMBR \|   \CMEMBR"
-syn region      pam_PART_MEMBR_r1     transparent contained containedin=pam_PART_MEMBR start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@25i8,@33i8,@41i8,@49i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PART_MEMBR_r2a,pam_PART_MEMBR_r2 skipnl keepend
+syn region      pam_PART_MEMBR_r1     transparent contained containedin=pam_PART_MEMBR start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@25i8,@33i8,@41i8,@49i8,@57i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PART_MEMBR_r2a,pam_PART_MEMBR_r2 skipnl keepend
 syn region      pam_PART_MEMBR     matchgroup=pam_CardTag start="^\CPART  / .\{8\}\(\CMEMBR   \| \CMEMBR  \|  \CMEMBR \|   \CMEMBR\)"rs=s+8 end="^\CEND_PART" contains=pam_PART_MEMBR_r[1-7] fold keepend
 
 hi def link pam_PART_MEMBR_r1_a2 pam_evenArgument
@@ -4136,8 +4136,8 @@ hi def link pam_PART_MEMBR_r1_e2 pam_evenError
    " Row 3
    syn region      pam_PART_GAP_r3     transparent contained containedin=pam_PART_GAP start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,@21f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PART_GAP_r4 skipnl keepend
    "Row 3 (META)
-   syn region      pam_PART_GAP_r3     transparent contained containedin=pam_Mater2 start="^[\$\#]" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position nextgroup=pam_PART_GAP_r3 skipnl keepend
-   syn region      pam_PART_GAP_r3     transparent contained containedin=pam_Mater2 start="^META" end="^END_META" contains=pam_GroupMeta nextgroup=pam_PART_GAP_r3 skipnl keepend
+   syn region      pam_PART_GAP_r3     transparent contained containedin=pam_PART_GAP start="^[\$\#]" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position nextgroup=pam_PART_GAP_r3 skipnl keepend
+   syn region      pam_PART_GAP_r3     transparent contained containedin=pam_PART_GAP start="^META" end="^END_META" contains=pam_GroupMeta nextgroup=pam_PART_GAP_r3 skipnl keepend
    " Row 2 (Name)
    syn region      pam_PART_GAP_r2     transparent contained containedin=pam_PART_GAP start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_PART_GAP_r3 skipnl keepend
 " Row 2a (RMAT)
@@ -4155,14 +4155,14 @@ hi def link pam_PART_GAP_r1_e2 pam_evenError
 
 "{{{=== PART Typ MTOJNT begin
    " Row 5
-   syn region      pam_PART_MTOJNT_r5     transparent contained containedin=pam_PART_MTOJNT start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,@21f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position,pam_EndPart skipnl keepend
+   syn region      pam_PART_MTOJNT_r5     transparent contained containedin=pam_PART_MTOJNT start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position,pam_EndPart skipnl keepend
    " Row 4
    syn region      pam_PART_MTOJNT_r4     transparent contained containedin=pam_PART_MTOJNT start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,@21f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PART_MTOJNT_r5 skipnl keepend
    " Row 3
    syn region      pam_PART_MTOJNT_r3     transparent contained containedin=pam_PART_MTOJNT start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,@21f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PART_MTOJNT_r4 skipnl keepend
    "Row 3 (META)
-   syn region      pam_PART_MTOJNT_r3     transparent contained containedin=pam_Mater2 start="^[\$\#]" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position nextgroup=pam_PART_MTOJNT_r3 skipnl keepend
-   syn region      pam_PART_MTOJNT_r3     transparent contained containedin=pam_Mater2 start="^META" end="^END_META" contains=pam_GroupMeta nextgroup=pam_PART_MTOJNT_r3 skipnl keepend
+   syn region      pam_PART_MTOJNT_r3     transparent contained containedin=pam_PART_MTOJNT start="^[\$\#]" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position nextgroup=pam_PART_MTOJNT_r3 skipnl keepend
+   syn region      pam_PART_MTOJNT_r3     transparent contained containedin=pam_PART_MTOJNT start="^META" end="^END_META" contains=pam_GroupMeta nextgroup=pam_PART_MTOJNT_r3 skipnl keepend
    " Row 2 (Name)
    syn region      pam_PART_MTOJNT_r2     transparent contained containedin=pam_PART_MTOJNT start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_PART_MTOJNT_r3 skipnl keepend
 " Row 2a (RMAT)
@@ -4186,8 +4186,8 @@ hi def link pam_PART_MTOJNT_r1_e2 pam_evenError
    " Row 3
    syn region      pam_PART_BAR_r3     transparent contained containedin=pam_PART_BAR start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,@21f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PART_BAR_r4 skipnl keepend
    "Row 3 (META)
-   syn region      pam_PART_BAR_r3     transparent contained containedin=pam_Mater2 start="^[\$\#]" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position nextgroup=pam_PART_BAR_r3 skipnl keepend
-   syn region      pam_PART_BAR_r3     transparent contained containedin=pam_Mater2 start="^META" end="^END_META" contains=pam_GroupMeta nextgroup=pam_PART_BAR_r3 skipnl keepend
+   syn region      pam_PART_BAR_r3     transparent contained containedin=pam_PART_BAR start="^[\$\#]" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position nextgroup=pam_PART_BAR_r3 skipnl keepend
+   syn region      pam_PART_BAR_r3     transparent contained containedin=pam_PART_BAR start="^META" end="^END_META" contains=pam_GroupMeta nextgroup=pam_PART_BAR_r3 skipnl keepend
    " Row 2 (Name)
    syn region      pam_PART_BAR_r2     transparent contained containedin=pam_PART_BAR start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_PART_BAR_r3 skipnl keepend
 " Row 2a (RMAT)
@@ -4211,8 +4211,8 @@ hi def link pam_PART_BAR_r1_e2 pam_evenError
    " Row 3
    syn region      pam_PART_TSHEL_r3     transparent contained containedin=pam_PART_TSHEL start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,@21f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PART_TSHEL_r4 skipnl keepend
    "Row 3 (META)
-   syn region      pam_PART_TSHEL_r3     transparent contained containedin=pam_Mater2 start="^[\$\#]" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position nextgroup=pam_PART_TSHEL_r3 skipnl keepend
-   syn region      pam_PART_TSHEL_r3     transparent contained containedin=pam_Mater2 start="^META" end="^END_META" contains=pam_GroupMeta nextgroup=pam_PART_TSHEL_r3 skipnl keepend
+   syn region      pam_PART_TSHEL_r3     transparent contained containedin=pam_PART_TSHEL start="^[\$\#]" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position nextgroup=pam_PART_TSHEL_r3 skipnl keepend
+   syn region      pam_PART_TSHEL_r3     transparent contained containedin=pam_PART_TSHEL start="^META" end="^END_META" contains=pam_GroupMeta nextgroup=pam_PART_TSHEL_r3 skipnl keepend
    " Row 2 (Name)
    syn region      pam_PART_TSHEL_r2     transparent contained containedin=pam_PART_TSHEL start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_PART_TSHEL_r3 skipnl keepend
 " Row 2a (RMAT)
@@ -4220,7 +4220,7 @@ syn region      pam_PART_TSHEL_r2a    transparent contained containedin=pam_PART
    " Row 1
       " ATYPE
       syn match       pam_PART_TSHEL_r1_a2             display contained containedin=pam_PART_TSHEL_r1 "\%17c\CTSHEL   \| \CTSHEL  \|  \CTSHEL \|   \CTSHEL"
-   syn region      pam_PART_TSHEL_r1     transparent contained containedin=pam_PART_TSHEL start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@25i8,@33i8,@41i8,@49i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PART_TSHEL_r2a,pam_PART_TSHEL_r2 skipnl keepend
+   syn region      pam_PART_TSHEL_r1     transparent contained containedin=pam_PART_TSHEL start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@25i8,@33i8,@41i8,@49i8,@57i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PART_TSHEL_r2a,pam_PART_TSHEL_r2 skipnl keepend
 syn region      pam_PART_TSHEL     matchgroup=pam_CardTag start="^\CPART  / .\{8\}\(\CTSHEL   \| \CTSHEL  \|  \CTSHEL \|   \CTSHEL\)"rs=s+8 end="^\CEND_PART" contains=pam_PART_TSHEL_r[1-6] fold keepend
 
 hi def link pam_PART_TSHEL_r1_a2 pam_evenArgument
@@ -4236,8 +4236,8 @@ hi def link pam_PART_TSHEL_r1_e2 pam_evenError
    " Row 3
    syn region      pam_PART_PLINK_r3     transparent contained containedin=pam_PART_PLINK start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,@21f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PART_PLINK_r4 skipnl keepend
    "Row 3 (META)
-   syn region      pam_PART_PLINK_r3     transparent contained containedin=pam_Mater2 start="^[\$\#]" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position nextgroup=pam_PART_PLINK_r3 skipnl keepend
-   syn region      pam_PART_PLINK_r3     transparent contained containedin=pam_Mater2 start="^META" end="^END_META" contains=pam_GroupMeta nextgroup=pam_PART_PLINK_r3 skipnl keepend
+   syn region      pam_PART_PLINK_r3     transparent contained containedin=pam_PART_PLINK start="^[\$\#]" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position nextgroup=pam_PART_PLINK_r3 skipnl keepend
+   syn region      pam_PART_PLINK_r3     transparent contained containedin=pam_PART_PLINK start="^META" end="^END_META" contains=pam_GroupMeta nextgroup=pam_PART_PLINK_r3 skipnl keepend
    " Row 2 (Name)
    syn region      pam_PART_PLINK_r2     transparent contained containedin=pam_PART_PLINK start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_PART_PLINK_r3 skipnl keepend
 " Row 2a (RMAT)
@@ -4261,8 +4261,8 @@ hi def link pam_PART_PLINK_r1_e2 pam_evenError
    " Row 3
    syn region      pam_PART_LLINK_r3     transparent contained containedin=pam_PART_LLINK start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,@21f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PART_LLINK_r4 skipnl keepend
    "Row 3 (META)
-   syn region      pam_PART_LLINK_r3     transparent contained containedin=pam_Mater2 start="^[\$\#]" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position nextgroup=pam_PART_LLINK_r3 skipnl keepend
-   syn region      pam_PART_LLINK_r3     transparent contained containedin=pam_Mater2 start="^META" end="^END_META" contains=pam_GroupMeta nextgroup=pam_PART_LLINK_r3 skipnl keepend
+   syn region      pam_PART_LLINK_r3     transparent contained containedin=pam_PART_LLINK start="^[\$\#]" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position nextgroup=pam_PART_LLINK_r3 skipnl keepend
+   syn region      pam_PART_LLINK_r3     transparent contained containedin=pam_PART_LLINK start="^META" end="^END_META" contains=pam_GroupMeta nextgroup=pam_PART_LLINK_r3 skipnl keepend
    " Row 2 (Name)
    syn region      pam_PART_LLINK_r2     transparent contained containedin=pam_PART_LLINK start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_PART_LLINK_r3 skipnl keepend
 " Row 2a (RMAT)
@@ -4288,8 +4288,8 @@ hi def link pam_PART_LLINK_r1_e2 pam_evenError
    " Row 3
    syn region      pam_PART_TIED_r3     transparent contained containedin=pam_PART_TIED start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,@21f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PART_TIED_r4 skipnl keepend
    "Row 3 (META)
-   syn region      pam_PART_TIED_r3     transparent contained containedin=pam_Mater2 start="^[\$\#]" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position nextgroup=pam_PART_TIED_r3 skipnl keepend
-   syn region      pam_PART_TIED_r3     transparent contained containedin=pam_Mater2 start="^META" end="^END_META" contains=pam_GroupMeta nextgroup=pam_PART_TIED_r3 skipnl keepend
+   syn region      pam_PART_TIED_r3     transparent contained containedin=pam_PART_TIED start="^[\$\#]" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position nextgroup=pam_PART_TIED_r3 skipnl keepend
+   syn region      pam_PART_TIED_r3     transparent contained containedin=pam_PART_TIED start="^META" end="^END_META" contains=pam_GroupMeta nextgroup=pam_PART_TIED_r3 skipnl keepend
    " Row 2 (Name)
    syn region      pam_PART_TIED_r2     transparent contained containedin=pam_PART_TIED start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_PART_TIED_r3 skipnl keepend
 " Row 2a (RMAT)
@@ -4315,8 +4315,8 @@ hi def link pam_PART_TIED_r1_e2 pam_evenError
    " Row 3
    syn region      pam_PART_SELINK_r3     transparent contained containedin=pam_PART_SELINK start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,@21f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PART_SELINK_r4 skipnl keepend
    "Row 3 (META)
-   syn region      pam_PART_SELINK_r3     transparent contained containedin=pam_Mater2 start="^[\$\#]" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position nextgroup=pam_PART_SELINK_r3 skipnl keepend
-   syn region      pam_PART_SELINK_r3     transparent contained containedin=pam_Mater2 start="^META" end="^END_META" contains=pam_GroupMeta nextgroup=pam_PART_SELINK_r3 skipnl keepend
+   syn region      pam_PART_SELINK_r3     transparent contained containedin=pam_PART_SELINK start="^[\$\#]" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position nextgroup=pam_PART_SELINK_r3 skipnl keepend
+   syn region      pam_PART_SELINK_r3     transparent contained containedin=pam_PART_SELINK start="^META" end="^END_META" contains=pam_GroupMeta nextgroup=pam_PART_SELINK_r3 skipnl keepend
    " Row 2 (Name)
    syn region      pam_PART_SELINK_r2     transparent contained containedin=pam_PART_SELINK start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_PART_SELINK_r3 skipnl keepend
 " Row 2a (RMAT)
@@ -4340,8 +4340,8 @@ hi def link pam_PART_SELINK_r1_e2 pam_evenError
    " Row 3
    syn region      pam_PART_SPRING_r3     transparent contained containedin=pam_PART_SPRING start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,@21f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PART_SPRING_r4 skipnl keepend
    "Row 3 (META)
-   syn region      pam_PART_SPRING_r3     transparent contained containedin=pam_Mater2 start="^[\$\#]" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position nextgroup=pam_PART_SPRING_r3 skipnl keepend
-   syn region      pam_PART_SPRING_r3     transparent contained containedin=pam_Mater2 start="^META" end="^END_META" contains=pam_GroupMeta nextgroup=pam_PART_SPRING_r3 skipnl keepend
+   syn region      pam_PART_SPRING_r3     transparent contained containedin=pam_PART_SPRING start="^[\$\#]" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position nextgroup=pam_PART_SPRING_r3 skipnl keepend
+   syn region      pam_PART_SPRING_r3     transparent contained containedin=pam_PART_SPRING start="^META" end="^END_META" contains=pam_GroupMeta nextgroup=pam_PART_SPRING_r3 skipnl keepend
    " Row 2 (Name)
    syn region      pam_PART_SPRING_r2     transparent contained containedin=pam_PART_SPRING start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_PART_SPRING_r3 skipnl keepend
 " Row 2a (RMAT)
@@ -4382,8 +4382,8 @@ hi def link pam_PART_SPRING_r1_e2 pam_evenError
    " Row 3
    syn region      pam_PART_BEAM_r3     transparent contained containedin=pam_PART_BEAM start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,@21f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PART_BEAM_r4 skipnl keepend
    "Row 3 (META)
-   syn region      pam_PART_BEAM_r3     transparent contained containedin=pam_Mater2 start="^[\$\#]" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position nextgroup=pam_PART_BEAM_r3 skipnl keepend
-   syn region      pam_PART_BEAM_r3     transparent contained containedin=pam_Mater2 start="^META" end="^END_META" contains=pam_GroupMeta nextgroup=pam_PART_BEAM_r3 skipnl keepend
+   syn region      pam_PART_BEAM_r3     transparent contained containedin=pam_PART_BEAM start="^[\$\#]" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position nextgroup=pam_PART_BEAM_r3 skipnl keepend
+   syn region      pam_PART_BEAM_r3     transparent contained containedin=pam_PART_BEAM start="^META" end="^END_META" contains=pam_GroupMeta nextgroup=pam_PART_BEAM_r3 skipnl keepend
    " Row 2 (Name)
    syn region      pam_PART_BEAM_r2     transparent contained containedin=pam_PART_BEAM start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_PART_BEAM_r3 skipnl keepend
 " Row 2a (RMAT)
@@ -4398,6 +4398,37 @@ hi def link pam_PART_BEAM_r1_a2 pam_evenArgument
 hi def link pam_PART_BEAM_r1_v2 pam_evenVar
 hi def link pam_PART_BEAM_r1_e2 pam_evenError
 "=== PART Typ BEAM end}}}
+
+"{{{=== PART Typ MUSCLE begin
+   " Row 5
+   syn region      pam_PART_MUSCLE_r5     transparent contained containedin=pam_PART_MUSCLE start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9f8,@17f8,@25f8,@41f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position,pam_EndPart skipnl keepend
+      " QUALIFIER
+      syn match       pam_PART_MUSCLE_r5_e1             display contained containedin=pam_PART_MUSCLE_r5 "\%33c.\{,8\}"
+      syn match       pam_PART_MUSCLE_r5_a1             display contained containedin=pam_PART_MUSCLE_r5 "\%33c\CCONSTANT\%41c"
+      syn match       pam_PART_MUSCLE_r5_a1             display contained containedin=pam_PART_MUSCLE_r5 "\%33c\CSCALE   \%41c"
+      hi def link pam_PART_MUSCLE_r5_a1 pam_evenArgument
+      hi def link pam_PART_MUSCLE_r5_e1 pam_evenError
+   " Row 4
+   syn region      pam_PART_MUSCLE_r4     transparent contained containedin=pam_PART_MUSCLE start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,@21f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PART_MUSCLE_r5 skipnl keepend
+   " Row 3
+   syn region      pam_PART_MUSCLE_r3     transparent contained containedin=pam_PART_MUSCLE start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,@21f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PART_MUSCLE_r4 skipnl keepend
+   "Row 3 (META)
+   syn region      pam_PART_MUSCLE_r3     transparent contained containedin=pam_PART_MUSCLE start="^[\$\#]" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position nextgroup=pam_PART_MUSCLE_r3 skipnl keepend
+   syn region      pam_PART_MUSCLE_r3     transparent contained containedin=pam_PART_MUSCLE start="^META" end="^END_META" contains=pam_GroupMeta nextgroup=pam_PART_MUSCLE_r3 skipnl keepend
+   " Row 2 (Name)
+   syn region      pam_PART_MUSCLE_r2     transparent contained containedin=pam_PART_MUSCLE start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_PART_MUSCLE_r3 skipnl keepend
+" Row 2a (RMAT)
+syn region      pam_PART_MUSCLE_r2a    transparent contained containedin=pam_PART_MUSCLE start="\%1cRMAT" end="\n[\$\#]\@!" contains=pam_Rmat,pam_Comment,pam_Comment_Position nextgroup=pam_PART_MUSCLE_r2 skipnl keepend
+   " Row 1
+      " ATYPE
+      syn match       pam_PART_MUSCLE_r1_a2             display contained containedin=pam_PART_MUSCLE_r1 "\%17c\CMUSCLE  \| \CMUSCLE \|  \CMUSCLE"
+   syn region      pam_PART_MUSCLE_r1     transparent contained containedin=pam_PART_MUSCLE start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@25i8,@33i8,@41i8,@49i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PART_MUSCLE_r2a,pam_PART_MUSCLE_r2 skipnl keepend
+syn region      pam_PART_MUSCLE     matchgroup=pam_CardTag start="^\CPART  / .\{8\}\(\CMUSCLE  \| \CMUSCLE \|  \CMUSCLE\)"rs=s+8 end="^\CEND_PART" contains=pam_PART_MUSCLE_r[1-6] fold keepend
+
+hi def link pam_PART_MUSCLE_r1_a2 pam_evenArgument
+hi def link pam_PART_MUSCLE_r1_v2 pam_evenVar
+hi def link pam_PART_MUSCLE_r1_e2 pam_evenError
+"=== PART Typ MUSCLE end}}}
 
 "{{{=== (M)PART Common
    " END_PART
