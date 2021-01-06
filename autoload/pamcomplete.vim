@@ -2366,7 +2366,12 @@ function! pamcomplete#Complete(findstart, base)
             " }}}
          " {{{ MATER 52
          elseif synIDattr(slist[1], "name") =~ "pam_Mater52.*"
-            if synIDattr(slist[1], "name") =~ "pam_MATER52e_r6" 
+            if synIDattr(slist[1], "name") =~ "pam_MATER52.*_r5" 
+               " INTERP
+               if synIDattr(slist[2], "name") =~ "pam_41.*"
+                  let start = 40
+               endif
+            elseif synIDattr(slist[1], "name") =~ "pam_MATER52e_r6" 
                " LC1
                if synIDattr(slist[2], "name") =~ "pam_1.10.*"
                   let start = 0
@@ -6443,7 +6448,13 @@ function! pamcomplete#Complete(findstart, base)
             " }}}
          " {{{ MATER 52
          elseif synIDattr(slist[1], "name") =~ "pam_Mater52.*"
-            if synIDattr(slist[1], "name") =~ "pam_MATER52e_r6" 
+            if synIDattr(slist[1], "name") =~ "pam_MATER52.*_r5" 
+               " INTERP
+               if synIDattr(slist[2], "name") =~ "pam_41.*"
+                  call add (items,{'word':'         0','abbr':'0 (default)','menu':'Logarithmic Interpolation'})
+                  call add (items,{'word':'         1','abbr':'1','menu':'Linear Interpolation'})
+               endif
+            elseif synIDattr(slist[1], "name") =~ "pam_MATER52e_r6" 
                " LC1
                if synIDattr(slist[2], "name") =~ "pam_1.10.*"
                   let items = s:getTags("FUNCT",10)
@@ -8911,7 +8922,7 @@ function! pamcomplete#pamHints()
                elseif synIDattr(slist[2], "name") =~ "pam_11.*"
                   return "NU - Poisson's Ratio"
                elseif synIDattr(slist[2], "name") =~ "pam_41.*"
-                  return "ALPHA - Thermal Dilatation Coefficient"
+                  return "ALPHA - Thermal Expansion Coefficient"
                endif
             elseif synIDattr(slist[1], "name") =~ "pam_Mater201.*_r6" 
                if synIDattr(slist[2], "name") =~ "pam_1.10.*"
@@ -8933,7 +8944,7 @@ function! pamcomplete#pamHints()
                elseif synIDattr(slist[2], "name") =~ "pam_31.*"
                   return "Et - Hardening Modulus"
                elseif synIDattr(slist[2], "name") =~ "pam_41.*"
-                  return "ALPHA - Thermal Dilatation Coefficient"
+                  return "ALPHA - Thermal Expansion Coefficient"
                endif
             elseif synIDattr(slist[1], "name") =~ "pam_Mater202.*_r6" 
                if synIDattr(slist[2], "name") =~ "pam_1.10.*"
@@ -9059,7 +9070,7 @@ function! pamcomplete#pamHints()
                elseif synIDattr(slist[2], "name") =~ "pam_31.*"
                   return "Et - Hardening Modulus"
                elseif synIDattr(slist[2], "name") =~ "pam_41.*"
-                  return "ALPHA - Thermal Dilatation Coefficient"
+                  return "ALPHA - Thermal Expansion Coefficient"
                endif
             elseif synIDattr(slist[1], "name") =~ "pam_Mater212.*_r6" 
                if synIDattr(slist[2], "name") =~ "pam_1.10.*"
@@ -9101,7 +9112,7 @@ function! pamcomplete#pamHints()
                elseif synIDattr(slist[2], "name") =~ "pam_31.*"
                   return "Et - Hardening Modulus"
                elseif synIDattr(slist[2], "name") =~ "pam_41.*"
-                  return "ALPHA - Thermal Dilatation Coefficient"
+                  return "ALPHA - Thermal Expansion Coefficient"
                endif
             elseif synIDattr(slist[1], "name") =~ "pam_Mater213.*_r6" 
                if synIDattr(slist[2], "name") =~ "pam_1.10.*"
@@ -10201,7 +10212,7 @@ function! pamcomplete#pamHints()
                elseif synIDattr(slist[2], "name") =~ "pam_21.*"
                   return "NU - Poisson's Ratio"
                elseif synIDattr(slist[2], "name") =~ "pam_31.*"
-                  return "ALPHA - Thermal Dillatation Coefficient"
+                  return "ALPHA - Thermal Expansion Coefficient"
                elseif synIDattr(slist[2], "name") =~ "pam_41.*"
                   return "HGM - Membrane Hourglass Coefficient"
                elseif synIDattr(slist[2], "name") =~ "pam_51.*"
@@ -10231,7 +10242,7 @@ function! pamcomplete#pamHints()
                elseif synIDattr(slist[2], "name") =~ "pam_21.*"
                   return "NU - Poisson's Ratio"
                elseif synIDattr(slist[2], "name") =~ "pam_31.*"
-                  return "ALPHA - Thermal Dillatation Coefficient"
+                  return "ALPHA - Thermal Expansion Coefficient"
                elseif synIDattr(slist[2], "name") =~ "pam_41.*"
                   return "HGM - Membrane Hourglass Coefficient"
                elseif synIDattr(slist[2], "name") =~ "pam_51.*"
@@ -10323,7 +10334,7 @@ function! pamcomplete#pamHints()
                elseif synIDattr(slist[2], "name") =~ "pam_21.*"
                   return "NU - Poisson's Ratio"
                elseif synIDattr(slist[2], "name") =~ "pam_31.*"
-                  return "ALPHA - Thermal Dillatation Coefficient"
+                  return "ALPHA - Thermal Expansion Coefficient"
                elseif synIDattr(slist[2], "name") =~ "pam_41.*"
                   return "HGM - Membrane Hourglass Coefficient"
                elseif synIDattr(slist[2], "name") =~ "pam_51.*"
@@ -10861,7 +10872,7 @@ function! pamcomplete#pamHints()
                elseif synIDattr(slist[2], "name") =~ "pam_21.*"
                   return "NU - Poisson's Ratio"
                elseif synIDattr(slist[2], "name") =~ "pam_31.*"
-                  return "ALPHA - Thermal Dillatation Coefficient"
+                  return "ALPHA - Thermal Expansion Coefficient"
                elseif synIDattr(slist[2], "name") =~ "pam_41.*"
                   return "HGM - Membrane Hourglass Coefficient"
                elseif synIDattr(slist[2], "name") =~ "pam_51.*"
@@ -11305,7 +11316,7 @@ function! pamcomplete#pamHints()
                elseif synIDattr(slist[2], "name") =~ "pam_21.*"
                   return "NU - Poisson's Ratio"
                elseif synIDattr(slist[2], "name") =~ "pam_31.*"
-                  return "ALPHA - Thermal Dillatation Coefficient"
+                  return "ALPHA - Thermal Expansion Coefficient"
                elseif synIDattr(slist[2], "name") =~ "pam_41.*"
                   return "HGM - Membrane Hourglass Coefficient"
                elseif synIDattr(slist[2], "name") =~ "pam_51.*"
@@ -11353,7 +11364,7 @@ function! pamcomplete#pamHints()
                elseif synIDattr(slist[2], "name") =~ "pam_21.*"
                   return "NU - Poisson's Ratio"
                elseif synIDattr(slist[2], "name") =~ "pam_31.*"
-                  return "ALPHA - Thermal Dillatation Coefficient"
+                  return "ALPHA - Thermal Expansion Coefficient"
                elseif synIDattr(slist[2], "name") =~ "pam_41.*"
                   return "HGM - Membrane Hourglass Coefficient"
                elseif synIDattr(slist[2], "name") =~ "pam_51.*"
@@ -12359,7 +12370,7 @@ function! pamcomplete#pamHints()
                elseif synIDattr(slist[2], "name") =~ "pam_21.*"
                   return "NU - Poisson's Ratio"
                elseif synIDattr(slist[2], "name") =~ "pam_31.*"
-                  return "ALPHA - Thermal Dillatation Coefficient"
+                  return "ALPHA - Thermal Expansion Coefficient"
                elseif synIDattr(slist[2], "name") =~ "pam_41.*"
                   return "HGM - Membrane Hourglass Coefficient"
                elseif synIDattr(slist[2], "name") =~ "pam_51.*"
@@ -12737,7 +12748,7 @@ function! pamcomplete#pamHints()
                elseif synIDattr(slist[2], "name") =~ "pam_21.*"
                   return "Et - Tangent Modulus"
                elseif synIDattr(slist[2], "name") =~ "pam_31.*"
-                  return "ALPHA - thermal Dilatation Coefficient"
+                  return "ALPHA - Thermal Expansion Coefficient"
                elseif synIDattr(slist[2], "name") =~ "pam_41.*"
                   return "IYC - Yield Criterion Flag (menu)"
                elseif synIDattr(slist[2], "name") =~ "pam_61.*"
@@ -13465,7 +13476,7 @@ function! pamcomplete#pamHints()
                elseif synIDattr(slist[2], "name") =~ "pam_21.*"
                   return "M - Number of Terms in Prony Series"
                elseif synIDattr(slist[2], "name") =~ "pam_31.*"
-                  return "ALPHA - Thermal Dilatation Coefficient"
+                  return "ALPHA - Thermal Expansion Coefficient"
                elseif synIDattr(slist[2], "name") =~ "pam_51.*"
                   return "LTCsoft - Hysteresis Softening Function ID (tag)"
                elseif synIDattr(slist[2], "name") =~ "pam_61.*"
@@ -14083,7 +14094,7 @@ function! pamcomplete#pamHints()
                elseif synIDattr(slist[2], "name") =~ "pam_11.*"
                   return "LCt_u1 - Unloading Tension Stress-Strain Curve ID (tag)"
                elseif synIDattr(slist[2], "name") =~ "pam_21.*"
-                  return "ALPHA - thermal Dilatation Coefficient"
+                  return "ALPHA - Thermal Expansion Coefficient"
                elseif synIDattr(slist[2], "name") =~ "pam_41.*"
                   return "Q1 - Quadratic Bulk Viscosity Coefficient"
                elseif synIDattr(slist[2], "name") =~ "pam_51.*"
@@ -14205,7 +14216,7 @@ function! pamcomplete#pamHints()
                elseif synIDattr(slist[2], "name") =~ "pam_21.*"
                   return "NU - Poisson's Ratio"
                elseif synIDattr(slist[2], "name") =~ "pam_71.*"
-                  return "ALPHA - Thermal Dilatation Coefficient"
+                  return "ALPHA - Thermal Expansion Coefficient"
                endif
             elseif synIDattr(slist[1], "name") =~ "pam_Mater51_r8" 
                if synIDattr(slist[2], "name") =~ "pam_61.*"
@@ -14235,7 +14246,7 @@ function! pamcomplete#pamHints()
                elseif synIDattr(slist[2], "name") =~ "pam_21.*"
                   return "Et - Tangent Modulus"
                elseif synIDattr(slist[2], "name") =~ "pam_31.*"
-                  return "ALPHA - thermal Dilatation Coefficient"
+                  return "ALPHA - Thermal Expansion Coefficient"
                elseif synIDattr(slist[2], "name") =~ "pam_61.*"
                   return "STRAT1 - First Strain Rate Parameter"
                elseif synIDattr(slist[2], "name") =~ "pam_71.*"
@@ -14250,6 +14261,8 @@ function! pamcomplete#pamHints()
                   return "Nf - Filtering Parameter"
                elseif synIDattr(slist[2], "name") =~ "pam_31.*"
                   return "Lc - Characteristic Failure Length"
+               elseif synIDattr(slist[2], "name") =~ "pam_41.*"
+                  return "INTERP - Type of Interpolation between Damage Curves (menu)"
                endif
             elseif synIDattr(slist[1], "name") =~ "pam_Mater52e_r6" 
                if synIDattr(slist[2], "name") =~ "pam_1.10.*"
@@ -14483,7 +14496,7 @@ function! pamcomplete#pamHints()
                elseif synIDattr(slist[2], "name") =~ "pam_21.*"
                   return "Et - Tangent Modulus"
                elseif synIDattr(slist[2], "name") =~ "pam_31.*"
-                  return "ALPHA - thermal Dilatation Coefficient"
+                  return "ALPHA - Thermal Expansion Coefficient"
                elseif synIDattr(slist[2], "name") =~ "pam_61.*"
                   return "STRAT1 - First Strain Rate Parameter"
                elseif synIDattr(slist[2], "name") =~ "pam_71.*"
@@ -14579,7 +14592,7 @@ function! pamcomplete#pamHints()
                elseif synIDattr(slist[2], "name") =~ "pam_21.*"
                   return "Et - Tangent Modulus"
                elseif synIDattr(slist[2], "name") =~ "pam_31.*"
-                  return "ALPHA - thermal Dilatation Coefficient"
+                  return "ALPHA - Thermal Expansion Coefficient"
                elseif synIDattr(slist[2], "name") =~ "pam_61.*"
                   return "STRAT1 - First Strain Rate Parameter"
                elseif synIDattr(slist[2], "name") =~ "pam_71.*"
@@ -14757,7 +14770,7 @@ function! pamcomplete#pamHints()
                elseif synIDattr(slist[2], "name") =~ "pam_31.*"
                   return "BETA - Decay Constant"
                elseif synIDattr(slist[2], "name") =~ "pam_41.*"
-                  return "ALPHA - Thermal Dillatation Coefficient"
+                  return "ALPHA - Thermal Expansion Coefficient"
                endif
             elseif synIDattr(slist[1], "name") =~ "pam_Mater5.*_r8" 
                if synIDattr(slist[2], "name") =~ "pam_61.*"
