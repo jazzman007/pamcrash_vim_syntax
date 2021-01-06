@@ -15,5 +15,5 @@ $blank
 
 $# IMATLAW    LCLEAK
          0         0
-$#    SVWL      SVWR     SVWC1     SVWC2     SVWC3    SVWDIS
-                                                            
+$#    SVWL      SVWR     SVWC1     SVWC2     SVWC3    SVWDISIFORM
+                                                                 

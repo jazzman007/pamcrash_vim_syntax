@@ -15,5 +15,5 @@ $blank
 
 $#  LCLEAK    LCSTRS    LCRAT1    LCRAT2     EPSIi     EPSIu        Ko
          0         0         0         0        0.        0.        0.
-$#    SVWL      SVWR     SVWC1     SVWC2     SVWC3    SVWDIS
-                                                            
+$#    SVWL      SVWR     SVWC1     SVWC2     SVWC3    SVWDISIFORM
+                                                                 

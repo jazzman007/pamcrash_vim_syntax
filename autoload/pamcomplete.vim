@@ -1779,6 +1779,9 @@ function! pamcomplete#Complete(findstart, base)
                " IYC
                if synIDattr(slist[2], "name") =~ "pam_1.10.*"
                   let start = 0
+               " INTERP
+               elseif synIDattr(slist[2], "name") =~ "pam_71.*"
+                  let start = 70
                endif
             elseif synIDattr(slist[1], "name") =~ "pam_Mater127.*_r9" 
                " IFAIL
@@ -1924,6 +1927,11 @@ function! pamcomplete#Complete(findstart, base)
                elseif synIDattr(slist[2], "name") =~ "pam_11.*"
                   let start = 10
                endif
+            elseif synIDattr(slist[1], "name") =~ "pam_MATER150_r9" 
+               " IFORM
+               if synIDattr(slist[2], "name") =~ "pam_61.*"
+                  let start = 60
+               endif
             endif
             " }}}
          " {{{ MATER 151
@@ -1973,6 +1981,11 @@ function! pamcomplete#Complete(findstart, base)
                " LCRAT2
                elseif synIDattr(slist[2], "name") =~ "pam_31.*"
                   let start = 30
+               endif
+            elseif synIDattr(slist[1], "name") =~ "pam_MATER151_r9" 
+               " IFORM
+               if synIDattr(slist[2], "name") =~ "pam_61.*"
+                  let start = 60
                endif
             elseif synIDattr(slist[1], "name") =~ "pam_MATER151_r1[02]"
                " LC1
@@ -6023,6 +6036,10 @@ function! pamcomplete#Complete(findstart, base)
                if synIDattr(slist[2], "name") =~ "pam_1.10.*"
                   call add (items,{'word':'         0','menu':'von Mises Yield Criterion'})
                   call add (items,{'word':'         1','menu':'Hill 1948 Yield Criterion'})
+               " INTERP
+               elseif synIDattr(slist[2], "name") =~ "pam_71.*"
+                  call add (items,{'word':'         0','abbr':'0 (default)','menu':'Logarithmic Interpolation'})
+                  call add (items,{'word':'         1','abbr':'1','menu':'Linear Interpolation'})
                endif
             elseif synIDattr(slist[1], "name") =~ "pam_Mater127.*_r9" 
                " IFAIL
@@ -6194,6 +6211,12 @@ function! pamcomplete#Complete(findstart, base)
                elseif synIDattr(slist[2], "name") =~ "pam_11.*"
                   let items = s:getTags("FUNCT",10)
                endif
+            elseif synIDattr(slist[1], "name") =~ "pam_MATER150_r9" 
+               " IFORM
+               if synIDattr(slist[2], "name") =~ "pam_61.*"
+                  call add (items,{'word':'    1','abbr':'1','menu':'Linear Usage'})
+                  call add (items,{'word':'    2','abbr':'2 (default)','menu':'Exponential Usage'})
+               endif
             endif
             " }}}
          " {{{ MATER 151
@@ -6253,6 +6276,12 @@ function! pamcomplete#Complete(findstart, base)
                " LCRAT2
                elseif synIDattr(slist[2], "name") =~ "pam_31.*"
                   let items = s:getTags("FUNCT",10)
+               endif
+            elseif synIDattr(slist[1], "name") =~ "pam_MATER151_r9" 
+               " IFORM
+               if synIDattr(slist[2], "name") =~ "pam_61.*"
+                  call add (items,{'word':'    1','abbr':'1','menu':'Linear Usage'})
+                  call add (items,{'word':'    2','abbr':'2 (default)','menu':'Exponential Usage'})
                endif
             elseif synIDattr(slist[1], "name") =~ "pam_MATER151_r1[02]"
                " LC1
@@ -11501,6 +11530,8 @@ function! pamcomplete#pamHints()
                   return "L - Fourth Orthotropic Constant"
                elseif synIDattr(slist[2], "name") =~ "pam_51.*"
                   return "M - Fifth Orthotropic Constant"
+               elseif synIDattr(slist[2], "name") =~ "pam_71.*"
+                  return "INTERP - Type of Interpolation between Damage Curves (menu)"
                endif
             elseif synIDattr(slist[1], "name") =~ "pam_Mater127.*_r9" 
                if synIDattr(slist[2], "name") =~ "pam_1.10.*"
@@ -12045,6 +12076,8 @@ function! pamcomplete#pamHints()
                   return "SVWC3 - Pressure Coefficient C3"
                elseif synIDattr(slist[2], "name") =~ "pam_51.*"
                   return "SVWDIS - Discharge Coefficient"
+               elseif synIDattr(slist[2], "name") =~ "pam_61.*"
+                  return "IFORM - C2 Parameter Usage in Effective Area"
                endif
             endif
          " }}}
@@ -12137,6 +12170,8 @@ function! pamcomplete#pamHints()
                   return "SVWC3 - Pressure Coefficient C3"
                elseif synIDattr(slist[2], "name") =~ "pam_51.*"
                   return "SVWDIS - Discharge Coefficient"
+               elseif synIDattr(slist[2], "name") =~ "pam_61.*"
+                  return "IFORM - C2 Parameter Usage in Effective Area"
                endif
             elseif synIDattr(slist[1], "name") =~ "pam_Mater151.*_r10" 
                if synIDattr(slist[2], "name") =~ "pam_1.10.*"

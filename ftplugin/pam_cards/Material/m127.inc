@@ -13,8 +13,8 @@ $#  ERATE1    ERATE2    ERATE3    ERATE4    ERATE5    ERATE6    ERATE7    ERATE8
         0.        0.        0.        0.        0.        0.        0.        0.
 $#  STRAT1    STRAT2    STRAT3    STRAT4    STRAT5    STRAT6
         0.        0.        0.        0.        0.        0.
-$#     IYC         G         F         N         L         M
-                                                            
+$#     IYC         G         F         N         L         M              INTERP
+                                                                                
 $#     KSI        f0     RELIM        LC        Ks     IFAIL     IKINH
                                                                      0
 $# IFUN1nf   IFUN2nf   IFUN3nf   IFUN4nf   IFUN5nf   IFUN6nf   IFUN7nf   IFUN8nf
