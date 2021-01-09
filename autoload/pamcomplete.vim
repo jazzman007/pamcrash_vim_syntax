@@ -1425,6 +1425,20 @@ function! pamcomplete#Complete(findstart, base)
                endif
             endif
             " }}}
+         " {{{ MATER 240
+         elseif synIDattr(slist[1], "name") =~ "pam_Mater240.*"
+            if synIDattr(slist[1], "name") =~ "pam_MATER240.*_r[567]"
+               " NLEN+NVEL+NPAS
+               if synIDattr(slist[2], "name") =~ "pam_9.*"
+                  let start = 8
+               endif
+            elseif synIDattr(slist[1], "name") =~ "pam_MATER240.*_r8"
+               " ITRIG
+               if synIDattr(slist[2], "name") =~ "pam_9.*"
+                  let start = 8
+               endif
+            endif
+            " }}}
          " {{{ MATER 301
          elseif synIDattr(slist[1], "name") =~ "pam_Mater301.*"
             if synIDattr(slist[1], "name") =~ "pam_MATER301.*_r4"
@@ -5607,6 +5621,21 @@ function! pamcomplete#Complete(findstart, base)
                " NDAMP*
                elseif synIDattr(slist[2], "name") =~ "pam_21.*"
                   let items = s:getTags("FUNCT",10)
+               endif
+            endif
+            " }}}
+         " {{{ MATER 240
+         elseif synIDattr(slist[1], "name") =~ "pam_Mater240.*"
+            if synIDattr(slist[1], "name") =~ "pam_MATER240.*_r[567]"
+               " NLEN+NVEL+NPAS
+               if synIDattr(slist[2], "name") =~ "pam_9.*"
+                  let items = s:getTags("FUNCT",8)
+               endif
+            elseif synIDattr(slist[1], "name") =~ "pam_MATER240.*_r8"
+               " ITRIG
+               if synIDattr(slist[2], "name") =~ "pam_9.*"
+                  call add (items,{'word':'       0','abbr':'0 (default)','menu':'Triggering not Activated'})
+                  call add (items,{'word':'       1','abbr':'1','menu':'Triggering Activated'})
                endif
             endif
             " }}}
@@ -10166,6 +10195,62 @@ function! pamcomplete#pamHints()
                   return "NDAMPtet3 - Curve ID for Viscous Damping About THETA3-Axis (tag)"
                elseif synIDattr(slist[2], "name") =~ "pam_31.*"
                   return "RTelatet3 - Angle Limit for Elastic Behavior"
+               endif
+            endif
+         " }}}
+         " {{{ Mater 240
+         elseif synIDattr(slist[1], "name") =~ "pam_Mater240.*"
+            if synIDattr(slist[1], "name") =~ "pam_Mater240.*_r4" 
+               if synIDattr(slist[2], "name") =~ "pam_1.8.*"
+                  return "Fmax - Maximum Isometric Muscle Force"
+               elseif synIDattr(slist[2], "name") =~ "pam_9.*"
+                  return "Smax - Maximum Isometric Muscle Stress"
+               elseif synIDattr(slist[2], "name") =~ "pam_Mater240_r4_a1"
+                  return "AUTO - Automatic Computation of Muscle Force"
+               endif
+            elseif synIDattr(slist[1], "name") =~ "pam_Mater240.*_r5" 
+               if synIDattr(slist[2], "name") =~ "pam_9.*"
+                  return "NLEN - Response Curve ID for the Active Muscle Force-Length Relation (tag)"
+               elseif synIDattr(slist[2], "name") =~ "pam_17.*"
+                  return "NLENfac - Multiplier for the Active Muscle Force-Langth Curve"
+               elseif synIDattr(slist[2], "name") =~ "pam_25.*"
+                  return "ALopt - Ratio of Muscle Fiber's Rest Length"
+               elseif synIDattr(slist[2], "name") =~ "pam_33.*"
+                  return "CSH - Shape Parameter of the Active Muscle Force-Length Relation"
+               endif
+            elseif synIDattr(slist[1], "name") =~ "pam_Mater240.*_r6" 
+               if synIDattr(slist[2], "name") =~ "pam_9.*"
+                  return "NVEL - Response Curve ID for the Active Muscle Force-Velocity Relation (tag)"
+               elseif synIDattr(slist[2], "name") =~ "pam_17.*"
+                  return "NVELfac - Multiplier for the Active Muscle Force-Velocity Curve"
+               elseif synIDattr(slist[2], "name") =~ "pam_25.*"
+                  return "AVmax - Muscle's Maximum Shortening Velocity Measured with the Unit of the Muscle Fiber's Optimum Length"
+               elseif synIDattr(slist[2], "name") =~ "pam_33.*"
+                  return "CSHORT - Shape Parameter of the Active Muscle Force-Velocity Relation During Muscle Shortening"
+               elseif synIDattr(slist[2], "name") =~ "pam_41.*"
+                  return "CLENG - Shape Parameter of the Active Muscle Force-Velocity Relation During Muscle Lengthening"
+               elseif synIDattr(slist[2], "name") =~ "pam_49.*"
+                  return "CMVL - Force Parameter of the Active Muscle Force-Velocity Relation During Muscle Lengthening"
+               endif
+            elseif synIDattr(slist[1], "name") =~ "pam_Mater240.*_r7" 
+               if synIDattr(slist[2], "name") =~ "pam_9.*"
+                  return "NPAS - Response Curve ID for the Passive Muscle Force-Elongation Relation (tag)"
+               elseif synIDattr(slist[2], "name") =~ "pam_17.*"
+                  return "NPASfac - Multiplier of the Muscle's Active State-Time Curve"
+               elseif synIDattr(slist[2], "name") =~ "pam_25.*"
+                  return "PEmax - Muscle Elongation at Passive Force, Equal to Fmax"
+               elseif synIDattr(slist[2], "name") =~ "pam_33.*"
+                  return "CPE - Shape Parameter of the Passive Muscle Force-Elongation Relation"
+               elseif synIDattr(slist[2], "name") =~ "pam_41.*"
+                  return "CDAMP - Linear Viscous Damping Coefficient of the Passive uscle Force"
+               endif
+            elseif synIDattr(slist[1], "name") =~ "pam_Mater240.*_r8" 
+               if synIDattr(slist[2], "name") =~ "pam_9.*"
+                  return "ITRIG - Flag for Activation/Deactivation of Muscle Force Triggering by Stretch Reflex (menu)"
+               elseif synIDattr(slist[2], "name") =~ "pam_17.*"
+                  return "ELTRIG - Threshold elongation for the Stretch Reflex"
+               elseif synIDattr(slist[2], "name") =~ "pam_25.*"
+                  return "NMCY - Interval in Number of Cycles for the Filter to Smooth the Muscle's Elongation Rate"
                endif
             endif
          " }}}

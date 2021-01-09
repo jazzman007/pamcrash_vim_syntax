@@ -8466,6 +8466,38 @@ syn region      pam_Mater226        matchgroup=pam_CardTag start="^\CMATER / .\{
    syn region      pam_Mater230_r1     transparent contained containedin=pam_Mater230 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater230_r2 skipnl keepend
 syn region      pam_Mater230        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}230"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater230_r[1-9] fold keepend
 " === MATER 230 end}}}
+ 
+"{{{ === MATER 240 begin
+   "Row 10
+   syn region      pam_Mater240_r10     transparent contained containedin=pam_Mater240 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
+   "Row 9
+   syn region      pam_Mater240_r9     transparent contained containedin=pam_Mater240 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater240_r10 skipnl keepend
+   "Row 8
+   syn region      pam_Mater240_r8     transparent contained containedin=pam_Mater240 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17f8,@25i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater240_r9 skipnl keepend
+   "Row 7
+   syn region      pam_Mater240_r7     transparent contained containedin=pam_Mater240 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17f8,@25f8,@33f8,@41f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater240_r8 skipnl keepend
+   "Row 6
+   syn region      pam_Mater240_r6     transparent contained containedin=pam_Mater240 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17f8,@25f8,@33f8,@41f8,@49f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater240_r7 skipnl keepend
+   "Row 5
+   syn region      pam_Mater240_r5     transparent contained containedin=pam_Mater240 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17f8,@25f8,@33f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater240_r6 skipnl keepend
+   "Row 4
+   syn region      pam_Mater240_r4     transparent contained containedin=pam_Mater240 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater240_r5 skipnl keepend
+   syn region      pam_Mater240_r4     transparent contained containedin=pam_Mater240 start="\%1c\CAUTO    " start="^$\n" end="\n[\$\#]\@!" contains=@9f8,pam_Mater240_r4_a1,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater240_r5 skipnl keepend
+      syn match       pam_Mater240_r4_a1  display contained containedin=pam_Mater240_r4 "\%1c\CAUTO    "
+      hi def link pam_Mater240_r4_a1  pam_evenArgument
+   "Row 4 (META)
+   syn region      pam_Mater240_r4     transparent contained containedin=pam_Mater240 start="^[\$\#]" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position nextgroup=pam_Mater240_r4 skipnl keepend
+   syn region      pam_Mater240_r4     transparent contained containedin=pam_Mater240 start="^META" end="^END_META" contains=pam_GroupMeta nextgroup=pam_Mater240_r4 skipnl keepend
+   "Row 3 (Name)
+   syn region      pam_Mater240_r3     transparent contained containedin=pam_Mater240 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_Mater240_r4 skipnl keepend
+   " Row 2a
+   syn region      pam_Mater240_r2a    transparent contained containedin=pam_Mater240 start="\%1c.\([ ]\)\@=" start="^$\n" end="\n[\$\#]\@!" contains=@17f8,@25i8,@33f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater240_r3 skipnl keepend
+   " Row 2
+   syn region      pam_Mater240_r2     transparent contained containedin=pam_Mater240 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater240_r2a,pam_Mater240_r3 skipnl keepend
+   " Row 1
+   syn region      pam_Mater240_r1     transparent contained containedin=pam_Mater240 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater240_r2 skipnl keepend
+syn region      pam_Mater240        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}240"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater240_r[1-9] fold keepend
+" === MATER 240 end}}}
 
 "{{{ === MATER 301 begin
    "Row 9

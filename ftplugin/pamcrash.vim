@@ -199,6 +199,8 @@ map <silent> ,m226 ,,,,kk:r ~/.vim/ftplugin/pam_cards/Material/m226.inc<CR>dd
 map <silent> ,m22 ,,,,kk:r ~/.vim/ftplugin/pam_cards/Material/m22.inc<CR>dd
 "Material Type 230
 map <silent> ,m230 ,,,,kk:r ~/.vim/ftplugin/pam_cards/Material/m230.inc<CR>dd
+"Material Type 240
+map <silent> ,m240 ,,,,kk:r ~/.vim/ftplugin/pam_cards/Material/m240.inc<CR>dd
 " Material Type 24
 map <silent> ,m24 ,,,,kk:r ~/.vim/ftplugin/pam_cards/Material/m24.inc<CR>dd
 " Material Type 25
