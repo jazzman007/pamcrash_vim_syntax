@@ -9,8 +9,8 @@ $#                                         IDEABEN
                                                   
 $#    IDOF     ITENS     IDRUP       COD    DSTART    DRELEA      RFAC
                              0       000                              
-$blank
-
+$#   ALPHA
+          
 $blank
 
 $blank

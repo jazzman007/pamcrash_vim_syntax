@@ -5,7 +5,7 @@ $# BLANK                                                     QVM           IDMPD
                                                               1.               0
 $#                                                                         TITLE
 NAME 1=>mat304                                                                  
-$#     KSI     hcont     BLANK    STRAT1    STRAT2     Nfilt   IDEABEN
+$#     KSI     hcont     ALPHA    STRAT1    STRAT2     Nfilt   IDEABEN
         0.                            0.        0.                    
 $#   EC_NN  EC_NNopt                                   BLANK   CELC_NN
                                                                       

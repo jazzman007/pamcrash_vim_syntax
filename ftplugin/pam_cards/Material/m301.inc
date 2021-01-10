@@ -9,8 +9,8 @@ $#    KSIt    SLFACM     FSNVL    DELTNL   IDEABEN      KSIr     BLANK    TLSTIF
         0.                                                                      
 $#    IDOF     ITENS     IDRUP    DDDOFU    DSTART    DRELEA      RFAC
                              0                                        
-$blank
-
+$#   ALPHA
+          
 $blank
 
 $blank

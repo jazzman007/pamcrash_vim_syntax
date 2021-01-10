@@ -2630,6 +2630,11 @@ function! pamcomplete#Complete(findstart, base)
                   elseif synIDattr(slist[4], "name") =~ "pam_71.*"
                      let start = 70
                   endif
+               elseif synIDattr(slist[3], "name") =~ "pam_MMAT_FAILURE_DUCTILE_CURVES_r3"
+                  " INTERP
+                  if synIDattr(slist[4], "name") =~ "pam_11.*"
+                     let start = 10
+                  endif
                endif
             elseif synIDattr(slist[2], "name") =~ "pam_MMAT_FAILURE_DUCTILE_LOOKU"
                if synIDattr(slist[3], "name") =~ "pam_MMAT_FAILURE_DUCTILE_LOOKU_r1"
@@ -2664,6 +2669,11 @@ function! pamcomplete#Complete(findstart, base)
                   " LCs8
                   elseif synIDattr(slist[4], "name") =~ "pam_71.*"
                      let start = 70
+                  endif
+               elseif synIDattr(slist[3], "name") =~ "pam_MMAT_FAILURE_SHEAR_CURVES_r3"
+                  " INTERP
+                  if synIDattr(slist[4], "name") =~ "pam_11.*"
+                     let start = 10
                   endif
                endif
             elseif synIDattr(slist[2], "name") =~ "pam_MMAT_FAILURE_SHEAR_LOOKU"
@@ -6979,9 +6989,10 @@ function! pamcomplete#Complete(findstart, base)
                   " IPFRCD
                   elseif synIDattr(slist[4], "name") =~ "pam_41.*"
                      call add (items,{'word':'         0','menu':'Elimination Applied when Damage Indicator equals 1'})
-                     call add (items,{'word':'         1','menu':'Post-Fracture Applied when Damage Indicator equals 1'})
+                     call add (items,{'word':'         1','menu':'Post-Fracture Damage, Load Bearing Capacity Affected'})
                      call add (items,{'word':'         2','menu':'Post-Fracture By Characteristic Failure Length'})
                      call add (items,{'word':'         3','menu':'Plastic Strain Softening Failure Model'})
+                     call add (items,{'word':'         4','menu':'Plastic Strain Damage Model'})
                   endif
                endif
             elseif synIDattr(slist[2], "name") =~ "pam_MMAT_FAILURE_DUCTILE_CURVES"
@@ -7010,6 +7021,12 @@ function! pamcomplete#Complete(findstart, base)
                   " LCd8
                   elseif synIDattr(slist[4], "name") =~ "pam_71.*"
                      let items = s:getTags("FUNCT",10)
+                  endif
+               elseif synIDattr(slist[3], "name") =~ "pam_MMAT_FAILURE_DUCTILE_CURVES_r3"
+                  " INTERP
+                  if synIDattr(slist[4], "name") =~ "pam_11.*"
+                     call add (items,{'word':'         0','abbr':'0 (default)','menu':'Logarithmic Interpolation'})
+                     call add (items,{'word':'         1','abbr':'1','menu':'Linear Interpolation'})
                   endif
                endif
             elseif synIDattr(slist[2], "name") =~ "pam_MMAT_FAILURE_DUCTILE_LOOKU"
@@ -7045,6 +7062,12 @@ function! pamcomplete#Complete(findstart, base)
                   " LCs8
                   elseif synIDattr(slist[4], "name") =~ "pam_71.*"
                      let items = s:getTags("FUNCT",10)
+                  endif
+               elseif synIDattr(slist[3], "name") =~ "pam_MMAT_FAILURE_SHEAR_CURVES_r3"
+                  " INTERP
+                  if synIDattr(slist[4], "name") =~ "pam_11.*"
+                     call add (items,{'word':'         0','abbr':'0 (default)','menu':'Logarithmic Interpolation'})
+                     call add (items,{'word':'         1','abbr':'1','menu':'Linear Interpolation'})
                   endif
                endif
             elseif synIDattr(slist[2], "name") =~ "pam_MMAT_FAILURE_SHEAR_LOOKU"
@@ -8572,6 +8595,10 @@ function! pamcomplete#pamHints()
                elseif synIDattr(slist[2], "name") =~ "pam_61.*"
                   return "RFAC - Residual Stiffness Factor"
                endif
+            elseif synIDattr(slist[1], "name") =~ "pam_Mater301.*_r6" 
+               if synIDattr(slist[2], "name") =~ "pam_1.10.*"
+                  return "ALPHA - Thermal Expansion Coefficient"
+               endif
             endif
          " }}}
          " {{{ Mater 302
@@ -8671,6 +8698,8 @@ function! pamcomplete#pamHints()
                   return "KSI - Stiffness Translation Proportional Damping Ratio"
                elseif synIDattr(slist[2], "name") =~ "pam_11.*"
                   return "Hcont - Distance for Kinematic Computation"
+               elseif synIDattr(slist[2], "name") =~ "pam_21.*"
+                  return "ALPHA - Thermal Expansion Coefficient"
                elseif synIDattr(slist[2], "name") =~ "pam_31.*"
                   return "STRAT1 - First Strain Rate Parameter"
                elseif synIDattr(slist[2], "name") =~ "pam_41.*"
@@ -8863,6 +8892,10 @@ function! pamcomplete#pamHints()
                   return "DRELEA - Distance to End the DOF Release"
                elseif synIDattr(slist[2], "name") =~ "pam_61.*"
                   return "RFAC - Residual Relative Velocity Factor"
+               endif
+            elseif synIDattr(slist[1], "name") =~ "pam_Mater371.*_r6" 
+               if synIDattr(slist[2], "name") =~ "pam_1.10.*"
+                  return "ALPHA - Thermal Expansion Coefficient"
                endif
             endif
          " }}}
@@ -15328,6 +15361,14 @@ function! pamcomplete#pamHints()
                   return "a - Material Yield Surface Exponent"
                endif
             endif
+         elseif synIDattr(slist[2], "name") =~ "pam_MMAT_PLASTICITY_KARAFILLIS_BOYCE"
+            if synIDattr(slist[3], "name") =~ "pam_MMAT_PLASTICITY_KARAFILLIS_BOYCE_r1"
+               if synIDattr(slist[4], "name") =~ "pam_1.10.*"
+                  return "a - Material Yield Surface Exponent"
+               elseif synIDattr(slist[4], "name") =~ "pam_11.*"
+                  return "c - Yield Surface Weighting Exponent"
+               endif
+            endif
          endif
       "}}}
       "{{{ HARDENING
@@ -15773,13 +15814,15 @@ function! pamcomplete#pamHints()
                endif 
             elseif synIDattr(slist[3], "name") =~ "pam_MMAT_FAILURE_GLOBAL_BEHAVIOR_r2"
                if synIDattr(slist[4], "name") =~ "pam_1.10.*"
-                  return "EPSlim - Equivalent Plastic Strain Limit"
+                  return "ELim - Strain Locus Lower Threshold"
                elseif synIDattr(slist[4], "name") =~ "pam_11.*"
                   return "Dinit - Indicator Value for the Initial Fraction Damage"
                elseif synIDattr(slist[4], "name") =~ "pam_21.*"
                   return "Nf - Numerical Filter for the Shear Stress Factor and Triaxiality"
                elseif synIDattr(slist[4], "name") =~ "pam_31.*"
                   return "DPNCK - Scaling Parameter for Characteristic Failure Length Approach"
+               elseif synIDattr(slist[4], "name") =~ "pam_41.*"
+                  return "DMAX - Maximum Post-Fracture Damage Value"
                endif
             endif 
          elseif synIDattr(slist[2], "name") =~ "pam_MMAT_FAILURE_DUCTILE_CURVES"
@@ -15822,6 +15865,8 @@ function! pamcomplete#pamHints()
             elseif synIDattr(slist[3], "name") =~ "pam_MMAT_FAILURE_DUCTILE_CURVES_r3"
                if synIDattr(slist[4], "name") =~ "pam_1.10.*"
                   return "Lc_model - Local Ductile Characteristic Failure Length"
+               elseif synIDattr(slist[4], "name") =~ "pam_11.*"
+                  return "INTERP - Type of Interpolation between Damage Curves (menu)"
                endif
             endif 
          elseif synIDattr(slist[2], "name") =~ "pam_MMAT_FAILURE_PLASTIC_STRAIN_SOFTENING"
@@ -15918,6 +15963,8 @@ function! pamcomplete#pamHints()
             elseif synIDattr(slist[3], "name") =~ "pam_MMAT_FAILURE_SHEAR_CURVES_r3"
                if synIDattr(slist[4], "name") =~ "pam_1.10.*"
                   return "Lc_model - Local Shear Characteristic Failure Length"
+               elseif synIDattr(slist[4], "name") =~ "pam_11.*"
+                  return "INTERP - Type of Interpolation between Damage Curves (menu)"
                endif
             endif 
          elseif synIDattr(slist[2], "name") =~ "pam_MMAT_FAILURE_SHEAR_LOOKU"
