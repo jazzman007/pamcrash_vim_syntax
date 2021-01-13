@@ -16073,6 +16073,54 @@ function! pamcomplete#pamHints()
                   return "Lc_model - Local MSO Characteristic Failure Length"
                endif
             endif
+         elseif synIDattr(slist[2], "name") =~ "pam_MMAT_FAILURE_HILL_STOREN_RICE"
+            if synIDattr(slist[3], "name") =~ "pam_MMAT_FAILURE_HILL_STOREN_RICE_r1"
+               if synIDattr(slist[4], "name") =~ "pam_1.10.*"
+                  return "REL_HSR - Thicknes to Original Thicknes Ratio for Element Elimination"
+               elseif synIDattr(slist[4], "name") =~ "pam_11.*"
+                  return "Lc_model - Local HSR Characteristic Failure Length"
+               endif
+            endif
+         elseif synIDattr(slist[2], "name") =~ "pam_MMAT_FAILURE_MODIFIED_HILL_STOREN_RICE"
+            if synIDattr(slist[3], "name") =~ "pam_MMAT_FAILURE_MODIFIED_HILL_STOREN_RICE_r1"
+               if synIDattr(slist[4], "name") =~ "pam_1.10.*"
+                  return "REL_MHSR - Thicknes to Original Thicknes Ratio for Element Elimination"
+               elseif synIDattr(slist[4], "name") =~ "pam_11.*"
+                  return "Lc_model - Local MHSR Characteristic Failure Length"
+               endif
+            endif
+         elseif synIDattr(slist[2], "name") =~ "pam_MMAT_FAILURE_RELATIVE_THICKNESS"
+            if synIDattr(slist[3], "name") =~ "pam_MMAT_FAILURE_RELATIVE_THICKNESS_r1"
+               if synIDattr(slist[4], "name") =~ "pam_1.10.*"
+                  return "REL_THIN - Percentage Relative Thinning before Failure"
+               elseif synIDattr(slist[4], "name") =~ "pam_11.*"
+                  return "REL_THIC - Percentage Relative Thickening before Failure"
+               elseif synIDattr(slist[4], "name") =~ "pam_21.*"
+                  return "Lc_model - Local Relative Thickness Characteristic Failure Length"
+               endif
+            endif
+         elseif synIDattr(slist[2], "name") =~ "pam_MMAT_FAILURE_MAXIMUM_STRAINING"
+            if synIDattr(slist[3], "name") =~ "pam_MMAT_FAILURE_MAXIMUM_STRAINING_r1"
+               if synIDattr(slist[4], "name") =~ "pam_1.10.*"
+                  return "EPSlim - Maximum Accumulated Plastic Strain"
+               elseif synIDattr(slist[4], "name") =~ "pam_11.*"
+                  return "Lc_model - Local Maximum Straining Characteristic Failure Length"
+               endif
+            endif
+         elseif synIDattr(slist[2], "name") =~ "pam_MMAT_FAILURE_PLASTIC_STRAIN_DAMAGE"
+            if synIDattr(slist[3], "name") =~ "pam_MMAT_FAILURE_PLASTIC_STRAIN_DAMAGE_r1"
+               if synIDattr(slist[4], "name") =~ "pam_1.10.*"
+                  return "EPSIi - Initial Equivalent Plastic Strain Threshold"
+               elseif synIDattr(slist[4], "name") =~ "pam_11.*"
+                  return "EPSI1 - Intermediate Equivalent Plastic Strain Threshold"
+               elseif synIDattr(slist[4], "name") =~ "pam_21.*"
+                  return "D1 - Intermediate Damage Value"
+               elseif synIDattr(slist[4], "name") =~ "pam_31.*"
+                  return "EPSIu - Ultimate Equivalent Plastic Strain Threshold"
+               elseif synIDattr(slist[4], "name") =~ "pam_41.*"
+                  return "Du - Ultimate Damage"
+               endif
+            endif
          endif 
       "}}}
       "{{{ DAMPING
