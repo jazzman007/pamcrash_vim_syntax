@@ -4972,16 +4972,18 @@ function! pamcomplete#Complete(findstart, base)
          elseif synIDattr(slist[1], "name") =~ "pam_PLY1_r1[12]"
             " ILAW*
             if synIDattr(slist[2], "name") =~ "pam_51.*"
-               call add (items,{'word':'  0.0','menu':'Power Law'})
-               call add (items,{'word':'  1.0','menu':'Linear Law'})
-               call add (items,{'word':'  2.0','menu':'Neperian Logarithmic Law'})
+               call add (items,{'word':'       0.0','menu':'Power Law'})
+               call add (items,{'word':'       1.0','menu':'Linear Law'})
+               call add (items,{'word':'       2.0','menu':'Neperian Logarithmic Law'})
+               call add (items,{'word':'       3.0','menu':'Tangent Hyperbolic Law'})
             endif
          elseif synIDattr(slist[1], "name") =~ "pam_PLY1_r13"
             " ILAWTYPR0
             if synIDattr(slist[2], "name") =~ "pam_31.*"
-               call add (items,{'word':'  0.0','menu':'Power Law'})
-               call add (items,{'word':'  1.0','menu':'Linear Law'})
-               call add (items,{'word':'  2.0','menu':'Neperian Logarithmic Law'})
+               call add (items,{'word':'       0.0','menu':'Power Law'})
+               call add (items,{'word':'       1.0','menu':'Linear Law'})
+               call add (items,{'word':'       2.0','menu':'Neperian Logarithmic Law'})
+               call add (items,{'word':'       3.0','menu':'Tangent Hyperbolic Law'})
             endif
          " }}}
          " {{{ PLY2
@@ -5053,11 +5055,13 @@ function! pamcomplete#Complete(findstart, base)
                call add (items,{'word':'       0.0','menu':'Power Law'})
                call add (items,{'word':'       1.0','menu':'Linear Law'})
                call add (items,{'word':'       2.0','menu':'Neperian Logarithmic Law'})
+               call add (items,{'word':'       3.0','menu':'Tangent Hyperbolic Law'})
             " ILAWTYP11c
             elseif synIDattr(slist[2], "name") =~ "pam_71.*"
                call add (items,{'word':'       0.0','menu':'Power Law'})
                call add (items,{'word':'       1.0','menu':'Linear Law'})
                call add (items,{'word':'       2.0','menu':'Neperian Logarithmic Law'})
+               call add (items,{'word':'       3.0','menu':'Tangent Hyperbolic Law'})
             endif
          elseif synIDattr(slist[1], "name") =~ "pam_PLY7_r1[123]"
             " ILAW*
@@ -5065,6 +5069,7 @@ function! pamcomplete#Complete(findstart, base)
                call add (items,{'word':'       0.0','menu':'Power Law'})
                call add (items,{'word':'       1.0','menu':'Linear Law'})
                call add (items,{'word':'       2.0','menu':'Neperian Logarithmic Law'})
+               call add (items,{'word':'       3.0','menu':'Tangent Hyperbolic Law'})
             endif
          " }}}
          " {{{ PLY8

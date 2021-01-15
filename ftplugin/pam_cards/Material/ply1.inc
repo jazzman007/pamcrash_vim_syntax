@@ -19,9 +19,9 @@ $#    E0c1     GAMMA   EPSIfci   EPSIfcu      Dfcu     IBUCK
         0.        0.        0.        0.        0.          
 $#      R0      BETA         m         A
         0.        0.        0.        0.
-$#ERATEr11       D11       n11      D11r      n1LAWTYP11
-                                                        
-$#ERATEr12       D22       n22       D12       nLAWTYP12
-                                                        
-$#ERATErR0       DR0       nLAWTYPR0
-                                    
+$#ERATEr11       D11       n11      D11r      n11r  LAWTYP11
+                                                            
+$#ERATEr12       D22       n22       D12       n12  LAWTYP12
+                                                            
+$#ERATErR0       DR0       nR0  LAWTYPR0
+                                        
