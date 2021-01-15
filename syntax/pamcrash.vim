@@ -4663,6 +4663,20 @@ syn region      pam_PFMAT           matchgroup=pam_CardTag start="^\CPFMAT /" en
 syn region      pam_THMAT           matchgroup=pam_CardTag start="^\CTHMAT /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_EndThMat fold keepend
 " THMAT end}}}
 
+"{{{=== CNTPTY begin 
+   "Row 2 (Name)
+   syn region      pam_CNTPTY_r2     transparent contained containedin=pam_CNTPTY start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position keepend
+   "Row 1
+   syn region      pam_CNTPTY_r1     transparent contained containedin=pam_CNTPTY start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_CNTPTY_r2 skipnl keepend
+   syn region      pam_CNTPTY_CONDUCTANCE        contained containedin=pam_CNTPTY matchgroup=pam_HeaderKW start="\CCONDUCTANCE" end="\n[\$\#]\@!" contains=pam_Float,pam_Comment,pam_Comment_Position,pam_Error,pam_FreeError,pam_FreeVar,pam_CNTPTY_CONDUCTANCE_arg skipnl keepend
+      syn keyword     pam_CNTPTY_CONDUCTANCE_arg         contained containedin=pam_CNTPTY_CONDUCTANCE CONSTANT GAP
+      hi def link pam_CNTPTY_CONDUCTANCE_arg pam_Argument
+   " END_CNTPTY
+   syn match       pam_EndCntPty     display contained containedin=pam_CNTPTY "^\CEND_CNTPTY"
+   hi def link     pam_EndCntPty pam_CardTag
+syn region      pam_CNTPTY           matchgroup=pam_CardTag start="^\CCNTPTY/" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_EndCntPty fold keepend
+" CNTPTY end}}}
+
 "{{{ === THNAC begin
    " Row 3 (Node Selection)
    syn region      pam_THNAC_r3     transparent contained containedin=pam_THNAC start="\%1c." start="^$\n" matchgroup=pam_CardTag end="\%$" contains=@pam_Ident,pam_Comment,pam_Comment_Position,pam_End,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position keepend
@@ -8843,19 +8857,25 @@ syn region      pam_MMAT        matchgroup=pam_CardTag start="^\CMMAT"rs=s+8 end
    "Row 1
    syn region      pam_NUMPAR_r1     transparent contained containedin=pam_NUMPAR start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_NUMPAR_r2 skipnl keepend
    "{{{NUMBLOCK
-            syn keyword     pam_NUMBLOCK_ELEMENT_TYPE_arg  contained containedin=pam_Control_NUMBLOCK_ELEMENT_TYPE SHELL_LINEAR SOLID_LINEAR SOLID_QUADRATIC
+            syn keyword     pam_NUMBLOCK_ELEMENT_TYPE_arg  contained containedin=pam_Control_NUMBLOCK_ELEMENT_TYPE BSHEL HEXA8 HEXA20 PENTA6 PENT15 SHEL3 SHEL4 TETR4 TETR10
             hi def link pam_NUMBLOCK_ELEMENT_TYPE_arg pam_Argument
          syn region      pam_NUMBLOCK_ELEMENT_TYPE   transparent contained containedin=pam_NUMBLOCK matchgroup=pam_Keyword start="^[ ]*\CELEMENT_TYPE" end="\n[\$\#]\@!" contains=pam_NUMBLOCK_ELEMENT_TYPE_arg,pam_FreeError,pam_FreeVar,pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
-            syn keyword     pam_NUMBLOCK_ANALYSIS_TYPE_arg  contained containedin=pam_Control_NUMBLOCK_ANALYSIS_TYPE EXPLICIT_MECHA IMPLICIT_MECHA
+            syn keyword     pam_NUMBLOCK_ANALYSIS_TYPE_arg  contained containedin=pam_Control_NUMBLOCK_ANALYSIS_TYPE EXPLICIT_MECHA IMPLICIT_MECHA IMPLICIT_MECHA_LINEAR
             hi def link pam_NUMBLOCK_ANALYSIS_TYPE_arg pam_Argument
          syn region      pam_NUMBLOCK_ANALYSIS_TYPE   transparent contained containedin=pam_NUMBLOCK matchgroup=pam_Keyword start="^[ ]*\CANALYSIS_TYPE" end="\n[\$\#]\@!" contains=pam_NUMBLOCK_ANALYSIS_TYPE_arg,pam_FreeError,pam_FreeVar,pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
-         syn region      pam_NUMBLOCK_ELEMENT_FORMULATION   transparent contained containedin=pam_NUMBLOCK matchgroup=pam_Keyword start="^[ ]*\CELEMENT_FORMULATION" end="\n[\$\#]\@!" contains=pam_Integer,pam_FreeError,pam_FreeVar,pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
-         syn region      pam_NUMBLOCK_HOURGLASS_FORMULATION   transparent contained containedin=pam_NUMBLOCK matchgroup=pam_Keyword start="^[ ]*\CHOURGLASS_FORMULATION" end="\n[\$\#]\@!" contains=pam_Integer,pam_FreeError,pam_FreeVar,pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
+            syn keyword     pam_NUMBLOCK_ELEMENT_FORMULATION_arg  contained containedin=pam_Control_NUMBLOCK_ELEMENT_FORMULATION BELYTSCHKO_TSAY_URI HUGHES_TEZDUYAR_FI BELYTSCHKO_WONG_CHIANG_URI BELYTSCHKO_WONG_CHIANG_FI BATOZ_Q4GAMMA_FI UNIFORM_REDUCED_INTEGRATION SELECTIVE_REDUCED_INTEGRATION MEAN_DILATATION FULL_INTEGRATION BONET BELYTSCHKO_TSAY_INVERSE BBAR INCOMPATIBLE_MODES P1P1
+            hi def link pam_NUMBLOCK_ELEMENT_FORMULATION_arg pam_Argument
+         syn region      pam_NUMBLOCK_ELEMENT_FORMULATION   transparent contained containedin=pam_NUMBLOCK matchgroup=pam_Keyword start="^[ ]*\CELEMENT_FORMULATION" end="\n[\$\#]\@!" contains=pam_NUMBLOCK_ELEMENT_FORMULATION_arg,pam_Integer,pam_FreeError,pam_FreeVar,pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
+            syn keyword     pam_NUMBLOCK_HOURGLASS_FORMULATION_arg  contained containedin=pam_Control_NUMBLOCK_HOURGLASS_FORMULATION STIFFNESS_ELASTIC STIFFNESS_PLASTIC VISCOUS STIFFNESS_ELASTIC_ORTHOGONAL STIFFNESS_PLASTIC_ORTHOGONAL VISCOUS_ORTHOGONAL INCREMENTAL_PUSO TOTAL_PUSO
+            hi def link pam_NUMBLOCK_HOURGLASS_FORMULATION_arg pam_Argument
+         syn region      pam_NUMBLOCK_HOURGLASS_FORMULATION   transparent contained containedin=pam_NUMBLOCK matchgroup=pam_Keyword start="^[ ]*\CHOURGLASS_FORMULATION" end="\n[\$\#]\@!" contains=pam_NUMBLOCK_HOURGLASS_FORMULATION_arg,pam_Integer,pam_FreeError,pam_FreeVar,pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
+         syn region      pam_NUMBLOCK_2D_HOURGLASS_COEFFICIENTS   transparent contained containedin=pam_NUMBLOCK matchgroup=pam_Keyword start="^[ ]*\C2D_HOURGLASS_COEFFICIENTS" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeError,pam_FreeVar,pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
+         syn region      pam_NUMBLOCK_3D_VISCOSITY_HOURGLASS_COEFFICIENTS   transparent contained containedin=pam_NUMBLOCK matchgroup=pam_Keyword start="^[ ]*\C3D_VISCOSITY_HOURGLASS_COEFFICIENTS" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeError,pam_FreeVar,pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
          syn region      pam_NUMBLOCK_THICKNESS_INTEGRATION   transparent contained containedin=pam_NUMBLOCK matchgroup=pam_Keyword start="^[ ]*\CTHICKNESS_INTEGRATION" end="\n[\$\#]\@!" contains=pam_Integer,pam_FreeError,pam_FreeVar,pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
          syn region      pam_NUMBLOCK_HOURGLASS_COEFFICIENTS   transparent contained containedin=pam_NUMBLOCK matchgroup=pam_Keyword start="^[ ]*\CHOURGLASS_COEFFICIENTS" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeError,pam_FreeVar,pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
          syn region      pam_NUMBLOCK_SHEAR_COEFFICIENT_FACTOR   transparent contained containedin=pam_NUMBLOCK matchgroup=pam_Keyword start="^[ ]*\CSHEAR_COEFFICIENT_FACTOR" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeError,pam_FreeVar,pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
          syn region      pam_NUMBLOCK_TIMESTEP_SCALE_FACTOR   transparent contained containedin=pam_NUMBLOCK matchgroup=pam_Keyword start="^[ ]*\CTIMESTEP_SCALE_FACTOR" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeError,pam_FreeVar,pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
-         syn region      pam_NUMBLOCK_NUMERICAL_DAMPING_FACTOR   transparent contained containedin=pam_NUMBLOCK matchgroup=pam_Keyword start="^[ ]*\CNUMERICAL_DAMPING_FACTOR" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeError,pam_FreeVar,pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
+         syn region      pam_NUMBLOCK_NUMERICAL_DAMPING_COEFFICIENT   transparent contained containedin=pam_NUMBLOCK matchgroup=pam_Keyword start="^[ ]*\CNUMERICAL_DAMPING_COEFFICIENT" end="\n[\$\#]\@!" contains=pam_Float,pam_Control_YESNO,pam_FreeError,pam_FreeVar,pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
          syn region      pam_NUMBLOCK_TIMESTEP_ELIMINATION   transparent contained containedin=pam_NUMBLOCK matchgroup=pam_Keyword start="^[ ]*\CTIMESTEP_ELIMINATION" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeError,pam_FreeVar,pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
          syn region      pam_NUMBLOCK_TIMESTEP_ELIMINATION_RATIO   transparent contained containedin=pam_NUMBLOCK matchgroup=pam_Keyword start="^[ ]*\CTIMESTEP_ELIMINATION_RATIO" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeError,pam_FreeVar,pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
       syn region      pam_NUMBLOCK   transparent contained containedin=pam_NUMPAR matchgroup=pam_CardTag start="^[ ]*\CNUMBLOCK" end="^[ ]*\CEND_NUMBLOCK" contains=pam_Comment,pam_Comment_Position,pam_Error fold keepend

@@ -4427,6 +4427,7 @@ function! pamcomplete#Complete(findstart, base)
                   call add (items,{'word':'    1','menu':'Activated, based on Topology'})
                   call add (items,{'word':'    2','menu':'Activated, based on Element Connectivity'})
                   call add (items,{'word':'    3','menu':'Activated, based on Element Connectivity, Size and Contact Thickness'})
+                  call add (items,{'word':'    4','menu':'Activated, based on Global User-Defined Level of COnnectivity and Distance'})
                " IFRED
                elseif synIDattr(slist[2], "name") =~ "pam_36.*"
                   call add (items,{'word':'    0','abbr':'0 (default)','menu':'Deactivated'})
@@ -4528,6 +4529,7 @@ function! pamcomplete#Complete(findstart, base)
                   call add (items,{'word':'    1','menu':'Activated, based on Topology'})
                   call add (items,{'word':'    2','menu':'Activated, based on Element Connectivity'})
                   call add (items,{'word':'    3','menu':'Activated, based on Element Connectivity, Size and Contact Thickness'})
+                  call add (items,{'word':'    4','menu':'Activated, based on Global User-Defined Level of COnnectivity and Distance'})
                " IFRED
                elseif synIDattr(slist[2], "name") =~ "pam_36.*"
                   call add (items,{'word':'    0','abbr':'0 (default)','menu':'Deactivated'})
