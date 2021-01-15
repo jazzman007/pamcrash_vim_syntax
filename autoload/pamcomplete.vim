@@ -476,7 +476,7 @@ function! pamcomplete#Complete(findstart, base)
             elseif synIDattr(slist[2], "name") =~ "pam_51.*"
                let start = 50
             endif
-         elseif synIDattr(slist[1], "name") =~ "pam_THMAT_SPECIFIC_HEAT_r2"
+         elseif synIDattr(slist[1], "name") =~ "pam_THMAT_SPECIFIC_HEAT_r2c"
             " FUN
             if synIDattr(slist[2], "name") =~ "pam_1.10.*"
                let start = 0
@@ -4060,7 +4060,7 @@ function! pamcomplete#Complete(findstart, base)
             elseif synIDattr(slist[2], "name") =~ "pam_51.*"
                let items = s:getTags("FUNCT",10)
             endif
-         elseif synIDattr(slist[1], "name") =~ "pam_THMAT_SPECIFIC_HEAT_r2"
+         elseif synIDattr(slist[1], "name") =~ "pam_THMAT_SPECIFIC_HEAT_r2c"
             " FUN
             if synIDattr(slist[2], "name") =~ "pam_1.10.*"
                let items = s:getTags("FUNCT",10)
@@ -16197,6 +16197,10 @@ function! pamcomplete#pamHints()
          if synIDattr(slist[2], "name") =~ "pam_9.8.*"
             return "IDMAT - Material Entity ID"
          endif
+      elseif synIDattr(slist[1], "name") =~ "pam_THMAT_CONDUCTANCE_r2"
+         if synIDattr(slist[2], "name") =~ "pam_1.10.*"
+            return "K - Thermal Conductance Value"
+         endif
       elseif synIDattr(slist[1], "name") =~ "pam_THMAT_MASS_DENSITY_r2"
          if synIDattr(slist[2], "name") =~ "pam_1.10.*"
             return "RHO || IFUNRHOt - Constant Mass Density || Function ID (tag)"
@@ -16217,7 +16221,11 @@ function! pamcomplete#pamHints()
          endif
       elseif synIDattr(slist[1], "name") =~ "pam_THMAT_SPECIFIC_HEAT_r2"
          if synIDattr(slist[2], "name") =~ "pam_1.10.*"
-            return "Cp || IFUNCpT - Constant Specific Heat || Function ID (tag)"
+            return "Cp - Constant Specific Heat"
+         endif
+      elseif synIDattr(slist[1], "name") =~ "pam_THMAT_SPECIFIC_HEAT_r2c"
+         if synIDattr(slist[2], "name") =~ "pam_1.10.*"
+            return "Function ID (tag)"
          elseif synIDattr(slist[2], "name") =~ "pam_11.*"
             return "Href - Reference Enthalpy"
          endif

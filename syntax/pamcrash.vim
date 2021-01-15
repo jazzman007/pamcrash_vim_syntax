@@ -4637,16 +4637,22 @@ syn region      pam_PFMAT           matchgroup=pam_CardTag start="^\CPFMAT /" en
    syn region      pam_THMAT_r2     transparent contained containedin=pam_THMAT start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position keepend
    "Row 1
    syn region      pam_THMAT_r1     transparent contained containedin=pam_THMAT start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_THMAT_r2 skipnl keepend
-   syn region      pam_THMAT_CONDUCTIVITY_r2     transparent contained containedin=pam_THMAT start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,@21f10,@31f10,@41f10,@51f10,pam_Comment,pam_Comment_Position,pam_Error keepend 
+   syn region      pam_THMAT_CONDUCTANCE_r2     transparent contained containedin=pam_THMAT start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1f10,pam_Comment,pam_Comment_Position,pam_Error keepend 
    syn region      pam_THMAT_MASS_DENSITY_r2     transparent contained containedin=pam_THMAT start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1f10,pam_Comment,pam_Comment_Position,pam_Error keepend 
-   syn region      pam_THMAT_SPECIFIC_HEAT_r2     transparent contained containedin=pam_THMAT start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,pam_Comment,pam_Comment_Position,pam_Error keepend 
+   syn region      pam_THMAT_SPECIFIC_HEAT_r2     transparent contained containedin=pam_THMAT start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1f10,pam_Comment,pam_Comment_Position,pam_Error keepend 
+   syn region      pam_THMAT_SPECIFIC_HEAT_r2c     transparent contained containedin=pam_THMAT start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,pam_Comment,pam_Comment_Position,pam_Error keepend 
+   syn region      pam_THMAT_CONDUCTIVITY_r2     transparent contained containedin=pam_THMAT start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,@21f10,@31f10,@41f10,@51f10,pam_Comment,pam_Comment_Position,pam_Error keepend 
+   syn region      pam_THMAT_CONDUCTANCE        contained containedin=pam_THMAT matchgroup=pam_HeaderKW start="\CCONDUCTANCE" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position,pam_Error,pam_FreeError,pam_FreeVar,pam_THMAT_CONDUCTANCE_arg nextgroup=pam_THMAT_CONDUCTANCE_r2 skipnl keepend
+      syn keyword     pam_THMAT_CONDUCTANCE_arg         contained containedin=pam_THMAT_CONDUCTANCE ISOTROPIC CONSTANT
+      hi def link pam_THMAT_CONDUCTANCE_arg pam_Argument
    syn region      pam_THMAT_CONDUCTIVITY        contained containedin=pam_THMAT matchgroup=pam_HeaderKW start="\CCONDUCTIVITY" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position,pam_Error,pam_FreeError,pam_FreeVar,pam_THMAT_CONDUCTIVITY_arg nextgroup=pam_THMAT_CONDUCTIVITY_r2 skipnl keepend
       syn keyword     pam_THMAT_CONDUCTIVITY_arg         contained containedin=pam_THMAT_CONDUCTIVITY ISOTROPIC ANISOTROPIC NO CONSTANT CURVE
       hi def link pam_THMAT_CONDUCTIVITY_arg pam_Argument
    syn region      pam_THMAT_MASS_DENSITY        contained containedin=pam_THMAT matchgroup=pam_HeaderKW start="\CMASS_DENSITY" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position,pam_Error,pam_FreeError,pam_FreeVar,pam_THMAT_MASS_DENSITY_arg nextgroup=pam_THMAT_MASS_DENSITY_r2 skipnl keepend
       syn keyword     pam_THMAT_MASS_DENSITY_arg         contained containedin=pam_THMAT_MASS_DENSITY CONSTANT CURVE
       hi def link pam_THMAT_MASS_DENSITY_arg pam_Argument
-   syn region      pam_THMAT_SPECIFIC_HEAT        contained containedin=pam_THMAT matchgroup=pam_HeaderKW start="\CSPECIFIC_HEAT" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position,pam_Error,pam_FreeError,pam_FreeVar,pam_THMAT_SPECIFIC_HEAT_arg nextgroup=pam_THMAT_SPECIFIC_HEAT_r2 skipnl keepend
+   syn region      pam_THMAT_SPECIFIC_HEAT        contained containedin=pam_THMAT matchgroup=pam_HeaderKW start="\CSPECIFIC_HEAT\([ ]*CONSTANT\)\@=" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position,pam_Error,pam_FreeError,pam_FreeVar,pam_THMAT_SPECIFIC_HEAT_arg nextgroup=pam_THMAT_SPECIFIC_HEAT_r2 skipnl keepend
+   syn region      pam_THMAT_SPECIFIC_HEAT        contained containedin=pam_THMAT matchgroup=pam_HeaderKW start="\CSPECIFIC_HEAT\([ ]*CURVE\)\@=" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position,pam_Error,pam_FreeError,pam_FreeVar,pam_THMAT_SPECIFIC_HEAT_arg nextgroup=pam_THMAT_SPECIFIC_HEAT_r2c skipnl keepend
       syn keyword     pam_THMAT_SPECIFIC_HEAT_arg         contained containedin=pam_THMAT_SPECIFIC_HEAT CONSTANT CURVE
       hi def link pam_THMAT_SPECIFIC_HEAT_arg pam_Argument
    syn region      pam_THMAT_LATENT_HEAT        contained containedin=pam_THMAT matchgroup=pam_HeaderKW start="\CLATENT_HEAT" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position,pam_Float,pam_Error,pam_FreeError,pam_FreeVar keepend
