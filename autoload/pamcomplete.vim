@@ -700,6 +700,9 @@ function! pamcomplete#Complete(findstart, base)
                " IPCP
                if synIDattr(slist[2], "name") =~ "pam_1.5.*"
                   let start = 0
+               " ICPCUR
+               elseif synIDattr(slist[2], "name") =~ "pam_16i.*"
+                  let start = 15
                " IKFOR
                elseif synIDattr(slist[2], "name") =~ "pam_26.*"
                   let start = 25
@@ -4472,6 +4475,10 @@ function! pamcomplete#Complete(findstart, base)
                   call add (items,{'word':'    0','menu':'Deactivated (EXPL only)'})
                   call add (items,{'word':'    1','menu':'With Penalty Constraint'})
                   call add (items,{'word':'    2','menu':'With Lagrange Constraint'})
+                  call add (items,{'word':'    3','menu':'With AUgmented Lagrange Constraint'})
+               " ICPCUR
+               elseif synIDattr(slist[2], "name") =~ "pam_16i.*"
+                  let items = s:getTags("FUNCT",10)
                " IKFOR
                elseif synIDattr(slist[2], "name") =~ "pam_26.*"
                   call add (items,{'word':'    0','menu':'Deactivated'})
@@ -4544,9 +4551,14 @@ function! pamcomplete#Complete(findstart, base)
             elseif synIDattr(slist[1], "name") =~ "pam_CNTAC.*_r8"
                " IHTR
                if synIDattr(slist[2], "name") =~ "pam_1.5.*"
-                  call add (items,{'word':'    0','menu':'No Heat Transfer'})
-                  call add (items,{'word':'    1','menu':'Conduction Heat Transfer'})
-                  call add (items,{'word':'    2','menu':'Surface Heat Transfer'})
+                 if synIDattr(slist[1], "name") =~ "pam_CNTAC44_r8" 
+                   call add (items,{'word':'    0','menu':'No Heat Transfer'})
+                   call add (items,{'word':'    1','menu':'Surface Heat Transfer'})
+                 else
+                   call add (items,{'word':'    0','menu':'No Heat Transfer'})
+                   call add (items,{'word':'    1','menu':'Conduction Heat Transfer'})
+                   call add (items,{'word':'    2','menu':'Surface Heat Transfer'})
+                 endif
                " IPRES
                elseif synIDattr(slist[2], "name") =~ "pam_76.*"
                   call add (items,{'word':'    0','menu':'Interface Contribution taken into Account'})
@@ -7985,8 +7997,10 @@ function! pamcomplete#pamHints()
                return 'IPCP - Precise Contact Pressure Calculation Flag (menu)'
             elseif synIDattr(slist[2], "name") =~ "pam_6.10.*"
                return 'SLFACM - Scale Factor for Sliding Interface Penalty'
-            elseif synIDattr(slist[2], "name") =~ "pam_16.*"
+            elseif synIDattr(slist[2], "name") =~ "pam_16f.*"
                return 'FSVNL - Nonlinear Penalty Stiffness Parameter'
+            elseif synIDattr(slist[2], "name") =~ "pam_16i.*"
+               return 'ICPCUR - Contact Pressure Penetration Dependency Curve ID (tag)'
             elseif synIDattr(slist[2], "name") =~ "pam_26.*"
                return 'IKFOR - Kinematic Contact Forces Flag (menu)'
             elseif synIDattr(slist[2], "name") =~ "pam_31.*"
@@ -8043,6 +8057,10 @@ function! pamcomplete#pamHints()
                return 'HTCOND - Heat Conductivity'
             elseif synIDattr(slist[2], "name") =~ "pam_16.*"
                return 'HTSURF - Surface Heat Transfer Coefficient'
+            elseif synIDattr(slist[2], "name") =~ "pam_26.*"
+               return 'FRICDIST - Friction Energy to Thermal Heat Ratio'
+            elseif synIDattr(slist[2], "name") =~ "pam_36.*"
+               return 'HTDICT - Master-Slave Surface Heat Distributin Ratio'
             elseif synIDattr(slist[2], "name") =~ "pam_46.*"
                return 'TSCAL - Surface Offset Scale Factor for Solid Materials'
             elseif synIDattr(slist[2], "name") =~ "pam_56.*"

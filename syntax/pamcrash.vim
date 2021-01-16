@@ -334,6 +334,11 @@ hi def link pam_16f10_a pam_oddArgument
 hi def link pam_16f10_e pam_oddError
 hi def link pam_16f10_v pam_oddVar
 " }}}
+" {{{ 16i10
+syn match       pam_16i10_a             display contained "\%16c[ ]*\-\=\d*\%26c"
+syn cluster     16i10                   contains=pam_16f10_e,pam_16i10_a,pam_16f10_v
+hi def link pam_16i10_a pam_oddArgument
+" }}}
 " {{{ 17i8
 syn match       pam_17i8_e             display contained "\%17c.\{1,8\}"
 syn match       pam_17i8_a             display contained "\%17c[ ]*\-\=\d*\%25c"
@@ -3457,17 +3462,20 @@ syn region      pam_CNTAC43        matchgroup=pam_CardTag start="^\CCNTAC / .\{8
    " Row 9 (Selection)
    syn region      pam_CNTAC44_r9     transparent contained containedin=pam_CNTAC44 start="\%1c." matchgroup=pam_CardTag end="\%$" contains=@pam_Ident,pam_Comment,pam_Comment_Position,pam_End,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position keepend
    " Row 8
-   syn region      pam_CNTAC44_r8     transparent contained containedin=pam_CNTAC44 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@76i5,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_CNTAC44_r9 skipnl keepend
+   syn region      pam_CNTAC44_r8     transparent contained containedin=pam_CNTAC44 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1i5x,@16f10,@26f10,@36f10,@76i5,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_CNTAC44_r9 skipnl keepend
    " Row 7
    syn region      pam_CNTAC44_r7     transparent contained containedin=pam_CNTAC44 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_CNTAC44_r8 skipnl keepend
    " Row 6 
    syn region      pam_CNTAC44_r6     transparent contained containedin=pam_CNTAC44 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1i5x,@11i5x,@21i10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_CNTAC44_r7 skipnl keepend
    " Row 5
-   syn region      pam_CNTAC44_r5     transparent contained containedin=pam_CNTAC44 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11i10,@21f10,@31f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_CNTAC44_r6 skipnl keepend
+   syn region      pam_CNTAC44_r5     transparent contained containedin=pam_CNTAC44 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11i10,@21f10,@31f10,@51i10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_CNTAC44_r6 skipnl keepend
    " Row 4
    syn region      pam_CNTAC44_r4     transparent contained containedin=pam_CNTAC44 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1i5x,@6f10,@16f10,@71f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_CNTAC44_r5 skipnl keepend
+   syn region      pam_CNTAC44_r4c     transparent contained containedin=pam_CNTAC44 start="\%1c.\(.\{4\}\CCURVE     \)\@=" start="^$\n" end="\n[\$\#]\@!" contains=@1i5x,@16i10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_CNTAC44_r5 skipnl keepend
+      syn match       pam_CNTAC44_r4c_a1  display contained containedin=pam_CNTAC44_r4c "\%6c\CCURVE     "
+      hi def link pam_CNTAC44_r4c_a1 pam_evenArgument
    " Row 3
-   syn region      pam_CNTAC44_r3     transparent contained containedin=pam_CNTAC44 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,@21i10,@31f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_CNTAC44_r4 skipnl keepend
+   syn region      pam_CNTAC44_r3     transparent contained containedin=pam_CNTAC44 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,@21i10,@31f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_CNTAC44_r4,pam_CNTAC44_r4c skipnl keepend
    " Row 2 (Name)
    syn region      pam_CNTAC44_r2     transparent contained containedin=pam_CNTAC44 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_CNTAC44_r3 skipnl keepend
    " Row 1

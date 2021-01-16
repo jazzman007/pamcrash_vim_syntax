@@ -88,7 +88,7 @@ cat pamtags.tmp | gawk '
      print pid"\t"file"\t?^"string"$?;\"\tpamkind:"kw"\tpamname:Vector "pid;
      next;
   }
-  if ( $1 == "CNTPTY" )
+  if ( $1 == "CNTPTY/" )
   {
      kw = "CNTPTY";
      pid = gensub (" ","","g",substr ($0,9,8));

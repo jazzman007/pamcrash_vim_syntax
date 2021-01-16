@@ -7,12 +7,12 @@ $#    T1SL      T2SL     ISENS     Hcont
         0.        0.         0        0.
 $#PCP    SLFACM     FSVNL                                                 TLSTIF
              0.        0.                                                       
-$#   FRICT    IDFRIC     XDMP1     XDMPT
-        0.         0        0.        0.
+$#   FRICT    IDFRIC     XDMP1     XDMPT            IDCNTPTY
+        0.         0        0.        0.                    
 $#RMVBLANKILEAKBLANK    ITHKSV
     0         0              0
 
-$#                                                                    BLANKIPRES
+$IHTR              HTSURF   FRICDIS    HDISTR                         BLANKIPRES
                                                                                 
         END
         END
