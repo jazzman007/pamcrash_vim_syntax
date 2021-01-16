@@ -3333,6 +3333,15 @@ function! pamcomplete#Complete(findstart, base)
             endif
          endif
 "  }}}
+"  {{{ VADIFF
+      elseif synIDattr(slist[0], "name") =~ "pam_VADIFF"
+         if synIDattr(slist[1], "name") =~ "pam_VADIFF_r5"
+            " IFUNC
+            if synIDattr(slist[2], "name") =~ "pam_9.*"
+               let start = 8
+            endif
+         endif
+"  }}}
 "  {{{ VAPLNW
       elseif synIDattr(slist[0], "name") =~ "pam_VAPLNW."
          if synIDattr(slist[1], "name") =~ "pam_VAPLNW._r1"
@@ -7572,6 +7581,15 @@ function! pamcomplete#Complete(findstart, base)
             elseif synIDattr(slist[2], "name") =~ "pam_49.*"
                call add (items,{'word':'      -1','menu':'Minus Side'})
                call add (items,{'word':'       1','menu':'Plus Side'})
+            endif
+         endif
+"  }}}
+"  {{{ VADIFF
+      elseif synIDattr(slist[0], "name") =~ "pam_VADIFF"
+         if synIDattr(slist[1], "name") =~ "pam_VADIFF_r5"
+            " IFUNC
+            if synIDattr(slist[2], "name") =~ "pam_9.*"
+               let items = s:getTags("FUNCT",8)
             endif
          endif
 "  }}}
@@ -20000,6 +20018,46 @@ function! pamcomplete#pamHints()
             return "CONSTi - Imaginary Part of Constant Absorber"
          elseif synIDattr(slist[2], "name") =~ "pam_49.*"
             return "SIGN - Absorber Imposed Side Definition (menu)"
+         endif
+      endif
+"  }}}
+"  {{{ VADIFF
+   elseif synIDattr(slist[0], "name") =~ "pam_VADIFF"
+      if synIDattr(slist[1], "name") =~ "pam_VADIFF_r1"
+         if synIDattr(slist[2], "name") =~ "pam_9.*"
+            return "IDDIFF"
+         elseif synIDattr(slist[2], "name") =~ "pam_17.*"
+            return "IDDOM - ABM Domain ID onto which the Field is Applied"
+         endif
+      elseif synIDattr(slist[1], "name") =~ "pam_VADIFF_r3"
+         if synIDattr(slist[2], "name") =~ "pam_9.*"
+            return "THETAmin - Minimum Plane Wave Longitude"
+         elseif synIDattr(slist[2], "name") =~ "pam_17.*"
+            return "THETAmax - Maximum Plane Wave Longitude"
+         elseif synIDattr(slist[2], "name") =~ "pam_25.*"
+            return "STEPth - Incremental Value of Longitude to Generate Plane Waves"
+         elseif synIDattr(slist[2], "name") =~ "pam_33.*"
+            return "NBwav1 - Number of Plane Waves Generated in the Longitude"
+         endif
+      elseif synIDattr(slist[1], "name") =~ "pam_VADIFF_r4"
+         if synIDattr(slist[2], "name") =~ "pam_9.*"
+            return "PHImin - Minimum Plane Wave Latitude"
+         elseif synIDattr(slist[2], "name") =~ "pam_17.*"
+            return "PHImax - Maximum Plane Wave Latitude"
+         elseif synIDattr(slist[2], "name") =~ "pam_25.*"
+            return "STEPph - Incremental Value of Latitude to Generate Plane Waves"
+         elseif synIDattr(slist[2], "name") =~ "pam_33.*"
+            return "NBwav2 - Number of Plane Waves Generated in the Latitude"
+         endif
+      elseif synIDattr(slist[1], "name") =~ "pam_VADIFF_r5"
+         if synIDattr(slist[2], "name") =~ "pam_9.*"
+            return "IFUNC - Diffuse Sound Field Amplitude vs Frequency Curve ID (tag)"
+         elseif synIDattr(slist[2], "name") =~ "pam_17.*"
+            return "SFAC - Scale Factor for the Diffuse Sound Field Function"
+         elseif synIDattr(slist[2], "name") =~ "pam_25.*"
+            return "CONSTr - Real Part of the Field Amplitude"
+         elseif synIDattr(slist[2], "name") =~ "pam_33.*"
+            return "CONSTi - Imaginary Part of the Field Amplitude"
          endif
       endif
 "  }}}

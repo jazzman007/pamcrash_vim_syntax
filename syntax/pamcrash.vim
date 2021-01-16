@@ -2607,7 +2607,7 @@ syn region      pam_Control_MSTAGE                matchgroup=pam_HeaderKW start=
 " MSTLOAD end}}}
 
 "{{{ === BAGIN begin
-   syn keyword     pam_CHAMBER_Arg  contained containedin=pam_CHAMBER OPEN MIDNTR CLAV HOL FCT
+   syn keyword     pam_CHAMBER_Arg  contained containedin=pam_CHAMBER OPEN MIDNTR CLAV HOL FCT CLAVF
    hi def link pam_CHAMBER_Arg pam_Argument
    syn region      pam_CHAMBER      contained containedin=pam_BAGIN  matchgroup=pam_CardTag start="^[ ]\{8\}\CCHAMBER" end="^[ ]\{8\}\CEND_CHAMBER" contains=pam_Name,pam_EndCHAMBER,pam_Comment,pam_Comment_Position,@pam_Ident_16,pam_Float,pam_End fold keepend
    syn region      pam_CHAMBER_TITLE        contained containedin=pam_CHAMBER matchgroup=pam_HeaderKW start="^[ ]\{8\}\(\w\)\@=" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_String keepend
@@ -2631,6 +2631,7 @@ syn region      pam_Control_MSTAGE                matchgroup=pam_HeaderKW start=
    syn region      pam_BAG_FPMDCOMP        contained containedin=pam_BAGIN matchgroup=pam_HeaderKW start="^[ ]\{16\}\CFPMDCOMP" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Float,pam_BAG_FPMDCOMP_arg keepend
       syn match pam_BAG_FPMDCOMP_arg contained containedin=pam_BAG_TURBULENCE "LCB VCB RBC X Y Z"
       hi def link pam_BAG_FPMDCOMP_arg pam_Argument
+   syn region      pam_BAG_FPMMPROCS        contained containedin=pam_BAGIN matchgroup=pam_HeaderKW start="^[ ]\{16\}\CFPMMPROCS" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Integer keepend
    syn region      pam_BAG_FPMTBUF        contained containedin=pam_BAGIN matchgroup=pam_HeaderKW start="^[ ]\{16\}\CFPMTBUF" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Control_YESNO keepend
    syn region      pam_BAG_EXT_SKIN        contained containedin=pam_CHAMBER matchgroup=pam_HeaderKW start="^[ ]\{8\}\CEXT_SKIN" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar keepend
    syn region      pam_BAG_WALL_OPENING        contained containedin=pam_CHAMBER matchgroup=pam_HeaderKW start="^[ ]\{8\}\CWALL_OPENING" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar keepend
@@ -3216,6 +3217,28 @@ syn region      pam_RETRA                matchgroup=pam_CardTag start="^\CRETRA 
 syn region      pam_SLIPR                matchgroup=pam_CardTag start="^\CSLIPR /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_SLIPR_r[1-4] fold keepend
 " === SLIPR end}}}
 
+" {{{=== FASCI begin
+   " Row 6 (Node Selection)
+   syn region      pam_FASCI_r6     transparent contained containedin=pam_FASCI start="\%1c." start="^$\n" matchgroup=pam_CardTag end="\%$" contains=@pam_Ident,pam_Comment,pam_Comment_Position,pam_End,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position keepend
+   " Row 5 
+   syn region      pam_FASCI_r5     transparent contained containedin=pam_FASCI start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9f8,@17f8,@25f8,@33f8,@41f8,@49f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_FASCI_r6 skipnl keepend
+   " Row 4 
+   syn region      pam_FASCI_r4     transparent contained containedin=pam_FASCI start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9f8,@17f8,@25f8,@41f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_FASCI_r5 skipnl keepend
+      syn match       pam_FASCI_r4_e1             display contained containedin=pam_FASCI_r4 "\%33c.\{8\}"
+      syn match       pam_FASCI_r4_a1             display contained containedin=pam_FASCI_r4 "\%33c[ ]\{8\}"
+      syn match       pam_FASCI_r4_a1             display contained containedin=pam_FASCI_r4 "\%33c\CCONSTANT"
+      syn match       pam_FASCI_r4_a1             display contained containedin=pam_FASCI_r4 "\%33c\CSCALE   "
+      hi def link pam_FASCI_r4_a1 pam_evenArgument
+      hi def link pam_FASCI_r4_e1 pam_evenError
+   " Row 3 
+   syn region      pam_FASCI_r3     transparent contained containedin=pam_FASCI start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_FASCI_r4 skipnl keepend
+   "Row 2 (Name)
+   syn region      pam_FASCI_r2     transparent contained containedin=pam_FASCI start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_FASCI_r3 skipnl keepend
+   "Row 1
+   syn region      pam_FASCI_r1     transparent contained containedin=pam_FASCI start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_FASCI_r2 skipnl keepend
+syn region      pam_FASCI                matchgroup=pam_CardTag start="^\CFASCI /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_FASCI_r[1-4] fold keepend
+" === FASCI end}}}
+
 " {{{=== GASPEC begin
    "Row 2
    syn region      pam_GASPEC_r2     transparent contained containedin=pam_GASPEC start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Float,pam_Comment,pam_Comment_Position nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
@@ -3638,7 +3661,7 @@ hi def link pam_SECFO_DETECT_r1_v2 pam_evenVar
 hi def link pam_SECFO_DETECT_r1_e2 pam_evenError
 " === SECFO Typ DETECT end}}}
 
-" {{{=== SECFO Typ LINK,CONTACT,SECTION,SUPPORT,CONT_MS  begin
+" {{{=== SECFO Typ LINK,CONTACT,SECTION,SUPPORT,CONT_MS,TIED_MS  begin
    " Row 3 (Node Selection)
    syn region      pam_SECFO_LINK_r3     transparent contained containedin=pam_SECFO_LINK start="\%1c." start="^$\n" matchgroup=pam_CardTag end="\%$" contains=@pam_Ident,pam_Comment,pam_Comment_Position,pam_End,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position keepend
    " Row 2 (Name)
@@ -3646,14 +3669,14 @@ hi def link pam_SECFO_DETECT_r1_e2 pam_evenError
    " Row 1
       " NTYP
       syn match       pam_SECFO_LINK_r1_e2             display contained containedin=pam_SECFO_LINK_r1 "\%17c.\{,8\}"
-      syn match       pam_SECFO_LINK_r1_a2             display contained containedin=pam_SECFO_LINK_r1 "\%17c\CCONTACT \|\CLINK    \|\CSECTION \|\CSUPPORT \|\CCONT_MS "
+      syn match       pam_SECFO_LINK_r1_a2             display contained containedin=pam_SECFO_LINK_r1 "\%17c\CCONTACT \|\CLINK    \|\CSECTION \|\CSUPPORT \|\CCONT_MS \|TIED_MS "
    syn region      pam_SECFO_LINK_r1     transparent contained containedin=pam_SECFO_LINK start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@25i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_SECFO_LINK_r2 skipnl keepend
-syn region      pam_SECFO_LINK                matchgroup=pam_CardTag start="^\CSECFO / .\{8\}\(\CCONTACT \|\CLINK    \|\CSECTION \|\CSUPPORT \|\CCONT_MS \)"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_SECFO_LINK_r[1-3] fold keepend
+syn region      pam_SECFO_LINK                matchgroup=pam_CardTag start="^\CSECFO / .\{8\}\(\CCONTACT \|\CLINK    \|\CSECTION \|\CSUPPORT \|\CCONT_MS \|\CTIED_MS \)"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_SECFO_LINK_r[1-3] fold keepend
 
 hi def link pam_SECFO_LINK_r1_a2 pam_evenArgument
 hi def link pam_SECFO_LINK_r1_v2 pam_evenVar
 hi def link pam_SECFO_LINK_r1_e2 pam_evenError
-" === SECFO Typ LINK,CONTACT,SECTION,SUPPORT,CONT_MS end}}}
+" === SECFO Typ LINK,CONTACT,SECTION,SUPPORT,CONT_MS,TIED_MS end}}}
 
 " {{{=== SECFO Typ VOLFRAC begin
    " Row 3 (Node Selection)
@@ -4553,6 +4576,22 @@ syn region      pam_VAMPSO            matchgroup=pam_CardTag start="^\CVAMPSO/" 
    syn region      pam_VAABSO_r1     transparent contained containedin=pam_VAABSO start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_VAABSO_r2 skipnl keepend
 syn region      pam_VAABSO            matchgroup=pam_CardTag start="^\CVAABSO/" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_VAABSO_r[1-4] fold keepend
 " === VAABSO end}}}
+
+"{{{ === VADIFF begin
+   " Row 6 (Node Selection)
+   syn region      pam_VADIFF_r6     transparent contained containedin=pam_VADIFF start="\%1c." start="^$\n" matchgroup=pam_CardTag end="\%$" contains=@pam_Ident,pam_Comment,pam_Comment_Position,pam_End,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position keepend
+   " Row 5     
+   syn region      pam_VADIFF_r5     transparent contained containedin=pam_VADIFF start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17f8,@25f8,@33f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_VADIFF_r6 skipnl keepend
+   " Row 4     
+   syn region      pam_VADIFF_r4     transparent contained containedin=pam_VADIFF start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9f8,@17f8,@25f8,@33i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_VADIFF_r5 skipnl keepend
+   " Row 3     
+   syn region      pam_VADIFF_r3     transparent contained containedin=pam_VADIFF start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9f8,@17f8,@25f8,@33i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_VADIFF_r4 skipnl keepend
+   "Row 2 (Name)
+   syn region      pam_VADIFF_r2     transparent contained containedin=pam_VADIFF start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_VADIFF_r3 skipnl keepend
+   " Row 1     
+   syn region      pam_VADIFF_r1     transparent contained containedin=pam_VADIFF start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_VADIFF_r2 skipnl keepend
+syn region      pam_VADIFF            matchgroup=pam_CardTag start="^\CVADIFF/" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_VADIFF_r[1-4] fold keepend
+" === VADIFF end}}}
 
 "{{{ === FBCFA begin
    " Row 3     

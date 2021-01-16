@@ -602,6 +602,8 @@ map <silent> ,3d ,,,,kk:r ~/.vim/ftplugin/pam_cards/Load/3d.inc<CR>dd
 map <silent> ,ab ,,,,kk:r ~/.vim/ftplugin/pam_cards/Load/ab.inc<CR>dd
 "ACFLD Acceleration Field
 map <silent> ,ac ,,,,kk:r ~/.vim/ftplugin/pam_cards/Load/ac.inc<CR>dd
+"VADIFF Acoustic Diffuse Sound Field
+map <silent> ,ad ,,,,kk:r ~/.vim/ftplugin/pam_cards/Load/ad.inc<CR>dd
 "VAMPSO Acoustic Monopole Source
 map <silent> ,am ,,,,kk:r ~/.vim/ftplugin/pam_cards/Load/am.inc<CR>dd
 "Acoustic Plane Wave
