@@ -713,6 +713,8 @@ map <silent> ,vap ,,,,kk:r ~/.vim/ftplugin/pam_cards/Output/vap.inc<CR>dd
 
 "BAGIN Definition
 map <silent> ,bag ,,,,kk:r ~/.vim/ftplugin/pam_cards/Safety/bag.inc<CR>dd
+"FASCI Muscular Facicle Definition
+map <silent> ,fa ,,,,kk:r ~/.vim/ftplugin/pam_cards/Safety/fa.inc<CR>dd
 "GASPEC Gas Specification
 map <silent> ,gas ,,,,kk:r ~/.vim/ftplugin/pam_cards/Safety/gas.inc<CR>dd
 "MUSC1 Muscle Element Definition

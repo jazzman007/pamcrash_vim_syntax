@@ -223,6 +223,20 @@ function! pamcomplete#Complete(findstart, base)
             endif
          endif
 " }}}
+" {{{ FASCI
+      elseif synIDattr(slist[0], "name") =~ "pam_FASCI"
+         if synIDattr(slist[1], "name") =~ "pam_FASCI_r3"
+            " NACR
+            if synIDattr(slist[2], "name") =~ "pam_9.*"
+               let start = 8
+            endif
+         elseif synIDattr(slist[1], "name") =~ "pam_FASCI_r4"
+            " QUALIFIER
+            if synIDattr(slist[2], "name") =~ "pam_FASCI_r4_[ae]1"
+               let start = 32
+            endif
+         endif
+" }}}
 "  {{{ THNAC
       elseif synIDattr(slist[0], "name") =~ "pam_THNAC"
          if synIDattr(slist[1], "name") =~ "pam_THNAC_r1"
@@ -3373,6 +3387,9 @@ function! pamcomplete#Complete(findstart, base)
             " QUALIFIER2
             elseif synIDattr(slist[2], "name") =~ "pam_VACPL_r1_[ae]2"
                let start = 24
+            " IGEOS
+            elseif synIDattr(slist[2], "name") =~ "pam_33.*"
+               let start = 32
             endif
          elseif synIDattr(slist[1], "name") =~ "pam_VACPL_r3"
             " QUALIFIER
@@ -4149,6 +4166,21 @@ function! pamcomplete#Complete(findstart, base)
             " IFUN
             if synIDattr(slist[2], "name") =~ "pam_25.*"
                let items = s:getTags("FUNCT",8)
+            endif
+         endif
+" }}}
+" {{{ FASCI
+      elseif synIDattr(slist[0], "name") =~ "pam_FASCI"
+         if synIDattr(slist[1], "name") =~ "pam_FASCI_r3"
+            " NACR
+            if synIDattr(slist[2], "name") =~ "pam_9.*"
+               let items = s:getTags("FUNCT",8)
+            endif
+         elseif synIDattr(slist[1], "name") =~ "pam_FASCI_r4"
+            " QUALIFIER
+            if synIDattr(slist[2], "name") =~ "pam_FASCI_r4_[ae]1"
+               call add (items,{'word':'CONSTANT','abbr':'CONSTANT (default)','menu':'Defined as Constant Value'})
+               call add (items,{'word':'SCALE   ','abbr':'SCALE','menu':'Defined as Factor of the Action Line Initial Length'})
             endif
          endif
 " }}}
@@ -7628,7 +7660,12 @@ function! pamcomplete#Complete(findstart, base)
             elseif synIDattr(slist[2], "name") =~ "pam_VACPL_r1_[ae]2"
                call add (items,{'word':'ASM     ','menu':'Structure'})
                call add (items,{'word':'AFM     ','menu':'Fluid'})
+               call add (items,{'word':'ABM     ','menu':'Boundary'})
                call add (items,{'word':'AEM     ','menu':'External'})
+            " IGEOS
+            elseif synIDattr(slist[2], "name") =~ "pam_33.*"
+               call add (items,{'word':'       1','abbr':'1 (default)','menu':'First Domain Surface has to be Preselected'})
+               call add (items,{'word':'       2','abbr':'2','menu':'First and Second Domain Surfaces have to be Preselected'})
             endif
          elseif synIDattr(slist[1], "name") =~ "pam_VACPL_r3"
             " QUALIFIER
@@ -20109,7 +20146,7 @@ function! pamcomplete#pamHints()
          elseif synIDattr(slist[2], "name") =~ "pam_VACPL_r1_[ae]2"
             return "QUALIFIER2 - Coupling Domain Type of Surface 2 (menu)"
          elseif synIDattr(slist[2], "name") =~ "pam_33.*"
-            return "IGEOS1 - Surface 1 Geometry Definition Flag"
+            return "IGEOS1 - Surface 1 Geometry Definition Flag (menu)"
          endif
       elseif synIDattr(slist[1], "name") =~ "pam_VACPL_r3"
          if synIDattr(slist[2], "name") =~ "pam_17.*"
@@ -20294,6 +20331,46 @@ function! pamcomplete#pamHints()
             return "IOUT - Output Optimization Results Format (menu)"
          elseif synIDattr(slist[2], "name") =~ "pam_41.*"
             return "IDOFST - Offset foe NSMAS ID in Output File"
+         endif
+      endif
+"  }}}
+"  {{{ FASCI
+   elseif synIDattr(slist[0], "name") =~ "pam_FASCI"
+      if synIDattr(slist[1], "name") =~ "pam_FASCI_r1"
+         if synIDattr(slist[2], "name") =~ "pam_9.*"
+            return "IDFASCI - Entity ID"
+         endif
+      elseif synIDattr(slist[1], "name") =~ "pam_FASCI_r3"
+         if synIDattr(slist[2], "name") =~ "pam_9.*"
+            return "NACT - Muscle Active State-Time Curve ID (tag)"
+         elseif synIDattr(slist[2], "name") =~ "pam_17.*"
+            return "NACTfac - Muscle Passive State-Time Curve Multiplier"
+         endif
+      elseif synIDattr(slist[1], "name") =~ "pam_FASCI_r4"
+         if synIDattr(slist[2], "name") =~ "pam_9.*"
+            return "ALF - Muscle Pennation Angle"
+         elseif synIDattr(slist[2], "name") =~ "pam_17.*"
+            return "PCSA - Physiological Cross-Section Area"
+         elseif synIDattr(slist[2], "name") =~ "pam_25.*"
+            return "WMAS - Total Muscle Mass"
+         elseif synIDattr(slist[2], "name") =~ "pam_FASCI_r4_[ae]1"
+            return "QUALIFIER - Definition of Muscle Fiber's Rest Length (menu)"
+         elseif synIDattr(slist[2], "name") =~ "pam_41.*"
+            return "L0fib - Muscle Fiber's Rest Length"
+         endif
+      elseif synIDattr(slist[1], "name") =~ "pam_FASCI_r5"
+         if synIDattr(slist[2], "name") =~ "pam_9.*"
+            return "Tact - Muscle Activation Time"
+         elseif synIDattr(slist[2], "name") =~ "pam_17.*"
+            return "Tdeact - Muscle Deactivation Time"
+         elseif synIDattr(slist[2], "name") =~ "pam_25.*"
+            return "Texci - Excitation Time"
+         elseif synIDattr(slist[2], "name") =~ "pam_33.*"
+            return "Tref - Reflex Time"
+         elseif synIDattr(slist[2], "name") =~ "pam_41.*"
+            return "Ainit - Initial Value of Muscle Active State"
+         elseif synIDattr(slist[2], "name") =~ "pam_49.*"
+            return "Einit - Initial Value of the Excitation"
          endif
       endif
 "  }}}

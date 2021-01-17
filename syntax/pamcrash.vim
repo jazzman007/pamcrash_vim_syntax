@@ -3,7 +3,7 @@
 " Language: PAM-CRASH,PAM-STAMP,PAM-COMFORT Input Deck
 " Syntax File Version: 7.3
 " Author: Roman Firt (roman.firt@yahoo.de)
-" Latest Revision: 9. January 2018
+" Latest Revision: 17. January 2021
 " =========================================================
 " NO WARRANTY! USE AT YOUR OWN RISK!
 " =========================================================
@@ -58,6 +58,7 @@
 "    7.1 - BDFOR Syntax for Different Preloads
 "    7.2 - PICIMP Syntax fix
 "    7.3 - PREFILTER TYPE fix
+"    8.0 - VPS 2018 Syntax Implemented
 " =========================================================
 if exists("b:current_syntax")
   finish
@@ -4961,7 +4962,7 @@ syn region      pam_LCPSD            matchgroup=pam_CardTag start="^\CLCPSD /" e
       syn match       pam_VACPL_r1_a1  display contained containedin=pam_VACPL_r1 "\%17c[ ]*\CA[PFB]M[ ]*\%25c"
       syn match       pam_VACPL_r1_a1  display contained containedin=pam_VACPL_r1 "\%17c[ ]\{8\}"
       syn match       pam_VACPL_r1_e1  display contained containedin=pam_VACPL_r1 "\%25c.\{1,8\}"
-      syn match       pam_VACPL_r1_a2  display contained containedin=pam_VACPL_r1 "\%25c[ ]*\CA[SFE]M[ ]*\%33c"
+      syn match       pam_VACPL_r1_a2  display contained containedin=pam_VACPL_r1 "\%25c[ ]*\CA[SFEB]M[ ]*\%33c"
       syn match       pam_VACPL_r1_a2  display contained containedin=pam_VACPL_r1 "\%25c[ ]\{8\}"
 
       syn match       pam_VACPL_r3_e1  display contained containedin=pam_VACPL_r3 "\%9c.\{1,8\}"
@@ -5533,10 +5534,10 @@ syn region      pam_DOMAINX            matchgroup=pam_CardTag start="^\CDOMAIN/"
    syn region      pam_DOMAIN_ASM_r1     transparent contained containedin=pam_DOMAIN_ASM start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_DOMAIN_r2 skipnl keepend
       syn match       pam_DOMAIN_ASM_r1_a1  display contained containedin=pam_DOMAIN_ASM_r1 "\%17c[ ]*\CASM[ ]*\%25c"
       hi def link pam_DOMAIN_ASM_r1_a1  pam_evenArgument
-syn region      pam_DOMAIN_ASM            matchgroup=pam_CardTag start="^\CDOMAIN/ .\{8\}[ ]*\CASM[ ]*\%25c"rs=s+8 end="^[ ]*END_DOMAIN" contains=pam_DOMAIN_ASM_r[1-2],pam_Control_DAMPING_MODAL_STRUCTURAL,pam_Control_DAMPING_MATRIX,pam_Control_METHOD,pam_Control_DBASE_DAMP,pam_Control_DAMPING_MODAL_VISCOUS,pam_Control_IMPORT_MATRIX,pam_Control_USE_EIGEN2_RANGE,pam_Control_USE_EIGEN2_DISCRETE,pam_Control_USE_EIGEN2,pam_Control_DBASE_EIGEN,pam_Control_OVERALL_STRUCTURAL_DAMPING,pam_Control_DBASE_IMPMA fold keepend
+syn region      pam_DOMAIN_ASM            matchgroup=pam_CardTag start="^\CDOMAIN/ .\{8\}[ ]*\CASM[ ]*\%25c"rs=s+8 end="^[ ]*END_DOMAIN" contains=pam_DOMAIN_ASM_r[1-2],pam_Control_DAMPING_MODAL_STRUCTURAL,pam_Control_DAMPING_MATRIX,pam_Control_METHOD,pam_Control_DBASE_DAMP,pam_Control_DAMPING_MODAL_VISCOUS,pam_Control_IMPORT_MATRIX,pam_Control_USE_EIGEN2_RANGE,pam_Control_USE_EIGEN2_DISCRETE,pam_Control_USE_EIGEN2,pam_Control_DBASE_EIGEN,pam_Control_OVERALL_STRUCTURAL_DAMPING,pam_Control_GENERAL_MATRIX,pam_Control_DBASE_MATF,pam_Control_GENERAL_MATRIX_EXTERNAL,pam_Control_DBASE_MATF_EXTERNAL,pam_Control_DBASE_IMPMA fold keepend
       syn match       pam_DOMAIN_AFM_r1_a1  display contained containedin=pam_DOMAIN_ASM_r1 "\%17c[ ]*\CAFM[ ]*\%25c"
       hi def link pam_DOMAIN_AFM_r1_a1  pam_evenArgument
-syn region      pam_DOMAIN_AFM            matchgroup=pam_CardTag start="^\CDOMAIN/ .\{8\}[ ]*\CAFM[ ]*\%25c"rs=s+8 end="^[ ]*END_DOMAIN" contains=pam_DOMAIN_ASM_r[1-2],pam_Control_DAMPING_MODAL_VISCOUS,pam_Control_DAMPING_MODAL_STRUCTURAL,pam_Control_DAMPING_MATRIX,pam_Control_DBASE_EIGEN,pam_Control_METHOD,pam_Control_DBASE_DAMP,pam_Integer,pam_Comment,pam_Comment_Position fold keepend
+syn region      pam_DOMAIN_AFM            matchgroup=pam_CardTag start="^\CDOMAIN/ .\{8\}[ ]*\CAFM[ ]*\%25c"rs=s+8 end="^[ ]*END_DOMAIN" contains=pam_DOMAIN_ASM_r[1-2],pam_Control_DAMPING_MODAL_VISCOUS,pam_Control_DAMPING_MODAL_STRUCTURAL,pam_Control_DAMPING_MATRIX,pam_Control_DBASE_EIGEN,pam_Control_METHOD,pam_Control_DBASE_DAMP,pam_Control_GENERAL_MATRIX,pam_Control_DBASE_MATF,pam_Control_GENERAL_MATRIX_EXTERNAL,pam_Control_DBASE_MATF_EXTERNAL,pam_Integer,pam_Comment,pam_Comment_Position fold keepend
    "Row 2 (Name)
    syn region      pam_DOMAIN_APM_r2     transparent contained containedin=pam_DOMAIN_APM start="\%1cNAME" start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position skipnl keepend
    " Row 1   
@@ -5561,6 +5562,7 @@ syn region      pam_DOMAIN_APM            matchgroup=pam_CardTag start="^\CDOMAI
    syn region      pam_DOMAIN_ABM_r5     transparent contained containedin=pam_DOMAIN_ABM matchgroup=pam_Keyword start="\CSYMMETRY_PLANE" start="^$\n" end="\n[\$\#]\@!" contains=pam_FreeVar,pam_FreeError,pam_Integer,pam_Comment,pam_Comment_Position skipnl keepend
    syn region      pam_DOMAIN_ABM_r6     transparent contained containedin=pam_DOMAIN_ABM matchgroup=pam_Keyword start="\CANTISYMMETRY_PLANE" start="^$\n" end="\n[\$\#]\@!" contains=pam_Integer,pam_Comment,pam_Comment_Position,pam_FreeVar,pam_FreeError skipnl keepend
    syn region      pam_DOMAIN_ABM_r7     transparent contained containedin=pam_DOMAIN_ABM matchgroup=pam_Keyword start="\CPRESSURE_RELEASE_PLANE" start="^$\n" end="\n[\$\#]\@!" contains=pam_Integer,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position skipnl keepend
+   syn region      pam_DOMAIN_ABM_r8     transparent contained containedin=pam_DOMAIN_ABM matchgroup=pam_Keyword start="\CBAFFLE" start="^$\n" end="\n[\$\#]\@!" contains=pam_Integer,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position skipnl keepend
       syn keyword     pam_DOMAIN_ABM_r4_a1         contained containedin=pam_DOMAIN_ABM_r4 DIRECT
       hi def link pam_DOMAIN_ABM_r4_a1 pam_Argument
 syn region      pam_DOMAIN_ABM            matchgroup=pam_CardTag start="^\CDOMAIN/ .\{8\}[ ]*\CABM[ ]*\%25c"rs=s+8 end="^[ ]*END_DOMAIN" contains=pam_DOMAIN_ABM_r[1-2],pam_Integer,pam_FreeError,pam_FreeVar,pam_Comment,pam_Comment_Position fold keepend
@@ -8913,7 +8915,7 @@ syn region      pam_MMAT        matchgroup=pam_CardTag start="^\CMMAT"rs=s+8 end
             syn keyword     pam_NUMBLOCK_ELEMENT_FORMULATION_arg  contained containedin=pam_Control_NUMBLOCK_ELEMENT_FORMULATION BELYTSCHKO_TSAY_URI HUGHES_TEZDUYAR_FI BELYTSCHKO_WONG_CHIANG_URI BELYTSCHKO_WONG_CHIANG_FI BATOZ_Q4GAMMA_FI UNIFORM_REDUCED_INTEGRATION SELECTIVE_REDUCED_INTEGRATION MEAN_DILATATION FULL_INTEGRATION BONET BELYTSCHKO_TSAY_INVERSE BBAR INCOMPATIBLE_MODES P1P1
             hi def link pam_NUMBLOCK_ELEMENT_FORMULATION_arg pam_Argument
          syn region      pam_NUMBLOCK_ELEMENT_FORMULATION   transparent contained containedin=pam_NUMBLOCK matchgroup=pam_Keyword start="^[ ]*\CELEMENT_FORMULATION" end="\n[\$\#]\@!" contains=pam_NUMBLOCK_ELEMENT_FORMULATION_arg,pam_Integer,pam_FreeError,pam_FreeVar,pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
-            syn keyword     pam_NUMBLOCK_HOURGLASS_FORMULATION_arg  contained containedin=pam_Control_NUMBLOCK_HOURGLASS_FORMULATION STIFFNESS_ELASTIC STIFFNESS_PLASTIC VISCOUS STIFFNESS_ELASTIC_ORTHOGONAL STIFFNESS_PLASTIC_ORTHOGONAL VISCOUS_ORTHOGONAL INCREMENTAL_PUSO TOTAL_PUSO
+            syn keyword     pam_NUMBLOCK_HOURGLASS_FORMULATION_arg  contained containedin=pam_Control_NUMBLOCK_HOURGLASS_FORMULATION STIFFNESS_ELASTIC STIFFNESS_PLASTIC VISCOUS STIFFNESS_ELASTIC_ORTHOGONAL STIFFNESS_PLASTIC_ORTHOGONAL VISCOUS_ORTHOGONAL STIFFNESS_ORTHOGONAL INCREMENTAL_PUSO TOTAL_PUSO
             hi def link pam_NUMBLOCK_HOURGLASS_FORMULATION_arg pam_Argument
          syn region      pam_NUMBLOCK_HOURGLASS_FORMULATION   transparent contained containedin=pam_NUMBLOCK matchgroup=pam_Keyword start="^[ ]*\CHOURGLASS_FORMULATION" end="\n[\$\#]\@!" contains=pam_NUMBLOCK_HOURGLASS_FORMULATION_arg,pam_Integer,pam_FreeError,pam_FreeVar,pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
          syn region      pam_NUMBLOCK_2D_HOURGLASS_COEFFICIENTS   transparent contained containedin=pam_NUMBLOCK matchgroup=pam_Keyword start="^[ ]*\C2D_HOURGLASS_COEFFICIENTS" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeError,pam_FreeVar,pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
@@ -9173,7 +9175,7 @@ if &background == "dark"
    hi def pam_evenError ctermfg=15 ctermbg=124 guifg=#ffffff guibg=#af0000
    hi def pam_EndDataHeader ctermfg=0 ctermbg=11 guifg=#000000 guibg=#ffff00
    hi def pam_Source ctermfg=104 guifg=#8787df
-   hi def pam_Secure ctermfg=236 guifg=#303030
+   hi def pam_Secure ctermfg=240 guifg=#303030
    hi def pam_Modular ctermfg=100
    hi Pmenu ctermbg=23 ctermfg=245
    hi PmenuSel ctermbg=245 ctermfg=3
