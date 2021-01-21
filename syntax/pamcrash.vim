@@ -1,4 +1,4 @@
-" =========================================================
+" ========================================================
 " Vim syntax file
 " Language: PAM-CRASH,PAM-STAMP,PAM-COMFORT Input Deck
 " Syntax File Version: 7.3
@@ -2509,7 +2509,7 @@ syn region      pam_MODEL           matchgroup=pam_CardTag start="^\CMODEL /" en
       hi def link pam_RMSSOL_r3_a1 pam_evenArgument
       hi def link pam_RMSSOL_r3_e1 pam_evenError
       syn match    pam_RMSSOL_r3_e2             display contained "\%17c.\{,8\}"
-      syn match    pam_RMSSOL_r3_a2             display contained "\%17c\CEPST    \|\CDCDM    \|\CSTRV    \|\CTHIN    \|\CJCFR    \|\CXUWI    \|\CMOMC    \|\CANIF    \|\CREDC    "
+      syn match    pam_RMSSOL_r3_a2             display contained "\%17c\CEPST    \|\CDCDM    \|\CSTRV    \|\CTHIN    \|\CJCFR    \|\CXUWI    \|\CMOMC    \|\CANIF    \|\CREDC    \|\CEHSR    \|\CMHSR    \|\CHSTR    \|\CGNCK    \|\CLPST    \|\CECLF    "
       syn match    pam_RMSSOL_r3_a2             display contained "\%17c[ ]\{8\}"
       hi def link pam_RMSSOL_r3_a2 pam_oddArgument
       hi def link pam_RMSSOL_r3_e2 pam_oddError
@@ -2575,7 +2575,6 @@ syn region      pam_TRSFM        matchgroup=pam_CardTag start="^\CTRSFM /"he=e+1
          syn region   pam_EXPORT_VARV_r1 contained containedin=pam_EXPORT_VARV matchgroup=pam_HeaderKW start="^[ ]\{16\}\CPLAS" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_Continue keepend
       syn  region     pam_EXPORT_VARV contained containedin=pam_EXPORT_r4 matchgroup=pam_HeaderKW start="^        \CVARV" matchgroup=pam_End end="^                \CEND" contains=pam_EXPORT_VARV_r1,pam_Error,pam_Continue keepend
          syn keyword  pam_Control_EXPORT_VARS_r1_arg contained containedin=pam_EXPORT_VARS_r1 AREA MAXV MINV USER
-         syn region   pam_EXPORT_VARS_r1 contained containedin=pam_EXPORT_VARS matchgroup=pam_HeaderKW start="^[ ]\{16\}XXXX" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_Control_EXPORT_VARS_r1_arg,pam_Continue keepend
          syn region   pam_EXPORT_VARS_r1 contained containedin=pam_EXPORT_VARS matchgroup=pam_HeaderKW start="^[ ]\{16\}MART" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_Control_EXPORT_VARS_r1_arg,pam_Continue keepend
          syn region   pam_EXPORT_VARS_r1 contained containedin=pam_EXPORT_VARS matchgroup=pam_HeaderKW start="^[ ]\{16\}BAIN" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_Control_EXPORT_VARS_r1_arg,pam_Continue keepend
          syn region   pam_EXPORT_VARS_r1 contained containedin=pam_EXPORT_VARS matchgroup=pam_HeaderKW start="^[ ]\{16\}AUST" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_Control_EXPORT_VARS_r1_arg,pam_Continue keepend
