@@ -1693,7 +1693,7 @@ hi def link pam_Control_CATEXP_arg2 pam_Argument
    syn match       pam_EndPICEXP        display contained "^\CEND_PICEXP"
    hi def link pam_EndPICEXP pam_CardTag
    syn region      pam_Control_PICEXP_r7     transparent contained containedin=pam_Control_PICEXP start="\%1c." start="^$\n" matchgroup=pam_CardTag end="\%$" contains=@pam_Ident,pam_Comment,pam_Comment_Position,pam_End,pam_Error,pam_Float nextgroup=pam_EndPICEXP,pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
-   syn region      pam_Control_PICEXP_r6     transparent contained containedin=pam_Control_PICEXP matchgroup=pam_Keyword start="\%1c[ ]*\CEXPORT_CONTROL" start="^$\n" end="\n[\$\#]\@!" contains=pam_Control_PICEXP_arg2,pam_Control_YESNO,pam_Comment,pam_Comment_Position,pam_FreeVar nextgroup=pam_Control_PICEXP_r4,pam_Control_PICEXP_r5,pam_Control_PICEXP_r7 skipnl keepend
+   syn region      pam_Control_PICEXP_r6     transparent contained containedin=pam_Control_PICEXP matchgroup=pam_Keyword start="\%1c[ ]*\COPTLIS_SELECTION" start="^$\n" end="\n[\$\#]\@!" contains=pam_Integer,pam_Comment,pam_Comment_Position,pam_FreeVar nextgroup=pam_Control_PICEXP_r4,pam_Control_PICEXP_r5,pam_Control_PICEXP_r7 skipnl keepend
    syn region      pam_Control_PICEXP_r5     transparent contained containedin=pam_Control_PICEXP matchgroup=pam_Keyword start="\%1c[ ]*\CEXPORT_LIMIT" start="^$\n" end="\n[\$\#]\@!" contains=pam_Integer,pam_Comment,pam_Comment_Position,pam_FreeVar nextgroup=pam_Control_PICEXP_r4,pam_Control_PICEXP_r6,pam_Control_PICEXP_r7 skipnl keepend
    syn region      pam_Control_PICEXP_r4     transparent contained containedin=pam_Control_PICEXP matchgroup=pam_Keyword start="\%1c[ ]*\CEXPORT_POINT" start="^$\n" end="\n[\$\#]\@!" contains=pam_Control_PICEXP_arg,pam_Float,pam_Comment,pam_Comment_Position,pam_FreeVar nextgroup=pam_Control_PICEXP_r5,pam_Control_PICEXP_r6,pam_Control_PICEXP_r7 skipnl keepend
    syn region      pam_Control_PICEXP_r3     transparent contained containedin=pam_Control_PICEXP matchgroup=pam_Keyword start="\%1c[ ]*\CWRITE" start="^$\n" end="\n[\$\#]\@!" contains=pam_String,pam_Float,pam_Integer,pam_Comment,pam_Comment_Position,pam_FreeVar nextgroup=pam_Control_PICEXP_r4,pam_Control_PICEXP_r5,pam_Control_PICEXP_r6,pam_Control_PICEXP_r7 skipnl keepend
@@ -1702,8 +1702,6 @@ hi def link pam_Control_CATEXP_arg2 pam_Argument
 syn region      pam_Control_PICEXP               matchgroup=pam_CardTag start="^\CPICEXP/" end="^\CEND_PICEXP" contains=pam_Control_PICEXP_r[1-6] fold keepend
 syn keyword     pam_Control_PICEXP_arg          contained containedin=pam_Control_PICEXP_r4 FINAL RANGE DISCRETE
 hi def link pam_Control_PICEXP_arg pam_Argument
-syn keyword     pam_Control_PICEXP_arg2          contained containedin=pam_Control_PICEXP_r6 CONTACT
-hi def link pam_Control_PICEXP_arg2 pam_Argument
 " PICEXP end }}}
 
 " {{{ CATIMP
@@ -1734,13 +1732,14 @@ hi def link pam_Control_CATIMP_IMPORT_VAR_arg pam_Argument
    syn region      pam_Control_PICIMP_r4     transparent contained containedin=pam_Control_PICIMP matchgroup=pam_Keyword start="^[ ]*\CSOURCE_MODULE" start="^$\n" end="\n[\$\#]\@!" contains=pam_String,pam_Float,pam_Integer,pam_Comment,pam_Comment_Position nextgroup=pam_Control_PICIMP_r4,pam_Control_PICIMP_r5 skipnl keepend
    syn region      pam_Control_PICIMP_r4     transparent contained containedin=pam_Control_PICIMP matchgroup=pam_Keyword start="^[ ]*\CSOURCE_SHIFT_IDELE" start="^$\n" end="\n[\$\#]\@!" contains=pam_Integer,pam_Comment,pam_Comment_Position nextgroup=pam_Control_PICIMP_r4,pam_Control_PICIMP_r5 skipnl keepend
    syn region      pam_Control_PICIMP_r4     transparent contained containedin=pam_Control_PICIMP matchgroup=pam_Keyword start="^[ ]*\CSOURCE_SHIFT_IDNOD" start="^$\n" end="\n[\$\#]\@!" contains=pam_Integer,pam_Comment,pam_Comment_Position nextgroup=pam_Control_PICIMP_r4,pam_Control_PICIMP_r5 skipnl keepend
+   syn region      pam_Control_PICIMP_r4     transparent contained containedin=pam_Control_PICIMP matchgroup=pam_Keyword start="^[ ]*\COPTLIS_SELECTION" start="^$\n" end="\n[\$\#]\@!" contains=pam_Integer,pam_Comment,pam_Comment_Position nextgroup=pam_Control_PICIMP_r4,pam_Control_PICIMP_r5 skipnl keepend
    syn region      pam_Control_PICIMP_r3     transparent contained containedin=pam_Control_PICIMP start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Control_PICIMP_arg,pam_String,pam_Float,pam_Integer,pam_Comment,pam_Comment_Position nextgroup=pam_Control_PICIMP_r4,pam_Control_PICIMP_r5 skipnl keepend
    syn region      pam_Control_PICIMP_r2     transparent contained containedin=pam_Control_PICIMP start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_Control_PICIMP_r3 skipnl keepend
    syn region      pam_Control_PICIMP_r1         transparent contained containedin=pam_Control_PICIMP start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Control_PICIMP_r2 skipnl keepend
 syn region      pam_Control_PICIMP               matchgroup=pam_CardTag start="^\CPICIMP/" end="^\CEND_PICIMP" contains=pam_Error,pam_Float,pam_Integer,pam_Comment,pam_Comment_Position,pam_FreeVar fold keepend
 syn keyword     pam_Control_PICIMP_arg           contained containedin=pam_Control_PICIMP_r3 READ
 hi def link pam_Control_PICIMP_arg pam_Keyword
-syn keyword     pam_Control_PICIMP_SOURCE_CONTROL_arg           contained VELOCITY TEMPERATURE AIRBAG CONTACT
+syn keyword     pam_Control_PICIMP_SOURCE_CONTROL_arg           contained VELOCITY TEMPERATURE 
 hi def link pam_Control_PICIMP_SOURCE_CONTROL_arg pam_Argument
 " PICIMP end }}}
 
@@ -2564,10 +2563,25 @@ syn region      pam_TRSFM        matchgroup=pam_CardTag start="^\CTRSFM /"he=e+1
          syn region   pam_EXPORT_TRANSFORMATION_1 contained containedin=pam_EXPORT_TRANSFORMATION matchgroup=pam_HeaderKW start="^[ ]\{16\}" end="$" contains=pam_EXPORT_TRANSFORMATION_1_arg,pam_Error,pam_Continue,pam_Float,pam_FreeVar keepend
       syn  region     pam_EXPORT_TRANSFORMATION contained containedin=pam_EXPORT_r4 matchgroup=pam_HeaderKW start="^        \CTRANSFORMATION" end="\%$"  contains=pam_EXPORT_TRANSFORMATION_.*,pam_Error,pam_Continue,pam_Comment,pam_Comment_Position keepend
       syn  region     pam_EXPORT_PART contained containedin=pam_EXPORT_r4 matchgroup=pam_HeaderKW start="^        \CPART" end="\n\(        TRANSFORMATION\)\@="  contains=@pam_Ident_16,pam_Error,pam_Continue,pam_End,pam_Comment,pam_Comment_Position keepend
+         syn keyword  pam_Control_EXPORT_VARV_r1_arg contained containedin=pam_EXPORT_VARV_r1 VOLU MAXV MINV
+         syn region   pam_EXPORT_VARV_r1 contained containedin=pam_EXPORT_VARV matchgroup=pam_HeaderKW start="^[ ]\{16\}\CMART" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_Continue keepend
+         syn region   pam_EXPORT_VARV_r1 contained containedin=pam_EXPORT_VARV matchgroup=pam_HeaderKW start="^[ ]\{16\}\CFERR" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_Continue keepend
+         syn region   pam_EXPORT_VARV_r1 contained containedin=pam_EXPORT_VARV matchgroup=pam_HeaderKW start="^[ ]\{16\}\CBAIN" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_Continue keepend
+         syn region   pam_EXPORT_VARV_r1 contained containedin=pam_EXPORT_VARV matchgroup=pam_HeaderKW start="^[ ]\{16\}\CAUST" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_Continue keepend
+         syn region   pam_EXPORT_VARV_r1 contained containedin=pam_EXPORT_VARV matchgroup=pam_HeaderKW start="^[ ]\{16\}\CSTRS" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_Continue keepend
+         syn region   pam_EXPORT_VARV_r1 contained containedin=pam_EXPORT_VARV matchgroup=pam_HeaderKW start="^[ ]\{16\}\CTRIX" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_Continue keepend
+         syn region   pam_EXPORT_VARV_r1 contained containedin=pam_EXPORT_VARV matchgroup=pam_HeaderKW start="^[ ]\{16\}\CRISK" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_Continue keepend
          syn region   pam_EXPORT_VARV_r1 contained containedin=pam_EXPORT_VARV matchgroup=pam_HeaderKW start="^[ ]\{16\}\CPORO" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_Continue keepend
          syn region   pam_EXPORT_VARV_r1 contained containedin=pam_EXPORT_VARV matchgroup=pam_HeaderKW start="^[ ]\{16\}\CPLAS" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_Continue keepend
       syn  region     pam_EXPORT_VARV contained containedin=pam_EXPORT_r4 matchgroup=pam_HeaderKW start="^        \CVARV" matchgroup=pam_End end="^                \CEND" contains=pam_EXPORT_VARV_r1,pam_Error,pam_Continue keepend
          syn keyword  pam_Control_EXPORT_VARS_r1_arg contained containedin=pam_EXPORT_VARS_r1 AREA MAXV MINV USER
+         syn region   pam_EXPORT_VARS_r1 contained containedin=pam_EXPORT_VARS matchgroup=pam_HeaderKW start="^[ ]\{16\}XXXX" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_Control_EXPORT_VARS_r1_arg,pam_Continue keepend
+         syn region   pam_EXPORT_VARS_r1 contained containedin=pam_EXPORT_VARS matchgroup=pam_HeaderKW start="^[ ]\{16\}MART" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_Control_EXPORT_VARS_r1_arg,pam_Continue keepend
+         syn region   pam_EXPORT_VARS_r1 contained containedin=pam_EXPORT_VARS matchgroup=pam_HeaderKW start="^[ ]\{16\}BAIN" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_Control_EXPORT_VARS_r1_arg,pam_Continue keepend
+         syn region   pam_EXPORT_VARS_r1 contained containedin=pam_EXPORT_VARS matchgroup=pam_HeaderKW start="^[ ]\{16\}AUST" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_Control_EXPORT_VARS_r1_arg,pam_Continue keepend
+         syn region   pam_EXPORT_VARS_r1 contained containedin=pam_EXPORT_VARS matchgroup=pam_HeaderKW start="^[ ]\{16\}TRIX" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_Control_EXPORT_VARS_r1_arg,pam_Continue keepend
+         syn region   pam_EXPORT_VARS_r1 contained containedin=pam_EXPORT_VARS matchgroup=pam_HeaderKW start="^[ ]\{16\}RISK" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_Control_EXPORT_VARS_r1_arg,pam_Continue keepend
+         syn region   pam_EXPORT_VARS_r1 contained containedin=pam_EXPORT_VARS matchgroup=pam_HeaderKW start="^[ ]\{16\}STRA" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_Control_EXPORT_VARS_r1_arg,pam_Continue keepend
          syn region   pam_EXPORT_VARS_r1 contained containedin=pam_EXPORT_VARS matchgroup=pam_HeaderKW start="^[ ]\{16\}DAMG" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_Control_EXPORT_VARS_r1_arg,pam_Continue keepend
          syn region   pam_EXPORT_VARS_r1 contained containedin=pam_EXPORT_VARS matchgroup=pam_HeaderKW start="^[ ]\{16\}CRAC" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_Control_EXPORT_VARS_r1_arg,pam_Continue keepend
          syn region   pam_EXPORT_VARS_r1 contained containedin=pam_EXPORT_VARS matchgroup=pam_HeaderKW start="^[ ]\{16\}KINH" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_Control_EXPORT_VARS_r1_arg,pam_Continue keepend
@@ -2580,6 +2594,7 @@ syn region      pam_TRSFM        matchgroup=pam_CardTag start="^\CTRSFM /"he=e+1
          syn region   pam_EXPORT_VARS_r1 contained containedin=pam_EXPORT_VARS matchgroup=pam_HeaderKW start="^[ ]\{16\}STRS" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_Control_EXPORT_VARS_r1_arg,pam_Continue keepend
          syn region   pam_EXPORT_VARS_r1 contained containedin=pam_EXPORT_VARS matchgroup=pam_HeaderKW start="^[ ]\{16\}PLAS" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_Control_EXPORT_VARS_r1_arg,pam_Continue keepend
          syn region   pam_EXPORT_VARS_r1 contained containedin=pam_EXPORT_VARS matchgroup=pam_HeaderKW start="^[ ]\{16\}THIC" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_Control_EXPORT_VARS_r1_arg,pam_Continue keepend
+         syn region   pam_EXPORT_VARS_r1 contained containedin=pam_EXPORT_VARS matchgroup=pam_HeaderKW start="^[ ]\{16\}THK0" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_Control_EXPORT_VARS_r1_arg,pam_Continue keepend
       syn  region     pam_EXPORT_VARS contained containedin=pam_EXPORT_r4 matchgroup=pam_HeaderKW start="^        \CVARS" matchgroup=pam_End end="^                \CEND" contains=pam_EXPORT_VARS_r1,pam_Error,pam_Continue keepend
    syn region      pam_EXPORT_r4     transparent contained containedin=pam_EXPORT start="\%1c." start="^$\n" end="\%$" contains=pam_EXPORT_VARS,pam_EXPORT_VARV,pam_EXPORT_TRANSFORMATION,pam_EXPORT_PART,pam_Comment,pam_Comment_Position
    "Row 3 (NAME, FILE, PATH,...)
@@ -2606,6 +2621,7 @@ hi def link pam_EXPORT_r1_a2 pam_evenArgument
 hi def link pam_EXPORT_r1_v2 pam_evenVar
 hi def link pam_EXPORT_r1_e2 pam_evenError
 hi def link pam_Control_EXPORT_VARS_r1_arg pam_Argument
+hi def link pam_Control_EXPORT_VARV_r1_arg pam_Argument
 hi def link pam_EXPORT_TRANSFORMATION_1_arg pam_Argument
 " EXPORT/IMPORT end}}}
 
