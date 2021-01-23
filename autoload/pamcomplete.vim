@@ -205,6 +205,25 @@ function! pamcomplete#Complete(findstart, base)
             endif
          endif
 " }}}
+" {{{ FRITAB
+      elseif synIDattr(slist[0], "name") =~ "pam_FRITAB"
+         if synIDattr(slist[1], "name") =~ "pam_FRITAB_r1"
+            " ICOUFR
+            if synIDattr(slist[2], "name") =~ "pam_33.*"
+               let start = 32
+            endif
+         endif
+" }}}
+"  {{{ OPTLIS
+      elseif synIDattr(slist[0], "name") =~ "pam_OPTLIS"
+         if synIDattr(slist[1], "name") =~ "pam_OPTLIS_r3"
+            if synIDattr(slist[3], "name") =~ "pam_OPTLIS_r3_[ae]1"
+               let start = 8
+            elseif synIDattr(slist[4], "name") =~ "pam_OPTLIS_r3_[ae]1"
+               let start = 8
+            endif
+         endif
+"  }}}
 " {{{ BFLUX
       elseif synIDattr(slist[0], "name") =~ "pam_BFLUX"
          if synIDattr(slist[1], "name") =~ "pam_BFLUX_r1"
@@ -2817,6 +2836,9 @@ function! pamcomplete#Complete(findstart, base)
             " IRETPOS
             elseif synIDattr(slist[2], "name") =~ "pam_25.*"
                let start = 24
+            " IFRDIR
+            elseif synIDattr(slist[2], "name") =~ "pam_33.*"
+               let start = 32
             endif
          elseif synIDattr(slist[1], "name") =~ "pam_SENSOR5_r3"
             " LCS
@@ -3836,6 +3858,28 @@ function! pamcomplete#Complete(findstart, base)
             endif
          endif
 "  }}}
+"  {{{ OPTLIS
+      elseif synIDattr(slist[0], "name") =~ "pam_OPTLIS"
+         if synIDattr(slist[1], "name") =~ "pam_OPTLIS_r3"
+            if synIDattr(slist[3], "name") =~ "pam_OPTLIS_r3_[ae]1"
+               call add (items,{'word':'BAGIN','menu':'Selection by Airbag ID'})
+               call add (items,{'word':'CNTAC','menu':'Selection by Interface ID'})
+            elseif synIDattr(slist[4], "name") =~ "pam_OPTLIS_r3_[ae]1"
+               call add (items,{'word':'BAGIN','menu':'Selection by Airbag ID'})
+               call add (items,{'word':'CNTAC','menu':'Selection by Interface ID'})
+            endif
+         endif
+"  }}}
+" {{{ FRITAB
+      elseif synIDattr(slist[0], "name") =~ "pam_FRITAB"
+         if synIDattr(slist[1], "name") =~ "pam_FRITAB_r1"
+            " ICOUFR
+            if synIDattr(slist[2], "name") =~ "pam_33.*"
+               call add (items,{'word':'       0','abbr':'0 (default)','menu':'Coulomb Friction per Part Deactivated'})
+               call add (items,{'word':'       1','abbr':'1','menu':'Coulomb Friction per Part Activated'})
+            endif
+         endif
+" }}}
 " {{{ LINCO
       elseif synIDattr(slist[0], "name") =~ "pam_LINCO"
          if synIDattr(slist[1], "name") =~ "pam_LINCO_r1"
@@ -4745,6 +4789,7 @@ function! pamcomplete#Complete(findstart, base)
                call add (items,{'word':'      11','menu':'User-Defined Rupture Criterion'})
                call add (items,{'word':'      12','menu':'User-Defined Rupture Criterion'})
                call add (items,{'word':'      13','menu':'User-Defined Rupture Criterion'})
+               call add (items,{'word':'      15','menu':'User-Defined Plugin'})
             " IFMON
             elseif synIDattr(slist[2], "name") =~ "pam_25.*"
                call add (items,{'word':'       0','abbr':'0 (default)','menu':'Monitoring not Activated'})
@@ -4819,6 +4864,11 @@ function! pamcomplete#Complete(findstart, base)
                call add (items,{'word':'       0','menu':'Used with RETRA'})
                call add (items,{'word':'       1','menu':'Used with BELTS, Retractor at the Beginning'})
                call add (items,{'word':'       2','menu':'Used with BELTS, Retractor at the End'})
+            " IFRDIR
+            elseif synIDattr(slist[2], "name") =~ "pam_33.*"
+               call add (items,{'word':'       1','abbr':'1 (default)','menu':'Triggered if either Reel-in or Pull-out rate exceeds RBELT'})
+               call add (items,{'word':'       2','abbr':'2','menu':'Triggered if Pull-out rate exceeds RBELT'})
+               call add (items,{'word':'       3','abbr':'3','menu':'Triggered if Reel-in rate exceeds RBELT'})
             endif
          elseif synIDattr(slist[1], "name") =~ "pam_SENSOR5_r3"
             " LCS
@@ -17895,6 +17945,8 @@ function! pamcomplete#pamHints()
             return "RBELT - Fast Belt Feed Rate to be Exceeded for Triggering"
          elseif synIDattr(slist[2], "name") =~ "pam_25.*"
             return "IRETPOS - Retractor Positioning Flag (menu)"
+         elseif synIDattr(slist[2], "name") =~ "pam_33.*"
+            return "IFRDIR - Retractor Feed Rate Direction (menu)"
          endif
       elseif synIDattr(slist[1], "name") =~ "pam_SENSOR5_r3"
          if synIDattr(slist[2], "name") =~ "pam_9.*"
@@ -18324,6 +18376,18 @@ function! pamcomplete#pamHints()
          endif
       endif
 "  }}}
+"  {{{ FRITAB
+   elseif synIDattr(slist[0], "name") =~ "pam_FRITAB"
+      if synIDattr(slist[1], "name") =~ "pam_FRITAB_r1"
+         if synIDattr(slist[2], "name") =~ "pam_9.*"
+            return "IDFRITB - Friction Table ID"
+         elseif synIDattr(slist[2], "name") =~ "pam_17.*"
+            return "FRICT - Constant Friction Coefficient"
+         elseif synIDattr(slist[2], "name") =~ "pam_33.*"
+            return "ICOURF - Flag to Control the Coulomb Friction Type per Part (menu)"
+         endif
+      endif
+"  }}}
 "  {{{ TEMBC
    elseif synIDattr(slist[0], "name") =~ "pam_TEMBC"
       if synIDattr(slist[1], "name") =~ "pam_TEMBC_r1"
@@ -18416,6 +18480,16 @@ function! pamcomplete#pamHints()
          return "IDNOD1"
       elseif synIDattr(slist[1], "name") =~ "pam_33.*"
          return "IDNOD2"
+      endif
+"  }}}
+"  {{{ OPTLIS
+   elseif synIDattr(slist[0], "name") =~ "pam_OPTLIS"
+      if synIDattr(slist[1], "name") =~ "pam_OPTLIS_r3"
+         if synIDattr(slist[3], "name") =~ "pam_OPTLIS_r3_[ae]1"
+            return "QUALIFIER - Option List Selection Type (menu)"
+         elseif synIDattr(slist[4], "name") =~ "pam_OPTLIS_r3_[ae]1"
+            return "QUALIFIER - Option List Selection Type (menu)"
+         endif
       endif
 "  }}}
 "  {{{ THNOD
