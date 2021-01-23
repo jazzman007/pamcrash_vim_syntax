@@ -1413,7 +1413,21 @@ function! pamcomplete#Complete(findstart, base)
             " }}}
          " {{{ MATER 225
          elseif synIDattr(slist[1], "name") =~ "pam_Mater225.*"
-            if synIDattr(slist[1], "name") =~ "pam_MATER225_r[5-9]" || synIDattr(slist[1], "name") =~ "pam_MATER225_r10"
+            if synIDattr(slist[1], "name") =~ "pam_MATER225_r45"
+               " SNOD1
+               if synIDattr(slist[2], "name") =~ "pam_1.10.*"
+                  let start = 0
+               " SNOD2
+               elseif synIDattr(slist[2], "name") =~ "pam_11.*"
+                  let start = 10
+               " IDOF1
+               elseif synIDattr(slist[2], "name") =~ "pam_21.*"
+                  let start = 20
+               " IDOF2
+               elseif synIDattr(slist[2], "name") =~ "pam_31.*"
+                  let start = 30
+               endif
+            elseif synIDattr(slist[1], "name") =~ "pam_MATER225_r[5-9]" || synIDattr(slist[1], "name") =~ "pam_MATER225_r10"
                " NLOADUP*
                if synIDattr(slist[2], "name") =~ "pam_1.10.*"
                   let start = 0
@@ -1577,6 +1591,15 @@ function! pamcomplete#Complete(findstart, base)
                " IDRUP
                elseif synIDattr(slist[2], "name") =~ "pam_71.*"
                   let start = 70
+               endif
+            endif
+            " }}}
+         " {{{ MATER 306
+         elseif synIDattr(slist[1], "name") =~ "pam_Mater306.*"
+            if synIDattr(slist[1], "name") =~ "pam_MATER306.*_r4" 
+               " IFCONP
+               if synIDattr(slist[2], "name") =~ "pam_21.*"
+                  let start = 20
                endif
             endif
             " }}}
@@ -5691,7 +5714,33 @@ function! pamcomplete#Complete(findstart, base)
             " }}}
          " {{{ MATER 225
          elseif synIDattr(slist[1], "name") =~ "pam_Mater225.*"
-            if synIDattr(slist[1], "name") =~ "pam_MATER225_r[5-9]" || synIDattr(slist[1], "name") =~ "pam_MATER225_r10"
+            if synIDattr(slist[1], "name") =~ "pam_MATER225_r45"
+               " SNOD1
+               if synIDattr(slist[2], "name") =~ "pam_1.10.*"
+                  call add (items,{'word':'         1','menu':'The Selected Node Corresponds to IDNOD1'})
+                  call add (items,{'word':'         2','menu':'The Selected Node Corresponds to IDNOD2'})
+               " SNOD2
+               elseif synIDattr(slist[2], "name") =~ "pam_11.*"
+                  call add (items,{'word':'         1','menu':'The Selected Node Corresponds to IDNOD1'})
+                  call add (items,{'word':'         2','menu':'The Selected Node Corresponds to IDNOD2'})
+               " IDOF1
+               elseif synIDattr(slist[2], "name") =~ "pam_21.*"
+                  call add (items,{'word':'         1','menu':'1 DOF'})
+                  call add (items,{'word':'         2','menu':'2 DOF'})
+                  call add (items,{'word':'         3','menu':'3 DOF'})
+                  call add (items,{'word':'         4','menu':'4 DOF'})
+                  call add (items,{'word':'         5','menu':'5 DOF'})
+                  call add (items,{'word':'         6','menu':'6 DOF'})
+               " IDOF2
+               elseif synIDattr(slist[2], "name") =~ "pam_31.*"
+                  call add (items,{'word':'         1','menu':'1 DOF'})
+                  call add (items,{'word':'         2','menu':'2 DOF'})
+                  call add (items,{'word':'         3','menu':'3 DOF'})
+                  call add (items,{'word':'         4','menu':'4 DOF'})
+                  call add (items,{'word':'         5','menu':'5 DOF'})
+                  call add (items,{'word':'         6','menu':'6 DOF'})
+               endif
+            elseif synIDattr(slist[1], "name") =~ "pam_MATER225_r[5-9]" || synIDattr(slist[1], "name") =~ "pam_MATER225_r10"
                " NLOADUP*
                if synIDattr(slist[2], "name") =~ "pam_1.10.*"
                   let items = s:getTags("FUNCT",10)
@@ -5879,6 +5928,17 @@ function! pamcomplete#Complete(findstart, base)
                " IDRUP
                elseif synIDattr(slist[2], "name") =~ "pam_71.*"
                   let items = s:getTags("RUPMO",10)
+               endif
+            endif
+            " }}}
+         " {{{ MATER 306
+         elseif synIDattr(slist[1], "name") =~ "pam_Mater306.*"
+            if synIDattr(slist[1], "name") =~ "pam_MATER306.*_r4" 
+               " FLIM
+               if synIDattr(slist[2], "name") =~ "pam_21.*"
+                  call add (items,{'word':'         1','abbr':'1 (default)','menu':'Constant Damaged Original Stiffness'})
+                  call add (items,{'word':'         2','abbr':'2','menu':'Constant Undamaged Original Stiffness'})
+                  call add (items,{'word':'         3','abbr':'3','menu':'Symmetric Damage Behavior'})
                endif
             endif
             " }}}
@@ -8997,6 +9057,68 @@ function! pamcomplete#pamHints()
                endif
             endif
          " }}}
+         " {{{ Mater 306
+         elseif synIDattr(slist[1], "name") =~ "pam_Mater306.*"
+            if synIDattr(slist[1], "name") =~ "pam_Mater306.*_r4" 
+               if synIDattr(slist[2], "name") =~ "pam_1.10.*"
+                  return "KSI - Stiffness Proportional Damping Ratio"
+               elseif synIDattr(slist[2], "name") =~ "pam_11.*"
+                  return "MASS - Added Mass"
+               elseif synIDattr(slist[2], "name") =~ "pam_21.*"
+                  return "IFCOMP - Compression Behavior Flag (menu)"
+               endif
+            elseif synIDattr(slist[1], "name") =~ "pam_Mater306.*_r5" 
+               if synIDattr(slist[2], "name") =~ "pam_1.10.*"
+                  return "FNmax - Maximum Normal Force"
+               elseif synIDattr(slist[2], "name") =~ "pam_21.*"
+                  return "DNfail - Normal Displacement at Failure"
+               elseif synIDattr(slist[2], "name") =~ "pam_31.*"
+                  return "ETAN - Softening Region Parameter for Normal Loading"
+               endif
+            elseif synIDattr(slist[1], "name") =~ "pam_Mater306.*_r6" 
+               if synIDattr(slist[2], "name") =~ "pam_1.10.*"
+                  return "FTmax - Maximum Shear Force"
+               elseif synIDattr(slist[2], "name") =~ "pam_21.*"
+                  return "DTfail - Shear Displacement at Failure"
+               elseif synIDattr(slist[2], "name") =~ "pam_31.*"
+                  return "ETAT - Softening Region Parameter for Shear Loading"
+               endif
+            elseif synIDattr(slist[1], "name") =~ "pam_Mater306.*_r7" 
+               if synIDattr(slist[2], "name") =~ "pam_1.10.*"
+                  return "ALPHA1 - First Directional Scaling Damage Parameter"
+               elseif synIDattr(slist[2], "name") =~ "pam_11.*"
+                  return "ALPHA2 - Second Directional Scaling Damage Parameter"
+               elseif synIDattr(slist[2], "name") =~ "pam_21.*"
+                  return "ALPHA3 - Third Directional Scaling Damage Parameter"
+               elseif synIDattr(slist[2], "name") =~ "pam_31.*"
+                  return "DAMrate - Maximal Damage Rate"
+               endif
+            elseif synIDattr(slist[1], "name") =~ "pam_Mater306.*_r8" 
+               if synIDattr(slist[2], "name") =~ "pam_1.10.*"
+                  return "Es - Shear Modulus"
+               elseif synIDattr(slist[2], "name") =~ "pam_11.*"
+                  return "SIGSs - Static Maximum Elastic Stress for Shear Mode"
+               elseif synIDattr(slist[2], "name") =~ "pam_21.*"
+                  return "R_SIGSs - Strain Rate in Shear Mode until SIGSn is Used"
+               elseif synIDattr(slist[2], "name") =~ "pam_31.*"
+                  return "SIGDs - Dynamic Maximum Elastic Stress for Shear Mode"
+               elseif synIDattr(slist[2], "name") =~ "pam_41.*"
+                  return "R_SIGDs - Strain Rate in Shear Mode Corresponding to SIGSn"
+               elseif synIDattr(slist[2], "name") =~ "pam_51.*"
+                  return "EFRSs - Static Fracture Energy for Shear Mode"
+               elseif synIDattr(slist[2], "name") =~ "pam_61.*"
+                  return "R_EFRSs - Strain Rate in Shear Mode until EFRSn is Used"
+               elseif synIDattr(slist[2], "name") =~ "pam_71.*"
+                  return "EFRDs - Dynamic Fracture Energy for Shear Mode"
+               endif
+            elseif synIDattr(slist[1], "name") =~ "pam_Mater306.*_r9" 
+               if synIDattr(slist[2], "name") =~ "pam_1.10.*"
+                  return "R_EFRDs - Strain Rate in Shear Mode until EFRDn is Used"
+               elseif synIDattr(slist[2], "name") =~ "pam_11.*"
+                  return "PCs - Plasticity Coefficient for Shear Mode"
+               endif
+            endif
+         " }}}
          " {{{ Mater 371
          elseif synIDattr(slist[1], "name") =~ "pam_Mater371.*"
             if synIDattr(slist[1], "name") =~ "pam_Mater371.*_r4" 
@@ -10069,7 +10191,19 @@ function! pamcomplete#pamHints()
          " }}}
          " {{{ Mater 225
          elseif synIDattr(slist[1], "name") =~ "pam_Mater225.*"
-            if synIDattr(slist[1], "name") =~ "pam_Mater225.*_r4" 
+            if synIDattr(slist[1], "name") =~ "pam_Mater225.*_r45" 
+               if synIDattr(slist[2], "name") =~ "pam_1.10.*"
+                  return "SNOD1 - Spring Node i (menu)"
+               elseif synIDattr(slist[2], "name") =~ "pam_11.*"
+                  return "SNOD2 - Spring Node j (menu)"
+               elseif synIDattr(slist[2], "name") =~ "pam_21.*"
+                  return "IDOF1 - Degree of Freedom of SNOD1 (menu)"
+               elseif synIDattr(slist[2], "name") =~ "pam_31.*"
+                  return "IDOF2 - Degree of Freedom of SNOD2 (menu)"
+               elseif synIDattr(slist[2], "name") =~ "pam_41.*"
+                  return "MASSu - User-defined mass"
+               endif
+            elseif synIDattr(slist[1], "name") =~ "pam_Mater225.*_r4" 
                if synIDattr(slist[2], "name") =~ "pam_11.*"
                   return "MASSt - Translational Mass"
                elseif synIDattr(slist[2], "name") =~ "pam_21.*"
@@ -18435,6 +18569,8 @@ function! pamcomplete#pamHints()
             return "MORE - Pre-selection Card Reading Flag (menu)"
          elseif synIDattr(slist[2], "name") =~ "pam_41.*"
             return "NLAYR - Number of Layers"
+         elseif synIDattr(slist[2], "name") =~ "pam_57.*"
+            return "IDNOD2"
          endif
       endif
 "  }}}
