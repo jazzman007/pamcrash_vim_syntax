@@ -297,6 +297,8 @@ map <silent> ,ply6 ,,,,kk:r ~/.vim/ftplugin/pam_cards/Material/ply6.inc<CR>dd
 map <silent> ,ply7 ,,,,kk:r ~/.vim/ftplugin/pam_cards/Material/ply7.inc<CR>dd
 "PLY Type 8
 map <silent> ,ply8 ,,,,kk:r ~/.vim/ftplugin/pam_cards/Material/ply8.inc<CR>dd
+"PLY Type 15
+map <silent> ,plyf ,,,,kk:r ~/.vim/ftplugin/pam_cards/Material/plyf.inc<CR>dd
 
 " ==== Auxiliaries ====
 

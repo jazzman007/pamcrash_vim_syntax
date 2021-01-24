@@ -518,10 +518,18 @@ function! pamcomplete#Complete(findstart, base)
 "  }}}
 " {{{ LAYER
       elseif synIDattr(slist[0], "name") =~ "pam_LAYER"
-         " IDPLY
          if synIDattr(slist[1], "name") =~ "pam_LAYER_r3"
+            " IDPLY
             if synIDattr(slist[2], "name") =~ "pam_1.10.*"
                let start = 0
+            " IPLY15
+            elseif synIDattr(slist[2], "name") =~ "pam_31.*"
+               let start = 30
+            endif
+         elseif synIDattr(slist[1], "name") =~ "pam_LAYER_r4"
+            " INCTYP
+            if synIDattr(slist[2], "name") =~ "pam_31.*"
+               let start = 30
             endif
          endif
 " }}}
@@ -1022,6 +1030,18 @@ function! pamcomplete#Complete(findstart, base)
             " IFUNf*
             if synIDattr(slist[2], "name") =~ "pam_71.*"
                let start = 70
+            endif
+         " }}}
+         " {{{ PLY15
+         elseif synIDattr(slist[1], "name") =~ "pam_PLY15_r6"
+            " IHOMOG
+            if synIDattr(slist[2], "name") =~ "pam_11.*"
+               let start = 10
+            endif
+         elseif synIDattr(slist[1], "name") =~ "pam_PLY15_r7"
+            " IHARD
+            if synIDattr(slist[2], "name") =~ "pam_1.10.*"
+               let start = 0
             endif
          " }}}
          " {{{ PLYFAILX
@@ -4129,10 +4149,20 @@ function! pamcomplete#Complete(findstart, base)
 " }}}
 " {{{ LAYER
       elseif synIDattr(slist[0], "name") =~ "pam_LAYER"
-         " IDPLY
          if synIDattr(slist[1], "name") =~ "pam_LAYER_r3"
+            " IDPLY
             if synIDattr(slist[2], "name") =~ "pam_1.10.*"
                let items = s:getTags("PLY",10)
+            " IPLY15
+            elseif synIDattr(slist[2], "name") =~ "pam_31.*"
+               call add (items,{'word':'         0','abbr':'0 (default)','menu':'No additional Card for Layer Parameters is Read'})
+               call add (items,{'word':'         1','abbr':'1','menu':'Two additional Cards for Layer Parameters are Read'})
+            endif
+         elseif synIDattr(slist[1], "name") =~ "pam_LAYER_r4"
+            " INCTYP
+            if synIDattr(slist[2], "name") =~ "pam_31.*"
+               call add (items,{'word':'         0','abbr':'0 (default)','menu':'Ellipsoidal Inclusions'})
+               call add (items,{'word':'         1','abbr':'1','menu':'Infinite Cylinder Inclusions'})
             endif
          endif
 " }}}
@@ -5049,6 +5079,7 @@ function! pamcomplete#Complete(findstart, base)
                call add (items,{'word':'       3','menu':'Anisotropic Elastic-Plastic Ply'})
                call add (items,{'word':'       7','menu':'Fabric Composite GLobal Ply'})
                call add (items,{'word':'       8','menu':'Fabric Composite Bi-Phase Ply (MAT 131)'})
+               call add (items,{'word':'      15','menu':'Short Fiber Reinforced Ply Model'})
             " FAILNP
             elseif synIDattr(slist[2], "name") =~ "pam_41.*"
                call add (items,{'word':'       0','menu':'No Failure Criterion'})
@@ -5228,6 +5259,19 @@ function! pamcomplete#Complete(findstart, base)
             " IFUNf*
             if synIDattr(slist[2], "name") =~ "pam_71.*"
                let items = s:getTags("FUNCT",10)
+            endif
+         " }}}
+         " {{{ PLY15
+         elseif synIDattr(slist[1], "name") =~ "pam_PLY15_r6"
+            " IHOMOG
+            if synIDattr(slist[2], "name") =~ "pam_11.*"
+               call add (items,{'word':'         1','abbr':'1 (default)','menu':'Pseudo-grain Based on Orientation Distribution Function'})
+               call add (items,{'word':'         2','abbr':'2','menu':'Pseudo-grain based on Eigenvectors'})
+            endif
+         elseif synIDattr(slist[1], "name") =~ "pam_PLY15_r7"
+            " IHARD
+            if synIDattr(slist[2], "name") =~ "pam_1.10.*"
+               call add (items,{'word':'         1','abbr':'1 (default)','menu':'Power Law'})
             endif
          " }}}
          " {{{ PLYFAILX
@@ -17592,6 +17636,64 @@ function! pamcomplete#pamHints()
             return "IFUNfc2 - Damage/Strain Curve ID (tag)"
          endif
       " }}}
+      " {{{ PLY15
+      elseif synIDattr(slist[1], "name") =~ "pam_PLY15_r3"
+         if synIDattr(slist[2], "name") =~ "pam_1.10.*"
+            return "Eft1 - Fiber Longitudinal Young Modulus in Tension in Direction 1"
+         elseif synIDattr(slist[2], "name") =~ "pam_11.*"
+            return "Eft2 - Fiber Transverse Young Modulus in Tension in Direction 2"
+         elseif synIDattr(slist[2], "name") =~ "pam_21.*"
+            return "Gft12 - Fiber Shear Modulus in Tension in 12-Plane"
+         elseif synIDattr(slist[2], "name") =~ "pam_31.*"
+            return "Gft23 - Fiber Shear Modulus in Tension in 23-Plane"
+         elseif synIDattr(slist[2], "name") =~ "pam_41.*"
+            return "NUft12 - Fibers Poisson Ration in Tension in 12-Plane"
+         endif
+      elseif synIDattr(slist[1], "name") =~ "pam_PLY15_r4"
+         if synIDattr(slist[2], "name") =~ "pam_1.10.*"
+            return "Eft1 - Fiber Longitudinal Young Modulus in Compression in Direction 1"
+         elseif synIDattr(slist[2], "name") =~ "pam_11.*"
+            return "Eft2 - Fiber Transverse Young Modulus in Compression in Direction 2"
+         elseif synIDattr(slist[2], "name") =~ "pam_21.*"
+            return "Gft12 - Fiber Shear Modulus in Compression in 12-Plane"
+         elseif synIDattr(slist[2], "name") =~ "pam_31.*"
+            return "Gft23 - Fiber Shear Modulus in Compression in 23-Plane"
+         elseif synIDattr(slist[2], "name") =~ "pam_41.*"
+            return "NUft12 - Fibers Poisson Ration in Compression in 12-Plane"
+         endif
+      elseif synIDattr(slist[1], "name") =~ "pam_PLY15_r5"
+         if synIDattr(slist[2], "name") =~ "pam_1.10.*"
+            return "Em - Matrix Young Modulus"
+         elseif synIDattr(slist[2], "name") =~ "pam_11.*"
+            return "NUm - Matrix Poisson Ration"
+         elseif synIDattr(slist[2], "name") =~ "pam_21.*"
+            return "Kmu - Modified Spectral Shear Factor"
+         elseif synIDattr(slist[2], "name") =~ "pam_31.*"
+            return "Kp - Modified Spectral Multiplier"
+         elseif synIDattr(slist[2], "name") =~ "pam_41.*"
+            return "Ks - Modified Spectral Shift Parameter"
+         endif
+      elseif synIDattr(slist[1], "name") =~ "pam_PLY15_r6"
+         if synIDattr(slist[2], "name") =~ "pam_1.10.*"
+            return "As - Shear Correction Factor"
+         elseif synIDattr(slist[2], "name") =~ "pam_11.*"
+            return "IHOMOG - Homogenization Method (menu)"
+         elseif synIDattr(slist[2], "name") =~ "pam_31.*"
+            return "Interval between Computations of the Homogenized Stiffness Tensor"
+         endif
+      elseif synIDattr(slist[1], "name") =~ "pam_PLY15_r7"
+         if synIDattr(slist[2], "name") =~ "pam_1.10.*"
+            return "IHARD - Hardening Model (menu)"
+         elseif synIDattr(slist[2], "name") =~ "pam_11.*"
+            return "a - Initial Yield Stress"
+         elseif synIDattr(slist[2], "name") =~ "pam_21.*"
+            return "b - Work Hardening Coefficient"
+         elseif synIDattr(slist[2], "name") =~ "pam_31.*"
+            return "n - Work Hardening Exponent"
+         elseif synIDattr(slist[2], "name") =~ "pam_41.*"
+            return "SIGMAmax - Maximum Plastic Stress Cut-off Value"
+         endif
+      " }}}
       " {{{ PLYFAIL
       elseif synIDattr(slist[2], "name") =~ "pam_PLYFAIL0_r2"
          if synIDattr(slist[3], "name") =~ "pam_1.10.*"
@@ -20595,6 +20697,32 @@ function! pamcomplete#pamHints()
             return "THKPL - Ply Thickness"
          elseif synIDattr(slist[2], "name") =~ "pam_21.*"
             return "ANGPL - Angle Defining Layer Orientation with Respect to Reference Direction in PART"
+         elseif synIDattr(slist[2], "name") =~ "pam_31.*"
+            return "IPLY15 - Flag to Activate Layer Parameters for PLY15 (menu)"
+         endif
+      elseif synIDattr(slist[1], "name") =~ "pam_LAYER_r4"
+         if synIDattr(slist[2], "name") =~ "pam_1.10.*"
+            return "FVC - Fiber Volume Content"
+         elseif synIDattr(slist[2], "name") =~ "pam_11.*"
+            return "FIBlen - Fiber Length"
+         elseif synIDattr(slist[2], "name") =~ "pam_21.*"
+            return "FIBrad - Fiber Radius"
+         elseif synIDattr(slist[2], "name") =~ "pam_31.*"
+            return "INCTYP - Inclusion Type (menu)"
+         endif
+      elseif synIDattr(slist[1], "name") =~ "pam_LAYER_r5"
+         if synIDattr(slist[2], "name") =~ "pam_1.10.*"
+            return "FIBori11 - First Component of Fiber Orientation Tensor"
+         elseif synIDattr(slist[2], "name") =~ "pam_11.*"
+            return "FIBori22 - Second Component of Fiber Orientation Tensor"
+         elseif synIDattr(slist[2], "name") =~ "pam_21.*"
+            return "FIBori33 - Third Component of Fiber Orientation Tensor"
+         elseif synIDattr(slist[2], "name") =~ "pam_31.*"
+            return "FIBori12 - Fourth Component of Fiber Orientation Tensor"
+         elseif synIDattr(slist[2], "name") =~ "pam_41.*"
+            return "FIBori23 - Fifth Component of Fiber Orientation Tensor"
+         elseif synIDattr(slist[2], "name") =~ "pam_51.*"
+            return "FIBori13 - Sixth Component of Fiber Orientation Tensor"
          endif
       endif
 "  }}}
