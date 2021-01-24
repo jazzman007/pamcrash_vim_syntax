@@ -2662,6 +2662,13 @@ function! pamcomplete#Complete(findstart, base)
                      let start = 40
                   endif
                endif
+            elseif synIDattr(slist[2], "name") =~ "pam_MMAT_FAILURE_TABLE_DRIVEN_LOOKUP"
+               if synIDattr(slist[3], "name") =~ "pam_MMAT_FAILURE_TABLE_DRIVEN_LOOKUP_r1"
+                  " IDLUT
+                  if synIDattr(slist[4], "name") =~ "pam_1.10.*"
+                     let start = 0
+                  endif
+               endif
             elseif synIDattr(slist[2], "name") =~ "pam_MMAT_FAILURE_DUCTILE_CURVES"
                if synIDattr(slist[3], "name") =~ "pam_MMAT_FAILURE_DUCTILE_CURVES_r1"
                   " LCd1
@@ -7163,6 +7170,13 @@ function! pamcomplete#Complete(findstart, base)
                      call add (items,{'word':'         2','menu':'Post-Fracture By Characteristic Failure Length'})
                      call add (items,{'word':'         3','menu':'Plastic Strain Softening Failure Model'})
                      call add (items,{'word':'         4','menu':'Plastic Strain Damage Model'})
+                  endif
+               endif
+            elseif synIDattr(slist[2], "name") =~ "pam_MMAT_FAILURE_TABLE_DRIVEN_LOOKUP"
+               if synIDattr(slist[3], "name") =~ "pam_MMAT_FAILURE_TABLE_DRIVEN_LOOKUP_r1"
+                  " IDLUT
+                  if synIDattr(slist[4], "name") =~ "pam_1.10.*"
+                     let items = s:getTags("LOOKU",10)
                   endif
                endif
             elseif synIDattr(slist[2], "name") =~ "pam_MMAT_FAILURE_DUCTILE_CURVES"
@@ -15757,6 +15771,34 @@ function! pamcomplete#pamHints()
                   return "I3YD - Index of the Porosity in the Lookup Table"
                endif
             endif
+         elseif synIDattr(slist[2], "name") =~ "pam_MMAT_HARDENING_JOHNSON_COOK_VOCE"
+            if synIDattr(slist[3], "name") =~ "pam_MMAT_HARDENING_JOHNSON_COOK_VOCE_r1"
+               if synIDattr(slist[4], "name") =~ "pam_1.10.*"
+                  return "QR1 - First Amplitude Coefficient"
+               elseif synIDattr(slist[4], "name") =~ "pam_11.*"
+                  return "TR1 - First Decay Parameter"
+               elseif synIDattr(slist[4], "name") =~ "pam_21.*"
+                  return "QR2 - Second Amplitude Coefficient"
+               elseif synIDattr(slist[4], "name") =~ "pam_31.*"
+                  return "TR2 - Second Decay Parameter"
+               elseif synIDattr(slist[4], "name") =~ "pam_41.*"
+                  return "QR3 - Third Amplitude Coefficient"
+               elseif synIDattr(slist[4], "name") =~ "pam_51.*"
+                  return "TR3 - Third Decay Parameter"
+               elseif synIDattr(slist[4], "name") =~ "pam_61.*"
+                  return "QR4 - Fourth Amplitude Coefficient"
+               elseif synIDattr(slist[4], "name") =~ "pam_71.*"
+                  return "TR4 - Fourth Decay Parameter"
+               endif
+            elseif synIDattr(slist[3], "name") =~ "pam_MMAT_HARDENING_JOHNSON_COOK_VOCE_r2"
+               if synIDattr(slist[4], "name") =~ "pam_1.10.*"
+                  return "SIGMA0 - Initial Yield Stress of the Material"
+               elseif synIDattr(slist[4], "name") =~ "pam_11.*"
+                  return "ERATEref - Reference Plastic Strain Rate"
+               elseif synIDattr(slist[4], "name") =~ "pam_21.*"
+                  return "Cv - Strain Rate Exponent"
+               endif
+            endif
          elseif synIDattr(slist[2], "name") =~ "pam_MMAT_HARDENING_GENERALIZED_VOCE"
             if synIDattr(slist[3], "name") =~ "pam_MMAT_HARDENING_GENERALIZED_VOCE_r1"
                if synIDattr(slist[4], "name") =~ "pam_1.10.*"
@@ -16057,7 +16099,27 @@ function! pamcomplete#pamHints()
       "}}}
       "{{{ FAILURE
       elseif synIDattr(slist[1], "name") =~ "pam_MMAT_FAILURE"
-         if synIDattr(slist[2], "name") =~ "pam_MMAT_FAILURE_GLOBAL_BEHAVIOR"
+         if synIDattr(slist[2], "name") =~ "pam_MMAT_FAILURE_EXTENDED_COCKCROFT_LATHAM"
+            if synIDattr(slist[3], "name") =~ "pam_MMAT_FAILURE_EXTENDED_COCKCROFT_LATHAM_r1"
+               if synIDattr(slist[4], "name") =~ "pam_1.10.*"
+                  return "PHI - Max Principal Stress/Shear Strain Weighting Coefficient"
+               elseif synIDattr(slist[4], "name") =~ "pam_11.*"
+                  return "GAMMA - Stress State Dependence Strength Parameter for Failure Criteria"
+               elseif synIDattr(slist[4], "name") =~ "pam_21.*"
+                  return "Wcb - Mesh Regularization Parameter Linked to Ductility in Bending"
+               elseif synIDattr(slist[4], "name") =~ "pam_31.*"
+                  return "Wcs - Mesh Regularization Parameter Linked to Ductility in In-Plane Membrane Loading"
+               elseif synIDattr(slist[4], "name") =~ "pam_41.*"
+                  return "Wcl - Mesh Regularization Parameter Linked to Ductility in In-Plane Loading"
+               elseif synIDattr(slist[4], "name") =~ "pam_51.*"
+                  return "c - Exponent Used with the Element Characteristic Length to Thickness Ration"
+               endif 
+            elseif synIDattr(slist[3], "name") =~ "pam_MMAT_FAILURE_EXTENDED_COCKCROFT_LATHAM_r2"
+               if synIDattr(slist[4], "name") =~ "pam_1.10.*"
+                  return "LCmodel - Local Characteristic Length of the Failure"
+               endif
+            endif 
+         elseif synIDattr(slist[2], "name") =~ "pam_MMAT_FAILURE_GLOBAL_BEHAVIOR"
             if synIDattr(slist[3], "name") =~ "pam_MMAT_FAILURE_GLOBAL_BEHAVIOR_r1"
                if synIDattr(slist[4], "name") =~ "pam_1.10.*"
                   return "Lc - Charakteristic Failure Length"
@@ -16133,6 +16195,22 @@ function! pamcomplete#pamHints()
                   return "INTERP - Type of Interpolation between Damage Curves (menu)"
                endif
             endif 
+         elseif synIDattr(slist[2], "name") =~ "pam_MMAT_FAILURE_TABLE_DRIVEN_LOOKUP"
+            if synIDattr(slist[3], "name") =~ "pam_MMAT_FAILURE_TABLE_DRIVEN_LOOKUP_r1"
+               if synIDattr(slist[4], "name") =~ "pam_1.10.*"
+                  return "IDLUT - Fracture Criteria Lookup Table ID (tag)"
+               elseif synIDattr(slist[4], "name") =~ "pam_11.*"
+                  return "I1ETA - Triaxiality Index"
+               elseif synIDattr(slist[4], "name") =~ "pam_21.*"
+                  return "I2THB - Lode Parameter Index"
+               elseif synIDattr(slist[4], "name") =~ "pam_31.*"
+                  return "I3MCL - Mesh Characteristic Element Length Index"
+               elseif synIDattr(slist[4], "name") =~ "pam_41.*"
+                  return "Lc_model - CHaracteristic Failure Length"
+               elseif synIDattr(slist[4], "name") =~ "pam_51.*"
+                  return "FADexp - Post-fracture Damage Exponent"
+               endif
+            endif
          elseif synIDattr(slist[2], "name") =~ "pam_MMAT_FAILURE_PLASTIC_STRAIN_SOFTENING"
             if synIDattr(slist[3], "name") =~ "pam_MMAT_FAILURE_PLASTIC_STRAIN_SOFTENING_r1"
                if synIDattr(slist[4], "name") =~ "pam_1.10.*"
@@ -16395,6 +16473,16 @@ function! pamcomplete#pamHints()
                   return "KSI - Stiffness Proportional Damping Ratio"
                elseif synIDattr(slist[4], "name") =~ "pam_11.*"
                   return "Fo - Damping Target Frequency"
+               endif 
+            endif 
+         endif 
+      "}}}
+      "{{{ THERMAL_EXPANSION
+      elseif synIDattr(slist[1], "name") =~ "pam_MMAT_THERMAL_EXPANSION"
+         if synIDattr(slist[2], "name") =~ "pam_MMAT_THERMAL_EXPANSION_ISOTROPIC"
+            if synIDattr(slist[3], "name") =~ "pam_MMAT_THERMAL_EXPANSION_ISOTROPIC_r1"
+               if synIDattr(slist[4], "name") =~ "pam_1.10.*"
+                  return "ALPHA - Thermal Expansion Coefficient"
                endif 
             endif 
          endif 
