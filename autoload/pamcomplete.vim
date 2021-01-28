@@ -733,9 +733,6 @@ function! pamcomplete#Complete(findstart, base)
                " IORI
                elseif synIDattr(slist[2], "name") =~ "pam_46.*"
                   let start = 45
-               " IEDGE
-               elseif synIDattr(slist[2], "name") =~ "pam_61.*"
-                  let start = 60
                endif
             elseif synIDattr(slist[1], "name") =~ "pam_CNTAC.*_r4"
                " IPCP
@@ -749,12 +746,9 @@ function! pamcomplete#Complete(findstart, base)
                   let start = 25
                endif
             elseif synIDattr(slist[1], "name") =~ "pam_CNTAC.*_r5"
-               " IDFRIC
-               if synIDattr(slist[2], "name") =~ "pam_11.*"
-                  let start = 10
-               " ICOUFR
-               elseif synIDattr(slist[2], "name") =~ "pam_41.*"
-                  let start = 40
+               " FRITYP
+               if synIDattr(slist[2], "name") =~ "pam_CNTAC.*_r5_[ae]1"
+                  let start = 0
                " IDCNTPTY
                elseif synIDattr(slist[2], "name") =~ "pam_51.*"
                   let start = 50
@@ -1070,6 +1064,9 @@ function! pamcomplete#Complete(findstart, base)
             " IMETH
             elseif synIDattr(slist[2], "name") =~ "pam_PLYFAIL10_r2" && synIDattr(slist[3], "name") =~ "pam_71.*"
                let start = 70
+            " IFL12
+            elseif synIDattr(slist[2], "name") =~ "pam_PLYFAIL11_r2a" && synIDattr(slist[3], "name") =~ "pam_1.10.*"
+               let start = 0
             " IFL11
             elseif synIDattr(slist[2], "name") =~ "pam_PLYFAIL11_r2" && synIDattr(slist[3], "name") =~ "pam_1.10.*"
                let start = 0
@@ -4609,10 +4606,6 @@ function! pamcomplete#Complete(findstart, base)
                elseif synIDattr(slist[2], "name") =~ "pam_46.*"
                   call add (items,{'word':'    0','menu':'Master Surface Towards Slave'})
                   call add (items,{'word':'    1','menu':'No Oriantation Used, Relative Position instead'})
-               " IEDGE
-               elseif synIDattr(slist[2], "name") =~ "pam_61.*"
-                  call add (items,{'word':'         0','menu':'Activated'})
-                  call add (items,{'word':'         1','menu':'Deactivated'})
                endif
             elseif synIDattr(slist[1], "name") =~ "pam_CNTAC.*_r4"
                " IPCP
@@ -4630,13 +4623,12 @@ function! pamcomplete#Complete(findstart, base)
                   call add (items,{'word':'    1','menu':'Activated'})
                endif
             elseif synIDattr(slist[1], "name") =~ "pam_CNTAC.*_r5"
-               " IDFRIC
-               if synIDattr(slist[2], "name") =~ "pam_11.*"
-                  let items = s:getTags("FRICT",10)
-               " ICOUFR
-               elseif synIDattr(slist[2], "name") =~ "pam_41.*"
-                  call add (items,{'word':'         0','menu':'FRICT used'})
-                  call add (items,{'word':'         1','menu':'Friction Averaged from COULFRIC Values'})
+               " FRITYP
+               if synIDattr(slist[2], "name") =~ "pam_CNTAC34_r5_[ae]1"
+                  call add (items,{'word':'CONST     ','menu':'Constant Value Friction'})
+                  call add (items,{'word':'COUFR     ','menu':'Coulomb Friction by Part'})
+                  call add (items,{'word':'FRTAB     ','menu':'Friction Table Definition'})
+                  call add (items,{'word':'ADVFR     ','menu':'Advanced Friction Model Definition'})
                " IDCNTPTY
                elseif synIDattr(slist[2], "name") =~ "pam_51.*"
                   let items = s:getTags("CNTPTY",10)
@@ -5317,6 +5309,10 @@ function! pamcomplete#Complete(findstart, base)
             elseif synIDattr(slist[2], "name") =~ "pam_PLYFAIL10_r2" && synIDattr(slist[3], "name") =~ "pam_71.*"
                call add (items,{'word':'         0','abbr':'0 (default)','menu':'Stepwise Scan Method'})
                call add (items,{'word':'         1','abbr':'1','menu':'Damped Newton Method'})
+            " IFL12
+            elseif synIDattr(slist[2], "name") =~ "pam_PLYFAIL11_r2a" && synIDattr(slist[3], "name") =~ "pam_1.10.*"
+               call add (items,{'word':'         0','abbr':'0 (default)','menu':'Stress-Based Approach'})
+               call add (items,{'word':'         1','abbr':'1','menu':'Strain-Based Approach'})
             " IFL11
             elseif synIDattr(slist[2], "name") =~ "pam_PLYFAIL11_r2" && synIDattr(slist[3], "name") =~ "pam_1.10.*"
                call add (items,{'word':'         0','menu':'Stress-Based Approach'})
@@ -8212,8 +8208,6 @@ function! pamcomplete#pamHints()
                return 'ITPRT - Contact Interaction Flag (menu)'
             elseif synIDattr(slist[2], "name") =~ "pam_46.*"
                return 'IORI - Master Surface Orientation Flag (menu)'
-            elseif synIDattr(slist[2], "name") =~ "pam_61.*"
-               return 'IEDGE - Node-to-Edge Activation Flag (menu)'
             endif
          elseif synIDattr(slist[1], "name") =~ "pam_CNTAC.*_r4"
             if synIDattr(slist[2], "name") =~ "pam_1.5.*"
@@ -8232,10 +8226,10 @@ function! pamcomplete#pamHints()
                return 'TLSTIF - Timestep for Stiffness Computation'
             endif
          elseif synIDattr(slist[1], "name") =~ "pam_CNTAC.*_r5"
-            if synIDattr(slist[2], "name") =~ "pam_1.10.*"
-               return 'FRICT - Constant Friction Coefficient'
+            if synIDattr(slist[2], "name") =~ "pam_CNTAC34_r5_[ae]1"
+               return 'FRITYP - Friction Type (menu)'
             elseif synIDattr(slist[2], "name") =~ "pam_11.*"
-               return 'IDFRIC - Advanced Friction Model ID (tag)'
+               return 'VALUE - Value depending on the Friction Type'
             elseif synIDattr(slist[2], "name") =~ "pam_21.*"
                return 'XDMP1 - Stiffness Proportional Damping Ratio'
             elseif synIDattr(slist[2], "name") =~ "pam_31.*"
@@ -17836,6 +17830,10 @@ function! pamcomplete#pamHints()
             return "Xc12 - In-Plane Shear Stress/Strain"
          elseif synIDattr(slist[3], "name") =~ "pam_61.*"
             return "Xc13 - Out-of-Plane Shear Stress/Strain"
+         endif
+      elseif synIDattr(slist[2], "name") =~ "pam_PLYFAIL11_r2a"
+         if synIDattr(slist[3], "name") =~ "pam_1.10.*"
+            return "IFL12 - Approach to Use with Shear (menu)"
          endif
       elseif synIDattr(slist[2], "name") =~ "pam_PLYFAIL11_r2"
          if synIDattr(slist[3], "name") =~ "pam_1.10.*"

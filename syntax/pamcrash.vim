@@ -1,7 +1,7 @@
 " ========================================================
 " Vim syntax file
 " Language: PAM-CRASH,PAM-STAMP,PAM-COMFORT Input Deck
-" Syntax File Version: 7.3
+" Syntax File Version: 8.0
 " Author: Roman Firt (roman.firt@yahoo.de)
 " Latest Revision: 17. January 2021
 " =========================================================
@@ -3482,11 +3482,15 @@ syn region      pam_CNTAC21        matchgroup=pam_CardTag start="^\CCNTAC / .\{8
    " Row 6 
    syn region      pam_CNTAC34_r6     transparent contained containedin=pam_CNTAC34 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1i5x,@6i5x,@11i5x,@16i5x,@36i5,@41f10x,@51f10x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_CNTAC34_r7 skipnl keepend
    " Row 5
-   syn region      pam_CNTAC34_r5     transparent contained containedin=pam_CNTAC34 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11i10,@21f10,@41i10,@51i10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_CNTAC34_r6 skipnl keepend
+   syn region      pam_CNTAC34_r5     transparent contained containedin=pam_CNTAC34 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@11f10,@21f10,@51i10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_CNTAC34_r6 skipnl keepend
+      syn match       pam_CNTAC34_r5_e1             display contained containedin=pam_CNTAC34_r5 "\%1c.\{,10\}"
+      syn match       pam_CNTAC34_r5_a1             display contained containedin=pam_CNTAC34_r5 "\%1c[ ]*\(\CCONST\|\CCOUFR\|\CFRTAB\|\CADVFR\)[ ]*\%11c"
+      hi def link pam_CNTAC34_r5_a1 pam_oddArgument
+      hi def link pam_CNTAC34_r5_e1 pam_oddError
    " Row 4
    syn region      pam_CNTAC34_r4     transparent contained containedin=pam_CNTAC34 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1i5x,@6f10,@16f10,@26i5,@31f10x,@71f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_CNTAC34_r5 skipnl keepend
    " Row 3
-   syn region      pam_CNTAC34_r3     transparent contained containedin=pam_CNTAC34 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,@21i10,@31f10,@41i5,@61i10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_CNTAC34_r4 skipnl keepend
+   syn region      pam_CNTAC34_r3     transparent contained containedin=pam_CNTAC34 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,@21i10,@31f10,@41i5,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_CNTAC34_r4 skipnl keepend
    " Row 2 (Name)
    syn region      pam_CNTAC34_r2     transparent contained containedin=pam_CNTAC34 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_CNTAC34_r3 skipnl keepend
    " Row 1
@@ -5420,7 +5424,9 @@ syn region      pam_PLink          matchgroup=pam_CardTag start="^\CPLINK /" end
       syn region      pam_PLYFAIL10_r1      transparent contained containedin=pam_PLYFAIL10 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1i10,@11i10,@21i10,@31i10,@41i10,@51i10,@61i10,@71i10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PLYFAIL10_r2 skipnl keepend
       syn region      pam_PLYFAIL10      transparent contained containedin=@pam_PLY start="\%1c.\{18\}10"rs=s+10 start="^$\n" end="\%$" contains=pam_PLYFAIL10_r[1-3] skipnl keepend
       syn region      pam_PLYFAIL11_r3      transparent contained containedin=pam_PLYFAIL11 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,@21f10,@31f10,@41f10,@51f10,@61f10,@71i10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
+      syn region      pam_PLYFAIL11_r2a     transparent contained containedin=pam_PLYFAIL11 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1i10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PLYFAIL11_r3 skipnl keepend
       syn region      pam_PLYFAIL11_r2      transparent contained containedin=pam_PLYFAIL11 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1i10,@11f10,@21f10,@31i10,@41f10,@51f10,@61f10,@71f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PLYFAIL11_r3 skipnl keepend
+      syn region      pam_PLYFAIL11_r2      transparent contained containedin=pam_PLYFAIL11 start="\%1c.\(.*\%81c&\)\@=" start="^$\n" end="\n[\$\#]\@!" contains=@1i10,@11f10,@21f10,@31i10,@41f10,@51f10,@61f10,@71f10,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_PLYFAIL11_r2a skipnl keepend
       syn region      pam_PLYFAIL11_r1      transparent contained containedin=pam_PLYFAIL11 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1i10,@11i10,@21i10,@31i10,@41i10,@51i10,@61i10,@71i10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PLYFAIL11_r2 skipnl keepend
       syn region      pam_PLYFAIL11      transparent contained containedin=@pam_PLY start="\%1c.\{18\}11"rs=s+10 start="^$\n" end="\%$" contains=pam_PLYFAIL11_r[1-2] skipnl keepend
    " PLY X
