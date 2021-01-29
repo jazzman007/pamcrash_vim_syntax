@@ -696,9 +696,9 @@ function! pamcomplete#Complete(findstart, base)
                   let start = 40
                endif
             elseif synIDattr(slist[1], "name") =~ "pam_CNTAC.*_r5"
-               " ICOUFR
-               if synIDattr(slist[2], "name") =~ "pam_41.*"
-                  let start = 40
+               " FRITYP
+               if synIDattr(slist[2], "name") =~ "pam_CNTAC.*_r5_[ae]1"
+                  let start = 0
                endif
             elseif synIDattr(slist[1], "name") =~ "pam_CNTAC.*_r6"
                " ILEAK
@@ -3433,9 +3433,12 @@ function! pamcomplete#Complete(findstart, base)
                let start = 24
             endif
          elseif synIDattr(slist[1], "name") =~ "pam_VAPLNW0_r3"
-            " IDVEC
+            " IDIR
             if synIDattr(slist[2], "name") =~ "pam_9."
                let start = 8
+            " IFRA
+            elseif synIDattr(slist[2], "name") =~ "pam_17.*"
+               let start = 16
             " IFUNC
             elseif synIDattr(slist[2], "name") =~ "pam_25.*"
                let start = 24
@@ -3887,6 +3890,7 @@ function! pamcomplete#Complete(findstart, base)
             elseif synIDattr(slist[2], "name") =~ "pam_57.*"
                call add (items,{'word':'       0','abbr':'0 (default)','menu':'general OTMCO'})
                call add (items,{'word':'       1','abbr':'1','menu':'OTMCO Type Barycenter'})
+               call add (items,{'word':'       2','abbr':'2','menu':'General OTMCO with Improved Acceleration Field Moment Transmission'})
             endif
          endif
 " }}}
@@ -4548,10 +4552,11 @@ function! pamcomplete#Complete(findstart, base)
                   call add (items,{'word':'    2','menu':'Thickness by PART (Tcont), no Zero Thickness'})
                endif
             elseif synIDattr(slist[1], "name") =~ "pam_CNTAC.*_r5"
-               " ICOUFR
-               if synIDattr(slist[2], "name") =~ "pam_41.*"
-                  call add (items,{'word':'         0','menu':'FRICT used'})
-                  call add (items,{'word':'         1','menu':'Friction Averaged from COULFRIC Values'})
+               " FRITYP
+               if synIDattr(slist[2], "name") =~ "pam_CNTAC.*_r5_[ae]1.*"
+                  call add (items,{'word':'CONST     ','menu':'Constant Value Friction'})
+                  call add (items,{'word':'COUFR     ','menu':'Coulomb Friction by Part'})
+                  call add (items,{'word':'FRTAB     ','menu':'Friction Table Definition'})
                endif
             elseif synIDattr(slist[1], "name") =~ "pam_CNTAC.*_r6"
                " ILEAK
@@ -4624,11 +4629,16 @@ function! pamcomplete#Complete(findstart, base)
                endif
             elseif synIDattr(slist[1], "name") =~ "pam_CNTAC.*_r5"
                " FRITYP
-               if synIDattr(slist[2], "name") =~ "pam_CNTAC34_r5_[ae]1"
+               if synIDattr(slist[2], "name") =~ "pam_CNTAC[35][46]_r5_[ae]1"
                   call add (items,{'word':'CONST     ','menu':'Constant Value Friction'})
                   call add (items,{'word':'COUFR     ','menu':'Coulomb Friction by Part'})
                   call add (items,{'word':'FRTAB     ','menu':'Friction Table Definition'})
                   call add (items,{'word':'ADVFR     ','menu':'Advanced Friction Model Definition'})
+               elseif synIDattr(slist[2], "name") =~ "pam_CNTAC44_r5_[ae]1"
+                  call add (items,{'word':'CONST     ','menu':'Constant Value Friction'})
+                  call add (items,{'word':'ADVFR     ','menu':'Advanced Friction Model Definition'})
+               elseif synIDattr(slist[2], "name") =~ "pam_CNTAC154_r5_[ae]1"
+                  call add (items,{'word':'CONST     ','menu':'Constant Value Friction'})
                " IDCNTPTY
                elseif synIDattr(slist[2], "name") =~ "pam_51.*"
                   let items = s:getTags("CNTPTY",10)
@@ -7794,13 +7804,18 @@ function! pamcomplete#Complete(findstart, base)
          if synIDattr(slist[1], "name") =~ "pam_VAPLNW._r1"
             " IDIREC
             if synIDattr(slist[2], "name") =~ "pam_25.*"
-               call add (items,{'word':'       0','menu':'Defined via Vector'})
+               call add (items,{'word':'       0','menu':'Defined via Frame Direction'})
                call add (items,{'word':'       1','menu':'Defined via Incident Angles'})
             endif
          elseif synIDattr(slist[1], "name") =~ "pam_VAPLNW0_r3"
-            " IDVEC
+            " IDIR
             if synIDattr(slist[2], "name") =~ "pam_9.*"
-               let items = s:getTags("VECTOR",8)
+               call add (items,{'word':'       1','menu':'X (or R) Direction'})
+               call add (items,{'word':'       2','menu':'Y (or S) Direction'})
+               call add (items,{'word':'       3','menu':'Z (or T) Direction'})
+            " IFRA
+            elseif synIDattr(slist[2], "name") =~ "pam_18.*"
+               let items = s:getTags("FRAME",8)
             " IFUNC
             elseif synIDattr(slist[2], "name") =~ "pam_25.*"
                let items = s:getTags("FUNCT",8)
@@ -8170,8 +8185,10 @@ function! pamcomplete#pamHints()
                return 'TLSTIF - Timestep for Stiffness Computation'
             endif
          elseif synIDattr(slist[1], "name") =~ "pam_CNTAC.*_r5"
-            if synIDattr(slist[2], "name") =~ "pam_1.10.*"
-               return 'FRICT - Constant Friction Coefficient'
+            if synIDattr(slist[2], "name") =~ "pam_CNTAC.*_r5_[ae]1"
+               return 'FRITYP - Friction Type (menu)'
+            elseif synIDattr(slist[2], "name") =~ "pam_11.*"
+               return 'VALUE - Value depending on the Friction Type'
             elseif synIDattr(slist[2], "name") =~ "pam_21.*"
                return 'XDMP1 - Stiffness Proportional Damping Ratio'
             elseif synIDattr(slist[2], "name") =~ "pam_41.*"
@@ -8226,7 +8243,7 @@ function! pamcomplete#pamHints()
                return 'TLSTIF - Timestep for Stiffness Computation'
             endif
          elseif synIDattr(slist[1], "name") =~ "pam_CNTAC.*_r5"
-            if synIDattr(slist[2], "name") =~ "pam_CNTAC34_r5_[ae]1"
+            if synIDattr(slist[2], "name") =~ "pam_CNTAC.*_r5_[ae]1"
                return 'FRITYP - Friction Type (menu)'
             elseif synIDattr(slist[2], "name") =~ "pam_11.*"
                return 'VALUE - Value depending on the Friction Type'
@@ -8234,8 +8251,6 @@ function! pamcomplete#pamHints()
                return 'XDMP1 - Stiffness Proportional Damping Ratio'
             elseif synIDattr(slist[2], "name") =~ "pam_31.*"
                return 'XDMPT - Stiffness Proportional Damping Ration in Tangential Direction'
-            elseif synIDattr(slist[2], "name") =~ "pam_41.*"
-               return 'ICOUFR - Flag to Control Coulomb Friction Type (menu)'
             elseif synIDattr(slist[2], "name") =~ "pam_51.*"
                return 'IDCNTPTY - Contact Property Definition ID (tag)'
             endif
@@ -20508,7 +20523,9 @@ function! pamcomplete#pamHints()
          endif
       elseif synIDattr(slist[1], "name") =~ "pam_VAPLNW0_r3"
          if synIDattr(slist[2], "name") =~ "pam_9.*"
-            return "IDVEC - Vector ID (tag)"
+            return "IDIR - Frame Axis Direction Flag (menu)"
+         elseif synIDattr(slist[2], "name") =~ "pam_17.*"
+            return "IFRA - Plane Wave Direction Frame ID (tag)"
          elseif synIDattr(slist[2], "name") =~ "pam_25.*"
             return "IFUNC - Aplitude vs. Frequency Function ID (tag)"
          elseif synIDattr(slist[2], "name") =~ "pam_33.*"

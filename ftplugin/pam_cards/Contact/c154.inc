@@ -7,9 +7,9 @@ $#                       BLANK     HcontITPRT IORI
                                       0.          
 $#PCP    SLFACM     FSVNL
              0.        0.
-$#   FRICT                                          IDCNTPTY
-        0.                                                  
-$#RMV     BLANKIAC32                         BLANK    ADJTOL
+$#  FRITYP     VALUE                         BLANK  IDCNTPTY
+CONST             0.                                        
+$#RMV     BLANKIAC32          BLANKIFRED     BLANK    ADJTOL
     0              0                                        
 
 $#                                                BLANK   SDISini   TshadowIPRES

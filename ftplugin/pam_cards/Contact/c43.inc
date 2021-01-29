@@ -7,8 +7,8 @@ $#    T1SL      T2SL     ISENS     HcontITPRT
         0.        0.         0        0.     
 $#ANK    SLFACM     FSVNL                                        BLANK    TLSTIF
              0.        0.                                                       
-$#   FRICT               XDMP1     BLANK    ICOUFR
-        0.                  0.                    
+$#  FRITYP     VALUE     XDMP1
+CONST             0.        0.
 $#   BLANK IRMV               BLANKIFRED
               0                         
 
