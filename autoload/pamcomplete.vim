@@ -1205,7 +1205,7 @@ function! pamcomplete#Complete(findstart, base)
             if synIDattr(slist[2], "name") =~ "pam_MaterX_r2a_[ae]1"
                let start = 8
             " INTERP
-            elseif synIDattr(slist[2], "name") =~ "pam_25.*"
+            elseif synIDattr(slist[2], "name") =~ "pam_MaterX_r2a_[ae]2"
                let start = 24
             endif
          elseif synIDattr(slist[1], "name") =~ "pam_Mater.*_r2"
@@ -1660,7 +1660,7 @@ function! pamcomplete#Complete(findstart, base)
             if synIDattr(slist[2], "name") =~ "pam_MaterX_r2a_[ae]1"
                let start = 8
             " INTERP
-            elseif synIDattr(slist[2], "name") =~ "pam_25.*"
+            elseif synIDattr(slist[2], "name") =~ "pam_MaterX_r2a_[ae]2"
                let start = 24
             endif
          elseif synIDattr(slist[1], "name") =~ "pam_Mater.*_r2"
@@ -2181,7 +2181,7 @@ function! pamcomplete#Complete(findstart, base)
             if synIDattr(slist[2], "name") =~ "pam_MaterX_r2a_[ae]1"
                let start = 8
             " INTERP
-            elseif synIDattr(slist[2], "name") =~ "pam_25.*"
+            elseif synIDattr(slist[2], "name") =~ "pam_MaterX_r2a_[ae]2"
                let start = 24
             endif
          elseif synIDattr(slist[1], "name") =~ "pam_Mater.*_r2"
@@ -5521,9 +5521,9 @@ function! pamcomplete#Complete(findstart, base)
                call add (items,{'word':'   CYCLE','abbr':'CYCLE','menu':'Solver Cycle Filter'})
                call add (items,{'word':'        ','abbr':'BLANK','menu':'Globally Defined Filter'})
             " INTERP
-            elseif synIDattr(slist[2], "name") =~ "pam_25.*"
-               call add (items,{'word':'       0','abbr':'0','menu':'Linear Interpolation'})
-               call add (items,{'word':'       1','abbr':'1','menu':'Logarithmic Interpolation'})
+            elseif synIDattr(slist[2], "name") =~ "pam_MaterX_r2a_[ae]2"
+               call add (items,{'word':'  LINEAR','abbr':'LINEAR','menu':'Linear Interpolation'})
+               call add (items,{'word':'     LOG','abbr':'LOG','menu':'Logarithmic Interpolation'})
                call add (items,{'word':'        ','abbr':'BLANK','menu':'Global Interpolation'})
             endif
          elseif synIDattr(slist[1], "name") =~ "pam_Mater.*_r2"
@@ -6062,9 +6062,9 @@ function! pamcomplete#Complete(findstart, base)
                call add (items,{'word':'   CYCLE','abbr':'CYCLE','menu':'Solver Cycle Filter'})
                call add (items,{'word':'        ','abbr':'BLANK','menu':'Globally Defined Filter'})
             " INTERP
-            elseif synIDattr(slist[2], "name") =~ "pam_25.*"
-               call add (items,{'word':'       0','abbr':'0','menu':'Linear Interpolation'})
-               call add (items,{'word':'       1','abbr':'1','menu':'Logarithmic Interpolation'})
+            elseif synIDattr(slist[2], "name") =~ "pam_MaterX_r2a_[ae]2"
+               call add (items,{'word':'  LINEAR','abbr':'LINEAR','menu':'Linear Interpolation'})
+               call add (items,{'word':'     LOG','abbr':'LOG','menu':'Logarithmic Interpolation'})
                call add (items,{'word':'        ','abbr':'BLANK','menu':'Global Interpolation'})
             endif
          elseif synIDattr(slist[1], "name") =~ "pam_Mater.*_r2"
@@ -6678,9 +6678,9 @@ function! pamcomplete#Complete(findstart, base)
                call add (items,{'word':'   CYCLE','abbr':'CYCLE','menu':'Solver Cycle Filter'})
                call add (items,{'word':'        ','abbr':'BLANK','menu':'Globally Defined Filter'})
             " INTERP
-            elseif synIDattr(slist[2], "name") =~ "pam_25.*"
-               call add (items,{'word':'       0','abbr':'0','menu':'Linear Interpolation'})
-               call add (items,{'word':'       1','abbr':'1','menu':'Logarithmic Interpolation'})
+            elseif synIDattr(slist[2], "name") =~ "pam_MaterX_r2a_[ae]2"
+               call add (items,{'word':'  LINEAR','abbr':'LINEAR','menu':'Linear Interpolation'})
+               call add (items,{'word':'     LOG','abbr':'LOG','menu':'Logarithmic Interpolation'})
                call add (items,{'word':'        ','abbr':'BLANK','menu':'Global Interpolation'})
             endif
          elseif synIDattr(slist[1], "name") =~ "pam_Mater.*_r2"
@@ -8789,7 +8789,7 @@ function! pamcomplete#pamHints()
             return "FILTER - Filter Definition (menu)"
          elseif synIDattr(slist[2], "name") =~ "pam_17.*"
             return "VALUE - Filter Period Value"
-         elseif synIDattr(slist[2], "name") =~ "pam_25.*"
+         elseif synIDattr(slist[2], "name") =~ "pam_MaterX_r2a_a2"
             return "INTERP - Strain Rate Interpolation Type (menu)"
          elseif synIDattr(slist[2], "name") =~ "pam_33.*"
             return "DAMP - Numerical Internal Damping"
