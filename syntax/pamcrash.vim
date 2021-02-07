@@ -1651,13 +1651,13 @@ syn region      pam_Control_AUTOSLEEP            matchgroup=pam_HeaderKW start="
 syn match       pam_Control_COUPLINGMADYMO       display "\CCOUPLING MADYMO$" 
 
 "dummy ERFFIL (no syntax)
-syn region      pam_Control_ERFFIL               matchgroup=pam_CardTag start="^\CERFFIL/" end="^\CEND_ERFFIL" contains=pam_Comment,pam_Comment_Position fold keepend
+syn region      pam_Control_ERFFIL               matchgroup=pam_CardTag start="^\CERFFIL/" end="^\CEND_ERFFIL" contains=pam_Comment,pam_Comment_Position keepend
 
 syn region      pam_Control_TITLE                matchgroup=pam_CardTag start="^\CTITLE /" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_String,pam_Continue keepend
 
 syn region      pam_Control_DRAPP                matchgroup=pam_CardTag start="^\CDRAPP   " end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_String,pam_Continue keepend
 
-syn region      pam_Control_RUNEND               matchgroup=pam_CardTag start="^\CRUNEND/" end="^\CEND_RUNEND" contains=pam_Error,pam_Control_RUNEND_arg,pam_Float,pam_Integer,pam_Comment,pam_Comment_Position,pam_FreeVar fold keepend
+syn region      pam_Control_RUNEND               matchgroup=pam_CardTag start="^\CRUNEND/" end="^\CEND_RUNEND" contains=pam_Error,pam_Control_RUNEND_arg,pam_Float,pam_Integer,pam_Comment,pam_Comment_Position,pam_FreeVar keepend
 syn keyword     pam_Control_RUNEND_arg           contained containedin=pam_Control_RUNEND TIME SENSOR START_AT PYSTOP
 
    " END_PICK
@@ -1667,7 +1667,7 @@ syn keyword     pam_Control_RUNEND_arg           contained containedin=pam_Contr
    syn region      pam_Control_PICK_r3     transparent contained containedin=pam_Control_PICK start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Control_PICK_arg,pam_String,pam_Float,pam_Integer,pam_Comment,pam_Comment_Position nextgroup=pam_Control_PICK_r4 skipnl keepend
    syn region      pam_Control_PICK_r2     transparent contained containedin=pam_Control_PICK start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_Control_PICK_r3 skipnl keepend
    syn region      pam_Control_PICK_r1         transparent contained containedin=pam_Control_PICK start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Control_PICK_r2 skipnl keepend
-syn region      pam_Control_PICK               matchgroup=pam_CardTag start="^\CPICK  /" end="^\CEND_PICK" contains=pam_Error,pam_Control_PICK_arg,pam_Float,pam_Integer,pam_Comment,pam_Comment_Position,pam_FreeVar fold keepend
+syn region      pam_Control_PICK               matchgroup=pam_CardTag start="^\CPICK  /" end="^\CEND_PICK" contains=pam_Error,pam_Control_PICK_arg,pam_Float,pam_Integer,pam_Comment,pam_Comment_Position,pam_FreeVar keepend
 syn keyword     pam_Control_PICK_arg           contained containedin=pam_Control_PICK TIME_PICK RESTART_FILE
 hi def link pam_Control_PICK_arg pam_Argument
 
@@ -1684,7 +1684,7 @@ hi def link pam_Control_PICK_arg pam_Argument
    syn region      pam_Control_CATEXP_r3     transparent contained containedin=pam_Control_CATEXP matchgroup=pam_Keyword start="\%1c[ ]*\CWRITE" start="^$\n" end="\n[\$\#]\@!" contains=pam_String,pam_Comment,pam_Comment_Position,pam_FreeVar nextgroup=pam_Control_CATEXP_r4,pam_Control_CATEXP_r5,pam_Control_CATEXP_r6,pam_Control_CATEXP_r7 skipnl keepend
    syn region      pam_Control_CATEXP_r2     transparent contained containedin=pam_Control_CATEXP start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position,pam_FreeVar nextgroup=pam_Control_CATEXP_r3 skipnl keepend
    syn region      pam_Control_CATEXP_r1         transparent contained containedin=pam_Control_CATEXP start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Control_CATEXP_r2 skipnl keepend
-syn region      pam_Control_CATEXP               matchgroup=pam_CardTag start="^\CCATEXP/" end="^\CEND_CATEXP" contains=pam_Control_CATEXP_r[1-6] fold keepend
+syn region      pam_Control_CATEXP               matchgroup=pam_CardTag start="^\CCATEXP/" end="^\CEND_CATEXP" contains=pam_Control_CATEXP_r[1-6] keepend
 syn keyword     pam_Control_CATEXP_arg          contained containedin=pam_Control_CATEXP_r4 FINAL INTERVAL
 hi def link pam_Control_CATEXP_arg pam_Argument
 syn keyword     pam_Control_CATEXP_arg2          contained containedin=pam_Control_CATEXP_r5 DISPLACEMENT FIBER_FRACTION NODE ELEMENT
@@ -1701,7 +1701,7 @@ hi def link pam_Control_CATEXP_arg2 pam_Argument
    syn region      pam_Control_PICEXP_r3     transparent contained containedin=pam_Control_PICEXP matchgroup=pam_Keyword start="\%1c[ ]*\CWRITE" start="^$\n" end="\n[\$\#]\@!" contains=pam_String,pam_Float,pam_Integer,pam_Comment,pam_Comment_Position,pam_FreeVar nextgroup=pam_Control_PICEXP_r4,pam_Control_PICEXP_r5,pam_Control_PICEXP_r6,pam_Control_PICEXP_r7 skipnl keepend
    syn region      pam_Control_PICEXP_r2     transparent contained containedin=pam_Control_PICEXP start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position,pam_FreeVar nextgroup=pam_Control_PICEXP_r3 skipnl keepend
    syn region      pam_Control_PICEXP_r1         transparent contained containedin=pam_Control_PICEXP start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Control_PICEXP_r2 skipnl keepend
-syn region      pam_Control_PICEXP               matchgroup=pam_CardTag start="^\CPICEXP/" end="^\CEND_PICEXP" contains=pam_Control_PICEXP_r[1-6] fold keepend
+syn region      pam_Control_PICEXP               matchgroup=pam_CardTag start="^\CPICEXP/" end="^\CEND_PICEXP" contains=pam_Control_PICEXP_r[1-6] keepend
 syn keyword     pam_Control_PICEXP_arg          contained containedin=pam_Control_PICEXP_r4 FINAL RANGE DISCRETE
 hi def link pam_Control_PICEXP_arg pam_Argument
 " PICEXP end }}}
@@ -1717,7 +1717,7 @@ hi def link pam_Control_PICEXP_arg pam_Argument
    syn region      pam_Control_CATIMP_r3     transparent contained containedin=pam_Control_CATIMP matchgroup=pam_Keyword start="\%1c[ ]*\CREAD" start="^$\n" end="\n[\$\#]\@!" contains=pam_String,pam_Comment,pam_Comment_Position nextgroup=pam_Control_CATIMP_r4,pam_Control_CATIMP_r5 skipnl keepend
    syn region      pam_Control_CATIMP_r2     transparent contained containedin=pam_Control_CATIMP start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_Control_CATIMP_r3 skipnl keepend
    syn region      pam_Control_CATIMP_r1         transparent contained containedin=pam_Control_CATIMP start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Control_CATIMP_r2 skipnl keepend
-syn region      pam_Control_CATIMP               matchgroup=pam_CardTag start="^\CCATIMP/" end="^\CEND_CATIMP" contains=pam_Error,pam_Float,pam_Integer,pam_Comment,pam_Comment_Position,pam_FreeVar fold keepend
+syn region      pam_Control_CATIMP               matchgroup=pam_CardTag start="^\CCATIMP/" end="^\CEND_CATIMP" contains=pam_Error,pam_Float,pam_Integer,pam_Comment,pam_Comment_Position,pam_FreeVar keepend
 syn keyword     pam_Control_CATIMP_IMPORT_POINT_arg           contained SINGLE INTERPOLATE LINEAR CUBIC
 hi def link pam_Control_CATIMP_IMPORT_POINT_arg pam_Argument
 syn keyword     pam_Control_CATIMP_MAPPING_CONTROL_arg           contained COINCIDENT GEOMETRIC
@@ -1738,7 +1738,7 @@ hi def link pam_Control_CATIMP_IMPORT_VAR_arg pam_Argument
    syn region      pam_Control_PICIMP_r3     transparent contained containedin=pam_Control_PICIMP start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Control_PICIMP_arg,pam_String,pam_Float,pam_Integer,pam_Comment,pam_Comment_Position nextgroup=pam_Control_PICIMP_r4,pam_Control_PICIMP_r5 skipnl keepend
    syn region      pam_Control_PICIMP_r2     transparent contained containedin=pam_Control_PICIMP start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_Control_PICIMP_r3 skipnl keepend
    syn region      pam_Control_PICIMP_r1         transparent contained containedin=pam_Control_PICIMP start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Control_PICIMP_r2 skipnl keepend
-syn region      pam_Control_PICIMP               matchgroup=pam_CardTag start="^\CPICIMP/" end="^\CEND_PICIMP" contains=pam_Error,pam_Float,pam_Integer,pam_Comment,pam_Comment_Position,pam_FreeVar fold keepend
+syn region      pam_Control_PICIMP               matchgroup=pam_CardTag start="^\CPICIMP/" end="^\CEND_PICIMP" contains=pam_Error,pam_Float,pam_Integer,pam_Comment,pam_Comment_Position,pam_FreeVar keepend
 syn keyword     pam_Control_PICIMP_arg           contained containedin=pam_Control_PICIMP_r3 READ
 hi def link pam_Control_PICIMP_arg pam_Keyword
 syn keyword     pam_Control_PICIMP_SOURCE_CONTROL_arg           contained VELOCITY TEMPERATURE 
@@ -1752,7 +1752,7 @@ hi def link pam_Control_PICIMP_SOURCE_CONTROL_arg pam_Argument
    syn region      pam_Control_USRACT_r3     transparent contained containedin=pam_Control_USRACT start="\%1c[ ]\{8\}" start="^$\n" end="^[ ]\{8\}END" contains=pam_End,pam_Control_USRACT_arg,pam_Comment,pam_Comment_Position nextgroup=pam_Control_USRACT_r4 skipnl keepend
    syn region      pam_Control_USRACT_r2     transparent contained containedin=pam_Control_USRACT start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_Control_USRACT_r3 skipnl keepend
    syn region      pam_Control_USRACT_r1         transparent contained containedin=pam_Control_USRACT start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Control_USRACT_r2 skipnl keepend
-syn region      pam_Control_USRACT               matchgroup=pam_CardTag start="^\CUSRACT/" end="^\CEND_USRACT" contains=pam_Error,pam_Float,pam_Integer,pam_Comment,pam_Comment_Position,pam_FreeVar fold keepend
+syn region      pam_Control_USRACT               matchgroup=pam_CardTag start="^\CUSRACT/" end="^\CEND_USRACT" contains=pam_Error,pam_Float,pam_Integer,pam_Comment,pam_Comment_Position,pam_FreeVar keepend
 syn keyword     pam_Control_USRACT_arg           contained containedin=pam_Control_USRACT_r3 NODE 
 syn keyword     pam_Control_USRACT_arg2           contained containedin=pam_Control_USRACT_r3 COOR
 hi def link pam_Control_USRACT_arg pam_HeaderKW
@@ -1760,7 +1760,7 @@ hi def link pam_Control_USRACT_arg2 pam_Argument
 " USRACT end }}}
 
 " {{{OCTRL
-syn region      pam_Control_OCTRL                matchgroup=pam_CardTag start="^\COCTRL /" end="^\CEND_OCTRL[ ]*" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Comment,pam_Comment_Position,pam_Continue fold keepend
+syn region      pam_Control_OCTRL                matchgroup=pam_CardTag start="^\COCTRL /" end="^\CEND_OCTRL[ ]*" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Comment,pam_Comment_Position,pam_Continue keepend
    syn region      pam_Control_OCTRL_ERFOUTPUT      contained containedin=pam_Control_OCTRL matchgroup=pam_Keyword start="ERFOUTPUT" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Integer,pam_Continue
    syn region      pam_Control_OCTRL_OUTPUT_FILE_FORMAT      contained containedin=pam_Control_OCTRL matchgroup=pam_Keyword start="OUTPUT_FILE_FORMAT" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Control_OCTRL_OUTPUT_FILE_FORMAT_arg,pam_Continue,pam_FreeVar
       syn keyword     pam_Control_OCTRL_OUTPUT_FILE_FORMAT_arg  contained containedin=pam_Control_OCTRL_OUTPUT_FILE_FORMAT ERF DSYTHP ALL
@@ -1897,7 +1897,7 @@ hi def link pam_Control_OCTRL_MPPOUTPUT_arg pam_Argument
 " OCTRL end}}}
 
 " {{{ CKCTRL
-syn region      pam_Control_CKCTRL                matchgroup=pam_CardTag start="^\CCKCTRL/" end="^\CEND_CKCTRL[ ]*" contains=pam_Error,pam_Comment,pam_Comment_Position,pam_Continue,pam_FreeVar,pam_Control_CKCTRL_INITIAL fold keepend
+syn region      pam_Control_CKCTRL                matchgroup=pam_CardTag start="^\CCKCTRL/" end="^\CEND_CKCTRL[ ]*" contains=pam_Error,pam_Comment,pam_Comment_Position,pam_Continue,pam_FreeVar,pam_Control_CKCTRL_INITIAL keepend
    syn region    pam_Control_CKCTRL_ELEMENT_EARLY_ELIMINATION        contained containedin=pam_Control_CKCTRL matchgroup=pam_Keyword start="ELEMENT_EARLY_ELIMINATION" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Integer,pam_Control_CKCTRL_ELEMENT_EARLY_ELIMINATION_arg,pam_Continue,pam_Error,pam_FreeError,pam_FreeVar
       syn keyword pam_Control_CKCTRL_ELEMENT_EARLY_ELIMINATION_arg   contained containedin=pam_Control_CKCTRL_ELEMENT_EARLY_ELIMINATION INFO WARNING ERROR NELE NCYCLE
       hi def link pam_Control_CKCTRL_ELEMENT_EARLY_ELIMINATION_arg pam_Argument
@@ -1919,7 +1919,7 @@ syn region      pam_Control_CKCTRL                matchgroup=pam_CardTag start="
 " CKCTRL end}}}
 
 " {{{ PRCTRL
-syn region      pam_Control_PRCTRL                matchgroup=pam_CardTag start="^\CPRCTRL/" end="^\CEND_PRCTRL[ ]*" contains=pam_Error,pam_Comment,pam_Comment_Position,pam_Continue,pam_FreeVar,pam_Control_PRCTRL_INITIAL fold keepend
+syn region      pam_Control_PRCTRL                matchgroup=pam_CardTag start="^\CPRCTRL/" end="^\CEND_PRCTRL[ ]*" contains=pam_Error,pam_Comment,pam_Comment_Position,pam_Continue,pam_FreeVar,pam_Control_PRCTRL_INITIAL keepend
    syn region    pam_Control_PRCTRL_GLOBAL           contained containedin=pam_Control_PRCTRL start="^" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Continue,pam_Error,pam_FreeError,pam_FreeVar,pam_Control_PRCTRL_GLOBAL_arg,pam_Control_YESNO
       syn keyword pam_Control_PRCTRL_GLOBAL_arg   contained containedin=pam_Control_PRCTRL_GLOBAL ACFLD_INPUT ACTUA_INPUT BAGIN_INPUT BDFOR_INPUT BOUNC_INPUT CHEM_INPUT CNODE_INPUT CONLO_INPUT DAMP_INPUT DELEM_INPUT ELEMENT_INPUT FRAME_INPUT FUNCSW_INPUT FUNCT_INPUT HEAT_INPUT IMPMA_INPUT KINDA_INPUT LINCO_INPUT LOOKU_INPUT MATER_INPUT METRIC_INPUT MBSYS_INPUT MLOAD_INPUT MTOCO_INPUT MUSCLE_INPUT NLAVE_INPUT NODE_INPUT OPTLIS_INPUT OTMCO_INPUT PFLOW_INPUT PREBM_INPUT PREFA_INPUT PYVAR_INPUT RBODY_INPUT RMLOAD_INPUT SECFO_INPUT SEWING_INPUT TIED_INPUT TRSFM_INPUT TURBL_INPUT ACFLD_GES BAGIN_GES BDFOR_GES CNTAC_GES DAMP_GES DELEM_GES FASCI_GES KINDA_GES MBSYS_GES MTOCO_GES MUSCLE_GES NLAVE_GES OPTLIS_GES OTMCO_GES RBODY_GES RMLOAD_GES RMSSOL_GES SECFO_GES SEWING_GES SURFA_GES TRSFM_GES TURBL_GES USRACT_GES CNTAC_INIT DCOMP_INIT ELEMENT_INIT MATER_INIT MBSYS_INIT MTOCO_INIT NODE_INIT OTMCO_INIT PLINK_INIT RBODY_INIT TIED_INIT CNTAC_DEBUG FPM_DEBUG SENPT_DEBUG TIED_DEBUG
       hi def link pam_Control_PRCTRL_GLOBAL_arg pam_Keyword
@@ -1927,7 +1927,7 @@ syn region      pam_Control_PRCTRL                matchgroup=pam_CardTag start="
 " PRCTRL end}}}
 
 " {{{ TCTRL
-syn region      pam_Control_TCTRL                matchgroup=pam_CardTag start="^\CTCTRL /" end="^\CEND_TCTRL[ ]*" contains=pam_Error,pam_Comment,pam_Comment_Position,pam_Continue,pam_FreeVar,pam_Control_TCTRL_INITIAL fold keepend
+syn region      pam_Control_TCTRL                matchgroup=pam_CardTag start="^\CTCTRL /" end="^\CEND_TCTRL[ ]*" contains=pam_Error,pam_Comment,pam_Comment_Position,pam_Continue,pam_FreeVar,pam_Control_TCTRL_INITIAL keepend
    syn region    pam_Control_TCTRL_INITIAL       contained containedin=pam_Control_TCTRL matchgroup=pam_Keyword start="INITIAL" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Float,pam_Continue
    syn region    pam_Control_TCTRL_PREFER        contained containedin=pam_Control_TCTRL matchgroup=pam_Keyword start="PREFER" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Integer,pam_Float,pam_Control_TCTRL_PREFER_arg,pam_Continue,pam_Error,pam_FreeError,pam_FreeVar
       syn keyword pam_Control_TCTRL_PREFER_arg   contained containedin=pam_Control_TCTRL_PREFER CURVE none
@@ -1967,7 +1967,7 @@ hi def link pam_Control_TCTRL_SHELL_TIMESTEP_arg pam_Argument
 " TCTRL end}}}
 
 " {{{ ECTRL
-syn region      pam_Control_ECTRL                matchgroup=pam_CardTag start="^\CECTRL /" end="^\CEND_ECTRL[ ]*" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Comment,pam_Comment_Position,pam_Continue fold keepend
+syn region      pam_Control_ECTRL                matchgroup=pam_CardTag start="^\CECTRL /" end="^\CEND_ECTRL[ ]*" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Comment,pam_Comment_Position,pam_Continue keepend
    syn region      pam_Control_ECTRL_THICKNESS_INTEGRATION      contained containedin=pam_Control_ECTRL matchgroup=pam_Keyword start="THICKNESS_INTEGRATION" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Control_ECTRL_THICKNESS_INTEGRATION_arg,pam_Continue,pam_Error,pam_FreeError,pam_FreeVar
       syn keyword     pam_Control_ECTRL_THICKNESS_INTEGRATION_arg  contained containedin=pam_Control_ECTRL_THICKNESS_INTEGRATION UNIFORM GAUSS SIMPSON
    syn region    pam_Control_ECTRL_SHELL_FORMULATION       contained containedin=pam_Control_ECTRL matchgroup=pam_Keyword start="SHELL_FORMULATION" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Integer,pam_Continue
@@ -2019,7 +2019,7 @@ hi def link pam_Control_ECTRL_RATECURVE_arg pam_Argument
 " ECTRL end}}}
 
 " {{{ EOCTRL
-syn region      pam_Control_EOCTRL                matchgroup=pam_CardTag start="^\CEOCTRL/" end="^\CEND_EOCTRL[ ]*" contains=pam_Error,pam_Comment,pam_Comment_Position,pam_Continue fold keepend
+syn region      pam_Control_EOCTRL                matchgroup=pam_CardTag start="^\CEOCTRL/" end="^\CEND_EOCTRL[ ]*" contains=pam_Error,pam_Comment,pam_Comment_Position,pam_Continue keepend
    syn region    pam_Control_EOCTRL_COMPRESSION       contained containedin=pam_Control_EOCTRL matchgroup=pam_Keyword start="COMPRESSION" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_CONTROL_YESNO,pam_Continue,pam_Error,pam_FreeError,pam_FreeVar
    syn region    pam_Control_EOCTRL_STRIPPED_INPUT       contained containedin=pam_Control_EOCTRL matchgroup=pam_Keyword start="STRIPPED_INPUT" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_CONTROL_YESNO,pam_Continue,pam_Error,pam_FreeError,pam_FreeVar
    syn region   pam_CONTROL_EOCTRL_ERFFILL        matchgroup=pam_Argument start="^\CERFFIL" end="^\CEND_ERFFIL" contained containedin=pam_Control_EOCTRL contains=pam_Comment,pam_Comment_Position
@@ -2027,7 +2027,7 @@ syn region      pam_Control_EOCTRL                matchgroup=pam_CardTag start="
 " EOCTRL end}}}
 
 " {{{ CCTRL
-syn region      pam_Control_CCTRL                matchgroup=pam_CardTag start="^\CCCTRL /" end="^\CEND_CCTRL[ ]*" contains=pam_Error,pam_Comment,pam_Comment_Position,pam_Continue fold keepend
+syn region      pam_Control_CCTRL                matchgroup=pam_CardTag start="^\CCCTRL /" end="^\CEND_CCTRL[ ]*" contains=pam_Error,pam_Comment,pam_Comment_Position,pam_Continue keepend
    syn region    pam_Control_CCTRL_ITER_INIPEN_N       contained containedin=pam_Control_CCTRL matchgroup=pam_Keyword start="ITER_INIPEN_N" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Integer,pam_Continue
    syn region    pam_Control_CCTRL_ITER_FORCE_N       contained containedin=pam_Control_CCTRL matchgroup=pam_Keyword start="ITER_FORCE_N" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Integer,pam_Continue
    syn region    pam_Control_CCTRL_ITER_FORCE_EPS       contained containedin=pam_Control_CCTRL matchgroup=pam_Keyword start="ITER_FORCE_EPS" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Float,pam_Continue
@@ -2047,7 +2047,7 @@ syn region      pam_Control_CCTRL                matchgroup=pam_CardTag start="^
 " CCTRL end}}}
 
 " {{{ SPCTRL
-syn region      pam_Control_SPCTRL                matchgroup=pam_CardTag start="^\CSPCTRL/" end="^\CEND_SPCTRL[ ]*" contains=pam_Error,pam_Comment,pam_Comment_Position,pam_Continue fold keepend
+syn region      pam_Control_SPCTRL                matchgroup=pam_CardTag start="^\CSPCTRL/" end="^\CEND_SPCTRL[ ]*" contains=pam_Error,pam_Comment,pam_Comment_Position,pam_Continue keepend
    syn region    pam_Control_SPCTRL_KERNEL       contained containedin=pam_Control_SPCTRL matchgroup=pam_Keyword start="KERNEL" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Integer,pam_Continue keepend
    syn region    pam_Control_SPCTRL_XSYM       contained containedin=pam_Control_SPCTRL matchgroup=pam_Keyword start="X_SYMMETRY" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Control_YESNO,pam_Continue keepend
    syn region    pam_Control_SPCTRL_YSYM       contained containedin=pam_Control_SPCTRL matchgroup=pam_Keyword start="Y_SYMMETRY" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Control_YESNO,pam_Continue keepend
@@ -2069,7 +2069,7 @@ syn region      pam_Control_SPCTRL                matchgroup=pam_CardTag start="
    syn region    pam_Control_SIGNAL containedin=NONE matchgroup=pam_Keyword start="^\CSIGNAL" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Control_YESNO,pam_Continue keepend
 
 " {{{ ICTRL
-syn region      pam_Control_ICTRL                matchgroup=pam_CardTag start="^\CICTRL /" end="^\CEND_ICTRL[ ]*" contains=pam_Error,pam_Comment,pam_Comment_Position,pam_Continue fold keepend
+syn region      pam_Control_ICTRL                matchgroup=pam_CardTag start="^\CICTRL /" end="^\CEND_ICTRL[ ]*" contains=pam_Error,pam_Comment,pam_Comment_Position,pam_Continue keepend
 syn region      pam_Control_ANALYSIS_TYPE        contained containedin=pam_Control_ICTRL matchgroup=pam_HeaderKW start="\CANALYSIS_TYPE" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Control_ANALYSIS_arg,pam_Continue keepend
    syn keyword     pam_Control_ANALYSIS_arg         contained containedin=pam_Control_ANALYSIS_TYPE STATIC DYNAMICS BUCKLING TRANSIENT QUASI-STATIC LINEAR NON_LINEAR GEOMETRIC_NON_LINEAR
    hi def link pam_Control_ANALYSIS_arg pam_Argument
@@ -2102,7 +2102,7 @@ syn region      pam_Control_INERTIA_RELIEF        contained containedin=pam_Cont
 " ICTRL end }}}
 
 " {{{ TRANS
-syn region      pam_Control_TRANS                matchgroup=pam_CardTag start="^\CTRANS /" end="^\CEND_TRANS[ ]*" contains=pam_Error,pam_Comment,pam_Comment_Position,pam_Continue,pam_Integer,pam_Float fold keepend
+syn region      pam_Control_TRANS                matchgroup=pam_CardTag start="^\CTRANS /" end="^\CEND_TRANS[ ]*" contains=pam_Error,pam_Comment,pam_Comment_Position,pam_Continue,pam_Integer,pam_Float keepend
 syn region      pam_Control_METHOD        contained containedin=pam_Control_TRANS matchgroup=pam_HeaderKW start="\CMETHOD" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Control_METHOD_arg,pam_Continue keepend
    syn keyword     pam_Control_METHOD_arg         contained containedin=pam_Control_METHOD MODAL DIRECT
    hi def link pam_Control_METHOD_arg pam_Argument
@@ -2124,7 +2124,7 @@ syn region      pam_Control_DAMPING_TARGET_FREQUENCY        contained containedi
 " TRANS end }}}
 
 " {{{ EIGEN
-syn region      pam_Control_EIGEN                matchgroup=pam_CardTag start="^\CEIGEN /" end="^\CEND_EIGEN[ ]*" contains=pam_Error,pam_Comment,pam_Comment_Position,pam_Continue,pam_Integer fold keepend
+syn region      pam_Control_EIGEN                matchgroup=pam_CardTag start="^\CEIGEN /" end="^\CEND_EIGEN[ ]*" contains=pam_Error,pam_Comment,pam_Comment_Position,pam_Continue,pam_Integer keepend
 syn region      pam_Control_METHOD2        contained containedin=pam_Control_EIGEN matchgroup=pam_HeaderKW start="\CMETHOD" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Control_METHOD2_arg,pam_Continue keepend
    syn keyword     pam_Control_METHOD2_arg         contained containedin=pam_Control_METHOD2 BLOCK_IRAM PSM AMLS
    hi def link pam_Control_METHOD2_arg pam_Argument
@@ -2163,7 +2163,7 @@ syn region      pam_Control_DYNSTIFF_FRANGE        contained containedin=pam_Con
 " EIGEN end }}}
 
 " {{{ GFRP
-syn region      pam_Control_GFRP                matchgroup=pam_CardTag start="^\CGFRP  /" end="^\CEND_GFRP[ ]*" contains=pam_Error,pam_Comment,pam_Comment_Position,pam_Continue,pam_Integer,pam_Float fold keepend
+syn region      pam_Control_GFRP                matchgroup=pam_CardTag start="^\CGFRP  /" end="^\CEND_GFRP[ ]*" contains=pam_Error,pam_Comment,pam_Comment_Position,pam_Continue,pam_Integer,pam_Float keepend
 syn region      pam_Control_SOLUTION        contained containedin=pam_Control_GFRP matchgroup=pam_HeaderKW start="\CSOLUTION" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Control_SOLUTION_arg,pam_Integer,pam_Continue keepend
    syn keyword     pam_Control_SOLUTION_arg         contained containedin=pam_Control_SOLUTION RESPONSE RESPONSE_ACOUSTIC RESPONSE_COUPLE RESPONSE_TL IMPEDANCE RANDOM_RESPONSE RANDOM_RESPONSE_ACOUSTIC RANDOM_RESPONSE_COUPLE RANDOM_RESPONSE_TL
    hi def link pam_Control_SOLUTION_arg pam_Argument
@@ -2206,7 +2206,7 @@ syn region      pam_Control_DBASE_MATF_EXTERNAL        contained containedin=pam
 " GFRP end }}}
 
 " {{{ BUCKL
-syn region      pam_Control_BUCKL                matchgroup=pam_CardTag start="^\CBUCKL /" end="^\CEND_BUCKL[ ]*" contains=pam_Error,pam_Comment,pam_Comment_Position,pam_Continue,pam_Integer,pam_Float fold keepend
+syn region      pam_Control_BUCKL                matchgroup=pam_CardTag start="^\CBUCKL /" end="^\CEND_BUCKL[ ]*" contains=pam_Error,pam_Comment,pam_Comment_Position,pam_Continue,pam_Integer,pam_Float keepend
 syn region      pam_Control_MODES2        contained containedin=pam_Control_BUCKL matchgroup=pam_HeaderKW start="\CMODES" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Control_MODES2_arg,pam_Float,pam_Continue keepend
    syn keyword     pam_Control_MODES2_arg         contained containedin=pam_Control_MODES2 EXTRACT CHECK 
    hi def link pam_Control_MODES2_arg pam_Argument
@@ -2218,7 +2218,7 @@ syn region      pam_Control_TANGENT_MATRIX        contained containedin=pam_Cont
 " BUCKL end}}}
 
 " {{{ ACTRL
-syn region      pam_Control_ACTRL                matchgroup=pam_CardTag start="^\CACTRL /" end="^\CEND_ACTRL[ ]*" contains=pam_Error,pam_Comment,pam_Comment_Position,pam_Continue,pam_Integer,pam_Float fold keepend
+syn region      pam_Control_ACTRL                matchgroup=pam_CardTag start="^\CACTRL /" end="^\CEND_ACTRL[ ]*" contains=pam_Error,pam_Comment,pam_Comment_Position,pam_Continue,pam_Integer,pam_Float keepend
 syn region      pam_Control_ARC_METHOD        contained containedin=pam_Control_ACTRL matchgroup=pam_HeaderKW start="\CARC_METHOD" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Control_ARC_METHOD_arg keepend
    syn keyword     pam_Control_ARC_METHOD_arg         contained containedin=pam_Control_ARC_METHOD RIKS MODIFIED_RIKS
    hi def link pam_Control_ARC_METHOD_arg pam_Argument
@@ -2231,7 +2231,7 @@ syn region      pam_Control_ARC_STOP        contained containedin=pam_Control_AC
 " ACTRL end }}}
 
 " {{{ HEAT
-syn region      pam_Control_HEAT                matchgroup=pam_CardTag start="^\CHEAT  /" end="^\CEND_HEAT[ ]*" contains=pam_Error,pam_Comment,pam_Comment_Position,pam_Continue,pam_Integer,pam_Float fold keepend
+syn region      pam_Control_HEAT                matchgroup=pam_CardTag start="^\CHEAT  /" end="^\CEND_HEAT[ ]*" contains=pam_Error,pam_Comment,pam_Comment_Position,pam_Continue,pam_Integer,pam_Float keepend
 syn region      pam_Control_COUPLING_TYPE        contained containedin=pam_Control_HEAT matchgroup=pam_HeaderKW start="\CCOUPLING_TYPE" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Control_COUPLING_TYPE_arg,pam_String keepend
    syn keyword     pam_Control_COUPLING_TYPE_arg         contained containedin=pam_Control_COUPLING_TYPE UNCOUPLED COUPLED_WITH_STRESS IMPOSED_TEMPERATURE
    hi def link pam_Control_COUPLING_TYPE_arg pam_Argument
@@ -2252,7 +2252,7 @@ syn region      pam_Control_SHELL_NODAL_TEMPERATURE_POINT        contained conta
 " HEAT end }}}
 
 " {{{ PFLOW
-syn region      pam_Control_PFLOW                matchgroup=pam_CardTag start="^\CPFLOW /" end="^\CEND_PFLOW[ ]*" contains=pam_Error,pam_Comment,pam_Comment_Position,pam_Continue fold keepend
+syn region      pam_Control_PFLOW                matchgroup=pam_CardTag start="^\CPFLOW /" end="^\CEND_PFLOW[ ]*" contains=pam_Error,pam_Comment,pam_Comment_Position,pam_Continue keepend
 syn region      pam_Control_COUPLING_TYPE2        contained containedin=pam_Control_PFLOW matchgroup=pam_HeaderKW start="\CCOUPLING_TYPE" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Control_COUPLING_TYPE2_arg,pam_String keepend
    syn keyword     pam_Control_COUPLING_TYPE2_arg         contained containedin=pam_Control_COUPLING_TYPE2 UNCOUPLED COUPLED_WITH_STRESS
    hi def link pam_Control_COUPLING_TYPE2_arg pam_Argument
@@ -2264,20 +2264,20 @@ syn region      pam_Control_INITIAL_PRESSURE        contained containedin=pam_Co
 " PFLOW end}}}
 
 " {{{ MCTRL
-syn region      pam_Control_MCTRL                matchgroup=pam_CardTag start="^\CMCTRL /" end="^\CEND_MCTRL[ ]*" contains=pam_Error,pam_Comment,pam_Comment_Position,pam_Continue fold keepend
+syn region      pam_Control_MCTRL                matchgroup=pam_CardTag start="^\CMCTRL /" end="^\CEND_MCTRL[ ]*" contains=pam_Error,pam_Comment,pam_Comment_Position,pam_Continue keepend
 syn region      pam_Control_INDPT_METRIC_FILE_READING        contained containedin=pam_Control_MCTRL matchgroup=pam_HeaderKW start="\CINDPT_METRIC_FILE_READING" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Control_YESNO,pam_Continue keepend
 
 " MCTRL end }}}
 
 " {{{ MACTRL
-syn region      pam_Control_MACTRL                matchgroup=pam_CardTag start="^\CMACTRL/" end="^\CEND_MACTRL[ ]*" contains=pam_Error,pam_Comment,pam_Comment_Position,pam_Continue,pam_Comment,pam_Comment_Position fold keepend
+syn region      pam_Control_MACTRL                matchgroup=pam_CardTag start="^\CMACTRL/" end="^\CEND_MACTRL[ ]*" contains=pam_Error,pam_Comment,pam_Comment_Position,pam_Continue,pam_Comment,pam_Comment_Position keepend
 syn region      pam_Control_MAT45        contained containedin=pam_Control_MACTRL matchgroup=pam_HeaderKW start="\CMAT45" matchgroup=pam_End end="\CEND_MAT45" contains=pam_Float,pam_Error,pam_FreeError,pam_FreeVar,pam_Continue,pam_Comment,pam_Comment_Position keepend
    syn region    pam_Control_MAT45_arg       contained containedin=pam_Control_MAT45 matchgroup=pam_Keyword start="STRAINRATE" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_CONTROL_YESNO,pam_Continue,pam_Error,pam_FreeError,pam_FreeVar,pam_Float,pam_Comment,pam_Comment_Position
 
 " MACTRL end }}}
 
 " {{{ LCTRL
-syn region      pam_Control_LCTRL                matchgroup=pam_CardTag start="^\CLCTRL /" end="^\CEND_LCTRL[ ]*" contains=pam_Error,pam_Comment,pam_Comment_Position,pam_Continue fold keepend
+syn region      pam_Control_LCTRL                matchgroup=pam_CardTag start="^\CLCTRL /" end="^\CEND_LCTRL[ ]*" contains=pam_Error,pam_Comment,pam_Comment_Position,pam_Continue keepend
 syn region      pam_Control_TEMBC_SHELL_INTERPOLATION        contained containedin=pam_Control_LCTRL matchgroup=pam_HeaderKW start="\CTEMBC_SHELL_INTERPOLATION" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Control_YESNO,pam_Continue keepend
 syn region      pam_Control_LOAD_CONSTANT_VARIATION        contained containedin=pam_Control_LCTRL matchgroup=pam_HeaderKW start="\CLOAD_CONSTANT_VARIATION" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Control_LOAD_CONSTANT_VARIATION_arg keepend
    syn keyword     pam_Control_LOAD_CONSTANT_VARIATION_arg         contained containedin=pam_Control_LOAD_CONSTANT_VARIATION STEP RAMP
@@ -2298,7 +2298,7 @@ syn region      pam_Control_IMPOSED_MOTION        contained containedin=pam_Cont
    syn region      pam_MBSYS_r2     transparent contained containedin=pam_MBSYS start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position keepend
    "Row 1
    syn region      pam_MBSYS_r1     transparent contained containedin=pam_MBSYS start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_MBSYS_r2 skipnl keepend
-syn region      pam_MBSYS                matchgroup=pam_CardTag start="^\CMBSYS /" end="^\CEND_MBSYS" contains=pam_MBSYS_r[1-4] fold keepend
+syn region      pam_MBSYS                matchgroup=pam_CardTag start="^\CMBSYS /" end="^\CEND_MBSYS" contains=pam_MBSYS_r[1-4] keepend
       "Row 5
       syn region      pam_MBSYS_RBODY0_r5     transparent contained containedin=pam_MBSYS_RBODY0 start="\%1c." start="^$\n" end="\%$" contains=@pam_Ident,pam_Comment,pam_Comment_Position,pam_Error,pam_End skipnl keepend
       "Row 4
@@ -2380,7 +2380,7 @@ syn region      pam_MBSYS                matchgroup=pam_CardTag start="^\CMBSYS 
 " MBSYS end}}}
 
 " {{{ FPCTRL
-syn region      pam_Control_FPCTRL                matchgroup=pam_CardTag start="^\CFPCTRL/" end="^\CEND_FPCTRL[ ]*" contains=pam_Error,pam_Comment,pam_Comment_Position,pam_Continue fold keepend
+syn region      pam_Control_FPCTRL                matchgroup=pam_CardTag start="^\CFPCTRL/" end="^\CEND_FPCTRL[ ]*" contains=pam_Error,pam_Comment,pam_Comment_Position,pam_Continue keepend
 syn region      pam_Control_FPMPLUG        contained containedin=pam_Control_FPCTRL matchgroup=pam_HeaderKW start="\CFPMPLUG" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Control_FPMPLUG_arg keepend
   syn keyword pam_Control_FPMPLUG_arg  contained containedin=pam_Control_FPMPLUG libfpmsp libfpmdp
   hi def link pam_Control_FPMPLUG_arg pam_Argument
@@ -2391,7 +2391,7 @@ syn region      pam_Control_NUMERIC_MODEL        contained containedin=pam_Contr
 
 " {{{ CPCTRL
 
-syn region      pam_Control_CPCTRL                matchgroup=pam_CardTag start="^\CCPCTRL/" end="^\CEND_CPCTRL[ ]*" contains=pam_Error,pam_Comment,pam_Comment_Position,pam_Continue fold keepend
+syn region      pam_Control_CPCTRL                matchgroup=pam_CardTag start="^\CCPCTRL/" end="^\CEND_CPCTRL[ ]*" contains=pam_Error,pam_Comment,pam_Comment_Position,pam_Continue keepend
 syn region      pam_Control_COUPLING_TYPE        contained containedin=pam_Control_CPCTRL matchgroup=pam_HeaderKW start="\CCOUPLING_TYPE" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Control_COUPLING_TYPE_arg keepend
    syn keyword     pam_Control_COUPLING_TYPE_arg         contained containedin=pam_Control_COUPLING_TYPE KINEMATIC PENALTY
    hi def link pam_Control_COUPLING_TYPE_arg pam_Argument
@@ -2436,7 +2436,7 @@ syn region      pam_IMPFIL                matchgroup=pam_CardTag start="^\CIMPFI
    syn region      pam_ORTHF_r2     transparent contained containedin=pam_ORTHF start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
    " Row 1
    syn region      pam_ORTHF_r1     transparent contained containedin=pam_ORTHF start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Continue,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_ORTHF_r2 skipnl keepend
-syn region      pam_ORTHF          matchgroup=pam_CardTag start="^\CORTHF /"  skip="^\CNAME.\{3\}" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_ORTHF_r[1-3] fold keepend
+syn region      pam_ORTHF          matchgroup=pam_CardTag start="^\CORTHF /"  skip="^\CNAME.\{3\}" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_ORTHF_r[1-3] keepend
 " === ORTHF end}}}
 
 " {{{=== DRAPF begin
@@ -2444,7 +2444,7 @@ syn region      pam_ORTHF          matchgroup=pam_CardTag start="^\CORTHF /"  sk
    syn region      pam_DRAPF_r2     transparent contained containedin=pam_DRAPF start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
    " Row 1
    syn region      pam_DRAPF_r1     transparent contained containedin=pam_DRAPF start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,pam_Continue,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_DRAPF_r2 skipnl keepend
-syn region      pam_DRAPF          matchgroup=pam_CardTag start="^\CDRAPF /" skip="^\CNAME.\{3\}" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_DRAPF_r[1-3] fold keepend
+syn region      pam_DRAPF          matchgroup=pam_CardTag start="^\CDRAPF /" skip="^\CNAME.\{3\}" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_DRAPF_r[1-3] keepend
 " === DRAPF end}}}
 
 "{{{ === DMPEW begin
@@ -2454,7 +2454,7 @@ syn region      pam_DRAPF          matchgroup=pam_CardTag start="^\CDRAPF /" ski
    syn region      pam_DMPEW_r2     transparent contained containedin=pam_DMPEW start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_DMPEW_r3 skipnl keepend
    " Row 1   
    syn region      pam_DMPEW_r1     transparent contained containedin=pam_DMPEW start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_DMPEW_r2 skipnl keepend
-syn region      pam_DMPEW            matchgroup=pam_CardTag start="^\CDMPEW /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_DMPEW_r[1-2] fold keepend
+syn region      pam_DMPEW            matchgroup=pam_CardTag start="^\CDMPEW /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_DMPEW_r[1-2] keepend
 " === DMPEW end}}}
 
 "{{{ === MODULE begin
@@ -2464,7 +2464,7 @@ syn region      pam_DMPEW            matchgroup=pam_CardTag start="^\CDMPEW /" e
    syn region      pam_MODULE_r2     transparent contained containedin=pam_MODULE start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position skipnl keepend
    " Row 1   
    syn region      pam_MODULE_r1     transparent contained containedin=pam_MODULE start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Integer,pam_String,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_MODULE_r2 skipnl keepend
-syn region      pam_MODULE           matchgroup=pam_CardTag start="^\CMODULE/" end="^\(\$\)\@!.\{6\}\/"me=e-7 end="^\CEND_MODULE" fold keepend 
+syn region      pam_MODULE           matchgroup=pam_CardTag start="^\CMODULE/" end="^\(\$\)\@!.\{6\}\/"me=e-7 end="^\CEND_MODULE" keepend 
 " === MODULE end}}}
 
 " {{{ === IDEXP
@@ -2473,7 +2473,7 @@ syn region      pam_MODULE           matchgroup=pam_CardTag start="^\CMODULE/" e
       hi def link pam_IDEXP_r2_arg pam_Argument
    " Row 1   
    syn region      pam_IDEXP_r1     transparent contained containedin=pam_IDEXP start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Integer,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_IDEXP_r2 skipnl keepend
-syn region      pam_IDEXP                matchgroup=pam_CardTag start="^\CIDEXP /" end="^\CEND_IDEXP[ ]*" contains=pam_Error,pam_Comment,pam_Comment_Position,pam_Continue fold keepend
+syn region      pam_IDEXP                matchgroup=pam_CardTag start="^\CIDEXP /" end="^\CEND_IDEXP[ ]*" contains=pam_Error,pam_Comment,pam_Comment_Position,pam_Continue keepend
 " IDEXP end }}}
 
 "{{{ === GLOBAL begin
@@ -2483,12 +2483,12 @@ syn region      pam_IDEXP                matchgroup=pam_CardTag start="^\CIDEXP 
    syn region      pam_GLOBAL_r2     transparent contained containedin=pam_GLOBAL start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position skipnl keepend
    " Row 1   
    syn region      pam_GLOBAL_r1     transparent contained containedin=pam_GLOBAL start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Integer,pam_String,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_GLOBAL_r2 skipnl keepend
-syn region      pam_GLOBAL           matchgroup=pam_CardTag start="^\CGLOBAL/" end="^\(\$\)\@!.\{6\}\/"me=e-7 end="^\CEND_GLOBAL" fold keepend
+syn region      pam_GLOBAL           matchgroup=pam_CardTag start="^\CGLOBAL/" end="^\(\$\)\@!.\{6\}\/"me=e-7 end="^\CEND_GLOBAL" keepend
 " === GLOBAL end}}}
 
 "{{{ === GROUP begin
-syn region      pam_Group            matchgroup=pam_CardTag start="^\CGROUP /" end="        \CEND" contains=pam_String,@pam_Ident,pam_GroupMeta,pam_Error,pam_Comment,pam_Comment_Position fold keepend
-syn region      pam_GroupMeta        matchgroup=pam_CardTag contained containedin=pam_MODEL start="^\CMETA" end="^\CEND_META" contains=pam_Source fold keepend
+syn region      pam_Group            matchgroup=pam_CardTag start="^\CGROUP /" end="        \CEND" contains=pam_String,@pam_Ident,pam_GroupMeta,pam_Error,pam_Comment,pam_Comment_Position keepend
+syn region      pam_GroupMeta        matchgroup=pam_CardTag contained containedin=pam_MODEL start="^\CMETA" end="^\CEND_META" contains=pam_Source keepend
 " === GROUP end}}}
 
 "{{{ === MODEL begin
@@ -2498,7 +2498,7 @@ syn region      pam_GroupMeta        matchgroup=pam_CardTag contained containedi
    syn region      pam_MODEL_r2     transparent contained containedin=pam_MODEL start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_GroupMeta skipnl keepend
    " Row 1   
    syn region      pam_MODEL_r1     transparent contained containedin=pam_MODEL start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Integer,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_MODEL_r2 skipnl keepend
-syn region      pam_MODEL           matchgroup=pam_CardTag start="^\CMODEL /" end="^\(\$\)\@!.\{6\}\/"me=e-7 end="^\CEND_MODEL" fold keepend
+syn region      pam_MODEL           matchgroup=pam_CardTag start="^\CMODEL /" end="^\(\$\)\@!.\{6\}\/"me=e-7 end="^\CEND_MODEL" keepend
 " === MODEL end}}}
 
 " {{{=== RMSSOL begin
@@ -2531,7 +2531,7 @@ syn region      pam_MODEL           matchgroup=pam_CardTag start="^\CMODEL /" en
    syn region      pam_RMSSOL_r2     transparent contained containedin=pam_RMSSOL start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_RMSSOL_r3,pam_RMSSOL_r3a,pam_RMSSOL_r4 skipnl keepend
    "Row 1
    syn region      pam_RMSSOL_r1     transparent contained containedin=pam_RMSSOL start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25i8,@73f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_RMSSOL_r2 skipnl keepend
-syn region      pam_RMSSOL                matchgroup=pam_CardTag start="^\CRMSSOL/" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_RMSSOL_r[1-4] fold keepend
+syn region      pam_RMSSOL                matchgroup=pam_CardTag start="^\CRMSSOL/" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_RMSSOL_r[1-4] keepend
 " === RMSSOL end}}}
 
 " {{{=== MMCASS begin
@@ -2546,7 +2546,7 @@ syn region      pam_RMSSOL                matchgroup=pam_CardTag start="^\CRMSSO
       hi def link pam_MMCASS_r3_a1 pam_evenArgument
       hi def link pam_MMCASS_r3_e1 pam_evenError
    syn region      pam_MMCASS_r1     transparent contained containedin=pam_MMCASS start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@25i8,pam_MMCASS_r3_[ae]1,pam_Continue,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_MMCASS_r2,pam_MMCASS_r3 skipnl keepend
-syn region      pam_MMCASS          matchgroup=pam_CardTag start="^\CMMCASS/" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_MMCASS_r[1-3] fold keepend
+syn region      pam_MMCASS          matchgroup=pam_CardTag start="^\CMMCASS/" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_MMCASS_r[1-3] keepend
 " === MMCASS end}}}
 
 " {{{ === TRSFM begin
@@ -2556,7 +2556,7 @@ syn region      pam_MMCASS          matchgroup=pam_CardTag start="^\CMMCASS/" en
    syn region      pam_TRSFM_r1     transparent contained containedin=pam_TRSFM start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_TRSFM_r2 skipnl keepend
    "Row 0 (Dummy)
    syn region      pam_TRSFM_r0     transparent contained containedin=pam_TRSFM matchgroup=pam_CardTag start="\%7c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position nextgroup=pam_TRSFM_r1 skipnl keepend
-syn region      pam_TRSFM        matchgroup=pam_CardTag start="^\CTRSFM /"he=e+1,rs=e-1 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_TRSFM_r[0-2] fold keepend
+syn region      pam_TRSFM        matchgroup=pam_CardTag start="^\CTRSFM /"he=e+1,rs=e-1 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_TRSFM_r[0-2] keepend
 " === TRSFM end}}}
 
 "{{{ === EXPORT/IMPORT begin
@@ -2612,8 +2612,8 @@ syn region      pam_TRSFM        matchgroup=pam_CardTag start="^\CTRSFM /"he=e+1
    syn region      pam_IMPORT_r1          transparent contained containedin=pam_IMPORT start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17f16,@33i8x,@41f8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_EXPORT_r2 skipnl keepend
    " Row 1
    syn region      pam_EXPORT_r1          transparent contained containedin=pam_EXPORT start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_EXPORT_r2 skipnl keepend
-syn region      pam_EXPORT                matchgroup=pam_CardTag start="^\CEXPORT/" end="^\CEND_EXPORT" contains=pam_EXPORT_r[1-4],pam_Error,pam_Comment,pam_Comment_Position,pam_Continue fold keepend
-syn region      pam_IMPORT                matchgroup=pam_CardTag start="^\CIMPORT/" end="^\CEND_IMPORT" contains=pam_IMPORT_r1,pam_EXPORT_r[2-4],pam_Error,pam_Comment,pam_Comment_Position,pam_Continue fold keepend
+syn region      pam_EXPORT                matchgroup=pam_CardTag start="^\CEXPORT/" end="^\CEND_EXPORT" contains=pam_EXPORT_r[1-4],pam_Error,pam_Comment,pam_Comment_Position,pam_Continue keepend
+syn region      pam_IMPORT                matchgroup=pam_CardTag start="^\CIMPORT/" end="^\CEND_IMPORT" contains=pam_IMPORT_r1,pam_EXPORT_r[2-4],pam_Error,pam_Comment,pam_Comment_Position,pam_Continue keepend
 
 hi def link pam_EXPORT_r1_a1 pam_oddArgument
 hi def link pam_EXPORT_r1_v1 pam_oddVar
@@ -2639,7 +2639,7 @@ hi def link pam_EXPORT_TRANSFORMATION_1_arg pam_Argument
    syn region      pam_CPLEXP_r2     transparent contained containedin=pam_CPLEXP start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_CPLEXP_r3 skipnl keepend
    "Row 1
    syn region      pam_CPLEXP_r1     transparent contained containedin=pam_CPLEXP start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_CPLEXP_r2 skipnl keepend
-syn region      pam_CPLEXP                matchgroup=pam_CardTag start="^\CCPLEXP/" end="^\CEND_CPLEXP" contains=pam_CPLEXP_r[1-5] fold keepend
+syn region      pam_CPLEXP                matchgroup=pam_CardTag start="^\CCPLEXP/" end="^\CEND_CPLEXP" contains=pam_CPLEXP_r[1-5] keepend
 " === CPLEXP end}}}
 
 " {{{ === MSTAGE begin
@@ -2677,7 +2677,7 @@ syn region      pam_Control_MSTAGE                matchgroup=pam_HeaderKW start=
 "{{{ === BAGIN begin
    syn keyword     pam_CHAMBER_Arg  contained containedin=pam_CHAMBER OPEN MIDNTR CLAV HOL FCT CLAVF
    hi def link pam_CHAMBER_Arg pam_Argument
-   syn region      pam_CHAMBER      contained containedin=pam_BAGIN  matchgroup=pam_CardTag start="^[ ]\{8\}\CCHAMBER" end="^[ ]\{8\}\CEND_CHAMBER" contains=pam_Name,pam_EndCHAMBER,pam_Comment,pam_Comment_Position,@pam_Ident_16,pam_Float,pam_End fold keepend
+   syn region      pam_CHAMBER      contained containedin=pam_BAGIN  matchgroup=pam_CardTag start="^[ ]\{8\}\CCHAMBER" end="^[ ]\{8\}\CEND_CHAMBER" contains=pam_Name,pam_EndCHAMBER,pam_Comment,pam_Comment_Position,@pam_Ident_16,pam_Float,pam_End keepend
    syn region      pam_CHAMBER_TITLE        contained containedin=pam_CHAMBER matchgroup=pam_HeaderKW start="^[ ]\{8\}\(\w\)\@=" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_String keepend
    syn region      pam_BAG_GEN_INI_COND        contained containedin=pam_BAGIN matchgroup=pam_HeaderKW start="^[ ]\{8\}\CGEN_INI_COND" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Float keepend
    syn region      pam_BAG_INI_COND        contained containedin=pam_BAGIN matchgroup=pam_HeaderKW start="^[ ]\{8\}\CINI_COND" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Float keepend
@@ -2715,7 +2715,7 @@ syn region      pam_Control_MSTAGE                matchgroup=pam_HeaderKW start=
    syn region      pam_BAG_INFLATOR        contained containedin=pam_CHAMBER matchgroup=pam_HeaderKW start="^[ ]\{8\}\CINFLATOR" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Float keepend
    syn region      pam_BAG_FPM_HOLE        contained containedin=pam_CHAMBER matchgroup=pam_HeaderKW start="^[ ]\{16\}\CFPM_HOLE" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar keepend
    syn region      pam_BAG_JET        contained containedin=pam_CHAMBER matchgroup=pam_HeaderKW start="^[ ]\{16\}\CJET" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Float keepend
-syn region      pam_BAGIN           matchgroup=pam_CardTag start="^\CBAGIN /" end="^\CEND_BAGIN" contains=pam_CHAMBER,pam_EndBAGIN,pam_Name,pam_Float,pam_Comment,pam_Comment_Position,pam_End,@pam_Ident_16 fold keepend
+syn region      pam_BAGIN           matchgroup=pam_CardTag start="^\CBAGIN /" end="^\CEND_BAGIN" contains=pam_CHAMBER,pam_EndBAGIN,pam_Name,pam_Float,pam_Comment,pam_Comment_Position,pam_End,@pam_Ident_16 keepend
    syn match       pam_EndBAGIN        display containedin=ALLBUT,pam_Comment,pam_Comment_Position,pam_EndData,pam_Continue,pam_Source "^\CEND_BAGIN"
    hi def link pam_EndBAGIN  pam_CardTag
 " === BAGIN end}}}
@@ -2734,16 +2734,16 @@ syn region      pam_BAGIN           matchgroup=pam_CardTag start="^\CBAGIN /" en
    syn region       pam_x3D_r2             transparent contained containedin=pam_x3D start="\%1c \(       \)\@=" start="^$\n" end="\n[\$\#]\@!" contains=@9f16,@25f16,@41f16,pam_Continue,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_x3D_r2,pam_x3D_r3 skipnl keepend
    "Row 1
    syn region       pam_x3D_r1             transparent contained containedin=pam_x3D start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25i8,@33i8,@41f8,@49f8,@57f8,@65i8,@73i8,pam_Continue,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_x3D_r2,pam_x3D_r3 skipnl keepend
-syn region      pam_x3D                matchgroup=pam_CardTag start="^\CDIS3D /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_x3D_r[1-3] fold keepend
-syn region      pam_x3D                matchgroup=pam_CardTag start="^\CDIS3DM/" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_x3D_r[1-3] fold keepend
-syn region      pam_x3D                matchgroup=pam_CardTag start="^\CDIS3DX/" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_x3D_r[1-3] fold keepend
-syn region      pam_x3D                matchgroup=pam_CardTag start="^\CVEL3D /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_x3D_r[1-3] fold keepend
-syn region      pam_x3D                matchgroup=pam_CardTag start="^\CACC3D /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_x3D_r[1-3] fold keepend
-syn region      pam_x3D                matchgroup=pam_CardTag start="^\CRAN3D /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_x3D_r[1-3] fold keepend
-syn region      pam_x3D                matchgroup=pam_CardTag start="^\CRAN3DM/" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_x3D_r[1-3] fold keepend
-syn region      pam_x3D                matchgroup=pam_CardTag start="^\CRAN3DX/" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_x3D_r[1-3] fold keepend
-syn region      pam_x3D                matchgroup=pam_CardTag start="^\CRVE3D /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_x3D_r[1-3] fold keepend
-syn region      pam_x3D                matchgroup=pam_CardTag start="^\CRAC3D /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_x3D_r[1-3] fold keepend
+syn region      pam_x3D                matchgroup=pam_CardTag start="^\CDIS3D /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_x3D_r[1-3] keepend
+syn region      pam_x3D                matchgroup=pam_CardTag start="^\CDIS3DM/" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_x3D_r[1-3] keepend
+syn region      pam_x3D                matchgroup=pam_CardTag start="^\CDIS3DX/" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_x3D_r[1-3] keepend
+syn region      pam_x3D                matchgroup=pam_CardTag start="^\CVEL3D /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_x3D_r[1-3] keepend
+syn region      pam_x3D                matchgroup=pam_CardTag start="^\CACC3D /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_x3D_r[1-3] keepend
+syn region      pam_x3D                matchgroup=pam_CardTag start="^\CRAN3D /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_x3D_r[1-3] keepend
+syn region      pam_x3D                matchgroup=pam_CardTag start="^\CRAN3DM/" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_x3D_r[1-3] keepend
+syn region      pam_x3D                matchgroup=pam_CardTag start="^\CRAN3DX/" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_x3D_r[1-3] keepend
+syn region      pam_x3D                matchgroup=pam_CardTag start="^\CRVE3D /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_x3D_r[1-3] keepend
+syn region      pam_x3D                matchgroup=pam_CardTag start="^\CRAC3D /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_x3D_r[1-3] keepend
 " == *3D end}}}
 
 " {{{== FBC3D begin
@@ -2760,7 +2760,7 @@ syn region      pam_x3D                matchgroup=pam_CardTag start="^\CRAC3D /"
    syn region       pam_FBC3D_r2             transparent contained containedin=pam_FBC3D start="\%1c.\(        \)\@=" start="^$\n" end="\n[\$\#]\@!" contains=@9f16,@25f16,@41f16,pam_Continue,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_FBC3D_r2,pam_FBC3D_r3 skipnl keepend
    "Row 1
    syn region       pam_FBC3D_r1             transparent contained containedin=pam_FBC3D start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@25i8,@33i8,@41i8,@49f8,@57f8,@65f8,@73i8,pam_Continue,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_FBC3D_r2,pam_FBC3D_r3 skipnl keepend
-syn region      pam_FBC3D                matchgroup=pam_CardTag start="^\CFBC3D /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_FBC3D_r[1-3] fold keepend
+syn region      pam_FBC3D                matchgroup=pam_CardTag start="^\CFBC3D /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_FBC3D_r[1-3] keepend
 " == FBC3D end}}}
 
 " {{{=== DAMP  begin
@@ -2777,7 +2777,7 @@ syn region      pam_FBC3D                matchgroup=pam_CardTag start="^\CFBC3D 
       syn match    pam_DAMP_r1_a2  contained containedin=pam_DAMP_r1 "\%17c\CCURVE   "
       hi def link pam_DAMP_r1_a2 pam_evenArgument
    syn region      pam_DAMP_r1     transparent contained containedin=pam_DAMP start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17f8,@25f8,@33f8,@41i8,@49f8,@57f8,@65f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_DAMP_r2 skipnl keepend
-syn region      pam_DAMP           matchgroup=pam_CardTag start="^\CDAMP  /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_DAMP_r[1-4] fold keepend
+syn region      pam_DAMP           matchgroup=pam_CardTag start="^\CDAMP  /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_DAMP_r[1-4] keepend
 " === DAMP  end}}}
 
 " {{{=== KINDA  begin
@@ -2792,7 +2792,7 @@ syn region      pam_DAMP           matchgroup=pam_CardTag start="^\CDAMP  /" end
       syn match    pam_KINDA_r1_a1  contained containedin=pam_KINDA_r1 "\%17c\CSENSOR  "
       hi def link pam_KINDA_r1_a1 pam_oddArgument
    syn region      pam_KINDA_r1     transparent contained containedin=pam_KINDA start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17f8,@25f8,@33f8,@41i8,@49f8,@57f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_KINDA_r2 skipnl keepend
-syn region      pam_KINDA           matchgroup=pam_CardTag start="^\CKINDA /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_KINDA_r[1-4] fold keepend
+syn region      pam_KINDA           matchgroup=pam_CardTag start="^\CKINDA /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_KINDA_r[1-4] keepend
 " === KINDA  end}}}
 
 " {{{=== ACFLD begin
@@ -2813,7 +2813,7 @@ syn region      pam_KINDA           matchgroup=pam_CardTag start="^\CKINDA /" en
    syn region      pam_ACFLD_r2     transparent contained containedin=pam_ACFLD start="^        " start="^$\n" end="\n[\$\#]\@!" contains=@9f16,@25f16,@41f16,pam_Continue,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_ACFLD_r3,pam_ACFLD_r4 skipnl keepend
    " Row 1
    syn region      pam_ACFLD_r1     transparent contained containedin=pam_ACFLD start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f8,@33i8,@41f8,@49i8,@57f8,@65i8,@73i8,pam_Continue,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_ACFLD_r2,pam_ACFLD_r3 skipnl keepend
-syn region      pam_ACFLD          matchgroup=pam_CardTag start="^\CACFLD /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_ACFLD_r[1-3] fold keepend
+syn region      pam_ACFLD          matchgroup=pam_CardTag start="^\CACFLD /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_ACFLD_r[1-3] keepend
 " === ACFLD end}}}
 
 " {{{=== BDFOR begin
@@ -2827,7 +2827,7 @@ syn region      pam_ACFLD          matchgroup=pam_CardTag start="^\CACFLD /" end
    syn region      pam_BDFOR_r2     transparent contained containedin=pam_BDFOR start="^        " start="^$\n" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_BDFOR_r3 skipnl keepend
    " Row 1
    syn region      pam_BDFOR_r1     transparent contained containedin=pam_BDFOR start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Continue,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_BDFOR_r2,pam_BDFOR_r3 skipnl keepend
-syn region      pam_BDFOR          matchgroup=pam_CardTag start="^\CBDFOR /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_BDFOR_r[1-3] fold keepend
+syn region      pam_BDFOR          matchgroup=pam_CardTag start="^\CBDFOR /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_BDFOR_r[1-3] keepend
    "Node Selection
    syn region      pam_BDFOR_IP_r4     transparent contained containedin=pam_BDFOR_IP start="\%1c." start="^$\n" matchgroup=pam_CardTag end="\%$" contains=@pam_Ident,pam_Comment,pam_Comment_Position,pam_End,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position keepend
    " Row 3 (Name)
@@ -2836,7 +2836,7 @@ syn region      pam_BDFOR          matchgroup=pam_CardTag start="^\CBDFOR /" end
    syn region      pam_BDFOR_IP_r2     transparent contained containedin=pam_BDFOR_IP start="^        " start="^$\n" end="\n[\$\#]\@!" contains=@41f16,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_BDFOR_IP_r3 skipnl keepend
    " Row 1
    syn region      pam_BDFOR_IP_r1     transparent contained containedin=pam_BDFOR_IP start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@33i8,@73i8,pam_Continue,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_BDFOR_IP_r2,pam_BDFOR_IP_r3 skipnl keepend
-syn region      pam_BDFOR_IP       matchgroup=pam_CardTag start="^\CBDFOR / \CINPRES"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_BDFOR_IP_r[1-3] fold keepend
+syn region      pam_BDFOR_IP       matchgroup=pam_CardTag start="^\CBDFOR / \CINPRES"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_BDFOR_IP_r[1-3] keepend
    "Node Selection
    syn region      pam_BDFOR_PPP_r5     transparent contained containedin=pam_BDFOR_PPP start="\%1c." start="^$\n" matchgroup=pam_CardTag end="\%$" contains=@pam_Ident,pam_Comment,pam_Comment_Position,pam_End,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position keepend
    " Row 4
@@ -2847,7 +2847,7 @@ syn region      pam_BDFOR_IP       matchgroup=pam_CardTag start="^\CBDFOR / \CIN
    syn region      pam_BDFOR_PPP_r2     transparent contained containedin=pam_BDFOR_PPP start="^        " start="^$\n" end="\n[\$\#]\@!" contains=@41f16,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_BDFOR_PPP_r3 skipnl keepend
    " Row 1
    syn region      pam_BDFOR_PPP_r1     transparent contained containedin=pam_BDFOR_PPP start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@33i8,@73i8,pam_Continue,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_BDFOR_PPP_r2,pam_BDFOR_PPP_r3 skipnl keepend
-syn region      pam_BDFOR_PPP       matchgroup=pam_CardTag start="^\CBDFOR / \(\CPRSTRS\|\CPRFORC\|\CPREND \)"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_BDFOR_PPP_r[1-4] fold keepend
+syn region      pam_BDFOR_PPP       matchgroup=pam_CardTag start="^\CBDFOR / \(\CPRSTRS\|\CPRFORC\|\CPREND \)"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_BDFOR_PPP_r[1-4] keepend
    "Node Selection
    syn region      pam_BDFOR_RR_r4     transparent contained containedin=pam_BDFOR_RR start="\%1c." start="^$\n" matchgroup=pam_CardTag end="\%$" contains=@pam_Ident,pam_Comment,pam_Comment_Position,pam_End,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position keepend
    " Row 3 (Name)
@@ -2856,7 +2856,7 @@ syn region      pam_BDFOR_PPP       matchgroup=pam_CardTag start="^\CBDFOR / \(\
    syn region      pam_BDFOR_RR_r2     transparent contained containedin=pam_BDFOR_RR start="^        " start="^$\n" end="\n[\$\#]\@!" contains=@9f16,@25f16,@41f16,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_BDFOR_RR_r3 skipnl keepend
    " Row 1
    syn region      pam_BDFOR_RR_r1     transparent contained containedin=pam_BDFOR_RR start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@33i8,@41i8,@49f8,@73i8,pam_Continue,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_BDFOR_RR_r2,pam_BDFOR_RR_r3 skipnl keepend
-syn region      pam_BDFOR_RR       matchgroup=pam_CardTag start="^\CBDFOR / \(\CRADIAL\|\CROTACC\)"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_BDFOR_RR_r[1-3] fold keepend
+syn region      pam_BDFOR_RR       matchgroup=pam_CardTag start="^\CBDFOR / \(\CRADIAL\|\CROTACC\)"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_BDFOR_RR_r[1-3] keepend
    "Node Selection
    syn region      pam_BDFOR_AV_r4     transparent contained containedin=pam_BDFOR_AV start="\%1c." start="^$\n" matchgroup=pam_CardTag end="\%$" contains=@pam_Ident,pam_Comment,pam_Comment_Position,pam_End,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position keepend
    " Row 3 (Name)
@@ -2865,7 +2865,7 @@ syn region      pam_BDFOR_RR       matchgroup=pam_CardTag start="^\CBDFOR / \(\C
    syn region      pam_BDFOR_AV_r2     transparent contained containedin=pam_BDFOR_AV start="^        " start="^$\n" end="\n[\$\#]\@!" contains=@9f16,@25f16,@41f16,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_BDFOR_AV_r3 skipnl keepend
    " Row 1
    syn region      pam_BDFOR_AV_r1     transparent contained containedin=pam_BDFOR_AV start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@17i8,@25i8,@33i8,@41i8,@73i8,pam_Continue,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_BDFOR_AV_r2,pam_BDFOR_AV_r3 skipnl keepend
-syn region      pam_BDFOR_AV       matchgroup=pam_CardTag start="^\CBDFOR / \(\CVOLUME\|\CAFIELD\)"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_BDFOR_AV_r[1-3] fold keepend
+syn region      pam_BDFOR_AV       matchgroup=pam_CardTag start="^\CBDFOR / \(\CVOLUME\|\CAFIELD\)"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_BDFOR_AV_r[1-3] keepend
       " IKFOR
       syn match       pam_BDFOR_r1_e1             display contained containedin=pam_BDFOR_r1 "\%9c.\{,6\}"
       syn match       pam_BDFOR_r1_a1             display contained containedin=pam_BDFOR_IP_r1 "\%9c\CINPRES"
@@ -2886,7 +2886,7 @@ syn region      pam_BDFOR_AV       matchgroup=pam_CardTag start="^\CBDFOR / \(\C
    syn region      pam_FRAME45_r2     transparent contained start="\%1c." start="^$\n" end="\(\%81c&\|\%81c\-\)\@<!$\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_FRAME45_r3 skipnl keepend
    " Row 1
    syn region      pam_FRAME45_r1     transparent contained  start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_FRAME45_r2 skipnl keepend
-syn region      pam_FRAME45      matchgroup=pam_CardTag start="^\CFRAME / .\{16\}[ ]\{7\}[45]$"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_FRAME45_r[1-3] fold keepend
+syn region      pam_FRAME45      matchgroup=pam_CardTag start="^\CFRAME / .\{16\}[ ]\{7\}[45]$"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_FRAME45_r[1-3] keepend
 
    " Row 3
    syn region      pam_FRAME13_r3     transparent contained start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
@@ -2894,7 +2894,7 @@ syn region      pam_FRAME45      matchgroup=pam_CardTag start="^\CFRAME / .\{16\
    syn region      pam_FRAME13_r2     transparent contained start="\%1c." start="^$\n" end="\(\%81c&\|\%81c\-\)\@<!$\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_FRAME13_r3 skipnl keepend
    " Row 1
    syn region      pam_FRAME13_r1     transparent contained  start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_FRAME13_r2 skipnl keepend
-syn region      pam_FRAME13      matchgroup=pam_CardTag start="^\CFRAME / .\{16\}[ ]\{7\}[13]$"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_FRAME13_r[1-3] fold keepend
+syn region      pam_FRAME13      matchgroup=pam_CardTag start="^\CFRAME / .\{16\}[ ]\{7\}[13]$"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_FRAME13_r[1-3] keepend
 
    " Row 4
    syn region      pam_FRAME02_r4     transparent contained start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9f16,@25f16,@41f16,@57i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
@@ -2904,7 +2904,7 @@ syn region      pam_FRAME13      matchgroup=pam_CardTag start="^\CFRAME / .\{16\
    syn region      pam_FRAME02_r2     transparent contained start="\%1c." start="^$\n" end="\(\%81c&\|\%81c\-\)\@<!$\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_FRAME02_r3 skipnl keepend
    " Row 1
    syn region      pam_FRAME02_r1     transparent contained  start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_FRAME02_r2 skipnl keepend
-syn region      pam_FRAME02      matchgroup=pam_CardTag start="^\CFRAME / .\{16\}[ ]\{7\}[02]$"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_FRAME02_r[1-3] fold keepend
+syn region      pam_FRAME02      matchgroup=pam_CardTag start="^\CFRAME / .\{16\}[ ]\{7\}[02]$"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_FRAME02_r[1-3] keepend
 " === FRAME end}}}
 
 " {{{=== PLANE begin
@@ -2922,21 +2922,21 @@ syn region      pam_FRAME02      matchgroup=pam_CardTag start="^\CFRAME / .\{16\
    syn region      pam_PLANE0_r2     transparent contained start="\%1c." start="^$\n" end="\(\%81c&\|\%81c\-\)\@<!$\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_PLANE0_r3 skipnl keepend
    " Row 1
    syn region      pam_PLANE0_r1     transparent contained  start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PLANE0_r2 skipnl keepend
-syn region      pam_PLANE0      matchgroup=pam_CardTag start="^\CPLANE / .\{8\}[ ]\{7\}0"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_PLANE0_r[1-3] fold keepend
+syn region      pam_PLANE0      matchgroup=pam_CardTag start="^\CPLANE / .\{8\}[ ]\{7\}0"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_PLANE0_r[1-3] keepend
    " Row 3
    syn region      pam_PLANE1_r3     transparent contained start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
    " Row 2
    syn region      pam_PLANE1_r2     transparent contained start="\%1c." start="^$\n" end="\(\%81c&\|\%81c\-\)\@<!$\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_PLANE1_r3 skipnl keepend
    " Row 1
    syn region      pam_PLANE1_r1     transparent contained  start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PLANE1_r2 skipnl keepend
-syn region      pam_PLANE1      matchgroup=pam_CardTag start="^\CPLANE / .\{8\}[ ]\{7\}1"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_PLANE1_r[1-3] fold keepend
+syn region      pam_PLANE1      matchgroup=pam_CardTag start="^\CPLANE / .\{8\}[ ]\{7\}1"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_PLANE1_r[1-3] keepend
    " Row 3
    syn region      pam_PLANE2_r3     transparent contained start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17f8,@25f8,@33f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
    " Row 2
    syn region      pam_PLANE2_r2     transparent contained start="\%1c." start="^$\n" end="\(\%81c&\|\%81c\-\)\@<!$\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_PLANE2_r3 skipnl keepend
    " Row 1
    syn region      pam_PLANE2_r1     transparent contained  start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PLANE2_r2 skipnl keepend
-syn region      pam_PLANE2      matchgroup=pam_CardTag start="^\CPLANE / .\{8\}[ ]\{7\}2"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_PLANE2_r[1-3] fold keepend
+syn region      pam_PLANE2      matchgroup=pam_CardTag start="^\CPLANE / .\{8\}[ ]\{7\}2"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_PLANE2_r[1-3] keepend
 " === PLANE end}}}
 
 " {{{=== VECTOR begin
@@ -2944,12 +2944,12 @@ syn region      pam_PLANE2      matchgroup=pam_CardTag start="^\CPLANE / .\{8\}[
    syn region      pam_VECTOR0_r3     transparent contained start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
    " Row 1
    syn region      pam_VECTOR0_r1     transparent contained  start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_VECTOR0_r3 skipnl keepend
-syn region      pam_VECTOR0      matchgroup=pam_CardTag start="^\CVECTOR/ .\{16\}[ ]\{7\}0"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_VECTOR0_r[1-3] fold keepend
+syn region      pam_VECTOR0      matchgroup=pam_CardTag start="^\CVECTOR/ .\{16\}[ ]\{7\}0"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_VECTOR0_r[1-3] keepend
    " Row 3
    syn region      pam_VECTOR1_r3     transparent contained start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9f8,@17f8,@25f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
    " Row 1
    syn region      pam_VECTOR1_r1     transparent contained  start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_VECTOR1_r3 skipnl keepend
-syn region      pam_VECTOR1      matchgroup=pam_CardTag start="^\CVECTOR/ .\{16\}[ ]\{7\}1"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_VECTOR1_r[1-3] fold keepend
+syn region      pam_VECTOR1      matchgroup=pam_CardTag start="^\CVECTOR/ .\{16\}[ ]\{7\}1"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_VECTOR1_r[1-3] keepend
 " === VECTOR end}}}
 
 " {{{=== SENSOR begin
@@ -2957,7 +2957,7 @@ syn region      pam_VECTOR1      matchgroup=pam_CardTag start="^\CVECTOR/ .\{16\
    syn region      pam_SENSORX_r2     transparent contained start="\%1c." start="^$\n" end="\%$" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_Comment,pam_Comment_Position skipnl keepend
    " Row 1
    syn region      pam_SENSORX_r1     transparent contained  start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25i8,@33i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_SENSORX_r2 skipnl keepend
-syn region      pam_SENSORX      matchgroup=pam_CardTag start="^\CSENSOR/" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_SENSORX_r[1-3] fold keepend
+syn region      pam_SENSORX      matchgroup=pam_CardTag start="^\CSENSOR/" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_SENSORX_r[1-3] keepend
 " SENSOR 1
    " Row 3
    syn region      pam_SENSOR1_r3     transparent contained start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
@@ -2965,7 +2965,7 @@ syn region      pam_SENSORX      matchgroup=pam_CardTag start="^\CSENSOR/" end="
    syn region      pam_SENSOR1_r2     transparent contained start="\%1c." start="^$\n" end="\(\%81c&\|\%81c\-\)\@<!$\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_SENSOR1_r3 skipnl keepend
    " Row 1
    syn region      pam_SENSOR1_r1     transparent contained  start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25i8,@33i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_SENSOR1_r2 skipnl keepend
-syn region      pam_SENSOR1      matchgroup=pam_CardTag start="^\CSENSOR/ .\{8\}[ ]\{7\}1"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_SENSOR1_r[1-3] fold keepend
+syn region      pam_SENSOR1      matchgroup=pam_CardTag start="^\CSENSOR/ .\{8\}[ ]\{7\}1"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_SENSOR1_r[1-3] keepend
 " SENSOR 2
    " Row 3
    syn region      pam_SENSOR2_r3     transparent contained start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25f8,@33f8,@41f8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
@@ -2973,7 +2973,7 @@ syn region      pam_SENSOR1      matchgroup=pam_CardTag start="^\CSENSOR/ .\{8\}
    syn region      pam_SENSOR2_r2     transparent contained start="\%1c." start="^$\n" end="\(\%81c&\|\%81c\-\)\@<!$\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_SENSOR2_r3 skipnl keepend
    " Row 1
    syn region      pam_SENSOR2_r1     transparent contained  start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25i8,@33i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_SENSOR2_r2 skipnl keepend
-syn region      pam_SENSOR2      matchgroup=pam_CardTag start="^\CSENSOR/ .\{8\}[ ]\{7\}2"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_SENSOR2_r[1-3] fold keepend
+syn region      pam_SENSOR2      matchgroup=pam_CardTag start="^\CSENSOR/ .\{8\}[ ]\{7\}2"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_SENSOR2_r[1-3] keepend
 " SENSOR 3
    " Row 3
    syn region      pam_SENSOR3_r3     transparent contained start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41f8,@57i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
@@ -2981,7 +2981,7 @@ syn region      pam_SENSOR2      matchgroup=pam_CardTag start="^\CSENSOR/ .\{8\}
    syn region      pam_SENSOR3_r2     transparent contained start="\%1c." start="^$\n" end="\(\%81c&\|\%81c\-\)\@<!$\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_SENSOR3_r3 skipnl keepend
    " Row 1
    syn region      pam_SENSOR3_r1     transparent contained  start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25i8,@33i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_SENSOR3_r2 skipnl keepend
-syn region      pam_SENSOR3      matchgroup=pam_CardTag start="^\CSENSOR/ .\{8\}[ ]\{7\}3"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_SENSOR3_r[1-3] fold keepend
+syn region      pam_SENSOR3      matchgroup=pam_CardTag start="^\CSENSOR/ .\{8\}[ ]\{7\}3"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_SENSOR3_r[1-3] keepend
 " SENSOR 4
    " Row 3
    syn region      pam_SENSOR4_r3     transparent contained start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17f8,@25i8,@33i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
@@ -2989,7 +2989,7 @@ syn region      pam_SENSOR3      matchgroup=pam_CardTag start="^\CSENSOR/ .\{8\}
    syn region      pam_SENSOR4_r2     transparent contained start="\%1c." start="^$\n" end="\(\%81c&\|\%81c\-\)\@<!$\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_SENSOR4_r3 skipnl keepend
    " Row 1
    syn region      pam_SENSOR4_r1     transparent contained  start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25i8,@33i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_SENSOR4_r2 skipnl keepend
-syn region      pam_SENSOR4      matchgroup=pam_CardTag start="^\CSENSOR/ .\{8\}[ ]\{7\}4"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_SENSOR4_r[1-3] fold keepend
+syn region      pam_SENSOR4      matchgroup=pam_CardTag start="^\CSENSOR/ .\{8\}[ ]\{7\}4"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_SENSOR4_r[1-3] keepend
 " SENSOR 5
    " Row 3
    syn region      pam_SENSOR5_r3     transparent contained start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
@@ -2997,7 +2997,7 @@ syn region      pam_SENSOR4      matchgroup=pam_CardTag start="^\CSENSOR/ .\{8\}
    syn region      pam_SENSOR5_r2     transparent contained start="\%1c." start="^$\n" end="\(\%81c&\|\%81c\-\)\@<!$\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_SENSOR5_r3 skipnl keepend
    " Row 1
    syn region      pam_SENSOR5_r1     transparent contained  start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25i8,@33i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_SENSOR5_r2 skipnl keepend
-syn region      pam_SENSOR5      matchgroup=pam_CardTag start="^\CSENSOR/ .\{8\}[ ]\{7\}5"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_SENSOR5_r[1-3] fold keepend
+syn region      pam_SENSOR5      matchgroup=pam_CardTag start="^\CSENSOR/ .\{8\}[ ]\{7\}5"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_SENSOR5_r[1-3] keepend
 " SENSOR 6
    " Row 3
    syn region      pam_SENSOR6_r3     transparent contained start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17f8,@25f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
@@ -3005,7 +3005,7 @@ syn region      pam_SENSOR5      matchgroup=pam_CardTag start="^\CSENSOR/ .\{8\}
    syn region      pam_SENSOR6_r2     transparent contained start="\%1c." start="^$\n" end="\(\%81c&\|\%81c\-\)\@<!$\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_SENSOR6_r3 skipnl keepend
    " Row 1
    syn region      pam_SENSOR6_r1     transparent contained  start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25i8,@33i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_SENSOR6_r2 skipnl keepend
-syn region      pam_SENSOR6      matchgroup=pam_CardTag start="^\CSENSOR/ .\{8\}[ ]\{7\}6"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_SENSOR6_r[1-3] fold keepend
+syn region      pam_SENSOR6      matchgroup=pam_CardTag start="^\CSENSOR/ .\{8\}[ ]\{7\}6"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_SENSOR6_r[1-3] keepend
 " SENSOR 7
    " Row 3
    syn region      pam_SENSOR7_r3     transparent contained start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41f8,@49f8,@57i8,@65f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
@@ -3013,7 +3013,7 @@ syn region      pam_SENSOR6      matchgroup=pam_CardTag start="^\CSENSOR/ .\{8\}
    syn region      pam_SENSOR7_r2     transparent contained start="\%1c." start="^$\n" end="\(\%81c&\|\%81c\-\)\@<!$\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_SENSOR7_r3 skipnl keepend
    " Row 1
    syn region      pam_SENSOR7_r1     transparent contained  start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25i8,@33i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_SENSOR7_r2 skipnl keepend
-syn region      pam_SENSOR7      matchgroup=pam_CardTag start="^\CSENSOR/ .\{8\}[ ]\{7\}7"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_SENSOR7_r[1-3] fold keepend
+syn region      pam_SENSOR7      matchgroup=pam_CardTag start="^\CSENSOR/ .\{8\}[ ]\{7\}7"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_SENSOR7_r[1-3] keepend
 " SENSOR 8
    " Row 3
    syn region      pam_SENSOR8_r3     transparent contained start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
@@ -3021,7 +3021,7 @@ syn region      pam_SENSOR7      matchgroup=pam_CardTag start="^\CSENSOR/ .\{8\}
    syn region      pam_SENSOR8_r2     transparent contained start="\%1c." start="^$\n" end="\(\%81c&\|\%81c\-\)\@<!$\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_SENSOR8_r3 skipnl keepend
    " Row 1
    syn region      pam_SENSOR8_r1     transparent contained  start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25i8,@33i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_SENSOR8_r2 skipnl keepend
-syn region      pam_SENSOR8      matchgroup=pam_CardTag start="^\CSENSOR/ .\{8\}[ ]\{7\}8"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_SENSOR8_r[1-3] fold keepend
+syn region      pam_SENSOR8      matchgroup=pam_CardTag start="^\CSENSOR/ .\{8\}[ ]\{7\}8"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_SENSOR8_r[1-3] keepend
 " SENSOR 9
    " Row 3
    syn region      pam_SENSOR9_r3     transparent contained start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
@@ -3029,7 +3029,7 @@ syn region      pam_SENSOR8      matchgroup=pam_CardTag start="^\CSENSOR/ .\{8\}
    syn region      pam_SENSOR9_r2     transparent contained start="\%1c." start="^$\n" end="\(\%81c&\|\%81c\-\)\@<!$\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_SENSOR9_r3 skipnl keepend
    " Row 1
    syn region      pam_SENSOR9_r1     transparent contained  start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25i8,@33i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_SENSOR9_r2 skipnl keepend
-syn region      pam_SENSOR9      matchgroup=pam_CardTag start="^\CSENSOR/ .\{8\}[ ]\{7\}9"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_SENSOR9_r[1-3] fold keepend
+syn region      pam_SENSOR9      matchgroup=pam_CardTag start="^\CSENSOR/ .\{8\}[ ]\{7\}9"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_SENSOR9_r[1-3] keepend
 " SENSOR 10
    " Row 3
    syn region      pam_SENSOR10_r3     transparent contained start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
@@ -3037,7 +3037,7 @@ syn region      pam_SENSOR9      matchgroup=pam_CardTag start="^\CSENSOR/ .\{8\}
    syn region      pam_SENSOR10_r2     transparent contained start="\%1c." start="^$\n" end="\(\%81c&\|\%81c\-\)\@<!$\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_SENSOR10_r3 skipnl keepend
    " Row 1
    syn region      pam_SENSOR10_r1     transparent contained  start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25i8,@33i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_SENSOR10_r2 skipnl keepend
-syn region      pam_SENSOR10      matchgroup=pam_CardTag start="^\CSENSOR/ .\{8\}[ ]\{6\}10"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_SENSOR10_r[1-3] fold keepend
+syn region      pam_SENSOR10      matchgroup=pam_CardTag start="^\CSENSOR/ .\{8\}[ ]\{6\}10"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_SENSOR10_r[1-3] keepend
 " SENSOR 11
    " Row 3
    syn region      pam_SENSOR11_r3     transparent contained start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
@@ -3045,7 +3045,7 @@ syn region      pam_SENSOR10      matchgroup=pam_CardTag start="^\CSENSOR/ .\{8\
    syn region      pam_SENSOR11_r2     transparent contained start="\%1c." start="^$\n" end="\(\%81c&\|\%81c\-\)\@<!$\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_SENSOR11_r3 skipnl keepend
    " Row 1
    syn region      pam_SENSOR11_r1     transparent contained  start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25i8,@33i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_SENSOR11_r2 skipnl keepend
-syn region      pam_SENSOR11      matchgroup=pam_CardTag start="^\CSENSOR/ .\{8\}[ ]\{6\}11"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_SENSOR11_r[1-3] fold keepend
+syn region      pam_SENSOR11      matchgroup=pam_CardTag start="^\CSENSOR/ .\{8\}[ ]\{6\}11"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_SENSOR11_r[1-3] keepend
 " SENSOR 12
    " Row 4
    syn region      pam_SENSOR12_r4     transparent contained start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_SENSOR12_r4,pam_TrailingError,pam_Comment,pam_Comment_Position,pam_EndSens skipnl keepend
@@ -3063,7 +3063,7 @@ syn region      pam_SENSOR11      matchgroup=pam_CardTag start="^\CSENSOR/ .\{8\
    syn region      pam_SENSOR12_r2     transparent contained start="\%1c." start="^$\n" end="\(\%81c&\|\%81c\-\)\@<!$\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_SENSOR12_r3 skipnl keepend
    " Row 1
    syn region      pam_SENSOR12_r1     transparent contained  start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25i8,@33i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_SENSOR12_r2 skipnl keepend
-syn region      pam_SENSOR12      matchgroup=pam_CardTag start="^\CSENSOR/ .\{8\}[ ]\{6\}12"rs=s+8 end="^\CEND_SENS" contains=pam_SENSOR12_r[1-4],pam_EndSens fold keepend
+syn region      pam_SENSOR12      matchgroup=pam_CardTag start="^\CSENSOR/ .\{8\}[ ]\{6\}12"rs=s+8 end="^\CEND_SENS" contains=pam_SENSOR12_r[1-4],pam_EndSens keepend
 " SENSOR 13
    " Row 3
    syn region      pam_SENSOR13_r3     transparent contained start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
@@ -3071,7 +3071,7 @@ syn region      pam_SENSOR12      matchgroup=pam_CardTag start="^\CSENSOR/ .\{8\
    syn region      pam_SENSOR13_r2     transparent contained start="\%1c." start="^$\n" end="\(\%81c&\|\%81c\-\)\@<!$\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_SENSOR13_r3 skipnl keepend
    " Row 1
    syn region      pam_SENSOR13_r1     transparent contained  start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25i8,@33i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_SENSOR13_r2 skipnl keepend
-syn region      pam_SENSOR13      matchgroup=pam_CardTag start="^\CSENSOR/ .\{8\}[ ]\{6\}13"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_SENSOR13_r[1-3] fold keepend
+syn region      pam_SENSOR13      matchgroup=pam_CardTag start="^\CSENSOR/ .\{8\}[ ]\{6\}13"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_SENSOR13_r[1-3] keepend
 " SENSOR 14
    " Row 4 (Node Selection)
    syn region      pam_SENSOR14_r4     transparent contained start="\%1c." start="^$\n" matchgroup=pam_CardTag end="\%$" contains=@pam_Ident,pam_Comment,pam_Comment_Position,pam_End,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position keepend
@@ -3081,7 +3081,7 @@ syn region      pam_SENSOR13      matchgroup=pam_CardTag start="^\CSENSOR/ .\{8\
    syn region      pam_SENSOR14_r2     transparent contained start="\%1c." start="^$\n" end="\(\%81c&\|\%81c\-\)\@<!$\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_SENSOR14_r3 skipnl keepend
    " Row 1
    syn region      pam_SENSOR14_r1     transparent contained  start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_SENSOR14_r2 skipnl keepend
-syn region      pam_SENSOR14      matchgroup=pam_CardTag start="^\CSENSOR/ .\{8\}[ ]\{6\}14"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_SENSOR14_r[1-4] fold keepend
+syn region      pam_SENSOR14      matchgroup=pam_CardTag start="^\CSENSOR/ .\{8\}[ ]\{6\}14"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_SENSOR14_r[1-4] keepend
       "END_SENS
       syn match       pam_EndSens          display contained "^        \CEND_SENS"
       hi def link pam_EndSens     pam_CardTag
@@ -3103,7 +3103,7 @@ syn region      pam_SENSOR14      matchgroup=pam_CardTag start="^\CSENSOR/ .\{8\
    syn region      pam_RUPMOX_r2     transparent contained start="\%1c." start="^$\n" end="\%$" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_Comment,pam_Comment_Position skipnl keepend
    " Row 1
    syn region      pam_RUPMOX_r1     transparent contained  start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_RUPMOX_r2 skipnl keepend
-syn region      pam_RUPMOX      matchgroup=pam_CardTag start="^\CRUPMO /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_RUPMOX_r[1-3] fold keepend
+syn region      pam_RUPMOX      matchgroup=pam_CardTag start="^\CRUPMO /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_RUPMOX_r[1-3] keepend
 " RUPMO 0
    " Row 3
    syn region      pam_RUPMO0_r3     transparent contained start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9f8,@17f8,@25f8,@33f8,@41f8,@49f8,@57f8,@65f8,@73f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
@@ -3111,7 +3111,7 @@ syn region      pam_RUPMOX      matchgroup=pam_CardTag start="^\CRUPMO /" end="^
    syn region      pam_RUPMO0_r2     transparent contained start="\%1c." start="^$\n" end="\(\%81c&\|\%81c\-\)\@<!$\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_RUPMO0_r3 skipnl keepend
    " Row 1
    syn region      pam_RUPMO0_r1     transparent contained  start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_RUPMO0_r2 skipnl keepend
-syn region      pam_RUPMO0      matchgroup=pam_CardTag start="^\CRUPMO / .\{8\}[ ]\{7\}[01]"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_RUPMO0_r[1-3] fold keepend
+syn region      pam_RUPMO0      matchgroup=pam_CardTag start="^\CRUPMO / .\{8\}[ ]\{7\}[01]"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_RUPMO0_r[1-3] keepend
 " RUPMO 2
    " Row 3
    syn region      pam_RUPMO2_r6     transparent contained start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9f8,@17f8,@25f8,@33f8,@41f8,@49f8,@57f8,@65f8,@73f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
@@ -3122,7 +3122,7 @@ syn region      pam_RUPMO0      matchgroup=pam_CardTag start="^\CRUPMO / .\{8\}[
    syn region      pam_RUPMO2_r2     transparent contained start="\%1c." start="^$\n" end="\(\%81c&\|\%81c\-\)\@<!$\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_RUPMO2_r3 skipnl keepend
    " Row 1
    syn region      pam_RUPMO2_r1     transparent contained  start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_RUPMO2_r2 skipnl keepend
-syn region      pam_RUPMO2      matchgroup=pam_CardTag start="^\CRUPMO / .\{8\}[ ]\{7\}2"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_RUPMO2_r[1-6] fold keepend
+syn region      pam_RUPMO2      matchgroup=pam_CardTag start="^\CRUPMO / .\{8\}[ ]\{7\}2"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_RUPMO2_r[1-6] keepend
 " RUPMO 3
    " Row 3
    syn region      pam_RUPMO3_r4     transparent contained start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9f8,@17f8,@25f8,@33f8,@41f8,@49f8,@57f8,@65f8,@73f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
@@ -3131,7 +3131,7 @@ syn region      pam_RUPMO2      matchgroup=pam_CardTag start="^\CRUPMO / .\{8\}[
    syn region      pam_RUPMO3_r2     transparent contained start="\%1c." start="^$\n" end="\(\%81c&\|\%81c\-\)\@<!$\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_RUPMO3_r3 skipnl keepend
    " Row 1
    syn region      pam_RUPMO3_r1     transparent contained  start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_RUPMO3_r2 skipnl keepend
-syn region      pam_RUPMO3      matchgroup=pam_CardTag start="^\CRUPMO / .\{8\}[ ]\{7\}3"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_RUPMO3_r[1-4] fold keepend
+syn region      pam_RUPMO3      matchgroup=pam_CardTag start="^\CRUPMO / .\{8\}[ ]\{7\}3"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_RUPMO3_r[1-4] keepend
 " RUPMO 5
    " Row 4
    syn region      pam_RUPMO5_r4     transparent contained start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9f8,@17f8,@25f8,@33f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
@@ -3141,7 +3141,7 @@ syn region      pam_RUPMO3      matchgroup=pam_CardTag start="^\CRUPMO / .\{8\}[
    syn region      pam_RUPMO5_r2     transparent contained start="\%1c." start="^$\n" end="\(\%81c&\|\%81c\-\)\@<!$\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_RUPMO5_r3 skipnl keepend
    " Row 1
    syn region      pam_RUPMO5_r1     transparent contained  start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_RUPMO5_r2 skipnl keepend
-syn region      pam_RUPMO5      matchgroup=pam_CardTag start="^\CRUPMO / .\{8\}[ ]\{7\}5"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_RUPMO5_r[1-4] fold keepend
+syn region      pam_RUPMO5      matchgroup=pam_CardTag start="^\CRUPMO / .\{8\}[ ]\{7\}5"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_RUPMO5_r[1-4] keepend
 " RUPMO 6
    " Row 3
    syn region      pam_RUPMO6_r3     transparent contained start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9f8,@17f8,@25f8,@33f8,@41f8,@49f8,@57f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
@@ -3149,7 +3149,7 @@ syn region      pam_RUPMO5      matchgroup=pam_CardTag start="^\CRUPMO / .\{8\}[
    syn region      pam_RUPMO6_r2     transparent contained start="\%1c." start="^$\n" end="\(\%81c&\|\%81c\-\)\@<!$\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_RUPMO6_r3 skipnl keepend
    " Row 1
    syn region      pam_RUPMO6_r1     transparent contained  start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_RUPMO6_r2 skipnl keepend
-syn region      pam_RUPMO6      matchgroup=pam_CardTag start="^\CRUPMO / .\{8\}[ ]\{7\}6"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_RUPMO6_r[1-3] fold keepend
+syn region      pam_RUPMO6      matchgroup=pam_CardTag start="^\CRUPMO / .\{8\}[ ]\{7\}6"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_RUPMO6_r[1-3] keepend
 " RUPMO 7
    " Row 4
    syn region      pam_RUPMO7_r4     transparent contained start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9f8,@17f8,@25f8,@33f8,@41f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
@@ -3159,7 +3159,7 @@ syn region      pam_RUPMO6      matchgroup=pam_CardTag start="^\CRUPMO / .\{8\}[
    syn region      pam_RUPMO7_r2     transparent contained start="\%1c." start="^$\n" end="\(\%81c&\|\%81c\-\)\@<!$\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_RUPMO7_r3 skipnl keepend
    " Row 1
    syn region      pam_RUPMO7_r1     transparent contained  start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_RUPMO7_r2 skipnl keepend
-syn region      pam_RUPMO7      matchgroup=pam_CardTag start="^\CRUPMO / .\{8\}[ ]\{7\}7"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_RUPMO7_r[1-4] fold keepend
+syn region      pam_RUPMO7      matchgroup=pam_CardTag start="^\CRUPMO / .\{8\}[ ]\{7\}7"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_RUPMO7_r[1-4] keepend
 " RUPMO 15
    " Row 4
    syn region      pam_RUPMO15_r4     transparent contained start="\%1c." start="^$\n" end="\%$" contains=pam_Comment,pam_Comment_Position skipnl keepend
@@ -3173,7 +3173,7 @@ syn region      pam_RUPMO7      matchgroup=pam_CardTag start="^\CRUPMO / .\{8\}[
    syn region      pam_RUPMO15_r2     transparent contained start="\%1c." start="^$\n" end="\(\%81c&\|\%81c\-\)\@<!$\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_RUPMO15_r3 skipnl keepend
    " Row 1
    syn region      pam_RUPMO15_r1     transparent contained  start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_RUPMO15_r2 skipnl keepend
-syn region      pam_RUPMO15      matchgroup=pam_CardTag start="^\CRUPMO / .\{8\}[ ]\{6\}15"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_RUPMO15_r[1-4] fold keepend
+syn region      pam_RUPMO15      matchgroup=pam_CardTag start="^\CRUPMO / .\{8\}[ ]\{6\}15"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_RUPMO15_r[1-4] keepend
 " === RUPMO end}}}
 
 " {{{=== MASS begin
@@ -3189,7 +3189,7 @@ syn region      pam_RUPMO15      matchgroup=pam_CardTag start="^\CRUPMO / .\{8\}
    syn region      pam_MASS_r2     transparent contained containedin=pam_MASS start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_MASS_r3 skipnl keepend
    "Row 1
    syn region      pam_MASS_r1     transparent contained containedin=pam_MASS start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@33f16,@49f16,@65f16,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_MASS_r2 skipnl keepend
-syn region      pam_MASS                matchgroup=pam_CardTag start="^\CMASS  /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_MASS_r[1-4] fold keepend
+syn region      pam_MASS                matchgroup=pam_CardTag start="^\CMASS  /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_MASS_r[1-4] keepend
 " === MASS end}}}
 
 " {{{=== DETOP begin
@@ -3199,31 +3199,31 @@ syn region      pam_MASS                matchgroup=pam_CardTag start="^\CMASS  /
    syn region      pam_DETOP_r2     transparent contained containedin=pam_DETOP start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_DETOP_r3 skipnl keepend
    "Row 1
    syn region      pam_DETOP_r1     transparent contained containedin=pam_DETOP start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17f8,@25f8,@33f8,@41f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_DETOP_r2 skipnl keepend
-syn region      pam_DETOP                matchgroup=pam_CardTag start="^\CDETOP /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_DETOP_r[1-4] fold keepend
+syn region      pam_DETOP                matchgroup=pam_CardTag start="^\CDETOP /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_DETOP_r[1-4] keepend
 " === DETOP end}}}
 
 " {{{=== DPEEN begin
    "Row 1
    syn region      pam_DPEEN_r1     transparent contained containedin=pam_DPEEN start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25i8,@33f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
-syn region      pam_DPEEN                matchgroup=pam_CardTag start="^\CDPEEN /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_DPEEN_r[1-4] fold keepend
+syn region      pam_DPEEN                matchgroup=pam_CardTag start="^\CDPEEN /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_DPEEN_r[1-4] keepend
 " === DPEEN end}}}
 
 " {{{=== DPNQM begin
    "Row 1
    syn region      pam_DPNQM_r1     transparent contained containedin=pam_DPNQM start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25i8,@33f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
-syn region      pam_DPNQM                matchgroup=pam_CardTag start="^\CDPNQM /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_DPNQM_r[1-4] fold keepend
+syn region      pam_DPNQM                matchgroup=pam_CardTag start="^\CDPNQM /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_DPNQM_r[1-4] keepend
 " === DPNQM end}}}
 
 " {{{=== DPEMA begin
    "Row 1
    syn region      pam_DPEMA_r1     transparent contained containedin=pam_DPEMA start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
-syn region      pam_DPEMA                matchgroup=pam_CardTag start="^\CDPEMA /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_DPEMA_r[1-4] fold keepend
+syn region      pam_DPEMA                matchgroup=pam_CardTag start="^\CDPEMA /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_DPEMA_r[1-4] keepend
 " === DPEMA end}}}
 
 " {{{=== DPEQM begin
    "Row 1
    syn region      pam_DPEQM_r1     transparent contained containedin=pam_DPEQM start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f8,@33f8,@41f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
-syn region      pam_DPEQM                matchgroup=pam_CardTag start="^\CDPEQM /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_DPEQM_r[1-4] fold keepend
+syn region      pam_DPEQM                matchgroup=pam_CardTag start="^\CDPEQM /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_DPEQM_r[1-4] keepend
 " === DPEQM end}}}
 
 " {{{=== MUSC1 begin
@@ -3244,7 +3244,7 @@ syn region      pam_DPEQM                matchgroup=pam_CardTag start="^\CDPEQM 
    "Row 1
       syn region pam_MUSC1_r1_auto  transparent contained containedin=pam_MUSC1_r1 matchgroup=pam_evenArgument start="\%17c\CAUTO    " end="\%$" contains=@25f8,@33f8,@41f8,pam_Comment,pam_Comment_Position,pam_Error
    syn region      pam_MUSC1_r1     transparent contained containedin=pam_MUSC1 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17f8,@25f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_MUSC1_r2 skipnl keepend
-syn region      pam_MUSC1                matchgroup=pam_CardTag start="^\CMUSC1 /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_MUSC1_r[1-4] fold keepend
+syn region      pam_MUSC1                matchgroup=pam_CardTag start="^\CMUSC1 /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_MUSC1_r[1-4] keepend
 " === MUSC1 end}}}
 
 " {{{=== MDBODY begin
@@ -3261,7 +3261,7 @@ syn region      pam_MUSC1                matchgroup=pam_CardTag start="^\CMUSC1 
       syn match       pam_MDBODY_r1_a1             display contained containedin=pam_MDBODY_r1 "\%17c\CNODE    "
       hi def link pam_MDBODY_r1_a1 pam_evenArgument
       hi def link pam_MDBODY_r1_e1 pam_evenError
-syn region      pam_MDBODY                matchgroup=pam_CardTag start="^\CMDBODY/" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_MDBODY_r[1-4] fold keepend
+syn region      pam_MDBODY                matchgroup=pam_CardTag start="^\CMDBODY/" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_MDBODY_r[1-4] keepend
 " === MDBODY end}}}
 
 " {{{=== BELTS begin
@@ -3274,7 +3274,7 @@ syn region      pam_MDBODY                matchgroup=pam_CardTag start="^\CMDBOD
    syn region      pam_BELTS_r2     transparent contained containedin=pam_BELTS start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_BELTS_r3 skipnl keepend
    "Row 1
    syn region      pam_BELTS_r1     transparent contained containedin=pam_BELTS start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_BELTS_r2 skipnl keepend
-syn region      pam_BELTS                matchgroup=pam_CardTag start="^\CBELTS /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_BELTS_r[1-4] fold keepend
+syn region      pam_BELTS                matchgroup=pam_CardTag start="^\CBELTS /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_BELTS_r[1-4] keepend
 " === BELTS end}}}
 
 " {{{=== RETRA begin
@@ -3288,7 +3288,7 @@ syn region      pam_BELTS                matchgroup=pam_CardTag start="^\CBELTS 
    syn region      pam_RETRA_r2     transparent contained containedin=pam_RETRA start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_RETRA_r3 skipnl keepend
    "Row 1
    syn region      pam_RETRA_r1     transparent contained containedin=pam_RETRA start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f8,@33f8,@41f8,@57i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_RETRA_r2 skipnl keepend
-syn region      pam_RETRA                matchgroup=pam_CardTag start="^\CRETRA /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_RETRA_r[1-4] fold keepend
+syn region      pam_RETRA                matchgroup=pam_CardTag start="^\CRETRA /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_RETRA_r[1-4] keepend
 " === RETRA end}}}
 
 " {{{=== SLIPR begin
@@ -3298,7 +3298,7 @@ syn region      pam_RETRA                matchgroup=pam_CardTag start="^\CRETRA 
    syn region      pam_SLIPR_r2     transparent contained containedin=pam_SLIPR start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_SLIPR_r3 skipnl keepend
    "Row 1
    syn region      pam_SLIPR_r1     transparent contained containedin=pam_SLIPR start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f8,@33f8,@41f8,@49i8,@57i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_SLIPR_r2 skipnl keepend
-syn region      pam_SLIPR                matchgroup=pam_CardTag start="^\CSLIPR /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_SLIPR_r[1-4] fold keepend
+syn region      pam_SLIPR                matchgroup=pam_CardTag start="^\CSLIPR /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_SLIPR_r[1-4] keepend
 " === SLIPR end}}}
 
 " {{{=== FASCI begin
@@ -3320,7 +3320,7 @@ syn region      pam_SLIPR                matchgroup=pam_CardTag start="^\CSLIPR 
    syn region      pam_FASCI_r2     transparent contained containedin=pam_FASCI start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_FASCI_r3 skipnl keepend
    "Row 1
    syn region      pam_FASCI_r1     transparent contained containedin=pam_FASCI start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_FASCI_r2 skipnl keepend
-syn region      pam_FASCI                matchgroup=pam_CardTag start="^\CFASCI /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_FASCI_r[1-4] fold keepend
+syn region      pam_FASCI                matchgroup=pam_CardTag start="^\CFASCI /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_FASCI_r[1-4] keepend
 " === FASCI end}}}
 
 " {{{=== GASPEC begin
@@ -3328,7 +3328,7 @@ syn region      pam_FASCI                matchgroup=pam_CardTag start="^\CFASCI 
    syn region      pam_GASPEC_r2     transparent contained containedin=pam_GASPEC start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Float,pam_Comment,pam_Comment_Position nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
    "Row 1
    syn region      pam_GASPEC_r1     transparent contained containedin=pam_GASPEC start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=pam_String,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_GASPEC_r2 skipnl keepend
-syn region      pam_GASPEC                matchgroup=pam_CardTag start="^\CGASPEC/" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_GASPEC_r[1-4] fold keepend
+syn region      pam_GASPEC                matchgroup=pam_CardTag start="^\CGASPEC/" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_GASPEC_r[1-4] keepend
 " === GASPEC end}}}
 
 " {{{=== SENPT begin
@@ -3340,7 +3340,7 @@ syn region      pam_GASPEC                matchgroup=pam_CardTag start="^\CGASPE
    syn region      pam_SENPT_r2     transparent contained containedin=pam_SENPT start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_SENPT_r3 skipnl keepend
    "Row 1
    syn region      pam_SENPT_r1     transparent contained containedin=pam_SENPT start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f8,@33i8,@41i8,@49i8,@57i8,@65i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_SENPT_r2 skipnl keepend
-syn region      pam_SENPT                matchgroup=pam_CardTag start="^\CSENPT /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_SENPT_r[1-4] fold keepend
+syn region      pam_SENPT                matchgroup=pam_CardTag start="^\CSENPT /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_SENPT_r[1-4] keepend
 " === SENPT end}}}
 
 " {{{=== SENPTG begin
@@ -3352,7 +3352,7 @@ syn region      pam_SENPT                matchgroup=pam_CardTag start="^\CSENPT 
    syn region      pam_SENPTG_r2     transparent contained containedin=pam_SENPTG start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_SENPTG_r3 skipnl keepend
    "Row 1
    syn region      pam_SENPTG_r1     transparent contained containedin=pam_SENPTG start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_SENPTG_r2 skipnl keepend
-syn region      pam_SENPTG                matchgroup=pam_CardTag start="^\CSENPTG/" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_SENPTG_r[1-4] fold keepend
+syn region      pam_SENPTG                matchgroup=pam_CardTag start="^\CSENPTG/" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_SENPTG_r[1-4] keepend
 " === SENPTG end}}}
 
 " {{{=== MSTRM begin
@@ -3366,7 +3366,7 @@ syn region      pam_SENPTG                matchgroup=pam_CardTag start="^\CSENPT
    syn region      pam_MSTRM_r2     transparent contained containedin=pam_MSTRM start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9f16,@25f16,@41f16,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_MSTRM_r3 skipnl 
    "Row 1
    syn region      pam_MSTRM_r1     transparent contained containedin=pam_MSTRM start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9f16,@25f16,@41f16,@57f16,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_MSTRM_r2 skipnl 
-syn region      pam_MSTRM                matchgroup=pam_CardTag start="^\CMSTRM /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_MSTRM_r[1-5] fold keepend
+syn region      pam_MSTRM                matchgroup=pam_CardTag start="^\CMSTRM /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_MSTRM_r[1-5] keepend
 " === MSTRM end}}}
 
 " {{{=== THNOD/THNPO begin
@@ -3376,7 +3376,7 @@ syn region      pam_MSTRM                matchgroup=pam_CardTag start="^\CMSTRM 
    syn region      pam_THNOD_r2     transparent contained containedin=pam_THNOD start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_THNOD_r3 skipnl keepend
    syn region      pam_THNOD_r1     transparent contained containedin=pam_THNOD start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_THNOD_r2 skipnl keepend
    " Row 1
-syn region      pam_THNOD        matchgroup=pam_CardTag start="^\(\CTHNOD\|\CTHNPO\) /"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_THNOD_r[1-3] fold keepend
+syn region      pam_THNOD        matchgroup=pam_CardTag start="^\(\CTHNOD\|\CTHNPO\) /"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_THNOD_r[1-3] keepend
 " === THNOD end}}}
 
 " {{{=== BOUNC begin
@@ -3389,7 +3389,7 @@ syn region      pam_THNOD        matchgroup=pam_CardTag start="^\(\CTHNOD\|\CTHN
       syn match       pam_BOUNC_r1_a2             display contained containedin=pam_BOUNC_r1 "\%19c[0-1]\{6\}"
    syn region      pam_BOUNC_r1     transparent contained containedin=pam_BOUNC start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@25i8,@33i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_BOUNC_r2 skipnl keepend
    "Row 1
-syn region      pam_BOUNC                matchgroup=pam_CardTag start="^\CBOUNC /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_BOUNC_r[1-3] fold keepend
+syn region      pam_BOUNC                matchgroup=pam_CardTag start="^\CBOUNC /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_BOUNC_r[1-3] keepend
 
 hi def link pam_BOUNC_r1_a2 pam_evenArgument
 hi def link pam_BOUNC_r1_e2 pam_evenError
@@ -3400,7 +3400,7 @@ hi def link pam_BOUNC_r1_e2 pam_evenError
    syn region      pam_CNTACX_r2     transparent contained containedin=pam_CNTACX start="\%1c." start="^$\n" end="\%$" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_Comment,pam_Comment_Position skipnl keepend
    " Row 1
    syn region      pam_CNTACX_r1     transparent contained containedin=pam_CNTACX start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_CNTACX_r2 skipnl keepend
-syn region      pam_CNTACX        matchgroup=pam_CardTag start="^\CCNTAC /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_CNTACX_r[1-9] fold keepend
+syn region      pam_CNTACX        matchgroup=pam_CardTag start="^\CCNTAC /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_CNTACX_r[1-9] keepend
 " === CNTAC X end}}}
 
 " {{{=== CNTAC 1 begin
@@ -3422,7 +3422,7 @@ syn region      pam_CNTACX        matchgroup=pam_CardTag start="^\CCNTAC /" end=
    syn region      pam_CNTAC1_r2     transparent contained containedin=pam_CNTAC1 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_CNTAC1_r3 skipnl keepend
    " Row 1
    syn region      pam_CNTAC1_r1     transparent contained containedin=pam_CNTAC1 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_CNTAC1_r2 skipnl keepend
-syn region      pam_CNTAC1        matchgroup=pam_CardTag start="^\CCNTAC / .\{8\}[ ]\{7\}1"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_CNTAC1_r[1-9] fold keepend
+syn region      pam_CNTAC1        matchgroup=pam_CardTag start="^\CCNTAC / .\{8\}[ ]\{7\}1"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_CNTAC1_r[1-9] keepend
 " === CNTAC 1 end}}}
 
 " {{{=== CNTAC 10 begin
@@ -3444,7 +3444,7 @@ syn region      pam_CNTAC1        matchgroup=pam_CardTag start="^\CCNTAC / .\{8\
    syn region      pam_CNTAC10_r2     transparent contained containedin=pam_CNTAC10 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_CNTAC10_r3 skipnl keepend
    " Row 1
    syn region      pam_CNTAC10_r1     transparent contained containedin=pam_CNTAC10 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_CNTAC10_r2 skipnl keepend
-syn region      pam_CNTAC10        matchgroup=pam_CardTag start="^\CCNTAC / .\{8\}[ ]\{6\}10"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_CNTAC10_r[1-9] fold keepend
+syn region      pam_CNTAC10        matchgroup=pam_CardTag start="^\CCNTAC / .\{8\}[ ]\{6\}10"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_CNTAC10_r[1-9] keepend
 " === CNTAC 10 end}}}
 
 " {{{=== CNTAC 21 begin
@@ -3471,7 +3471,7 @@ syn region      pam_CNTAC10        matchgroup=pam_CardTag start="^\CCNTAC / .\{8
    syn region      pam_CNTAC21_r2     transparent contained containedin=pam_CNTAC21 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_CNTAC21_r3 skipnl keepend
    " Row 1
    syn region      pam_CNTAC21_r1     transparent contained containedin=pam_CNTAC21 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_CNTAC21_r2 skipnl keepend
-syn region      pam_CNTAC21        matchgroup=pam_CardTag start="^\CCNTAC / .\{8\}[ ]\{6\}21"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_CNTAC21_r[0-9] fold keepend
+syn region      pam_CNTAC21        matchgroup=pam_CardTag start="^\CCNTAC / .\{8\}[ ]\{6\}21"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_CNTAC21_r[0-9] keepend
 " === CNTAC 21 end}}}
 
 " {{{=== CNTAC 33,34 begin
@@ -3498,7 +3498,7 @@ syn region      pam_CNTAC21        matchgroup=pam_CardTag start="^\CCNTAC / .\{8
    syn region      pam_CNTAC34_r2     transparent contained containedin=pam_CNTAC34 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_CNTAC34_r3 skipnl keepend
    " Row 1
    syn region      pam_CNTAC34_r1     transparent contained containedin=pam_CNTAC34 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_CNTAC34_r2 skipnl keepend
-syn region      pam_CNTAC34        matchgroup=pam_CardTag start="^\CCNTAC / .\{8\}[ ]\{6\}\(33\|34\)"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_CNTAC34_r[0-9] fold keepend
+syn region      pam_CNTAC34        matchgroup=pam_CardTag start="^\CCNTAC / .\{8\}[ ]\{6\}\(33\|34\)"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_CNTAC34_r[0-9] keepend
 " === CNTAC 33 end}}}
 
 " {{{=== CNTAC 36 begin
@@ -3524,7 +3524,7 @@ syn region      pam_CNTAC34        matchgroup=pam_CardTag start="^\CCNTAC / .\{8
    syn region      pam_CNTAC36_r2     transparent contained containedin=pam_CNTAC36 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_CNTAC36_r3 skipnl keepend
    " Row 1
    syn region      pam_CNTAC36_r1     transparent contained containedin=pam_CNTAC36 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_CNTAC36_r2 skipnl keepend
-syn region      pam_CNTAC36        matchgroup=pam_CardTag start="^\CCNTAC / .\{8\}[ ]\{6\}36"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_CNTAC36_r[0-9] fold keepend
+syn region      pam_CNTAC36        matchgroup=pam_CardTag start="^\CCNTAC / .\{8\}[ ]\{6\}36"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_CNTAC36_r[0-9] keepend
 " === CNTAC 33 end}}}
 
 " {{{=== CNTAC 37 begin
@@ -3550,7 +3550,7 @@ syn region      pam_CNTAC36        matchgroup=pam_CardTag start="^\CCNTAC / .\{8
    syn region      pam_CNTAC37_r2     transparent contained containedin=pam_CNTAC37 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_CNTAC37_r3 skipnl keepend
    " Row 1
    syn region      pam_CNTAC37_r1     transparent contained containedin=pam_CNTAC37 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_CNTAC37_r2 skipnl keepend
-syn region      pam_CNTAC37        matchgroup=pam_CardTag start="^\CCNTAC / .\{8\}[ ]\{6\}37"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_CNTAC37_r[0-9] fold keepend
+syn region      pam_CNTAC37        matchgroup=pam_CardTag start="^\CCNTAC / .\{8\}[ ]\{6\}37"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_CNTAC37_r[0-9] keepend
 " === CNTAC 37 end}}}
 
 " {{{=== CNTAC 43 begin
@@ -3577,7 +3577,7 @@ syn region      pam_CNTAC37        matchgroup=pam_CardTag start="^\CCNTAC / .\{8
    syn region      pam_CNTAC43_r2     transparent contained containedin=pam_CNTAC43 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_CNTAC43_r3 skipnl keepend
    " Row 1
    syn region      pam_CNTAC43_r1     transparent contained containedin=pam_CNTAC43 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_CNTAC43_r2 skipnl keepend
-syn region      pam_CNTAC43        matchgroup=pam_CardTag start="^\CCNTAC / .\{8\}[ ]\{6\}43"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_CNTAC43_r[1-9] fold keepend
+syn region      pam_CNTAC43        matchgroup=pam_CardTag start="^\CCNTAC / .\{8\}[ ]\{6\}43"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_CNTAC43_r[1-9] keepend
 " === CNTAC 43 end}}}
 
 " {{{=== CNTAC 44 begin
@@ -3607,7 +3607,7 @@ syn region      pam_CNTAC43        matchgroup=pam_CardTag start="^\CCNTAC / .\{8
    syn region      pam_CNTAC44_r2     transparent contained containedin=pam_CNTAC44 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_CNTAC44_r3 skipnl keepend
    " Row 1
    syn region      pam_CNTAC44_r1     transparent contained containedin=pam_CNTAC44 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_CNTAC44_r2 skipnl keepend
-syn region      pam_CNTAC44        matchgroup=pam_CardTag start="^\CCNTAC / .\{8\}[ ]\{6\}44"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_CNTAC44_r[1-9] fold keepend
+syn region      pam_CNTAC44        matchgroup=pam_CardTag start="^\CCNTAC / .\{8\}[ ]\{6\}44"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_CNTAC44_r[1-9] keepend
 " === CNTAC 44 end}}}
 
 " {{{=== CNTAC 46 begin
@@ -3633,7 +3633,7 @@ syn region      pam_CNTAC44        matchgroup=pam_CardTag start="^\CCNTAC / .\{8
    syn region      pam_CNTAC46_r2     transparent contained containedin=pam_CNTAC46 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_CNTAC46_r3 skipnl keepend
    " Row 1
    syn region      pam_CNTAC46_r1     transparent contained containedin=pam_CNTAC46 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_CNTAC46_r2 skipnl keepend
-syn region      pam_CNTAC46        matchgroup=pam_CardTag start="^\CCNTAC / .\{8\}[ ]\{6\}46"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_CNTAC46_r[1-9] fold keepend
+syn region      pam_CNTAC46        matchgroup=pam_CardTag start="^\CCNTAC / .\{8\}[ ]\{6\}46"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_CNTAC46_r[1-9] keepend
 " === CNTAC 46 end}}}
 
 " {{{=== CNTAC 54 begin
@@ -3660,7 +3660,7 @@ syn region      pam_CNTAC46        matchgroup=pam_CardTag start="^\CCNTAC / .\{8
    syn region      pam_CNTAC54_r2     transparent contained containedin=pam_CNTAC54 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_CNTAC54_r3 skipnl keepend
    " Row 1
    syn region      pam_CNTAC54_r1     transparent contained containedin=pam_CNTAC54 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_CNTAC54_r2 skipnl keepend
-syn region      pam_CNTAC54        matchgroup=pam_CardTag start="^\CCNTAC / .\{8\}[ ]\{6\}54"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_CNTAC54_r[1-9] fold keepend
+syn region      pam_CNTAC54        matchgroup=pam_CardTag start="^\CCNTAC / .\{8\}[ ]\{6\}54"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_CNTAC54_r[1-9] keepend
 " === CNTAC 54 end}}}
 
 " {{{=== CNTAC 61 begin
@@ -3697,7 +3697,7 @@ syn region      pam_CNTAC54        matchgroup=pam_CardTag start="^\CCNTAC / .\{8
    syn region      pam_CNTAC61_r2     transparent contained containedin=pam_CNTAC61 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_CNTAC61_r3 skipnl keepend
    " Row 1
    syn region      pam_CNTAC61_r1     transparent contained containedin=pam_CNTAC61 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_CNTAC61_r2 skipnl keepend
-syn region      pam_CNTAC61        matchgroup=pam_CardTag start="^\CCNTAC / .\{8\}[ ]\{6\}61"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_CNTAC61_r[1-9] fold keepend
+syn region      pam_CNTAC61        matchgroup=pam_CardTag start="^\CCNTAC / .\{8\}[ ]\{6\}61"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_CNTAC61_r[1-9] keepend
 " === CNTAC 61 end}}}
 
 " {{{=== CNTAC 154 begin
@@ -3724,7 +3724,7 @@ syn region      pam_CNTAC61        matchgroup=pam_CardTag start="^\CCNTAC / .\{8
    syn region      pam_CNTAC154_r2     transparent contained containedin=pam_CNTAC154 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_CNTAC154_r3 skipnl keepend
    " Row 1
    syn region      pam_CNTAC154_r1     transparent contained containedin=pam_CNTAC154 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_CNTAC154_r2 skipnl keepend
-syn region      pam_CNTAC154        matchgroup=pam_CardTag start="^\CCNTAC / .\{8\}[ ]\{5\}154"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_CNTAC154_r[1-9] fold keepend
+syn region      pam_CNTAC154        matchgroup=pam_CardTag start="^\CCNTAC / .\{8\}[ ]\{5\}154"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_CNTAC154_r[1-9] keepend
 " === CNTAC 154 end}}}
 
 " {{{=== CNTPTY begin
@@ -3736,7 +3736,7 @@ syn region      pam_CNTAC154        matchgroup=pam_CardTag start="^\CCNTAC / .\{
          hi link pam_CNTPTY_r3_CONDUCTANCE_arg pam_Argument
    syn region      pam_CNTPTY_r2     transparent contained containedin=pam_CNTPTY start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_CNTPTY_r3 skipnl keepend
    syn region      pam_CNTPTY_r1     transparent contained containedin=pam_CNTPTY start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,pam_Continue,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_CNTPTY_r2,pam_CNTPTY_r3 skipnl keepend
-syn region      pam_CNTPTY        matchgroup=pam_CardTag start="^\CCNTPTY/" end="^\CEND_CNTPTY" contains=pam_CNTPTY_r[1-4] fold keepend
+syn region      pam_CNTPTY        matchgroup=pam_CardTag start="^\CCNTPTY/" end="^\CEND_CNTPTY" contains=pam_CNTPTY_r[1-4] keepend
 " === CNTPTY end}}}
 
 " {{{=== SECFO Typ PLANE begin
@@ -3751,7 +3751,7 @@ syn region      pam_CNTPTY        matchgroup=pam_CardTag start="^\CCNTPTY/" end=
       syn match       pam_SECFO_PLANE_r1_e2             display contained containedin=pam_SECFO_PLANE_r1 "\%17c.\{,8\}"
       syn match       pam_SECFO_PLANE_r1_a2             display contained containedin=pam_SECFO_PLANE_r1 "\%17c\CPLANE   "
    syn region      pam_SECFO_PLANE_r1     transparent contained containedin=pam_SECFO_PLANE start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@25i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_SECFO_PLANE_r2 skipnl keepend
-syn region      pam_SECFO_PLANE                matchgroup=pam_CardTag start="^\CSECFO / .\{8\}PLANE   "rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_SECFO_PLANE_r[1-4] fold keepend
+syn region      pam_SECFO_PLANE                matchgroup=pam_CardTag start="^\CSECFO / .\{8\}PLANE   "rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_SECFO_PLANE_r[1-4] keepend
 
 hi def link pam_SECFO_PLANE_r1_a2 pam_evenArgument
 hi def link pam_SECFO_PLANE_r1_v2 pam_evenVar
@@ -3770,7 +3770,7 @@ hi def link pam_SECFO_PLANE_r1_e2 pam_evenError
       syn match       pam_SECFO_DETECT_r1_e2             display contained containedin=pam_SECFO_DETECT_r1 "\%17c.\{,8\}"
       syn match       pam_SECFO_DETECT_r1_a2             display contained containedin=pam_SECFO_DETECT_r1 "\%17c\CDETECT  "
    syn region      pam_SECFO_DETECT_r1     transparent contained containedin=pam_SECFO_DETECT start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@25i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_SECFO_DETECT_r2 skipnl keepend
-syn region      pam_SECFO_DETECT                matchgroup=pam_CardTag start="^\CSECFO / .\{8\}DETECT  "rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_SECFO_DETECT_r[1-4] fold keepend
+syn region      pam_SECFO_DETECT                matchgroup=pam_CardTag start="^\CSECFO / .\{8\}DETECT  "rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_SECFO_DETECT_r[1-4] keepend
 
 hi def link pam_SECFO_DETECT_r1_a2 pam_evenArgument
 hi def link pam_SECFO_DETECT_r1_v2 pam_evenVar
@@ -3787,7 +3787,7 @@ hi def link pam_SECFO_DETECT_r1_e2 pam_evenError
       syn match       pam_SECFO_LINK_r1_e2             display contained containedin=pam_SECFO_LINK_r1 "\%17c.\{,8\}"
       syn match       pam_SECFO_LINK_r1_a2             display contained containedin=pam_SECFO_LINK_r1 "\%17c\CCONTACT \|\CLINK    \|\CSECTION \|\CSUPPORT \|\CCONT_MS \|TIED_MS "
    syn region      pam_SECFO_LINK_r1     transparent contained containedin=pam_SECFO_LINK start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@25i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_SECFO_LINK_r2 skipnl keepend
-syn region      pam_SECFO_LINK                matchgroup=pam_CardTag start="^\CSECFO / .\{8\}\(\CCONTACT \|\CLINK    \|\CSECTION \|\CSUPPORT \|\CCONT_MS \|\CTIED_MS \)"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_SECFO_LINK_r[1-3] fold keepend
+syn region      pam_SECFO_LINK                matchgroup=pam_CardTag start="^\CSECFO / .\{8\}\(\CCONTACT \|\CLINK    \|\CSECTION \|\CSUPPORT \|\CCONT_MS \|\CTIED_MS \)"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_SECFO_LINK_r[1-3] keepend
 
 hi def link pam_SECFO_LINK_r1_a2 pam_evenArgument
 hi def link pam_SECFO_LINK_r1_v2 pam_evenVar
@@ -3808,7 +3808,7 @@ hi def link pam_SECFO_LINK_r1_e2 pam_evenError
       syn match       pam_SECFO_VOLFRAC_r1_e2             display contained containedin=pam_SECFO_VOLFRAC_r1 "\%17c.\{,8\}"
       syn match       pam_SECFO_VOLFRAC_r1_a2             display contained containedin=pam_SECFO_VOLFRAC_r1 "\%17c\CVOLFRAC "
    syn region      pam_SECFO_VOLFRAC_r1     transparent contained containedin=pam_SECFO_VOLFRAC start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@25i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_SECFO_VOLFRAC_r2 skipnl keepend
-syn region      pam_SECFO_VOLFRAC                matchgroup=pam_CardTag start="^\CSECFO / .\{8\}\CVOLFRAC "rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_SECFO_VOLFRAC_r[1-3] fold keepend
+syn region      pam_SECFO_VOLFRAC                matchgroup=pam_CardTag start="^\CSECFO / .\{8\}\CVOLFRAC "rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_SECFO_VOLFRAC_r[1-3] keepend
 
 hi def link pam_SECFO_VOLFRAC_r1_a2 pam_evenArgument
 hi def link pam_SECFO_VOLFRAC_r1_e2 pam_evenError
@@ -3830,7 +3830,7 @@ hi def link pam_SECFO_VOLFRAC_r1_e2 pam_evenError
       hi def link pam_CONLO_r1_a1 pam_evenArgument
    syn region      pam_CONLO_r2     transparent contained containedin=pam_CONLO start="^        " start="^$\n" end="\n[\$\#]\@!" contains=@9f16,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_CONLO_r3 skipnl keepend
    syn region      pam_CONLO_r1     transparent contained containedin=pam_CONLO start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25i8,@33f8,@41i8,@49i8,@57i8,@65f16x,pam_Continue,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_CONLO_r2,pam_CONLO_r3 skipnl keepend
-syn region      pam_CONLO        matchgroup=pam_CardTag start="^\CCONLO /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_CONLO_r[1-4] fold keepend
+syn region      pam_CONLO        matchgroup=pam_CardTag start="^\CCONLO /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_CONLO_r[1-4] keepend
 " === CONLO end}}}
 
 " {{{ === INVEL begin
@@ -3842,7 +3842,7 @@ syn region      pam_CONLO        matchgroup=pam_CardTag start="^\CCONLO /" end="
    syn region      pam_INVEL_r2     transparent contained containedin=pam_INVEL start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_INVEL_r3,pam_INVEL_r4 skipnl keepend
    "Row 1
    syn region      pam_INVEL_r1     transparent contained containedin=pam_INVEL start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17f8,@25f8,@33f8,@41f8,@49f8,@57f8,@65i8,@73i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_INVEL_r2 skipnl keepend
-syn region      pam_INVEL           matchgroup=pam_CardTag start="^\CINVEL /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_INVEL_r[1-4] fold keepend
+syn region      pam_INVEL           matchgroup=pam_CardTag start="^\CINVEL /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_INVEL_r[1-4] keepend
 "===INVEL end}}}
 
 " {{{ === FUNCT begin
@@ -3859,7 +3859,7 @@ syn region      pam_INVEL           matchgroup=pam_CardTag start="^\CINVEL /" en
       " ICOMP
       hi def link pam_FUNCT_r1_a1 pam_evenArgument
    syn region      pam_FUNCT_r1     transparent contained containedin=pam_FUNCT start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f8,@33f8,@41f8,@49f8,@57i8,@65i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_FUNCT_r2 skipnl keepend
-syn region      pam_FUNCT                matchgroup=pam_CardTag start="^\CFUNCT /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_FUNCT_r[1-3] fold keepend
+syn region      pam_FUNCT                matchgroup=pam_CardTag start="^\CFUNCT /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_FUNCT_r[1-3] keepend
 "===FUNCT end}}}
 
 " {{{ === FUNCSW begin
@@ -3871,7 +3871,7 @@ syn region      pam_FUNCT                matchgroup=pam_CardTag start="^\CFUNCT 
    syn region      pam_FUNCSW_r2     transparent contained containedin=pam_FUNCSW start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_FUNCSW_r3 skipnl keepend
    "Row 1
    syn region      pam_FUNCSW_r1     transparent contained containedin=pam_FUNCSW start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25i8,@33i8,@41i8,@49i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_FUNCSW_r2 skipnl keepend
-syn region      pam_FUNCSW                matchgroup=pam_CardTag start="^\CFUNCSW/" end="^END_FUNCSW" contains=pam_FUNCSW_r[1-3] fold keepend
+syn region      pam_FUNCSW                matchgroup=pam_CardTag start="^\CFUNCSW/" end="^END_FUNCSW" contains=pam_FUNCSW_r[1-3] keepend
 "===FUNCSW end}}}
 
 "{{{=== NSMAS/NSMAS2 begin
@@ -3881,7 +3881,7 @@ syn region      pam_FUNCSW                matchgroup=pam_CardTag start="^\CFUNCS
    syn region      pam_NSMAS_r2     transparent contained containedin=pam_NSMAS start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_NSMAS_r3 skipnl keepend
    " Row 1
    syn region      pam_NSMAS_r1     transparent contained containedin=pam_NSMAS start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17f16,@33f16,@49f16,@65f16,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_NSMAS_r2 skipnl keepend
-syn region      pam_NSMAS          matchgroup=pam_CardTag start="^\CNSMAS[ 2]/" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_NSMAS_r[1-3] fold keepend
+syn region      pam_NSMAS          matchgroup=pam_CardTag start="^\CNSMAS[ 2]/" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_NSMAS_r[1-3] keepend
 "=== NSMAS end}}}
 
 "{{{=== TIED begin
@@ -3891,7 +3891,7 @@ syn region      pam_NSMAS          matchgroup=pam_CardTag start="^\CNSMAS[ 2]/" 
    syn region      pam_TIED_r2     transparent contained containedin=pam_TIED start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_TIED_r3 skipnl keepend
    "Row 1
    syn region      pam_TIED_r1     transparent contained containedin=pam_TIED start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TIED_r2 skipnl keepend
-syn region      pam_TIED          matchgroup=pam_CardTag start="^\CTIED  /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_TIED_r[1-3] fold keepend
+syn region      pam_TIED          matchgroup=pam_CardTag start="^\CTIED  /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_TIED_r[1-3] keepend
 "=== TIED end}}}
 
 "{{{=== NODCO begin
@@ -3901,7 +3901,7 @@ syn region      pam_TIED          matchgroup=pam_CardTag start="^\CTIED  /" end=
    syn region      pam_NODCO_r2     transparent contained containedin=pam_NODCO start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_NODCO_r3 skipnl keepend
    "Row 1
    syn region      pam_NODCO_r1     transparent contained containedin=pam_NODCO start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_NODCO_r2 skipnl keepend
-syn region      pam_NODCO          matchgroup=pam_CardTag start="^\CNODCO /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_NODCO_r[1-3] fold keepend
+syn region      pam_NODCO          matchgroup=pam_CardTag start="^\CNODCO /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_NODCO_r[1-3] keepend
 "=== NODCO end}}}
 
 "{{{=== LINCO begin
@@ -3918,7 +3918,7 @@ syn region      pam_NODCO          matchgroup=pam_CardTag start="^\CNODCO /" end
       hi def link pam_LINCO_r1_v1 pam_evenVar
       hi def link pam_LINCO_r1_e1 pam_evenError
    syn region      pam_LINCO_r1     transparent contained containedin=pam_LINCO start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@25i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_LINCO_r2 skipnl keepend
-syn region      pam_LINCO          matchgroup=pam_CardTag start="^\CLINCO /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_LINCO_r[1-5] fold keepend
+syn region      pam_LINCO          matchgroup=pam_CardTag start="^\CLINCO /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_LINCO_r[1-5] keepend
 "=== LINCO end}}}
 
 "{{{=== MTOCO  begin
@@ -3941,7 +3941,7 @@ syn region      pam_LINCO          matchgroup=pam_CardTag start="^\CLINCO /" end
    syn region      pam_MTOCO_r2     transparent contained containedin=pam_MTOCO start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_MTOCO_r3 skipnl keepend
    "Row 1
    syn region      pam_MTOCO_r1     transparent contained containedin=pam_MTOCO start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@33i8,@41i8,@49i8,@57f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_MTOCO_r2 skipnl keepend
-syn region      pam_MTOCO          matchgroup=pam_CardTag start="^\CMTOCO /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_MTOCO_r[1-3] fold keepend
+syn region      pam_MTOCO          matchgroup=pam_CardTag start="^\CMTOCO /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_MTOCO_r[1-3] keepend
 
    "Row 4 (Node Selection)
    syn region      pam_MTOCO1_r4     transparent contained containedin=pam_MTOCO1 start="\%1c." start="^$\n" matchgroup=pam_CardTag end="\%$" contains=@pam_Ident,pam_Comment,pam_Comment_Position,pam_End,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position keepend
@@ -3952,7 +3952,7 @@ syn region      pam_MTOCO          matchgroup=pam_CardTag start="^\CMTOCO /" end
    syn region      pam_MTOCO1_r2     transparent contained containedin=pam_MTOCO1 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_MTOCO1_r3 skipnl keepend
    "Row 1
    syn region      pam_MTOCO1_r1     transparent contained containedin=pam_MTOCO1 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@33i8,@41i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_MTOCO1_r2 skipnl keepend
-syn region      pam_MTOCO1         matchgroup=pam_CardTag start="^\CMTOCO / .\{39\}1"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_MTOCO1_r[1-3] fold keepend
+syn region      pam_MTOCO1         matchgroup=pam_CardTag start="^\CMTOCO / .\{39\}1"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_MTOCO1_r[1-3] keepend
 "=== MTOCO end}}}
 
 "{{{=== OTMCO begin
@@ -3969,17 +3969,17 @@ syn region      pam_MTOCO1         matchgroup=pam_CardTag start="^\CMTOCO / .\{3
       syn match       pam_OTMCO_r1_e1             display contained containedin=pam_OTMCO_r1 "\%27c.\{,6\}"
       syn match       pam_OTMCO_r1_a1             display contained containedin=pam_OTMCO_r1 "\%27c[ 01]\{6\}"
    syn region      pam_OTMCO_r1     transparent contained containedin=pam_OTMCO start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@33i8,@41f8,@49i8,@57i8,@65f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_OTMCO_r2 skipnl keepend
-syn region      pam_OTMCO          matchgroup=pam_CardTag start="^\COTMCO /" end="^\CEND_OTMCO" contains=pam_OTMCO_r[1-3] fold keepend
+syn region      pam_OTMCO          matchgroup=pam_CardTag start="^\COTMCO /" end="^\CEND_OTMCO" contains=pam_OTMCO_r[1-3] keepend
 hi def link pam_OTMCO_r1_a1 pam_oddArgument
 hi def link pam_OTMCO_r1_e1 pam_oddError
 "=== OTMCO end}}}
 
 "{{{=== CDATA (dummy) begin
-syn region      pam_CDATA            matchgroup=pam_CardTag start="^\CCDATA /" end="^\CEND_CDATA" contains=pam_Comment,pam_Comment_Position fold keepend
+syn region      pam_CDATA            matchgroup=pam_CardTag start="^\CCDATA /" end="^\CEND_CDATA" contains=pam_Comment,pam_Comment_Position keepend
 "=== CDATA end}}}
 
 "{{{=== SECURE begin
-syn region      pam_SECURE          transparent matchgroup=pam_CardTag start="^SECURE/" end="^END_SECURE" contains=pam_Secure fold keepend
+syn region      pam_SECURE          transparent matchgroup=pam_CardTag start="^SECURE/" end="^END_SECURE" contains=pam_Secure keepend
 "=== SECURE end}}}
 
 "{{{=== FRITAB begin
@@ -3989,7 +3989,7 @@ syn region      pam_SECURE          transparent matchgroup=pam_CardTag start="^S
    syn region      pam_FRITAB_r2     transparent contained containedin=pam_FRITAB start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_FRITAB_r3 skipnl keepend
    "Row 1
    syn region      pam_FRITAB_r1     transparent contained containedin=pam_FRITAB start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17f16,@33i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_FRITAB_r2 skipnl keepend
-syn region      pam_FRITAB          matchgroup=pam_CardTag start="^\CFRITAB/" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_FRITAB_r[1-5] fold keepend
+syn region      pam_FRITAB          matchgroup=pam_CardTag start="^\CFRITAB/" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_FRITAB_r[1-5] keepend
 "=== FRITAB end}}}
 
 "{{{=== OPTLIS begin
@@ -4005,7 +4005,7 @@ syn region      pam_FRITAB          matchgroup=pam_CardTag start="^\CFRITAB/" en
    syn region      pam_OPTLIS_r2     transparent contained containedin=pam_OPTLIS start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_OPTLIS_r3 skipnl keepend
    "Row 1
    syn region      pam_OPTLIS_r1     transparent contained containedin=pam_OPTLIS start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Integer,pam_String,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_OPTLIS_r2 skipnl keepend
-syn region      pam_OPTLIS          matchgroup=pam_CardTag start="^\COPTLIS/" end="^\CEND_OPTLIS" contains=pam_OPTLIS_r[1-3] fold keepend
+syn region      pam_OPTLIS          matchgroup=pam_CardTag start="^\COPTLIS/" end="^\CEND_OPTLIS" contains=pam_OPTLIS_r[1-3] keepend
 "=== OPTLIS end}}}
 
 "{{{=== VARDEF begin
@@ -4021,7 +4021,7 @@ syn region      pam_OPTLIS          matchgroup=pam_CardTag start="^\COPTLIS/" en
    hi def link pam_VARDEF_r1_a1 pam_evenArgument
    " Row 1
    syn region      pam_VARDEF_r1     transparent contained containedin=pam_VARDEF start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,pam_Continue,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_VARDEF_r2 skipnl keepend
-syn region      pam_VARDEF          matchgroup=pam_CardTag start="^\CVARDEF/" end="^\CEND_VARDEF" contains=pam_VARDEF_r[1-3] fold keepend
+syn region      pam_VARDEF          matchgroup=pam_CardTag start="^\CVARDEF/" end="^\CEND_VARDEF" contains=pam_VARDEF_r[1-3] keepend
 "=== VARDEF end}}}
 
 "{{{=== CDATA begin
@@ -4031,7 +4031,7 @@ syn region      pam_VARDEF          matchgroup=pam_CardTag start="^\CVARDEF/" en
    syn region      pam_CDATA_r2     transparent contained containedin=pam_CDATA start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_CDATA_r3,pam_EndCDATA skipnl keepend
    " Row 1
    syn region      pam_CDATA_r1     transparent contained containedin=pam_CDATA start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Integer,pam_FreeVar,pam_Continue,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_CDATA_r2 skipnl keepend
-syn region      pam_CDATA          matchgroup=pam_CardTag start="^\CCDATA /" end="^\CEND_CDATA" contains=pam_CDATA_r[1-3] fold keepend
+syn region      pam_CDATA          matchgroup=pam_CardTag start="^\CCDATA /" end="^\CEND_CDATA" contains=pam_CDATA_r[1-3] keepend
    syn match       pam_EndCDATA        display contained "^\CEND_CDATA"
    hi def link pam_EndCDATA pam_CardTag
 "=== CDATA end}}}
@@ -4062,7 +4062,7 @@ syn region      pam_CDATA          matchgroup=pam_CardTag start="^\CCDATA /" end
       hi def link pam_UDATA_r1_a1  pam_oddArgument
       hi def link pam_UDATA_r1_e1  pam_oddError
    syn region      pam_UDATA_r1     transparent contained containedin=pam_UDATA start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@49i8,@65i8,pam_Continue,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_UDATA_r2 skipnl keepend
-syn region      pam_UDATA          matchgroup=pam_CardTag start="^\CUDATA /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_UDATA_r[1-3] fold keepend
+syn region      pam_UDATA          matchgroup=pam_CardTag start="^\CUDATA /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_UDATA_r[1-3] keepend
 "=== UDATA end}}}
 
 "{{{=== PYVAR begin
@@ -4073,7 +4073,7 @@ syn region      pam_UDATA          matchgroup=pam_CardTag start="^\CUDATA /" end
    syn region      pam_PYVAR_r2     transparent contained containedin=pam_PYVAR start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_PYVAR_r3,pam_EndPYVAR skipnl keepend
    " Row 1
    syn region      pam_PYVAR_r1     transparent contained containedin=pam_PYVAR start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,pam_Continue,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PYVAR_r2 skipnl keepend
-syn region      pam_PYVAR          matchgroup=pam_CardTag start="^\CPYVAR /" end="^\CEND_PYVAR" contains=pam_PYVAR_r[1-3] fold keepend
+syn region      pam_PYVAR          matchgroup=pam_CardTag start="^\CPYVAR /" end="^\CEND_PYVAR" contains=pam_PYVAR_r[1-3] keepend
    syn match       pam_EndPYVAR        display contained "^\CEND_PYVAR"
    hi def link pam_EndPYVAR pam_CardTag
 "=== PYVAR end}}}
@@ -4083,7 +4083,7 @@ syn region      pam_PYVAR          matchgroup=pam_CardTag start="^\CPYVAR /" end
    syn region      pam_MPARTX_r2     transparent contained containedin=pam_MPARTX start="\%1c." start="^$\n" end="\%$" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_Comment,pam_Comment_Position,pam_EndMPart skipnl keepend
    " Row 1
    syn region      pam_MPARTX_r1     transparent contained containedin=pam_MPARTX start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_MPARTX_r2 skipnl keepend
-syn region      pam_MPARTX        matchgroup=pam_CardTag start="^\CMPART /" end="^\CEND_MPART" contains=pam_MPARTX_r[1-9] fold keepend
+syn region      pam_MPARTX        matchgroup=pam_CardTag start="^\CMPART /" end="^\CEND_MPART" contains=pam_MPARTX_r[1-9] keepend
 " === PART X end}}}
 
 " {{{=== MPART Typ SHELL
@@ -4118,7 +4118,7 @@ syn region      pam_MPARTX        matchgroup=pam_CardTag start="^\CMPART /" end=
       hi def link pam_MPART_SHELL_MONITORING_r1_a2 pam_Argument
    " MONITORING
    syn region      pam_MPART_SHELL_MONITORING transparent contained containedin=pam_MPART_SHELL matchgroup=pam_CardTag start="^\CMONITORING" end="^\CEND_MONITORING" contains=pam_MPART_SHELL_MONITORING_r1,pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
-syn region      pam_MPART_SHELL        matchgroup=pam_CardTag start="^\CMPART / .\{8\}[ ]*SHELL[ ]*\%25c"rs=s+8 end="^\CEND_MPART" contains=pam_MPART_SHELL_r[1-9],pam_MPART_SHELL_GEOMETRY,pam_MPART_SHELL_INIT_CONDITIONS,pam_Comment,pam_Comment_Position fold keepend
+syn region      pam_MPART_SHELL        matchgroup=pam_CardTag start="^\CMPART / .\{8\}[ ]*SHELL[ ]*\%25c"rs=s+8 end="^\CEND_MPART" contains=pam_MPART_SHELL_r[1-9],pam_MPART_SHELL_GEOMETRY,pam_MPART_SHELL_INIT_CONDITIONS,pam_Comment,pam_Comment_Position keepend
 syn match       pam_MPART_SHELL_r1_a2             display contained containedin=pam_MPART_SHELL_r1 "\%17c[ ]*\CSHELL[ ]*\%25c"
 hi def link pam_MPART_SHELL_r1_a2 pam_evenArgument
 " === PART Typ SHELL end}}}
@@ -4143,7 +4143,7 @@ hi def link pam_MPART_SHELL_r1_a2 pam_evenArgument
       syn region      pam_MPART_SOLID_GEOMETRY_r1 transparent contained containedin=pam_MPART_SOLID_GEOMETRY start="\%1c[^\$\#]" start="^$\n" end="\n[\$\#]\@!" contains=@1i10,@11f10,@21f10,@31f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_MPART_SOLID_GEOMETRY_r2 skipnl keepend
    " GEOMETRY
    syn region      pam_MPART_SOLID_GEOMETRY transparent contained containedin=pam_MPART_SOLID matchgroup=pam_CardTag start="^\CGEOMETRY" end="^\CEND_GEOMETRY" contains=pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
-syn region      pam_MPART_SOLID        matchgroup=pam_CardTag start="^\CMPART / .\{8\}[ ]*SOLID[ ]*\%25c"rs=s+8 end="^\CEND_MPART" contains=pam_MPART_SOLID_r[1-9],pam_Comment,pam_Comment_Position fold keepend
+syn region      pam_MPART_SOLID        matchgroup=pam_CardTag start="^\CMPART / .\{8\}[ ]*SOLID[ ]*\%25c"rs=s+8 end="^\CEND_MPART" contains=pam_MPART_SOLID_r[1-9],pam_Comment,pam_Comment_Position keepend
 syn match       pam_MPART_SOLID_r1_a2             display contained containedin=pam_MPART_SOLID_r1 "\%17c[ ]*\CSOLID[ ]*\%25c"
 hi def link pam_MPART_SOLID_r1_a2 pam_evenArgument
 " === PART Typ SOLID end}}}
@@ -4153,7 +4153,7 @@ hi def link pam_MPART_SOLID_r1_a2 pam_evenArgument
    syn region      pam_PARTX_r2     transparent contained containedin=pam_PARTX start="\%1c." start="^$\n" end="\%$" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_Comment,pam_Comment_Position,pam_EndPart skipnl keepend
    " Row 1
    syn region      pam_PARTX_r1     transparent contained containedin=pam_PARTX start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@25i8,@33i8,@41i8,@49i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PARTX_r2 skipnl keepend
-syn region      pam_PARTX        matchgroup=pam_CardTag start="^\CPART  /" end="^\CEND_PART" contains=pam_PARTX_r[1-9] fold keepend
+syn region      pam_PARTX        matchgroup=pam_CardTag start="^\CPART  /" end="^\CEND_PART" contains=pam_PARTX_r[1-9] keepend
 " === PART X end}}}
 
 "{{{=== PART Typ SPHEL begin
@@ -4176,7 +4176,7 @@ syn region      pam_PART_SPHEL_r2a    transparent contained containedin=pam_PART
       " ATYPE
       syn match       pam_PART_SPHEL_r1_a2             display contained containedin=pam_PART_SPHEL_r1 "\%17c[ ]*SPHEL[ ]*\%25c"
    syn region      pam_PART_SPHEL_r1     transparent contained containedin=pam_PART_SPHEL start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@25i8,@33i8,@41i8,@49i8,@57i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PART_SPHEL_r2a,pam_PART_SPHEL_r2 skipnl keepend
-syn region      pam_PART_SPHEL     matchgroup=pam_CardTag start="^\CPART  / .\{8\}[ ]*SPHEL[ ]*\%25c"rs=s+8 end="^\CEND_PART" contains=pam_PART_SPHEL_r[1-6] fold keepend
+syn region      pam_PART_SPHEL     matchgroup=pam_CardTag start="^\CPART  / .\{8\}[ ]*SPHEL[ ]*\%25c"rs=s+8 end="^\CEND_PART" contains=pam_PART_SPHEL_r[1-6] keepend
 
 hi def link pam_PART_SPHEL_r1_a2 pam_evenArgument
 "=== PART Typ SPHEL end}}}
@@ -4199,7 +4199,7 @@ hi def link pam_PART_SPHEL_r1_a2 pam_evenArgument
       " ATYPE
       syn match       pam_PART_BSHEL_r1_a2             display contained containedin=pam_PART_BSHEL_r1 "\%17c[ ]*BSHEL[ ]*\%25c"
    syn region      pam_PART_BSHEL_r1     transparent contained containedin=pam_PART_BSHEL start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@25i8,@33i8,@41i8,@49i8,@57i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PART_BSHEL_r2a,pam_PART_BSHEL_r2 skipnl keepend
-syn region      pam_PART_BSHEL     matchgroup=pam_CardTag start="^\CPART  / .\{8\}[ ]*BSHEL[ ]*\%25c"rs=s+8 end="^\CEND_PART" contains=pam_PART_BSHEL_r[1-6] fold keepend
+syn region      pam_PART_BSHEL     matchgroup=pam_CardTag start="^\CPART  / .\{8\}[ ]*BSHEL[ ]*\%25c"rs=s+8 end="^\CEND_PART" contains=pam_PART_BSHEL_r[1-6] keepend
 
 hi def link pam_PART_BSHEL_r1_a2 pam_evenArgument
 "=== PART Typ BSHEL end}}}
@@ -4222,7 +4222,7 @@ hi def link pam_PART_BSHEL_r1_a2 pam_evenArgument
       " ATYPE
       syn match       pam_PART_COS3D_r1_a2             display contained containedin=pam_PART_COS3D_r1 "\%17c[ ]*COS3D[ ]*\%25c"
    syn region      pam_PART_COS3D_r1     transparent contained containedin=pam_PART_COS3D start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@25i8,@33i8,@41i8,@49i8,@57i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PART_COS3D_r2a,pam_PART_COS3D_r2 skipnl keepend
-syn region      pam_PART_COS3D     matchgroup=pam_CardTag start="^\CPART  / .\{8\}[ ]*COS3D[ ]*\%25c"rs=s+8 end="^\CEND_PART" contains=pam_PART_COS3D_r[1-6] fold keepend
+syn region      pam_PART_COS3D     matchgroup=pam_CardTag start="^\CPART  / .\{8\}[ ]*COS3D[ ]*\%25c"rs=s+8 end="^\CEND_PART" contains=pam_PART_COS3D_r[1-6] keepend
 
 hi def link pam_PART_COS3D_r1_a2 pam_evenArgument
 "=== PART Typ COS3D end}}}
@@ -4248,8 +4248,8 @@ hi def link pam_PART_COS3D_r1_a2 pam_evenArgument
       syn match       pam_PART_SOLID_r1_a2             display contained containedin=pam_PART_SOLID_r1 "\%17c[ ]*SOLID[ ]*\%25c"
       syn match       pam_PART_SOLID_r1_a2             display contained containedin=pam_PART_SOLID_r1 "\%17c[ ]*TETRA[ ]*\%25c"
    syn region      pam_PART_SOLID_r1     transparent contained containedin=pam_PART_SOLID start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@25i8,@33i8,@41i8,@49i8,@57i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PART_SOLID_r2a,pam_PART_SOLID_r2 skipnl keepend
-syn region      pam_PART_SOLID     matchgroup=pam_CardTag start="^\CPART  / .\{8\}[ ]*SOLID[ ]*\%25c"rs=s+8 end="^\CEND_PART" contains=pam_PART_SOLID_r[1-6] fold keepend
-syn region      pam_PART_SOLID     matchgroup=pam_CardTag start="^\CPART  / .\{8\}[ ]*TETRA[ ]*\%25c"rs=s+8 end="^\CEND_PART" contains=pam_PART_SOLID_r[1-6] fold keepend
+syn region      pam_PART_SOLID     matchgroup=pam_CardTag start="^\CPART  / .\{8\}[ ]*SOLID[ ]*\%25c"rs=s+8 end="^\CEND_PART" contains=pam_PART_SOLID_r[1-6] keepend
+syn region      pam_PART_SOLID     matchgroup=pam_CardTag start="^\CPART  / .\{8\}[ ]*TETRA[ ]*\%25c"rs=s+8 end="^\CEND_PART" contains=pam_PART_SOLID_r[1-6] keepend
 
 hi def link pam_PART_SOLID_r1_a2 pam_evenArgument
 "=== PART Typ SOLID end}}}
@@ -4274,7 +4274,7 @@ hi def link pam_PART_SOLID_r1_a2 pam_evenArgument
    " ATYPE
    syn match       pam_PART_SHELL_r1_a2             display contained containedin=pam_PART_SHELL_r1 "\%17c\CSHELL   \| \CSHELL  \|  \CSHELL \|   \CSHELL"
    syn region      pam_PART_SHELL_r1     transparent contained containedin=pam_PART_SHELL start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@25i8,@33i8,@41i8,@49i8,@57i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PART_SHELL_r2a,pam_PART_SHELL_r2 skipnl keepend
-   syn region      pam_PART_SHELL     matchgroup=pam_CardTag start="^\CPART  / .\{8\}\(\CSHELL   \| \CSHELL  \|  \CSHELL \|   \CSHELL\)"rs=s+8 end="^\CEND_PART" contains=pam_PART_SHELL_r[1-6] fold keepend
+   syn region      pam_PART_SHELL     matchgroup=pam_CardTag start="^\CPART  / .\{8\}\(\CSHELL   \| \CSHELL  \|  \CSHELL \|   \CSHELL\)"rs=s+8 end="^\CEND_PART" contains=pam_PART_SHELL_r[1-6] keepend
 
    hi def link pam_PART_SHELL_r1_a2 pam_evenArgument
    hi def link pam_PART_SHELL_r1_v2 pam_evenVar
@@ -4302,7 +4302,7 @@ syn region      pam_PART_MEMBR_r2a    transparent contained containedin=pam_PART
 " ATYPE
 syn match       pam_PART_MEMBR_r1_a2             display contained containedin=pam_PART_MEMBR_r1 "\%17c\CMEMBR   \| \CMEMBR  \|  \CMEMBR \|   \CMEMBR"
 syn region      pam_PART_MEMBR_r1     transparent contained containedin=pam_PART_MEMBR start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@25i8,@33i8,@41i8,@49i8,@57i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PART_MEMBR_r2a,pam_PART_MEMBR_r2 skipnl keepend
-syn region      pam_PART_MEMBR     matchgroup=pam_CardTag start="^\CPART  / .\{8\}\(\CMEMBR   \| \CMEMBR  \|  \CMEMBR \|   \CMEMBR\)"rs=s+8 end="^\CEND_PART" contains=pam_PART_MEMBR_r[1-7] fold keepend
+syn region      pam_PART_MEMBR     matchgroup=pam_CardTag start="^\CPART  / .\{8\}\(\CMEMBR   \| \CMEMBR  \|  \CMEMBR \|   \CMEMBR\)"rs=s+8 end="^\CEND_PART" contains=pam_PART_MEMBR_r[1-7] keepend
 
 hi def link pam_PART_MEMBR_r1_a2 pam_evenArgument
 hi def link pam_PART_MEMBR_r1_v2 pam_evenVar
@@ -4327,7 +4327,7 @@ syn region      pam_PART_GAP_r2a    transparent contained containedin=pam_PART_G
       " ATYPE
       syn match       pam_PART_GAP_r1_a2             display contained containedin=pam_PART_GAP_r1 "\%17c[ ]*\CGAP[ ]*\%25c"
    syn region      pam_PART_GAP_r1     transparent contained containedin=pam_PART_GAP start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@25i8,@33i8,@41i8,@49i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PART_GAP_r2a,pam_PART_GAP_r2 skipnl keepend
-syn region      pam_PART_GAP     matchgroup=pam_CardTag start="^\CPART  / .\{8\}[ ]*\CGAP[ ]*\%25c"rs=s+8 end="^\CEND_PART" contains=pam_PART_GAP_r[1-6] fold keepend
+syn region      pam_PART_GAP     matchgroup=pam_CardTag start="^\CPART  / .\{8\}[ ]*\CGAP[ ]*\%25c"rs=s+8 end="^\CEND_PART" contains=pam_PART_GAP_r[1-6] keepend
 
 hi def link pam_PART_GAP_r1_a2 pam_evenArgument
 hi def link pam_PART_GAP_r1_v2 pam_evenVar
@@ -4352,7 +4352,7 @@ syn region      pam_PART_MTOJNT_r2a    transparent contained containedin=pam_PAR
       " ATYPE
       syn match       pam_PART_MTOJNT_r1_a2             display contained containedin=pam_PART_MTOJNT_r1 "\%17c\CMTOJNT  \| \CMTOJNT \|  \CMTOJNT"
    syn region      pam_PART_MTOJNT_r1     transparent contained containedin=pam_PART_MTOJNT start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@25i8,@33i8,@41i8,@49i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PART_MTOJNT_r2a,pam_PART_MTOJNT_r2 skipnl keepend
-syn region      pam_PART_MTOJNT     matchgroup=pam_CardTag start="^\CPART  / .\{8\}\(\CMTOJNT  \| \CMTOJNT \|  \CMTOJNT\)"rs=s+8 end="^\CEND_PART" contains=pam_PART_MTOJNT_r[1-6] fold keepend
+syn region      pam_PART_MTOJNT     matchgroup=pam_CardTag start="^\CPART  / .\{8\}\(\CMTOJNT  \| \CMTOJNT \|  \CMTOJNT\)"rs=s+8 end="^\CEND_PART" contains=pam_PART_MTOJNT_r[1-6] keepend
 
 hi def link pam_PART_MTOJNT_r1_a2 pam_evenArgument
 hi def link pam_PART_MTOJNT_r1_v2 pam_evenVar
@@ -4377,7 +4377,7 @@ syn region      pam_PART_BAR_r2a    transparent contained containedin=pam_PART_B
       " ATYPE
       syn match       pam_PART_BAR_r1_a2             display contained containedin=pam_PART_BAR_r1 "\%17c\CBAR     \| \CBAR    \|  \CBAR   \|   \CBAR  \|    \CBAR \|     \CBAR"
    syn region      pam_PART_BAR_r1     transparent contained containedin=pam_PART_BAR start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@25i8,@33i8,@41i8,@49i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PART_BAR_r2a,pam_PART_BAR_r2 skipnl keepend
-syn region      pam_PART_BAR     matchgroup=pam_CardTag start="^\CPART  / .\{8\}\(\CBAR     \| \CBAR    \|  \CBAR   \|   \CBAR  \|    \CBAR \|     \CBAR\)"rs=s+8 end="^\CEND_PART" contains=pam_PART_BAR_r[1-6] fold keepend
+syn region      pam_PART_BAR     matchgroup=pam_CardTag start="^\CPART  / .\{8\}\(\CBAR     \| \CBAR    \|  \CBAR   \|   \CBAR  \|    \CBAR \|     \CBAR\)"rs=s+8 end="^\CEND_PART" contains=pam_PART_BAR_r[1-6] keepend
 
 hi def link pam_PART_BAR_r1_a2 pam_evenArgument
 hi def link pam_PART_BAR_r1_v2 pam_evenVar
@@ -4402,7 +4402,7 @@ syn region      pam_PART_TSHEL_r2a    transparent contained containedin=pam_PART
       " ATYPE
       syn match       pam_PART_TSHEL_r1_a2             display contained containedin=pam_PART_TSHEL_r1 "\%17c\CTSHEL   \| \CTSHEL  \|  \CTSHEL \|   \CTSHEL"
    syn region      pam_PART_TSHEL_r1     transparent contained containedin=pam_PART_TSHEL start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@25i8,@33i8,@41i8,@49i8,@57i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PART_TSHEL_r2a,pam_PART_TSHEL_r2 skipnl keepend
-syn region      pam_PART_TSHEL     matchgroup=pam_CardTag start="^\CPART  / .\{8\}\(\CTSHEL   \| \CTSHEL  \|  \CTSHEL \|   \CTSHEL\)"rs=s+8 end="^\CEND_PART" contains=pam_PART_TSHEL_r[1-6] fold keepend
+syn region      pam_PART_TSHEL     matchgroup=pam_CardTag start="^\CPART  / .\{8\}\(\CTSHEL   \| \CTSHEL  \|  \CTSHEL \|   \CTSHEL\)"rs=s+8 end="^\CEND_PART" contains=pam_PART_TSHEL_r[1-6] keepend
 
 hi def link pam_PART_TSHEL_r1_a2 pam_evenArgument
 hi def link pam_PART_TSHEL_r1_v2 pam_evenVar
@@ -4427,7 +4427,7 @@ syn region      pam_PART_PLINK_r2a    transparent contained containedin=pam_PART
       " ATYPE
       syn match       pam_PART_PLINK_r1_a2             display contained containedin=pam_PART_PLINK_r1 "\%17c\CPLINK   \| \CPLINK  \|  \CPLINK \|   \CPLINK"
    syn region      pam_PART_PLINK_r1     transparent contained containedin=pam_PART_PLINK start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@25i8,@33i8,@41i8,@49i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PART_PLINK_r2a,pam_PART_PLINK_r2 skipnl keepend
-syn region      pam_PART_PLINK     matchgroup=pam_CardTag start="^\CPART  / .\{8\}\(\CPLINK   \| \CPLINK  \|  \CPLINK \|   \CPLINK\)"rs=s+8 end="^\CEND_PART" contains=pam_PART_PLINK_r[1-6] fold keepend
+syn region      pam_PART_PLINK     matchgroup=pam_CardTag start="^\CPART  / .\{8\}\(\CPLINK   \| \CPLINK  \|  \CPLINK \|   \CPLINK\)"rs=s+8 end="^\CEND_PART" contains=pam_PART_PLINK_r[1-6] keepend
 
 hi def link pam_PART_PLINK_r1_a2 pam_evenArgument
 hi def link pam_PART_PLINK_r1_v2 pam_evenVar
@@ -4452,7 +4452,7 @@ syn region      pam_PART_LLINK_r2a    transparent contained containedin=pam_PART
       " ATYPE
       syn match       pam_PART_LLINK_r1_a2             display contained containedin=pam_PART_LLINK_r1 "\%17c\CLLINK   \| \CLLINK  \|  \CLLINK \|   \CLLINK"
    syn region      pam_PART_LLINK_r1     transparent contained containedin=pam_PART_LLINK start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@25i8,@33i8,@41i8,@49i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PART_LLINK_r2a,pam_PART_LLINK_r2 skipnl keepend
-syn region      pam_PART_LLINK     matchgroup=pam_CardTag start="^\CPART  / .\{8\}\(\CLLINK   \| \CLLINK  \|  \CLLINK \|   \CLLINK\)"rs=s+8 end="^\CEND_PART" contains=pam_PART_LLINK_r[1-6] fold keepend
+syn region      pam_PART_LLINK     matchgroup=pam_CardTag start="^\CPART  / .\{8\}\(\CLLINK   \| \CLLINK  \|  \CLLINK \|   \CLLINK\)"rs=s+8 end="^\CEND_PART" contains=pam_PART_LLINK_r[1-6] keepend
 
 hi def link pam_PART_LLINK_r1_a2 pam_evenArgument
 hi def link pam_PART_LLINK_r1_v2 pam_evenVar
@@ -4479,7 +4479,7 @@ syn region      pam_PART_TIED_r2a    transparent contained containedin=pam_PART_
       " ATYPE
       syn match       pam_PART_TIED_r1_a2             display contained containedin=pam_PART_TIED_r1 "\%17c\CTIED    \| \CTIED   \|  \CTIED  \|   \CTIED \|    \CTIED"
    syn region      pam_PART_TIED_r1     transparent contained containedin=pam_PART_TIED start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@25i8,@33i8,@41i8,@49i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PART_TIED_r2a,pam_PART_TIED_r2 skipnl keepend
-syn region      pam_PART_TIED     matchgroup=pam_CardTag start="^\CPART  / .\{8\}\(\CTIED    \| \CTIED   \|  \CTIED  \|   \CTIED \|    \CTIED\)"rs=s+8 end="^\CEND_PART" contains=pam_PART_TIED_r[1-6] fold keepend
+syn region      pam_PART_TIED     matchgroup=pam_CardTag start="^\CPART  / .\{8\}\(\CTIED    \| \CTIED   \|  \CTIED  \|   \CTIED \|    \CTIED\)"rs=s+8 end="^\CEND_PART" contains=pam_PART_TIED_r[1-6] keepend
 
 hi def link pam_PART_TIED_r1_a2 pam_evenArgument
 hi def link pam_PART_TIED_r1_v2 pam_evenVar
@@ -4506,7 +4506,7 @@ syn region      pam_PART_SELINK_r2a    transparent contained containedin=pam_PAR
       " ATYPE
       syn match       pam_PART_SELINK_r1_a2             display contained containedin=pam_PART_SELINK_r1 "\%17c\C[SE]LINK   \| \C[SE]LINK  \|  \C[SE]LINK \|   \C[SE]LINK"
    syn region      pam_PART_SELINK_r1     transparent contained containedin=pam_PART_SELINK start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@25i8,@33i8,@41i8,@49i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PART_SELINK_r2a,pam_PART_SELINK_r2 skipnl keepend
-syn region      pam_PART_SELINK     matchgroup=pam_CardTag start="^\CPART  / .\{8\}\(\C[SE]LINK   \| \C[SE]LINK  \|  \C[SE]LINK \|   \C[SE]LINK\)"rs=s+8 end="^\CEND_PART" contains=pam_PART_SELINK_r[1-6] fold keepend
+syn region      pam_PART_SELINK     matchgroup=pam_CardTag start="^\CPART  / .\{8\}\(\C[SE]LINK   \| \C[SE]LINK  \|  \C[SE]LINK \|   \C[SE]LINK\)"rs=s+8 end="^\CEND_PART" contains=pam_PART_SELINK_r[1-6] keepend
 
 hi def link pam_PART_SELINK_r1_a2 pam_evenArgument
 hi def link pam_PART_SELINK_r1_v2 pam_evenVar
@@ -4531,7 +4531,7 @@ syn region      pam_PART_SPRING_r2a    transparent contained containedin=pam_PAR
       " ATYPE
       syn match       pam_PART_SPRING_r1_a2             display contained containedin=pam_PART_SPRING_r1 "\%17c\CSPRING  \| \CSPRING \|  \CSPRING\|\CSPRGBM  \| \CSPRGBM \|  \CSPRGBM\|\CMBSPR   \| \CMBSPR  \|  \CMBSPR \|   \CMBSPR\|\CJOINT   \| \CJOINT  \|  \CJOINT \|   \CJOINT\|\CKJOIN   \| \CKJOIN  \|  \CKJOIN \|   \CKJOIN\|\CMBKJN   \| \CMBKJN  \|  \CMBKJN \|   \CMBKJN"
    syn region      pam_PART_SPRING_r1     transparent contained containedin=pam_PART_SPRING start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@25i8,@33i8,@41i8,@49i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PART_SPRING_r2a,pam_PART_SPRING_r2 skipnl keepend
-syn region      pam_PART_SPRING     matchgroup=pam_CardTag start="^\CPART  / .\{8\}\(\CSPRING  \| \CSPRING \|  \CSPRING\|\CSPRGBM  \| \CSPRGBM \|  \CSPRGBM\|\CMBSPR   \| \CMBSPR  \|  \CMBSPR \|   \CMBSPR\|\CJOINT   \| \CJOINT  \|  \CJOINT \|   \CJOINT\|\CKJOIN   \| \CKJOIN  \|  \CKJOIN \|   \CKJOIN\|\CMBKJN   \| \CMBKJN  \|  \CMBKJN \|   \CMBKJN\)"rs=s+8 end="^\CEND_PART" contains=pam_PART_SPRING_r[1-5] fold keepend
+syn region      pam_PART_SPRING     matchgroup=pam_CardTag start="^\CPART  / .\{8\}\(\CSPRING  \| \CSPRING \|  \CSPRING\|\CSPRGBM  \| \CSPRGBM \|  \CSPRGBM\|\CMBSPR   \| \CMBSPR  \|  \CMBSPR \|   \CMBSPR\|\CJOINT   \| \CJOINT  \|  \CJOINT \|   \CJOINT\|\CKJOIN   \| \CKJOIN  \|  \CKJOIN \|   \CKJOIN\|\CMBKJN   \| \CMBKJN  \|  \CMBKJN \|   \CMBKJN\)"rs=s+8 end="^\CEND_PART" contains=pam_PART_SPRING_r[1-5] keepend
 
 hi def link pam_PART_SPRING_r1_a2 pam_evenArgument
 hi def link pam_PART_SPRING_r1_v2 pam_evenVar
@@ -4573,7 +4573,7 @@ syn region      pam_PART_BEAM_r2a    transparent contained containedin=pam_PART_
       " ATYPE
       syn match       pam_PART_BEAM_r1_a2             display contained containedin=pam_PART_BEAM_r1 "\%17c\CBEAM    \| \CBEAM   \|  \CBEAM  \|   \CBEAM \|    \CBEAM"
    syn region      pam_PART_BEAM_r1     transparent contained containedin=pam_PART_BEAM start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@25i8,@33i8,@41i8,@49i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PART_BEAM_r2a,pam_PART_BEAM_r2 skipnl keepend
-syn region      pam_PART_BEAM     matchgroup=pam_CardTag start="^\CPART  / .\{8\}\(\CBEAM    \| \CBEAM   \|  \CBEAM  \|   \CBEAM \|    \CBEAM\)"rs=s+8 end="^\CEND_PART" contains=pam_PART_BEAM_r[1-6] fold keepend
+syn region      pam_PART_BEAM     matchgroup=pam_CardTag start="^\CPART  / .\{8\}\(\CBEAM    \| \CBEAM   \|  \CBEAM  \|   \CBEAM \|    \CBEAM\)"rs=s+8 end="^\CEND_PART" contains=pam_PART_BEAM_r[1-6] keepend
 
 hi def link pam_PART_BEAM_r1_a2 pam_evenArgument
 hi def link pam_PART_BEAM_r1_v2 pam_evenVar
@@ -4604,7 +4604,7 @@ syn region      pam_PART_MUSCLE_r2a    transparent contained containedin=pam_PAR
       " ATYPE
       syn match       pam_PART_MUSCLE_r1_a2             display contained containedin=pam_PART_MUSCLE_r1 "\%17c\CMUSCLE  \| \CMUSCLE \|  \CMUSCLE"
    syn region      pam_PART_MUSCLE_r1     transparent contained containedin=pam_PART_MUSCLE start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@25i8,@33i8,@41i8,@49i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PART_MUSCLE_r2a,pam_PART_MUSCLE_r2 skipnl keepend
-syn region      pam_PART_MUSCLE     matchgroup=pam_CardTag start="^\CPART  / .\{8\}\(\CMUSCLE  \| \CMUSCLE \|  \CMUSCLE\)"rs=s+8 end="^\CEND_PART" contains=pam_PART_MUSCLE_r[1-6] fold keepend
+syn region      pam_PART_MUSCLE     matchgroup=pam_CardTag start="^\CPART  / .\{8\}\(\CMUSCLE  \| \CMUSCLE \|  \CMUSCLE\)"rs=s+8 end="^\CEND_PART" contains=pam_PART_MUSCLE_r[1-6] keepend
 
 hi def link pam_PART_MUSCLE_r1_a2 pam_evenArgument
 hi def link pam_PART_MUSCLE_r1_v2 pam_evenVar
@@ -4641,7 +4641,7 @@ syn region      pam_INCLU          matchgroup=pam_CardTag start="^\CINCLU /" end
    syn region      pam_RBODY0_r2     transparent contained containedin=pam_RBODY0 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_RBODY0_r3 skipnl keepend
    " Row 1
    syn region      pam_RBODY0_r1     transparent contained containedin=pam_RBODY0 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@25i8,@33i8,@41i8,@57i8,@65i8,@73f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_RBODY0_r2 skipnl keepend
-syn region      pam_RBODY0        matchgroup=pam_CardTag start="^\CRBODY / .\{16\}[ ]\{7\}0"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_RBODY0_r[1-3] fold keepend
+syn region      pam_RBODY0        matchgroup=pam_CardTag start="^\CRBODY / .\{16\}[ ]\{7\}0"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_RBODY0_r[1-3] keepend
 
    " Row 4 (Node Selection)
    syn region      pam_RBODY1_r4     transparent contained containedin=pam_RBODY1 start="\%1c." start="^$\n" matchgroup=pam_CardTag end="\%$" contains=@pam_Ident,pam_Comment,pam_Comment_Position,pam_End,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position keepend
@@ -4651,7 +4651,7 @@ syn region      pam_RBODY0        matchgroup=pam_CardTag start="^\CRBODY / .\{16
    syn region      pam_RBODY1_r2     transparent contained containedin=pam_RBODY1 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_RBODY1_r3 skipnl keepend
    " Row 1
    syn region      pam_RBODY1_r1     transparent contained containedin=pam_RBODY1 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@25i8,@33i8,@41i8,@57i8,@73f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_RBODY1_r2 skipnl keepend
-syn region      pam_RBODY1        matchgroup=pam_CardTag start="^\CRBODY / .\{16\}[ ]\{7\}1"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_RBODY1_r[1-4] fold keepend
+syn region      pam_RBODY1        matchgroup=pam_CardTag start="^\CRBODY / .\{16\}[ ]\{7\}1"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_RBODY1_r[1-4] keepend
 
    " Row 4 (Node Selection)
    syn region      pam_RBODY2_r4     transparent contained containedin=pam_RBODY2 start="\%1c." start="^$\n" matchgroup=pam_CardTag end="\%$" contains=@pam_Ident,pam_Comment,pam_Comment_Position,pam_End,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position keepend
@@ -4661,7 +4661,7 @@ syn region      pam_RBODY1        matchgroup=pam_CardTag start="^\CRBODY / .\{16
    syn region      pam_RBODY2_r2     transparent contained containedin=pam_RBODY2 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_RBODY2_r3 skipnl keepend
    " Row 1
    syn region      pam_RBODY2_r1     transparent contained containedin=pam_RBODY2 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@25i8,@33i8,@41i8,@57i8,@73f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_RBODY2_r2 skipnl keepend
-syn region      pam_RBODY2        matchgroup=pam_CardTag start="^\CRBODY / .\{16\}[ ]\{7\}2"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_RBODY2_r[1-4] fold keepend
+syn region      pam_RBODY2        matchgroup=pam_CardTag start="^\CRBODY / .\{16\}[ ]\{7\}2"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_RBODY2_r[1-4] keepend
 
    " Row 4 (Node Selection)
    syn region      pam_RBODY3_r4     transparent contained containedin=pam_RBODY3 start="\%1c." start="^$\n" matchgroup=pam_CardTag end="\%$" contains=@pam_Ident,pam_Comment,pam_Comment_Position,pam_End,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position keepend
@@ -4672,7 +4672,7 @@ syn region      pam_RBODY2        matchgroup=pam_CardTag start="^\CRBODY / .\{16
    syn region      pam_RBODY3_r2     transparent contained containedin=pam_RBODY3 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_RBODY3_r3 skipnl keepend
    " Row 1
    syn region      pam_RBODY3_r1     transparent contained containedin=pam_RBODY3 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@25i8,@33i8,@41i8,@49i8,@57i8,@65i8,@73f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_RBODY3_r2 skipnl keepend
-syn region      pam_RBODY3        matchgroup=pam_CardTag start="^\CRBODY / .\{16\}[ ]\{7\}3"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_RBODY3_r[1-4] fold keepend
+syn region      pam_RBODY3        matchgroup=pam_CardTag start="^\CRBODY / .\{16\}[ ]\{7\}3"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_RBODY3_r[1-4] keepend
 
    " Row 4 (Node Selection)
    syn region      pam_RBODY4_r4     transparent contained containedin=pam_RBODY4 start="\%1c." start="^$\n" matchgroup=pam_CardTag end="\%$" contains=@pam_Ident,pam_Comment,pam_Comment_Position,pam_End,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position keepend
@@ -4682,7 +4682,7 @@ syn region      pam_RBODY3        matchgroup=pam_CardTag start="^\CRBODY / .\{16
    syn region      pam_RBODY4_r2     transparent contained containedin=pam_RBODY4 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_RBODY4_r3 skipnl keepend
    " Row 1
    syn region      pam_RBODY4_r1     transparent contained containedin=pam_RBODY4 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@25i8,@33i8,@41i8,@57i8,@73f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_RBODY4_r2 skipnl keepend
-syn region      pam_RBODY4        matchgroup=pam_CardTag start="^\CRBODY / .\{16\}[ ]\{7\}4"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_RBODY4_r[1-4] fold keepend
+syn region      pam_RBODY4        matchgroup=pam_CardTag start="^\CRBODY / .\{16\}[ ]\{7\}4"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_RBODY4_r[1-4] keepend
 " === RBODY end}}}
 
 "{{{ === THLOC begin
@@ -4692,7 +4692,7 @@ syn region      pam_RBODY4        matchgroup=pam_CardTag start="^\CRBODY / .\{16
    syn region      pam_THLOC_r2     transparent contained containedin=pam_THLOC start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_THLOC_r3 skipnl keepend
    " Row 1     
    syn region      pam_THLOC_r1     transparent contained containedin=pam_THLOC start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25i8,@33i8,@41i8,@49i8,@57i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_THLOC_r2 skipnl keepend
-syn region      pam_THLOC            matchgroup=pam_CardTag start="^\CTHLOC /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_THLOC_r[1-3] fold keepend
+syn region      pam_THLOC            matchgroup=pam_CardTag start="^\CTHLOC /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_THLOC_r[1-3] keepend
 " === THLOC end}}}
 
 "{{{ === VAMPSO begin
@@ -4708,7 +4708,7 @@ syn region      pam_THLOC            matchgroup=pam_CardTag start="^\CTHLOC /" e
    syn region      pam_VAMPSO_r2     transparent contained containedin=pam_VAMPSO start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_VAMPSO_r3 skipnl keepend
    " Row 1     
    syn region      pam_VAMPSO_r1     transparent contained containedin=pam_VAMPSO start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_VAMPSO_r2 skipnl keepend
-syn region      pam_VAMPSO            matchgroup=pam_CardTag start="^\CVAMPSO/" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_VAMPSO_r[1-4] fold keepend
+syn region      pam_VAMPSO            matchgroup=pam_CardTag start="^\CVAMPSO/" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_VAMPSO_r[1-4] keepend
 " === VAMPSO end}}}
 
 "{{{ === VAABSO begin
@@ -4724,7 +4724,7 @@ syn region      pam_VAMPSO            matchgroup=pam_CardTag start="^\CVAMPSO/" 
    syn region      pam_VAABSO_r2     transparent contained containedin=pam_VAABSO start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_VAABSO_r3 skipnl keepend
    " Row 1     
    syn region      pam_VAABSO_r1     transparent contained containedin=pam_VAABSO start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_VAABSO_r2 skipnl keepend
-syn region      pam_VAABSO            matchgroup=pam_CardTag start="^\CVAABSO/" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_VAABSO_r[1-4] fold keepend
+syn region      pam_VAABSO            matchgroup=pam_CardTag start="^\CVAABSO/" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_VAABSO_r[1-4] keepend
 " === VAABSO end}}}
 
 "{{{ === VADIFF begin
@@ -4740,7 +4740,7 @@ syn region      pam_VAABSO            matchgroup=pam_CardTag start="^\CVAABSO/" 
    syn region      pam_VADIFF_r2     transparent contained containedin=pam_VADIFF start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_VADIFF_r3 skipnl keepend
    " Row 1     
    syn region      pam_VADIFF_r1     transparent contained containedin=pam_VADIFF start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_VADIFF_r2 skipnl keepend
-syn region      pam_VADIFF            matchgroup=pam_CardTag start="^\CVADIFF/" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_VADIFF_r[1-4] fold keepend
+syn region      pam_VADIFF            matchgroup=pam_CardTag start="^\CVADIFF/" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_VADIFF_r[1-4] keepend
 " === VADIFF end}}}
 
 "{{{ === FBCFA begin
@@ -4761,7 +4761,7 @@ syn region      pam_VADIFF            matchgroup=pam_CardTag start="^\CVADIFF/" 
    syn region      pam_FBCFA_r2     transparent contained containedin=pam_FBCFA start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_FBCFA_r3,pam_FBCFA_r4 skipnl keepend
    " Row 1     
    syn region      pam_FBCFA_r1     transparent contained containedin=pam_FBCFA start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@17i8,@25f8,@33f8,@41f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_FBCFA_r2 skipnl keepend
-syn region      pam_FBCFA            matchgroup=pam_CardTag start="^\CFBCFA /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_FBCFA_r[1-4] fold keepend
+syn region      pam_FBCFA            matchgroup=pam_CardTag start="^\CFBCFA /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_FBCFA_r[1-4] keepend
 " === FBCFA end}}}
 
 "{{{ === VAPLNW begin
@@ -4769,21 +4769,21 @@ syn region      pam_FBCFA            matchgroup=pam_CardTag start="^\CFBCFA /" e
    syn region      pam_VAPLNWX_r2     transparent contained containedin=pam_VAPLNWX start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
    " Row 1     
    syn region      pam_VAPLNWX_r1     transparent contained containedin=pam_VAPLNWX start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_VAPLNWX_r2 skipnl keepend
-syn region      pam_VAPLNWX            matchgroup=pam_CardTag start="^\CVAPLNW/" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_VAPLNWX_r[1-3] fold keepend
+syn region      pam_VAPLNWX            matchgroup=pam_CardTag start="^\CVAPLNW/" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_VAPLNWX_r[1-3] keepend
    " Row 3
    syn region      pam_VAPLNW1_r3     transparent contained containedin=pam_VAPLNW1 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9f8,@17f8,@25i8,@33f8,@41f8,@49f8,pam_Comment,pam_Comment_Position,pam_End,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position keepend
    "Row 2 (Name)
    syn region      pam_VAPLNW1_r2     transparent contained containedin=pam_VAPLNW1 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_VAPLNW1_r3 skipnl keepend
    " Row 1     
    syn region      pam_VAPLNW1_r1     transparent contained containedin=pam_VAPLNW1 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_VAPLNW1_r2 skipnl keepend
-syn region      pam_VAPLNW1            matchgroup=pam_CardTag start="^\CVAPLNW/ .\{16\}       1"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_VAPLNW1_r[1-3] fold keepend
+syn region      pam_VAPLNW1            matchgroup=pam_CardTag start="^\CVAPLNW/ .\{16\}       1"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_VAPLNW1_r[1-3] keepend
    " Row 3
    syn region      pam_VAPLNW0_r3     transparent contained containedin=pam_VAPLNW0 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33f8,@41f8,@49f8,pam_Comment,pam_Comment_Position,pam_End,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position keepend
    "Row 2 (Name)
    syn region      pam_VAPLNW0_r2     transparent contained containedin=pam_VAPLNW0 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_VAPLNW0_r3 skipnl keepend
    " Row 1     
    syn region      pam_VAPLNW0_r1     transparent contained containedin=pam_VAPLNW0 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_VAPLNW0_r2 skipnl keepend
-syn region      pam_VAPLNW0            matchgroup=pam_CardTag start="^\CVAPLNW/ .\{16\}       0"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_VAPLNW0_r[1-3] fold keepend
+syn region      pam_VAPLNW0            matchgroup=pam_CardTag start="^\CVAPLNW/ .\{16\}       0"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_VAPLNW0_r[1-3] keepend
 " === VAPLNW end}}}
 
 "{{{ === ACTUA begin
@@ -4807,7 +4807,7 @@ syn region      pam_VAPLNW0            matchgroup=pam_CardTag start="^\CVAPLNW/ 
       hi def link pam_ACTUA_r1_a1 pam_oddArgument
       hi def link pam_ACTUA_r1_e1 pam_oddError
    syn region      pam_ACTUA_r1     transparent contained containedin=pam_ACTUA start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@33i8,@41f8,@49f8,@65i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_ACTUA_r2 skipnl keepend
-syn region      pam_ACTUA            matchgroup=pam_CardTag start="^\CACTUA /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_ACTUA_r[1-4] fold keepend
+syn region      pam_ACTUA            matchgroup=pam_CardTag start="^\CACTUA /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_ACTUA_r[1-4] keepend
 " === ACTUA end}}}
 
 "{{{=== PFMAT begin 
@@ -4826,7 +4826,7 @@ syn region      pam_ACTUA            matchgroup=pam_CardTag start="^\CACTUA /" e
    " END_PFMAT
    syn match       pam_EndThMat     display contained containedin=pam_PFMAT "^\CEND_PFMAT"
    hi def link     pam_EndThMat pam_CardTag
-syn region      pam_PFMAT           matchgroup=pam_CardTag start="^\CPFMAT /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_EndThMat fold keepend
+syn region      pam_PFMAT           matchgroup=pam_CardTag start="^\CPFMAT /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_EndThMat keepend
 " PFMAT end}}}
 
 "{{{=== THMAT begin 
@@ -4857,7 +4857,7 @@ syn region      pam_PFMAT           matchgroup=pam_CardTag start="^\CPFMAT /" en
    " END_THMAT
    syn match       pam_EndThMat     display contained containedin=pam_THMAT "^\CEND_THMAT"
    hi def link     pam_EndThMat pam_CardTag
-syn region      pam_THMAT           matchgroup=pam_CardTag start="^\CTHMAT /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_EndThMat fold keepend
+syn region      pam_THMAT           matchgroup=pam_CardTag start="^\CTHMAT /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_EndThMat keepend
 " THMAT end}}}
 
 "{{{=== CNTPTY begin 
@@ -4871,7 +4871,7 @@ syn region      pam_THMAT           matchgroup=pam_CardTag start="^\CTHMAT /" en
    " END_CNTPTY
    syn match       pam_EndCntPty     display contained containedin=pam_CNTPTY "^\CEND_CNTPTY"
    hi def link     pam_EndCntPty pam_CardTag
-syn region      pam_CNTPTY           matchgroup=pam_CardTag start="^\CCNTPTY/" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_EndCntPty fold keepend
+syn region      pam_CNTPTY           matchgroup=pam_CardTag start="^\CCNTPTY/" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_EndCntPty keepend
 " CNTPTY end}}}
 
 "{{{ === THNAC begin
@@ -4881,7 +4881,7 @@ syn region      pam_CNTPTY           matchgroup=pam_CardTag start="^\CCNTPTY/" e
    syn region      pam_THNAC_r2     transparent contained containedin=pam_THNAC start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_THNAC_r3 skipnl keepend
    " Row 1     
    syn region      pam_THNAC_r1     transparent contained containedin=pam_THNAC start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25i8,@33i8,@41i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_THNAC_r2 skipnl keepend
-syn region      pam_THNAC            matchgroup=pam_CardTag start="^\CTHNAC /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_THNAC_r[1-3] fold keepend
+syn region      pam_THNAC            matchgroup=pam_CardTag start="^\CTHNAC /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_THNAC_r[1-3] keepend
 " === THNAC end}}}
 
 "{{{ === SELOUT begin
@@ -4910,7 +4910,7 @@ syn region      pam_THNAC            matchgroup=pam_CardTag start="^\CTHNAC /" e
    syn region      pam_SELOUT_r2     transparent contained containedin=pam_SELOUT start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_SELOUT_r3,pam_SELOUT_r4,pam_SELOUT_r5,pam_SELOUT_r6,pam_SELOUT_r7 skipnl keepend
    " Row 1     
    syn region      pam_SELOUT_r1     transparent contained containedin=pam_SELOUT start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_SELOUT_r2 skipnl keepend
-syn region      pam_SELOUT            matchgroup=pam_CardTag start="^\CSELOUT/" end="^\CEND_SELOUT" contains=pam_SELOUT_r[1-5] fold keepend
+syn region      pam_SELOUT            matchgroup=pam_CardTag start="^\CSELOUT/" end="^\CEND_SELOUT" contains=pam_SELOUT_r[1-5] keepend
 " === SELOUT end}}}
 
 "{{{ === FRICT begin
@@ -4918,13 +4918,13 @@ syn region      pam_SELOUT            matchgroup=pam_CardTag start="^\CSELOUT/" 
    syn region      pam_FRICTX_r2     transparent contained containedin=pam_FRICTX start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
    " Row 1     
    syn region      pam_FRICTX_r1     transparent contained containedin=pam_FRICTX start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f8,@33f8,@41f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_FRICTX_r2 skipnl keepend
-syn region      pam_FRICTX            matchgroup=pam_CardTag start="^\CFRICT /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_FRICTX_r[1-3] fold keepend
+syn region      pam_FRICTX            matchgroup=pam_CardTag start="^\CFRICT /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_FRICTX_r[1-3] keepend
 
    "Row 2 (Name)
    syn region      pam_FRICT13_r2     transparent contained containedin=pam_FRICT13 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
    " Row 1     
    syn region      pam_FRICT13_r1     transparent contained containedin=pam_FRICT13 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25i8,@33i8,@41i8,@49i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_FRICT13_r2 skipnl keepend
-syn region      pam_FRICT13            matchgroup=pam_CardTag start="^\CFRICT / .\{8\}      13"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_FRICT13_r[1-3] fold keepend
+syn region      pam_FRICT13            matchgroup=pam_CardTag start="^\CFRICT / .\{8\}      13"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_FRICT13_r[1-3] keepend
 
    " Row 3     
    syn region      pam_FRICT12_r3     transparent contained containedin=pam_FRICT12 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9f8,@17f8,@25f8,@33f8,@41f8,@49f8,@57f8,@65f8,@73f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
@@ -4932,43 +4932,43 @@ syn region      pam_FRICT13            matchgroup=pam_CardTag start="^\CFRICT / 
    syn region      pam_FRICT12_r2     transparent contained containedin=pam_FRICT12 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_FRICT12_r3 skipnl keepend
    " Row 1     
    syn region      pam_FRICT12_r1     transparent contained containedin=pam_FRICT12 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f8,@33f8,@41f8,@49f8,@57f8,@65f8,@73f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_FRICT12_r2 skipnl keepend
-syn region      pam_FRICT12            matchgroup=pam_CardTag start="^\CFRICT / .\{8\}      12"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_FRICT12_r[1-3] fold keepend
+syn region      pam_FRICT12            matchgroup=pam_CardTag start="^\CFRICT / .\{8\}      12"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_FRICT12_r[1-3] keepend
 
    "Row 2 (Name)
    syn region      pam_FRICT11_r2     transparent contained containedin=pam_FRICT11 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
    " Row 1     
    syn region      pam_FRICT11_r1     transparent contained containedin=pam_FRICT11 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f8,@33f8,@41f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_FRICT11_r2 skipnl keepend
-syn region      pam_FRICT11            matchgroup=pam_CardTag start="^\CFRICT / .\{8\}      11"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_FRICT11_r[1-3] fold keepend
+syn region      pam_FRICT11            matchgroup=pam_CardTag start="^\CFRICT / .\{8\}      11"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_FRICT11_r[1-3] keepend
 
    "Row 2 (Name)
    syn region      pam_FRICT10_r2     transparent contained containedin=pam_FRICT10 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
    " Row 1     
    syn region      pam_FRICT10_r1     transparent contained containedin=pam_FRICT10 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f8,@33f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_FRICT10_r2 skipnl keepend
-syn region      pam_FRICT10            matchgroup=pam_CardTag start="^\CFRICT / .\{8\}      10"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_FRICT10_r[1-3] fold keepend
+syn region      pam_FRICT10            matchgroup=pam_CardTag start="^\CFRICT / .\{8\}      10"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_FRICT10_r[1-3] keepend
 
    "Row 2 (Name)
    syn region      pam_FRICT5_r2     transparent contained containedin=pam_FRICT5 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
    " Row 1     
    syn region      pam_FRICT5_r1     transparent contained containedin=pam_FRICT5 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f8,@33f8,@41f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_FRICT5_r2 skipnl keepend
-syn region      pam_FRICT5            matchgroup=pam_CardTag start="^\CFRICT / .\{8\}       [56]"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_FRICT5_r[1-3] fold keepend
+syn region      pam_FRICT5            matchgroup=pam_CardTag start="^\CFRICT / .\{8\}       [56]"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_FRICT5_r[1-3] keepend
 
    "Row 2 (Name)
    syn region      pam_FRICT4_r2     transparent contained containedin=pam_FRICT4 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
    " Row 1     
    syn region      pam_FRICT4_r1     transparent contained containedin=pam_FRICT4 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25i8,@33i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_FRICT4_r2 skipnl keepend
-syn region      pam_FRICT4            matchgroup=pam_CardTag start="^\CFRICT / .\{8\}       4"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_FRICT4_r[1-3] fold keepend
+syn region      pam_FRICT4            matchgroup=pam_CardTag start="^\CFRICT / .\{8\}       4"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_FRICT4_r[1-3] keepend
 
    "Row 2 (Name)
    syn region      pam_FRICT2_r2     transparent contained containedin=pam_FRICT2 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
    " Row 1     
    syn region      pam_FRICT2_r1     transparent contained containedin=pam_FRICT2 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_FRICT2_r2 skipnl keepend
-syn region      pam_FRICT2            matchgroup=pam_CardTag start="^\CFRICT / .\{8\}       [23]"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_FRICT2_r[1-3] fold keepend
+syn region      pam_FRICT2            matchgroup=pam_CardTag start="^\CFRICT / .\{8\}       [23]"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_FRICT2_r[1-3] keepend
 
    "Row 2 (Name)
    syn region      pam_FRICT1_r2     transparent contained containedin=pam_FRICT1 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
    " Row 1     
    syn region      pam_FRICT1_r1     transparent contained containedin=pam_FRICT1 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_FRICT1_r2 skipnl keepend
-syn region      pam_FRICT1            matchgroup=pam_CardTag start="^\CFRICT / .\{8\}       1"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_FRICT1_r[1-3] fold keepend
+syn region      pam_FRICT1            matchgroup=pam_CardTag start="^\CFRICT / .\{8\}       1"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_FRICT1_r[1-3] keepend
 " === FRICT end}}}
 
 " {{{ === LOOKU begin
@@ -4986,7 +4986,7 @@ syn region      pam_FRICT1            matchgroup=pam_CardTag start="^\CFRICT / .
    syn region      pam_LOOKU_r3     transparent contained containedin=pam_LOOKU matchgroup=pam_Keyword start="\%1c[ ]\{8\}ARGUMENT"rs=s+16 start="^$\n" matchgroup=pam_End end="^[ ]\{8\}END" contains=pam_LOOKU_r3a keepend
    " Row 3
    syn region      pam_LOOKU_r3     transparent contained containedin=pam_LOOKU matchgroup=pam_Keyword start="\%1c[ ]\{8\}FUNCTION"rs=s+16 start="^$\n" matchgroup=pam_End end="^[ ]\{8\}END" contains=pam_LOOKU_r4,pam_Comment,pam_Comment_Position,pam_Error keepend
-syn region      pam_LOOKU            matchgroup=pam_CardTag start="^\CLOOKU /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Comment,pam_Comment_Position fold keepend
+syn region      pam_LOOKU            matchgroup=pam_CardTag start="^\CLOOKU /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Comment,pam_Comment_Position keepend
 " LOOKU end}}}
 
 "{{{ === THELE begin
@@ -4996,7 +4996,7 @@ syn region      pam_LOOKU            matchgroup=pam_CardTag start="^\CLOOKU /" e
    syn region      pam_THELE_r2     transparent contained containedin=pam_THELE start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_THELE_r3 skipnl keepend
    " Row 1   
    syn region      pam_THELE_r1     transparent contained containedin=pam_THELE start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_THELE_r2 skipnl keepend
-syn region      pam_THELE            matchgroup=pam_CardTag start="^\CTHELE /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_THELE_r[1-2] fold keepend
+syn region      pam_THELE            matchgroup=pam_CardTag start="^\CTHELE /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_THELE_r[1-2] keepend
 " === THELE end}}}
 
 "{{{ === IMPMA begin
@@ -5029,7 +5029,7 @@ syn region      pam_THELE            matchgroup=pam_CardTag start="^\CTHELE /" e
       hi def link pam_IMPMA_r1_e2  pam_oddError
       hi def link pam_IMPMA_r1_a3  pam_evenArgument
       hi def link pam_IMPMA_r1_e3  pam_evenError
-syn region      pam_IMPMA            matchgroup=pam_CardTag start="^\CIMPMA /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_IMPMA_r[1-2] fold keepend
+syn region      pam_IMPMA            matchgroup=pam_CardTag start="^\CIMPMA /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_IMPMA_r[1-2] keepend
 " === IMPMA end}}}
 
 "{{{ === SURFA begin
@@ -5039,7 +5039,7 @@ syn region      pam_IMPMA            matchgroup=pam_CardTag start="^\CIMPMA /" e
    syn region      pam_SURFA_r2     transparent contained containedin=pam_SURFA start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_SURFA_r3 skipnl keepend
    " Row 1   
    syn region      pam_SURFA_r1     transparent contained containedin=pam_SURFA start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_SURFA_r2 skipnl keepend
-syn region      pam_SURFA            matchgroup=pam_CardTag start="^\CSURFA /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_SURFA_r[1-2] fold keepend
+syn region      pam_SURFA            matchgroup=pam_CardTag start="^\CSURFA /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_SURFA_r[1-2] keepend
 " === SURFA end}}}
 
 "{{{ === PFSURF begin
@@ -5059,7 +5059,7 @@ syn region      pam_SURFA            matchgroup=pam_CardTag start="^\CSURFA /" e
    syn region      pam_PFSURF_r2     transparent contained containedin=pam_PFSURF start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_PFSURF_r3 skipnl keepend
    " Row 1   
    syn region      pam_PFSURF_r1     transparent contained containedin=pam_PFSURF start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PFSURF_r2 skipnl keepend
-syn region      pam_PFSURF            matchgroup=pam_CardTag start="^\CPFSURF/" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_PFSURF_r[1-2] fold keepend
+syn region      pam_PFSURF            matchgroup=pam_CardTag start="^\CPFSURF/" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_PFSURF_r[1-2] keepend
 " === PFSURF end}}}
 
 "{{{ === THCRS begin
@@ -5087,7 +5087,7 @@ syn region      pam_PFSURF            matchgroup=pam_CardTag start="^\CPFSURF/" 
       hi def link pam_THCRS_r1_a1 pam_evenArgument
       hi def link pam_THCRS_r1_e1 pam_evenError
    syn region      pam_THCRS_r1     transparent contained containedin=pam_THCRS start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@22i8,@35i8,@48i8,@61i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_THCRS_r2 skipnl keepend
-syn region      pam_THCRS            matchgroup=pam_CardTag start="^\CTHCRS /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_THCRS_r[1-2] fold keepend
+syn region      pam_THCRS            matchgroup=pam_CardTag start="^\CTHCRS /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_THCRS_r[1-2] keepend
 " === THCRS end}}}
 
 "{{{ === LCPSD begin
@@ -5095,7 +5095,7 @@ syn region      pam_THCRS            matchgroup=pam_CardTag start="^\CTHCRS /" e
    syn region      pam_LCPSD_r2     transparent contained containedin=pam_LCPSD start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position keepend
    " Row 1   
    syn region      pam_LCPSD_r1     transparent contained containedin=pam_LCPSD start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33f8,@41f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_LCPSD_r2 skipnl keepend
-syn region      pam_LCPSD            matchgroup=pam_CardTag start="^\CLCPSD /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_LCPSD_r[1-2] fold keepend
+syn region      pam_LCPSD            matchgroup=pam_CardTag start="^\CLCPSD /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_LCPSD_r[1-2] keepend
 " === LCPSD end}}}
 
 "{{{ === VACPL begin
@@ -5131,7 +5131,7 @@ syn region      pam_LCPSD            matchgroup=pam_CardTag start="^\CLCPSD /" e
    " END_VACPL
    syn match       pam_EndVACPL        display contained containedin=pam_VACPL "^\CEND_VACPL"
    hi def link pam_EndVACPL pam_CardTag
-syn region      pam_VACPL            matchgroup=pam_CardTag start="^\CVACPL /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_VACPL_r[1-3],pam_EndVACPL fold keepend
+syn region      pam_VACPL            matchgroup=pam_CardTag start="^\CVACPL /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_VACPL_r[1-3],pam_EndVACPL keepend
 " === VACPL end}}}
 
 "{{{ === HFLUX begin
@@ -5141,7 +5141,7 @@ syn region      pam_VACPL            matchgroup=pam_CardTag start="^\CVACPL /" e
    syn region      pam_HFLUX_r2     transparent contained containedin=pam_HFLUX start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_HFLUX_r3 skipnl keepend
    " Row 1   
    syn region      pam_HFLUX_r1     transparent contained containedin=pam_HFLUX start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17f8,@25i8,@33i8,@41f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_HFLUX_r2 skipnl keepend
-syn region      pam_HFLUX            matchgroup=pam_CardTag start="^\CHFLUX /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_HFLUX_r[1-3] fold keepend
+syn region      pam_HFLUX            matchgroup=pam_CardTag start="^\CHFLUX /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_HFLUX_r[1-3] keepend
 " === HFLUX,DFLUX end}}}
 
 "{{{ === BFLUX,DFLUX begin
@@ -5151,7 +5151,7 @@ syn region      pam_HFLUX            matchgroup=pam_CardTag start="^\CHFLUX /" e
    syn region      pam_BFLUX_r2     transparent contained containedin=pam_BFLUX start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_BFLUX_r3 skipnl keepend
    " Row 1   
    syn region      pam_BFLUX_r1     transparent contained containedin=pam_BFLUX start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9f8,@17i8,@25i8,@33f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_BFLUX_r2 skipnl keepend
-syn region      pam_BFLUX            matchgroup=pam_CardTag start="^\C[BD]FLUX /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_BFLUX_r[1-3] fold keepend
+syn region      pam_BFLUX            matchgroup=pam_CardTag start="^\C[BD]FLUX /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_BFLUX_r[1-3] keepend
 " === BFLUX,DFLUX end}}}
 
 "{{{ === INTEM begin
@@ -5161,7 +5161,7 @@ syn region      pam_BFLUX            matchgroup=pam_CardTag start="^\C[BD]FLUX /
    syn region      pam_INTEM_r2     transparent contained containedin=pam_INTEM start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_INTEM_r3 skipnl keepend
    " Row 1   
    syn region      pam_INTEM_r1     transparent contained containedin=pam_INTEM start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_INTEM_r2 skipnl keepend
-syn region      pam_INTEM            matchgroup=pam_CardTag start="^\CINTEM /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_INTEM_r[1-3] fold keepend
+syn region      pam_INTEM            matchgroup=pam_CardTag start="^\CINTEM /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_INTEM_r[1-3] keepend
 " === INTEM end}}}
 
 "{{{ === HTSURF begin
@@ -5175,7 +5175,7 @@ syn region      pam_INTEM            matchgroup=pam_CardTag start="^\CINTEM /" e
    syn region      pam_HTSURF_r2     transparent contained containedin=pam_HTSURF start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_HTSURF_r3 skipnl keepend
    " Row 1   
    syn region      pam_HTSURF_r1     transparent contained containedin=pam_HTSURF start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9f8,@17i8,@25i8,@41i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_HTSURF_r2 skipnl keepend
-syn region      pam_HTSURF            matchgroup=pam_CardTag start="^\CHTSURF/" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_HTSURF_r[1-3] fold keepend
+syn region      pam_HTSURF            matchgroup=pam_CardTag start="^\CHTSURF/" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_HTSURF_r[1-3] keepend
 " === HTSURF end}}}
 
 "{{{ === TEMBC begin
@@ -5189,7 +5189,7 @@ syn region      pam_HTSURF            matchgroup=pam_CardTag start="^\CHTSURF/" 
       syn match       pam_TEMPBC_r1_a1  display contained containedin=pam_TEMBC_r1 "\%57c\CLOWER   "
       syn match       pam_TEMPBC_r1_a1  display contained containedin=pam_TEMBC_r1 "\%41c\CFILE    "
       hi def link pam_TEMPBC_r1_a1 pam_oddArgument
-syn region      pam_TEMBC            matchgroup=pam_CardTag start="^\CTEMBC /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_TEMBC_r[1-3] fold keepend
+syn region      pam_TEMBC            matchgroup=pam_CardTag start="^\CTEMBC /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_TEMBC_r[1-3] keepend
 " === TEMBC end}}}
 
 "{{{ === LAYER begin
@@ -5203,7 +5203,7 @@ syn region      pam_TEMBC            matchgroup=pam_CardTag start="^\CTEMBC /" e
    syn region      pam_LAYER_r2     transparent contained containedin=pam_LAYER start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_LAYER_r3 skipnl keepend
    " Row 1   
    syn region      pam_LAYER_r1     transparent contained containedin=pam_LAYER start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_LAYER_r2 skipnl keepend
-syn region      pam_LAYER            matchgroup=pam_CardTag start="^\CLAYER /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_LAYER_r[1-2] fold keepend
+syn region      pam_LAYER            matchgroup=pam_CardTag start="^\CLAYER /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_LAYER_r[1-2] keepend
 " === LAYER end}}}
 
 "{{{ === RMLOAD begin
@@ -5217,7 +5217,7 @@ syn region      pam_LAYER            matchgroup=pam_CardTag start="^\CLAYER /" e
       hi def link pam_RMLOAD_r1_a1 pam_evenArgument
       hi def link pam_RMLOAD_r1_e1 pam_evenError
    syn region      pam_RMLOAD_r1     transparent contained containedin=pam_RMLOAD start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_RMLOAD_r2 skipnl keepend
-syn region      pam_RMLOAD            matchgroup=pam_CardTag start="^\CRMLOAD/" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_RMLOAD_r[1-2] fold keepend
+syn region      pam_RMLOAD            matchgroup=pam_CardTag start="^\CRMLOAD/" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_RMLOAD_r[1-2] keepend
 " === RMLOAD end}}}
 
 "{{{ === MLOAD begin
@@ -5228,7 +5228,7 @@ syn region      pam_RMLOAD            matchgroup=pam_CardTag start="^\CRMLOAD/" 
    " END_MLOAD
    syn match       pam_EndMLOAD     display containedin=ALLBUT,pam_Comment,pam_Comment_Position,pam_EndData,pam_Continue,pam_Source "^\CEND_MLOAD"
    hi def link pam_EndMLOAD pam_CardTag
-syn region      pam_MLOAD           matchgroup=pam_CardTag start="^\CMLOAD /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_MLOAD_r[1-2] fold keepend
+syn region      pam_MLOAD           matchgroup=pam_CardTag start="^\CMLOAD /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_MLOAD_r[1-2] keepend
 " === MLOAD end}}}
 
 "{{{ === DISLIM begin
@@ -5240,7 +5240,7 @@ syn region      pam_MLOAD           matchgroup=pam_CardTag start="^\CMLOAD /" en
       syn match    pam_DISLIM_r1_a1  contained containedin=pam_DISLIM_r1 "\%17c\CCURVE   "
       hi def link pam_DISLIM_r1_a1 pam_evenArgument
    syn region      pam_DISLIM_r1     transparent contained containedin=pam_DISLIM start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17f8,@25i8,@33f8,@41i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_DISLIM_r2 skipnl keepend
-syn region      pam_DISLIM            matchgroup=pam_CardTag start="^\CDISLIM/" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_DISLIM_r[1-2] fold keepend
+syn region      pam_DISLIM            matchgroup=pam_CardTag start="^\CDISLIM/" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_DISLIM_r[1-2] keepend
 " === DISLIM end}}}
 
 "{{{ === INPRES begin
@@ -5250,7 +5250,7 @@ syn region      pam_DISLIM            matchgroup=pam_CardTag start="^\CDISLIM/" 
    syn region      pam_INPRES_r2     transparent contained containedin=pam_INPRES start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_INPRES_r3 skipnl keepend
    " Row 1   
    syn region      pam_INPRES_r1     transparent contained containedin=pam_INPRES start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_INPRES_r2 skipnl keepend
-syn region      pam_INPRES            matchgroup=pam_CardTag start="^\CINPRES/" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_INPRES_r[1-3] fold keepend
+syn region      pam_INPRES            matchgroup=pam_CardTag start="^\CINPRES/" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_INPRES_r[1-3] keepend
 " === INPRES end}}}
 
 "{{{ === PRESBC begin
@@ -5267,7 +5267,7 @@ syn region      pam_INPRES            matchgroup=pam_CardTag start="^\CINPRES/" 
       hi def link pam_PRESBC_r1_v1 pam_oddVar
       hi def link pam_PRESBC_r1_e1 pam_oddError
    syn region      pam_PRESBC_r1     transparent contained containedin=pam_PRESBC start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f8,@33i8,@41f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PRESBC_r2 skipnl keepend
-syn region      pam_PRESBC            matchgroup=pam_CardTag start="^\CPRESBC/" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_PRESBC_r[1-3] fold keepend
+syn region      pam_PRESBC            matchgroup=pam_CardTag start="^\CPRESBC/" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_PRESBC_r[1-3] keepend
 " === PRESBC end}}}
 
 "{{{ === PREFA begin
@@ -5277,7 +5277,7 @@ syn region      pam_PRESBC            matchgroup=pam_CardTag start="^\CPRESBC/" 
    syn region      pam_PREFA_r2     transparent contained containedin=pam_PREFA start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_PREFA_r3 skipnl keepend
    " Row 1   
    syn region      pam_PREFA_r1     transparent contained containedin=pam_PREFA start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f8,@33i8,@41f16,@57f16,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PREFA_r2 skipnl keepend
-syn region      pam_PREFA            matchgroup=pam_CardTag start="^\CPREFA /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_PREFA_r[1-3] fold keepend
+syn region      pam_PREFA            matchgroup=pam_CardTag start="^\CPREFA /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_PREFA_r[1-3] keepend
 " === PREFA end}}}
 
 "{{{ === PREBM begin
@@ -5287,7 +5287,7 @@ syn region      pam_PREFA            matchgroup=pam_CardTag start="^\CPREFA /" e
    syn region      pam_PREBM_r2     transparent contained containedin=pam_PREBM start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_PREBM_r3 skipnl keepend
    " Row 1   
    syn region      pam_PREBM_r1     transparent contained containedin=pam_PREBM start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f8,@41f16,@57f16,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PREBM_r2 skipnl keepend
-syn region      pam_PREBM            matchgroup=pam_CardTag start="^\CPREBM /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_PREBM_r[1-3] fold keepend
+syn region      pam_PREBM            matchgroup=pam_CardTag start="^\CPREBM /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_PREBM_r[1-3] keepend
 " === PREBM end}}}
 
 "{{{=== LRSPA begin 
@@ -5305,7 +5305,7 @@ syn region      pam_PREBM            matchgroup=pam_CardTag start="^\CPREBM /" e
    syn region      pam_LRSPA_r2     transparent contained containedin=pam_LRSPA start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_LRSPA_r3 skipnl keepend
    "Row 1
    syn region      pam_LRSPA_r1     transparent contained containedin=pam_LRSPA start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_LRSPA_r2 skipnl keepend
-syn region      pam_LRSPA           matchgroup=pam_CardTag start="^\CLRSPA /" end="^\CEND_LRSPA"  fold keepend
+syn region      pam_LRSPA           matchgroup=pam_CardTag start="^\CLRSPA /" end="^\CEND_LRSPA"  keepend
 " LRSPA end}}}
 
 "{{{ === VAPANL begin
@@ -5318,7 +5318,7 @@ syn region      pam_LRSPA           matchgroup=pam_CardTag start="^\CLRSPA /" en
    syn region      pam_VAPANL_r2     transparent contained containedin=pam_VAPANL start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_VAPANL_r3 skipnl keepend
    " Row 1   
    syn region      pam_VAPANL_r1     transparent contained containedin=pam_VAPANL start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_VAPANL_r2 skipnl keepend
-syn region      pam_VAPANL            matchgroup=pam_CardTag start="^\CVAPANL/" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_VAPANL_r[1-3] fold keepend
+syn region      pam_VAPANL            matchgroup=pam_CardTag start="^\CVAPANL/" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_VAPANL_r[1-3] keepend
 " === VAPANL end}}}
 
 "{{{ === GRPEGM begin
@@ -5328,7 +5328,7 @@ syn region      pam_VAPANL            matchgroup=pam_CardTag start="^\CVAPANL/" 
    syn region      pam_GRPEGM_r2     transparent contained containedin=pam_GRPEGM start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_GRPEGM_r3 skipnl keepend
    " Row 1   
    syn region      pam_GRPEGM_r1     transparent contained containedin=pam_GRPEGM start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_GRPEGM_r2 skipnl keepend
-syn region      pam_GRPEGM            matchgroup=pam_CardTag start="^\CGRPEGM/" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_GRPEGM_r[1-2] fold keepend
+syn region      pam_GRPEGM            matchgroup=pam_CardTag start="^\CGRPEGM/" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_GRPEGM_r[1-2] keepend
 " === GRPEGM end}}}
 
 "{{{ === GRPDAM begin
@@ -5338,7 +5338,7 @@ syn region      pam_GRPEGM            matchgroup=pam_CardTag start="^\CGRPEGM/" 
    syn region      pam_GRPDAM_r2     transparent contained containedin=pam_GRPDAM start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_GRPDAM_r3 skipnl keepend
    " Row 1   
    syn region      pam_GRPDAM_r1     transparent contained containedin=pam_GRPDAM start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_GRPDAM_r2 skipnl keepend
-syn region      pam_GRPDAM            matchgroup=pam_CardTag start="^\CGRPDAM/" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_GRPDAM_r[1-2] fold keepend
+syn region      pam_GRPDAM            matchgroup=pam_CardTag start="^\CGRPDAM/" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_GRPDAM_r[1-2] keepend
 " === GRPDAM end}}}
 
 "{{{ === NLAVE begin
@@ -5362,9 +5362,9 @@ syn region      pam_GRPDAM            matchgroup=pam_CardTag start="^\CGRPDAM/" 
       hi def link pam_NLAVE_r1_e1 pam_evenError
    syn region      pam_NLAVE_r1     transparent contained containedin=pam_NLAVE start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_NLAVE_r2 skipnl keepend
    syn region      pam_NLAVE_S_r1     transparent contained containedin=pam_NLAVE_S start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_NLAVE_S_r2 skipnl keepend
-syn region      pam_NLAVE            matchgroup=pam_CardTag start="^\CNLAVE /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_NLAVE_r[1-3] fold keepend
-syn region      pam_NLAVE            matchgroup=pam_CardTag start="^\CNLAVE /.*\CGLASS_EN[ ]*\%25c"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_NLAVE_r[1-3] fold keepend
-syn region      pam_NLAVE_S          matchgroup=pam_CardTag start="^\CNLAVE /.*\CGLASS_SD[ ]*\%25c"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_NLAVE_S_r[1-3] fold keepend
+syn region      pam_NLAVE            matchgroup=pam_CardTag start="^\CNLAVE /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_NLAVE_r[1-3] keepend
+syn region      pam_NLAVE            matchgroup=pam_CardTag start="^\CNLAVE /.*\CGLASS_EN[ ]*\%25c"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_NLAVE_r[1-3] keepend
+syn region      pam_NLAVE_S          matchgroup=pam_CardTag start="^\CNLAVE /.*\CGLASS_SD[ ]*\%25c"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_NLAVE_S_r[1-3] keepend
 " === NLAVE end}}}
 
 "{{{ === DELEM begin
@@ -5376,7 +5376,7 @@ syn region      pam_NLAVE_S          matchgroup=pam_CardTag start="^\CNLAVE /.*\
    syn region      pam_DELEM_r2     transparent contained containedin=pam_DELEM start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_DELEM_r3,pam_DELEM_r4 skipnl keepend
    " Row 1   
    syn region      pam_DELEM_r1     transparent contained containedin=pam_DELEM start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_DELEM_r2 skipnl keepend
-syn region      pam_DELEM            matchgroup=pam_CardTag start="^\CDELEM /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_DELEM_r[1-2] fold keepend
+syn region      pam_DELEM            matchgroup=pam_CardTag start="^\CDELEM /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_DELEM_r[1-2] keepend
 " === DELEM end}}}
 
 "{{{ === PYFUNC begin
@@ -5385,7 +5385,7 @@ syn region      pam_DELEM            matchgroup=pam_CardTag start="^\CDELEM /" e
    syn region      pam_PYFUNC_r2     transparent contained containedin=pam_PYFUNC start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_PYFUNC_r3,pam_EndPYFUNC skipnl keepend
    " Row 1   
    syn region      pam_PYFUNC_r1     transparent contained containedin=pam_PYFUNC start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PYFUNC_r2 skipnl keepend
-syn region      pam_PYFUNC            matchgroup=pam_CardTag start="^\CPYFUNC/" end="^\CEND_PYFUNC" contains=pam_PYFUNC_r[1-2] fold keepend
+syn region      pam_PYFUNC            matchgroup=pam_CardTag start="^\CPYFUNC/" end="^\CEND_PYFUNC" contains=pam_PYFUNC_r[1-2] keepend
    " END_PYFUNC
    syn match       pam_EndPYFUNC        display contained "^\CEND_PYFUNC"
    hi def link pam_EndPYFUNC pam_CardTag
@@ -5397,7 +5397,7 @@ syn region      pam_PYFUNC            matchgroup=pam_CardTag start="^\CPYFUNC/" 
    syn region      pam_CHEM_r2     transparent contained containedin=pam_CHEM start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_CHEM_r3,pam_EndCHEM skipnl keepend
    " Row 1   
    syn region      pam_CHEM_r1     transparent contained containedin=pam_CHEM start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=pam_FreeVar,pam_Integer,pam_Float,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_CHEM_r2 skipnl keepend
-syn region      pam_CHEM            matchgroup=pam_CardTag start="^\CCHEM  /" end="^\CEND_CHEM" contains=pam_CHEM_r[1-2] fold keepend
+syn region      pam_CHEM            matchgroup=pam_CardTag start="^\CCHEM  /" end="^\CEND_CHEM" contains=pam_CHEM_r[1-2] keepend
    " END_CHEM
    syn match       pam_EndCHEM        display contained "^\CEND_CHEM"
    hi def link pam_EndCHEM pam_CardTag
@@ -5410,31 +5410,31 @@ syn region      pam_CHEM            matchgroup=pam_CardTag start="^\CCHEM  /" en
    syn region      pam_SEWING_r2     transparent contained containedin=pam_SEWING start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_SEWING_r3 skipnl keepend
    " Row 1   
    syn region      pam_SEWING_r1     transparent contained containedin=pam_SEWING start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17f8,@25f8,@33i8,@41i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_SEWING_r2 skipnl keepend
-syn region      pam_SEWING            matchgroup=pam_CardTag start="^\CSEWING/" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_SEWING_r[1-2] fold keepend
+syn region      pam_SEWING            matchgroup=pam_CardTag start="^\CSEWING/" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_SEWING_r[1-2] keepend
 " === SEWING end}}}
 
 "{{{ === LLINK begin
    syn region      pam_LLink_r2     transparent contained containedin=pam_LLink start="\%1c." start="^$\n" matchgroup=pam_CardTag end="\%$" contains=@pam_Ident,pam_Comment,pam_Comment_Position,pam_End,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position keepend
    syn region      pam_LLink_r1     transparent contained containedin=pam_LLink start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25i8,@33i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_LLink_r2 skipnl keepend
-syn region      pam_LLink          matchgroup=pam_CardTag start="^\CLLINK /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_LLink_r[1-2] fold keepend
+syn region      pam_LLink          matchgroup=pam_CardTag start="^\CLLINK /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_LLink_r[1-2] keepend
 " === LLINK end}}}
 
 "{{{ === ELINK begin
    syn region      pam_ELink_r2     transparent contained containedin=pam_ELink start="\%1c." start="^$\n" matchgroup=pam_CardTag end="\%$" contains=@pam_Ident,pam_Comment,pam_Comment_Position,pam_End,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position keepend
    syn region      pam_ELink_r1     transparent contained containedin=pam_ELink start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25i8,@33i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_ELink_r2 skipnl keepend
-syn region      pam_ELink          matchgroup=pam_CardTag start="^\CELINK /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_ELink_r[1-2] fold keepend
+syn region      pam_ELink          matchgroup=pam_CardTag start="^\CELINK /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_ELink_r[1-2] keepend
 " === ELINK end}}}
 
 "{{{ === SLINK begin
    syn region      pam_SLink_r2     transparent contained containedin=pam_SLink start="\%1c." start="^$\n" matchgroup=pam_CardTag end="\%$" contains=@pam_Ident,pam_Comment,pam_Comment_Position,pam_End,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position keepend
    syn region      pam_SLink_r1     transparent contained containedin=pam_SLink start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25i8,@33i8,@41i8,@49i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_SLink_r2 skipnl keepend
-syn region      pam_SLink          matchgroup=pam_CardTag start="^\CSLINK /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_SLink_r[1-2] fold keepend
+syn region      pam_SLink          matchgroup=pam_CardTag start="^\CSLINK /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_SLink_r[1-2] keepend
 " === SLINK end}}}
 
 "{{{ === PLINK begin
    syn region      pam_PLink_r2     transparent contained containedin=pam_PLink start="\%1c." start="^$\n" matchgroup=pam_CardTag end="\%$" contains=@pam_Ident,pam_Comment,pam_Comment_Position,pam_End,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position keepend
    syn region      pam_PLink_r1     transparent contained containedin=pam_PLink start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25i8,@33i8,@41i8,@57i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PLink_r2 skipnl keepend
-syn region      pam_PLink          matchgroup=pam_CardTag start="^\CPLINK /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_PLink_r[1-2] fold keepend
+syn region      pam_PLink          matchgroup=pam_CardTag start="^\CPLINK /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_PLink_r[1-2] keepend
 " === PLINK end}}}
 
 "{{{ === PLY begin
@@ -5481,7 +5481,7 @@ syn region      pam_PLink          matchgroup=pam_CardTag start="^\CPLINK /" end
    " PLY X
       syn region      pam_PLYX_r2      transparent contained containedin=pam_PLYX start="\%1c." start="^$\n" end="\%$" contains=pam_Name,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Comment,pam_Commetn_Position skipnl keepend
       syn region      pam_PLYX_r1      transparent contained containedin=pam_PLYX start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@65f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PLYX_r2 skipnl keepend
-   syn region      pam_PLYX      matchgroup=pam_CardTag start="^PLY   /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_PLYX_r[1-9] fold keepend
+   syn region      pam_PLYX      matchgroup=pam_CardTag start="^PLY   /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_PLYX_r[1-9] keepend
    " PLY 0
       syn region      pam_PLY0_r13      transparent contained containedin=pam_PLY0 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,@21f10,@31f10,@41f10,@51f10,@61f10,@71i10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=@pam_PLYFAIL skipnl keepend
       syn region      pam_PLY0_r12      transparent contained containedin=pam_PLY0 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,@21f10,@31f10,@41f10,@51f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PLY0_r13 skipnl keepend
@@ -5496,7 +5496,7 @@ syn region      pam_PLink          matchgroup=pam_CardTag start="^\CPLINK /" end
       syn region      pam_PLY0_r3      transparent contained containedin=pam_PLY0 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,@21f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PLY0_r4 skipnl keepend
       syn region      pam_PLY0_r2      transparent contained containedin=pam_PLY0 start="\%1c." start="^$\n" end="\(\%81c&\|\%81c\-\)\@<!$\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PLY0_r3 skipnl keepend
       syn region      pam_PLY0_r1      transparent contained containedin=pam_PLY0 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@65f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PLY0_r2 skipnl keepend
-   syn region      pam_PLY0      matchgroup=pam_CardTag start="^PLY   / .\{8\}[ ]\{7\}0"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_PLY0_r[1-9] fold keepend
+   syn region      pam_PLY0      matchgroup=pam_CardTag start="^PLY   / .\{8\}[ ]\{7\}0"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_PLY0_r[1-9] keepend
    " PLY 1
       syn region      pam_PLY1_r13      transparent contained containedin=pam_PLY1 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,@21f10,@31f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=@pam_PLYFAIL skipnl keepend
       syn region      pam_PLY1_r12      transparent contained containedin=pam_PLY1 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,@21f10,@31f10,@41f10,@51f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PLY1_r13 skipnl keepend
@@ -5511,7 +5511,7 @@ syn region      pam_PLink          matchgroup=pam_CardTag start="^\CPLINK /" end
       syn region      pam_PLY1_r3      transparent contained containedin=pam_PLY1 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,@21f10,@31f10,@41f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PLY1_r4 skipnl keepend
       syn region      pam_PLY1_r2      transparent contained containedin=pam_PLY1 start="\%1c." start="^$\n" end="\(\%81c&\|\%81c\-\)\@<!$\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PLY1_r3 skipnl keepend
       syn region      pam_PLY1_r1      transparent contained containedin=pam_PLY1 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@65f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PLY1_r2 skipnl keepend
-   syn region      pam_PLY1      matchgroup=pam_CardTag start="^PLY   / .\{8\}[ ]\{7\}1"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_PLY1_r[1-9] fold keepend
+   syn region      pam_PLY1      matchgroup=pam_CardTag start="^PLY   / .\{8\}[ ]\{7\}1"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_PLY1_r[1-9] keepend
    " PLY 2
       syn region      pam_PLY2_r13      transparent contained containedin=pam_PLY2 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position,pam_Error nextgroup=@pam_PLYFAIL skipnl keepend
       syn region      pam_PLY2_r12      transparent contained containedin=pam_PLY2 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PLY2_r13 skipnl keepend
@@ -5538,7 +5538,7 @@ syn region      pam_PLink          matchgroup=pam_CardTag start="^\CPLINK /" end
          hi def link pam_PLY2p_r3_a1 pam_evenArgument
       syn region      pam_PLY2_r2      transparent contained containedin=pam_PLY2 start="\%1c." start="^$\n" end="\(\%81c&\|\%81c\-\)\@<!$\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PLY2_r3,pam_PLY2c_r3,pam_PLY2p_r3 skipnl keepend
       syn region      pam_PLY2_r1      transparent contained containedin=pam_PLY2 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@65f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PLY2_r2 skipnl keepend
-   syn region      pam_PLY2      matchgroup=pam_CardTag start="^PLY   / .\{8\}[ ]\{7\}2"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_PLY2_r[1-9] fold keepend
+   syn region      pam_PLY2      matchgroup=pam_CardTag start="^PLY   / .\{8\}[ ]\{7\}2"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_PLY2_r[1-9] keepend
    " PLY 3
       syn region      pam_PLY3_r13      transparent contained containedin=pam_PLY3 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position,pam_Error nextgroup=@pam_PLYFAIL skipnl keepend
       syn region      pam_PLY3_r12      transparent contained containedin=pam_PLY3 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PLY3_r13 skipnl keepend
@@ -5565,7 +5565,7 @@ syn region      pam_PLink          matchgroup=pam_CardTag start="^\CPLINK /" end
          hi def link pam_PLY3p_r3_a1 pam_evenArgument
       syn region      pam_PLY3_r2      transparent contained containedin=pam_PLY3 start="\%1c." start="^$\n" end="\(\%81c&\|\%81c\-\)\@<!$\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PLY3_r3,pam_PLY3c_r3,pam_PLY3p_r3 skipnl keepend
       syn region      pam_PLY3_r1      transparent contained containedin=pam_PLY3 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@65f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PLY3_r2 skipnl keepend
-   syn region      pam_PLY3      matchgroup=pam_CardTag start="^PLY   / .\{8\}[ ]\{7\}3"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_PLY3_r[1-9] fold keepend
+   syn region      pam_PLY3      matchgroup=pam_CardTag start="^PLY   / .\{8\}[ ]\{7\}3"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_PLY3_r[1-9] keepend
    " PLY 6
       syn region      pam_PLY6_r15      transparent contained containedin=pam_PLY6 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,@21f10,@31f10,@41f10,@51f10,@61f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=@pam_PLYFAIL skipnl keepend
       syn region      pam_PLY6_r14      transparent contained containedin=pam_PLY6 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,@21f10,@31f10,@41f10,@51f10,@61f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PLY6_r15 skipnl keepend
@@ -5582,7 +5582,7 @@ syn region      pam_PLink          matchgroup=pam_CardTag start="^\CPLINK /" end
       syn region      pam_PLY6_r3      transparent contained containedin=pam_PLY6 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,@21f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PLY6_r4 skipnl keepend
       syn region      pam_PLY6_r2      transparent contained containedin=pam_PLY6 start="\%1c." start="^$\n" end="\(\%81c&\|\%81c\-\)\@<!$\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PLY6_r3 skipnl keepend
       syn region      pam_PLY6_r1      transparent contained containedin=pam_PLY6 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@65f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PLY6_r2 skipnl keepend
-   syn region      pam_PLY6      matchgroup=pam_CardTag start="^PLY   / .\{8\}[ ]\{7\}6"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_PLY6_r[1-9] fold keepend
+   syn region      pam_PLY6      matchgroup=pam_CardTag start="^PLY   / .\{8\}[ ]\{7\}6"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_PLY6_r[1-9] keepend
    " PLY 7
       syn region      pam_PLY7_r13      transparent contained containedin=pam_PLY7 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,@21f10,@31f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=@pam_PLYFAIL skipnl keepend
       syn region      pam_PLY7_r12      transparent contained containedin=pam_PLY7 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,@21f10,@31f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PLY7_r13 skipnl keepend
@@ -5597,7 +5597,7 @@ syn region      pam_PLink          matchgroup=pam_CardTag start="^\CPLINK /" end
       syn region      pam_PLY7_r3      transparent contained containedin=pam_PLY7 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PLY7_r4 skipnl keepend
       syn region      pam_PLY7_r2      transparent contained containedin=pam_PLY7 start="\%1c." start="^$\n" end="\(\%81c&\|\%81c\-\)\@<!$\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PLY7_r3 skipnl keepend
       syn region      pam_PLY7_r1      transparent contained containedin=pam_PLY7 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@65f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PLY7_r2 skipnl keepend
-   syn region      pam_PLY7      matchgroup=pam_CardTag start="^PLY   / .\{8\}[ ]\{7\}7"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_PLY7_r[1-9] fold keepend
+   syn region      pam_PLY7      matchgroup=pam_CardTag start="^PLY   / .\{8\}[ ]\{7\}7"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_PLY7_r[1-9] keepend
    " PLY 8
       syn region      pam_PLY8_r15      transparent contained containedin=pam_PLY8 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,@21f10,@31f10,@41f10,@51f10,@61f10,@71f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=@pam_PLYFAIL skipnl keepend
       syn region      pam_PLY8_r14      transparent contained containedin=pam_PLY8 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,@21f10,@31f10,@41f10,@51f10,@61f10,@71f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PLY8_r15 skipnl keepend
@@ -5614,7 +5614,7 @@ syn region      pam_PLink          matchgroup=pam_CardTag start="^\CPLINK /" end
       syn region      pam_PLY8_r3      transparent contained containedin=pam_PLY8 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,@21f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PLY8_r4 skipnl keepend
       syn region      pam_PLY8_r2      transparent contained containedin=pam_PLY8 start="\%1c." start="^$\n" end="\(\%81c&\|\%81c\-\)\@<!$\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PLY8_r3 skipnl keepend
       syn region      pam_PLY8_r1      transparent contained containedin=pam_PLY8 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@65f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PLY8_r2 skipnl keepend
-   syn region      pam_PLY8      matchgroup=pam_CardTag start="^PLY   / .\{8\}[ ]\{7\}8"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_PLY8_r[1-9] fold keepend
+   syn region      pam_PLY8      matchgroup=pam_CardTag start="^PLY   / .\{8\}[ ]\{7\}8"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_PLY8_r[1-9] keepend
    " PLY 15
       syn region      pam_PLY15_r7      transparent contained containedin=pam_PLY15 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1i10,@11f10,@21f10,@31f10,@41f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=@pam_PLYFAIL skipnl keepend
       syn region      pam_PLY15_r6      transparent contained containedin=pam_PLY15 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11i10,@31i10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PLY15_r7 skipnl keepend
@@ -5623,14 +5623,14 @@ syn region      pam_PLink          matchgroup=pam_CardTag start="^\CPLINK /" end
       syn region      pam_PLY15_r3      transparent contained containedin=pam_PLY15 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,@21f10,@31f10,@41f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PLY15_r4 skipnl keepend
       syn region      pam_PLY15_r2      transparent contained containedin=pam_PLY15 start="\%1c." start="^$\n" end="\(\%81c&\|\%81c\-\)\@<!$\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PLY15_r3 skipnl keepend
       syn region      pam_PLY15_r1      transparent contained containedin=pam_PLY15 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@65f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PLY15_r2 skipnl keepend
-   syn region      pam_PLY15      matchgroup=pam_CardTag start="^PLY   / .\{8\}[ ]\{6\}15"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_PLY15_r[1-9] fold keepend
+   syn region      pam_PLY15      matchgroup=pam_CardTag start="^PLY   / .\{8\}[ ]\{6\}15"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_PLY15_r[1-9] keepend
 " PLY end}}}
 
 " {{{=== VAMAT begin
       syn region      pam_VAMATX_r3      transparent contained containedin=pam_VAMATX start="\%1c." start="^$\n" end="\(\%81c&\|\%81c\-\)\@<!$\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Comment,pam_Comment_Position,pam_EndVAMAT skipnl keepend
       syn region      pam_VAMATX_r2      transparent contained containedin=pam_VAMATX start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_VAMATX_r3 skipnl keepend
       syn region      pam_VAMATX_r1      transparent contained containedin=pam_VAMATX start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_VAMATX_r2 skipnl keepend
-   syn region      pam_VAMATX      matchgroup=pam_CardTag start="^VAMAT /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_VAMATX_r[1-9] fold keepend
+   syn region      pam_VAMATX      matchgroup=pam_CardTag start="^VAMAT /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_VAMATX_r[1-9] keepend
    " VAMAT 1
       syn region      pam_VAMAT1_r9      transparent contained containedin=pam_VAMAT1 start="\%1c." start="^$\n" end="\(\%81c&\|\%81c\-\)\@<!$\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position,pam_EndVAMAT skipnl keepend
       syn region      pam_VAMAT1_r8      transparent contained containedin=pam_VAMAT1 start="\%1c." start="^$\n" end="\(\%81c&\|\%81c\-\)\@<!$\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_VAMAT1_r9 skipnl keepend
@@ -5641,7 +5641,7 @@ syn region      pam_PLink          matchgroup=pam_CardTag start="^\CPLINK /" end
       syn region      pam_VAMAT1_r3      transparent contained containedin=pam_VAMAT1 start="\%1c." start="^$\n" end="\(\%81c&\|\%81c\-\)\@<!$\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_VAMAT1_r4 skipnl keepend
       syn region      pam_VAMAT1_r2      transparent contained containedin=pam_VAMAT1 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_VAMAT1_r3 skipnl keepend
       syn region      pam_VAMAT1_r1      transparent contained containedin=pam_VAMAT1 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_VAMAT1_r2 skipnl keepend
-   syn region      pam_VAMAT1      matchgroup=pam_CardTag start="^VAMAT / .\{8\}[ ]\{7\}1"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_VAMAT1_r[1-9] fold keepend
+   syn region      pam_VAMAT1      matchgroup=pam_CardTag start="^VAMAT / .\{8\}[ ]\{7\}1"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_VAMAT1_r[1-9] keepend
    " VAMAT 2
       syn region      pam_VAMAT2_r9      transparent contained containedin=pam_VAMAT2 start="\%1c." start="^$\n" end="\(\%81c&\|\%81c\-\)\@<!$\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position,pam_EndVAMAT skipnl keepend
       syn region      pam_VAMAT2_r8      transparent contained containedin=pam_VAMAT2 start="\%1c." start="^$\n" end="\(\%81c&\|\%81c\-\)\@<!$\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_VAMAT2_r9 skipnl keepend
@@ -5652,7 +5652,7 @@ syn region      pam_PLink          matchgroup=pam_CardTag start="^\CPLINK /" end
       syn region      pam_VAMAT2_r3      transparent contained containedin=pam_VAMAT2 start="\%1c." start="^$\n" end="\(\%81c&\|\%81c\-\)\@<!$\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_VAMAT2_r4 skipnl keepend
       syn region      pam_VAMAT2_r2      transparent contained containedin=pam_VAMAT2 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_VAMAT2_r3 skipnl keepend
       syn region      pam_VAMAT2_r1      transparent contained containedin=pam_VAMAT2 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_VAMAT2_r2 skipnl keepend
-   syn region      pam_VAMAT2      matchgroup=pam_CardTag start="^VAMAT / .\{8\}[ ]\{7\}2"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_VAMAT2_r[1-9] fold keepend
+   syn region      pam_VAMAT2      matchgroup=pam_CardTag start="^VAMAT / .\{8\}[ ]\{7\}2"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_VAMAT2_r[1-9] keepend
    " VAMAT 3
       syn region      pam_VAMAT3_r9      transparent contained containedin=pam_VAMAT3 start="\%1c." start="^$\n" end="\(\%81c&\|\%81c\-\)\@<!$\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position,pam_EndVAMAT skipnl keepend
       syn region      pam_VAMAT3_r8      transparent contained containedin=pam_VAMAT3 start="\%1c." start="^$\n" end="\(\%81c&\|\%81c\-\)\@<!$\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_VAMAT3_r9 skipnl keepend
@@ -5663,7 +5663,7 @@ syn region      pam_PLink          matchgroup=pam_CardTag start="^\CPLINK /" end
       syn region      pam_VAMAT3_r3      transparent contained containedin=pam_VAMAT3 start="\%1c." start="^$\n" end="\(\%81c&\|\%81c\-\)\@<!$\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_VAMAT3_r4 skipnl keepend
       syn region      pam_VAMAT3_r2      transparent contained containedin=pam_VAMAT3 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_VAMAT3_r3 skipnl keepend
       syn region      pam_VAMAT3_r1      transparent contained containedin=pam_VAMAT3 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_VAMAT3_r2 skipnl keepend
-   syn region      pam_VAMAT3      matchgroup=pam_CardTag start="^VAMAT / .\{8\}[ ]\{7\}3"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_VAMAT3_r[1-9] fold keepend
+   syn region      pam_VAMAT3      matchgroup=pam_CardTag start="^VAMAT / .\{8\}[ ]\{7\}3"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_VAMAT3_r[1-9] keepend
    " VAMAT 4
       syn region      pam_VAMAT4_r9      transparent contained containedin=pam_VAMAT4 start="\%1c." start="^$\n" end="\(\%81c&\|\%81c\-\)\@<!$\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position,pam_EndVAMAT skipnl keepend
       syn region      pam_VAMAT4_r8      transparent contained containedin=pam_VAMAT4 start="\%1c." start="^$\n" end="\(\%81c&\|\%81c\-\)\@<!$\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_VAMAT4_r9 skipnl keepend
@@ -5674,7 +5674,7 @@ syn region      pam_PLink          matchgroup=pam_CardTag start="^\CPLINK /" end
       syn region      pam_VAMAT4_r3      transparent contained containedin=pam_VAMAT4 start="\%1c." start="^$\n" end="\(\%81c&\|\%81c\-\)\@<!$\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_VAMAT4_r4 skipnl keepend
       syn region      pam_VAMAT4_r2      transparent contained containedin=pam_VAMAT4 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_VAMAT4_r3 skipnl keepend
       syn region      pam_VAMAT4_r1      transparent contained containedin=pam_VAMAT4 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_VAMAT4_r2 skipnl keepend
-   syn region      pam_VAMAT4      matchgroup=pam_CardTag start="^VAMAT / .\{8\}[ ]\{7\}4"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_VAMAT4_r[1-9] fold keepend
+   syn region      pam_VAMAT4      matchgroup=pam_CardTag start="^VAMAT / .\{8\}[ ]\{7\}4"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_VAMAT4_r[1-9] keepend
    " VAMAT 5
       syn region      pam_VAMAT5_r9      transparent contained containedin=pam_VAMAT5 start="\%1c." start="^$\n" end="\(\%81c&\|\%81c\-\)\@<!$\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position,pam_EndVAMAT skipnl keepend
       syn region      pam_VAMAT5_r8      transparent contained containedin=pam_VAMAT5 start="\%1c." start="^$\n" end="\(\%81c&\|\%81c\-\)\@<!$\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_VAMAT5_r9 skipnl keepend
@@ -5685,7 +5685,7 @@ syn region      pam_PLink          matchgroup=pam_CardTag start="^\CPLINK /" end
       syn region      pam_VAMAT5_r3      transparent contained containedin=pam_VAMAT5 start="\%1c." start="^$\n" end="\(\%81c&\|\%81c\-\)\@<!$\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_VAMAT5_r4 skipnl keepend
       syn region      pam_VAMAT5_r2      transparent contained containedin=pam_VAMAT5 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_VAMAT5_r3 skipnl keepend
       syn region      pam_VAMAT5_r1      transparent contained containedin=pam_VAMAT5 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_VAMAT5_r2 skipnl keepend
-   syn region      pam_VAMAT5      matchgroup=pam_CardTag start="^VAMAT / .\{8\}[ ]\{7\}5"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_VAMAT5_r[1-9] fold keepend
+   syn region      pam_VAMAT5      matchgroup=pam_CardTag start="^VAMAT / .\{8\}[ ]\{7\}5"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_VAMAT5_r[1-9] keepend
    " VAMAT 100
       syn region      pam_VAMAT100_r9      transparent contained containedin=pam_VAMAT100 start="\%1c." start="^$\n" end="\(\%81c&\|\%81c\-\)\@<!$\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position,pam_EndVAMAT skipnl keepend
       syn region      pam_VAMAT100_r8      transparent contained containedin=pam_VAMAT100 start="\%1c." start="^$\n" end="\(\%81c&\|\%81c\-\)\@<!$\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_VAMAT100_r9 skipnl keepend
@@ -5696,7 +5696,7 @@ syn region      pam_PLink          matchgroup=pam_CardTag start="^\CPLINK /" end
       syn region      pam_VAMAT100_r3      transparent contained containedin=pam_VAMAT100 start="\%1c." start="^$\n" end="\(\%81c&\|\%81c\-\)\@<!$\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_VAMAT100_r4 skipnl keepend
       syn region      pam_VAMAT100_r2      transparent contained containedin=pam_VAMAT100 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_VAMAT100_r3 skipnl keepend
       syn region      pam_VAMAT100_r1      transparent contained containedin=pam_VAMAT100 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_VAMAT100_r2 skipnl keepend
-   syn region      pam_VAMAT100      matchgroup=pam_CardTag start="^\CVAMAT / .\{8\}[ ]\{5\}100"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_VAMAT100_r[1-9] fold keepend
+   syn region      pam_VAMAT100      matchgroup=pam_CardTag start="^\CVAMAT / .\{8\}[ ]\{5\}100"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_VAMAT100_r[1-9] keepend
    " END_VAMAT
    syn match       pam_EndVAMAT        display contained "^\CEND_VAMAT"
    hi def link pam_EndVAMAT pam_CardTag
@@ -5708,7 +5708,7 @@ syn region      pam_PLink          matchgroup=pam_CardTag start="^\CPLINK /" end
    syn region      pam_DOMAINX_r2     transparent contained containedin=pam_DOMAINX start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position skipnl keepend
    " Row 1   
    syn region      pam_DOMAINX_r1     transparent contained containedin=pam_DOMAINX start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_DOMAIN_r2 skipnl keepend
-syn region      pam_DOMAINX            matchgroup=pam_CardTag start="^\CDOMAIN/" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_DOMAINX_r[1-2] fold keepend
+syn region      pam_DOMAINX            matchgroup=pam_CardTag start="^\CDOMAIN/" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_DOMAINX_r[1-2] keepend
  "DOMAIN ASM
    "Row 2 (Name)
    syn region      pam_DOMAIN_ASM_r2     transparent contained containedin=pam_DOMAIN_ASM start="\%1cNAME" start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position skipnl keepend
@@ -5716,10 +5716,10 @@ syn region      pam_DOMAINX            matchgroup=pam_CardTag start="^\CDOMAIN/"
    syn region      pam_DOMAIN_ASM_r1     transparent contained containedin=pam_DOMAIN_ASM start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_DOMAIN_r2 skipnl keepend
       syn match       pam_DOMAIN_ASM_r1_a1  display contained containedin=pam_DOMAIN_ASM_r1 "\%17c[ ]*\CASM[ ]*\%25c"
       hi def link pam_DOMAIN_ASM_r1_a1  pam_evenArgument
-syn region      pam_DOMAIN_ASM            matchgroup=pam_CardTag start="^\CDOMAIN/ .\{8\}[ ]*\CASM[ ]*\%25c"rs=s+8 end="^[ ]*END_DOMAIN" contains=pam_DOMAIN_ASM_r[1-2],pam_Control_DAMPING_MODAL_STRUCTURAL,pam_Control_DAMPING_MATRIX,pam_Control_METHOD,pam_Control_DBASE_DAMP,pam_Control_DAMPING_MODAL_VISCOUS,pam_Control_IMPORT_MATRIX,pam_Control_USE_EIGEN2_RANGE,pam_Control_USE_EIGEN2_DISCRETE,pam_Control_USE_EIGEN2,pam_Control_DBASE_EIGEN,pam_Control_OVERALL_STRUCTURAL_DAMPING,pam_Control_GENERAL_MATRIX,pam_Control_DBASE_MATF,pam_Control_GENERAL_MATRIX_EXTERNAL,pam_Control_DBASE_MATF_EXTERNAL,pam_Control_DBASE_IMPMA fold keepend
+syn region      pam_DOMAIN_ASM            matchgroup=pam_CardTag start="^\CDOMAIN/ .\{8\}[ ]*\CASM[ ]*\%25c"rs=s+8 end="^[ ]*END_DOMAIN" contains=pam_DOMAIN_ASM_r[1-2],pam_Control_DAMPING_MODAL_STRUCTURAL,pam_Control_DAMPING_MATRIX,pam_Control_METHOD,pam_Control_DBASE_DAMP,pam_Control_DAMPING_MODAL_VISCOUS,pam_Control_IMPORT_MATRIX,pam_Control_USE_EIGEN2_RANGE,pam_Control_USE_EIGEN2_DISCRETE,pam_Control_USE_EIGEN2,pam_Control_DBASE_EIGEN,pam_Control_OVERALL_STRUCTURAL_DAMPING,pam_Control_GENERAL_MATRIX,pam_Control_DBASE_MATF,pam_Control_GENERAL_MATRIX_EXTERNAL,pam_Control_DBASE_MATF_EXTERNAL,pam_Control_DBASE_IMPMA keepend
       syn match       pam_DOMAIN_AFM_r1_a1  display contained containedin=pam_DOMAIN_ASM_r1 "\%17c[ ]*\CAFM[ ]*\%25c"
       hi def link pam_DOMAIN_AFM_r1_a1  pam_evenArgument
-syn region      pam_DOMAIN_AFM            matchgroup=pam_CardTag start="^\CDOMAIN/ .\{8\}[ ]*\CAFM[ ]*\%25c"rs=s+8 end="^[ ]*END_DOMAIN" contains=pam_DOMAIN_ASM_r[1-2],pam_Control_DAMPING_MODAL_VISCOUS,pam_Control_DAMPING_MODAL_STRUCTURAL,pam_Control_DAMPING_MATRIX,pam_Control_DBASE_EIGEN,pam_Control_METHOD,pam_Control_DBASE_DAMP,pam_Control_GENERAL_MATRIX,pam_Control_DBASE_MATF,pam_Control_GENERAL_MATRIX_EXTERNAL,pam_Control_DBASE_MATF_EXTERNAL,pam_Integer,pam_Comment,pam_Comment_Position fold keepend
+syn region      pam_DOMAIN_AFM            matchgroup=pam_CardTag start="^\CDOMAIN/ .\{8\}[ ]*\CAFM[ ]*\%25c"rs=s+8 end="^[ ]*END_DOMAIN" contains=pam_DOMAIN_ASM_r[1-2],pam_Control_DAMPING_MODAL_VISCOUS,pam_Control_DAMPING_MODAL_STRUCTURAL,pam_Control_DAMPING_MATRIX,pam_Control_DBASE_EIGEN,pam_Control_METHOD,pam_Control_DBASE_DAMP,pam_Control_GENERAL_MATRIX,pam_Control_DBASE_MATF,pam_Control_GENERAL_MATRIX_EXTERNAL,pam_Control_DBASE_MATF_EXTERNAL,pam_Integer,pam_Comment,pam_Comment_Position keepend
    "Row 2 (Name)
    syn region      pam_DOMAIN_APM_r2     transparent contained containedin=pam_DOMAIN_APM start="\%1cNAME" start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position skipnl keepend
    " Row 1   
@@ -5731,7 +5731,7 @@ syn region      pam_DOMAIN_AFM            matchgroup=pam_CardTag start="^\CDOMAI
    syn region      pam_DOMAIN_APM_r4     transparent contained containedin=pam_DOMAIN_APM matchgroup=pam_Keyword start="\CMETHOD" start="^$\n" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position skipnl keepend
       syn keyword     pam_DOMAIN_APM_r4_a1         contained containedin=pam_DOMAIN_APM_r4 DIRECT
       hi def link pam_DOMAIN_APM_r4_a1 pam_Argument
-syn region      pam_DOMAIN_APM            matchgroup=pam_CardTag start="^\CDOMAIN/ .\{8\}[ ]*\CAPM[ ]*\%25c"rs=s+8 end="^[ ]*END_DOMAIN" contains=pam_DOMAIN_APM_r[1-2],pam_Comment,pam_Comment_Position fold keepend
+syn region      pam_DOMAIN_APM            matchgroup=pam_CardTag start="^\CDOMAIN/ .\{8\}[ ]*\CAPM[ ]*\%25c"rs=s+8 end="^[ ]*END_DOMAIN" contains=pam_DOMAIN_APM_r[1-2],pam_Comment,pam_Comment_Position keepend
    "Row 2 (Name)
    syn region      pam_DOMAIN_ABM_r2     transparent contained containedin=pam_DOMAIN_ABM start="\%1cNAME" start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position skipnl keepend
    " Row 1   
@@ -5747,7 +5747,7 @@ syn region      pam_DOMAIN_APM            matchgroup=pam_CardTag start="^\CDOMAI
    syn region      pam_DOMAIN_ABM_r8     transparent contained containedin=pam_DOMAIN_ABM matchgroup=pam_Keyword start="\CBAFFLE" start="^$\n" end="\n[\$\#]\@!" contains=pam_Integer,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position skipnl keepend
       syn keyword     pam_DOMAIN_ABM_r4_a1         contained containedin=pam_DOMAIN_ABM_r4 DIRECT
       hi def link pam_DOMAIN_ABM_r4_a1 pam_Argument
-syn region      pam_DOMAIN_ABM            matchgroup=pam_CardTag start="^\CDOMAIN/ .\{8\}[ ]*\CABM[ ]*\%25c"rs=s+8 end="^[ ]*END_DOMAIN" contains=pam_DOMAIN_ABM_r[1-2],pam_Integer,pam_FreeError,pam_FreeVar,pam_Comment,pam_Comment_Position fold keepend
+syn region      pam_DOMAIN_ABM            matchgroup=pam_CardTag start="^\CDOMAIN/ .\{8\}[ ]*\CABM[ ]*\%25c"rs=s+8 end="^[ ]*END_DOMAIN" contains=pam_DOMAIN_ABM_r[1-2],pam_Integer,pam_FreeError,pam_FreeVar,pam_Comment,pam_Comment_Position keepend
    " END_DOMAIN
    syn match       pam_EndDOMAIN        display contained "^\CEND_DOMAIN"
    hi def link pam_EndDOMAIN pam_CardTag
@@ -5773,7 +5773,7 @@ syn region      pam_DOMAIN_ABM            matchgroup=pam_CardTag start="^\CDOMAI
       hi def link  pam_TURBL_r1_a1  pam_evenArgument
       hi def link  pam_TURBL_r1_e1  pam_evenError
       hi def link  pam_TURBL_r1_v1  pam_evenVar
-syn region      pam_TURBL            matchgroup=pam_CardTag start="^\CTURBL /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_TURBL_r[1-6] fold keepend
+syn region      pam_TURBL            matchgroup=pam_CardTag start="^\CTURBL /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_TURBL_r[1-6] keepend
 " === TURBL end}}}
 
 " {{{ Materialien
@@ -5838,7 +5838,7 @@ syn region      pam_TURBL            matchgroup=pam_CardTag start="^\CTURBL /" e
       hi def link pam_MPD_r1_e1 pam_evenError
    " Row 1
    syn region      pam_MPD_r1     transparent contained containedin=pam_MPD start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_MPD_r2 skipnl keepend
-syn region      pam_MPD     matchgroup=pam_CardTag start="^\CMPD   /" end="^\CEND_MPD" contains=pam_MPD_r[1-6] fold keepend
+syn region      pam_MPD     matchgroup=pam_CardTag start="^\CMPD   /" end="^\CEND_MPD" contains=pam_MPD_r[1-6] keepend
 " MPD end}}}
 
 "{{{=== MATER Common
@@ -5888,7 +5888,7 @@ syn region      pam_MPD     matchgroup=pam_CardTag start="^\CMPD   /" end="^\CEN
    syn region      pam_MATERX_r2     transparent contained containedin=pam_MATERX start="\%1c." start="^$\n" end="\%$" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_Comment,pam_Comment_Position skipnl keepend
    " Row 1
    syn region      pam_MATERX_r1     transparent contained containedin=pam_MATERX start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_MATERX_r2 skipnl keepend
-syn region      pam_MATERX        matchgroup=pam_CardTag start="^\CMATER /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_MATERX_r[1-9] fold keepend
+syn region      pam_MATERX        matchgroup=pam_CardTag start="^\CMATER /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_MATERX_r[1-9] keepend
 " === MATER X end}}}
 
 "{{{ === MATER 1 begin
@@ -5965,7 +5965,7 @@ syn region      pam_MATERX        matchgroup=pam_CardTag start="^\CMATER /" end=
    syn region      pam_Mater1_r2     transparent contained containedin=pam_Mater1 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater1_r2a,pam_Mater1_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater1_r1     transparent contained containedin=pam_Mater1 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater1_r2 skipnl keepend
-syn region      pam_Mater1        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{7\}1"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater1_r[1-9] fold keepend
+syn region      pam_Mater1        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{7\}1"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater1_r[1-9] keepend
 " === MATER 1 end}}}
 
 "{{{ === MATER 2 begin
@@ -5992,7 +5992,7 @@ syn region      pam_Mater1        matchgroup=pam_CardTag start="^\CMATER / .\{8\
    syn region      pam_Mater2_r2     transparent contained containedin=pam_Mater2 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater2_r2a,pam_Mater2_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater2_r1     transparent contained containedin=pam_Mater2 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater2_r2 skipnl keepend
-syn region      pam_Mater2        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{7\}2"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater2_r[1-9] fold keepend
+syn region      pam_Mater2        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{7\}2"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater2_r[1-9] keepend
 " === MATER 2 end}}}
 
 "{{{ === MATER 5 begin
@@ -6019,7 +6019,7 @@ syn region      pam_Mater2        matchgroup=pam_CardTag start="^\CMATER / .\{8\
    syn region      pam_Mater5_r2     transparent contained containedin=pam_Mater5 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater5_r2a,pam_Mater5_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater5_r1     transparent contained containedin=pam_Mater5 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater5_r2 skipnl keepend
-syn region      pam_Mater5        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{7\}5"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater5_r[1-9] fold keepend
+syn region      pam_Mater5        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{7\}5"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater5_r[1-9] keepend
 " === MATER 5 end}}}
 
 "{{{ === MATER 6 begin
@@ -6046,7 +6046,7 @@ syn region      pam_Mater5        matchgroup=pam_CardTag start="^\CMATER / .\{8\
    syn region      pam_Mater6_r2     transparent contained containedin=pam_Mater6 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater6_r2a,pam_Mater6_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater6_r1     transparent contained containedin=pam_Mater6 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater6_r2 skipnl keepend
-syn region      pam_Mater6        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{7\}6"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater6_r[1-9] fold keepend
+syn region      pam_Mater6        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{7\}6"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater6_r[1-9] keepend
 " === MATER 6 end}}}
 
 "{{{ === MATER 7 begin
@@ -6073,7 +6073,7 @@ syn region      pam_Mater6        matchgroup=pam_CardTag start="^\CMATER / .\{8\
    syn region      pam_Mater7_r2     transparent contained containedin=pam_Mater7 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater7_r2a,pam_Mater7_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater7_r1     transparent contained containedin=pam_Mater7 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater7_r2 skipnl keepend
-syn region      pam_Mater7        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{7\}7"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater7_r[1-9] fold keepend
+syn region      pam_Mater7        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{7\}7"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater7_r[1-9] keepend
 " === MATER 7 end}}}
 
 "{{{ === MATER 8 begin
@@ -6100,7 +6100,7 @@ syn region      pam_Mater7        matchgroup=pam_CardTag start="^\CMATER / .\{8\
    syn region      pam_Mater8_r2     transparent contained containedin=pam_Mater8 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater8_r2a,pam_Mater8_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater8_r1     transparent contained containedin=pam_Mater8 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater8_r2 skipnl keepend
-syn region      pam_Mater8        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{7\}8"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater8_r[1-9] fold keepend
+syn region      pam_Mater8        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{7\}8"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater8_r[1-9] keepend
 " === MATER 8 end}}}
 
 "{{{ === MATER 11 begin
@@ -6127,7 +6127,7 @@ syn region      pam_Mater8        matchgroup=pam_CardTag start="^\CMATER / .\{8\
    syn region      pam_Mater11_r2     transparent contained containedin=pam_Mater11 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater11_r2a,pam_Mater11_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater11_r1     transparent contained containedin=pam_Mater11 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater11_r2 skipnl keepend
-syn region      pam_Mater11        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{6\}11"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater11_r[1-9] fold keepend
+syn region      pam_Mater11        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{6\}11"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater11_r[1-9] keepend
 " === MATER 11 end}}}
 
 "{{{ === MATER 12 begin
@@ -6154,7 +6154,7 @@ syn region      pam_Mater11        matchgroup=pam_CardTag start="^\CMATER / .\{8
    syn region      pam_Mater12_r2     transparent contained containedin=pam_Mater12 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater12_r2a,pam_Mater12_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater12_r1     transparent contained containedin=pam_Mater12 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater12_r2 skipnl keepend
-syn region      pam_Mater12        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{6\}12"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater12_r[1-9] fold keepend
+syn region      pam_Mater12        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{6\}12"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater12_r[1-9] keepend
 " === MATER 12 end}}}
 
 "{{{ === MATER 15 begin
@@ -6181,7 +6181,7 @@ syn region      pam_Mater12        matchgroup=pam_CardTag start="^\CMATER / .\{8
    syn region      pam_Mater15_r2     transparent contained containedin=pam_Mater15 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater15_r2a,pam_Mater15_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater15_r1     transparent contained containedin=pam_Mater15 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater15_r2 skipnl keepend
-syn region      pam_Mater15        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{6\}15"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater15_r[1-9] fold keepend
+syn region      pam_Mater15        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{6\}15"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater15_r[1-9] keepend
 " === MATER 15 end}}}
 
 "{{{ === MATER 16 begin
@@ -6232,7 +6232,7 @@ syn region      pam_Mater15        matchgroup=pam_CardTag start="^\CMATER / .\{8
    syn region      pam_Mater16_r2     transparent contained containedin=pam_Mater16 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater16_r2a,pam_Mater16_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater16_r1     transparent contained containedin=pam_Mater16 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater16_r2 skipnl keepend
-syn region      pam_Mater16        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{6\}16"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater16_r[1-9] fold keepend
+syn region      pam_Mater16        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{6\}16"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater16_r[1-9] keepend
 " === MATER 16 end}}}
 
 "{{{ === MATER 17 begin
@@ -6259,7 +6259,7 @@ syn region      pam_Mater16        matchgroup=pam_CardTag start="^\CMATER / .\{8
    syn region      pam_Mater17_r2     transparent contained containedin=pam_Mater17 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater17_r2a,pam_Mater17_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater17_r1     transparent contained containedin=pam_Mater17 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater17_r2 skipnl keepend
-syn region      pam_Mater17        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{6\}17"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater17_r[1-9] fold keepend
+syn region      pam_Mater17        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{6\}17"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater17_r[1-9] keepend
 " === MATER 17 end}}}
 
 "{{{ === MATER 18 begin
@@ -6286,7 +6286,7 @@ syn region      pam_Mater17        matchgroup=pam_CardTag start="^\CMATER / .\{8
    syn region      pam_Mater18_r2     transparent contained containedin=pam_Mater18 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater18_r2a,pam_Mater18_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater18_r1     transparent contained containedin=pam_Mater18 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater18_r2 skipnl keepend
-syn region      pam_Mater18        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{6\}18"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater18_r[1-9] fold keepend
+syn region      pam_Mater18        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{6\}18"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater18_r[1-9] keepend
 " === MATER 18 end}}}
 
 "{{{ === MATER 19 begin
@@ -6313,7 +6313,7 @@ syn region      pam_Mater18        matchgroup=pam_CardTag start="^\CMATER / .\{8
    syn region      pam_Mater19_r2     transparent contained containedin=pam_Mater19 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater19_r2a,pam_Mater19_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater19_r1     transparent contained containedin=pam_Mater19 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater19_r2 skipnl keepend
-syn region      pam_Mater19        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{6\}19"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater19_r[1-9] fold keepend
+syn region      pam_Mater19        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{6\}19"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater19_r[1-9] keepend
 " === MATER 19 end}}}
 
 "{{{ === MATER 20 begin
@@ -6340,7 +6340,7 @@ syn region      pam_Mater19        matchgroup=pam_CardTag start="^\CMATER / .\{8
    syn region      pam_Mater20_r2     transparent contained containedin=pam_Mater20 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater20_r2a,pam_Mater20_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater20_r1     transparent contained containedin=pam_Mater20 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater20_r2 skipnl keepend
-syn region      pam_Mater20        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{6\}20"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater20_r[1-9] fold keepend
+syn region      pam_Mater20        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{6\}20"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater20_r[1-9] keepend
 " === MATER 20 end}}}
 
 "{{{ === MATER 21 begin
@@ -6372,7 +6372,7 @@ syn region      pam_Mater20        matchgroup=pam_CardTag start="^\CMATER / .\{8
    syn region      pam_Mater21_r2     transparent contained containedin=pam_Mater21 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater21_r2a,pam_Mater21_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater21_r1     transparent contained containedin=pam_Mater21 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater21_r2 skipnl keepend
-syn region      pam_Mater21        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{6\}21"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater21_r[1-9] fold keepend
+syn region      pam_Mater21        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{6\}21"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater21_r[1-9] keepend
 " === MATER 21 end}}}
 
 "{{{ === MATER 22 begin
@@ -6399,7 +6399,7 @@ syn region      pam_Mater21        matchgroup=pam_CardTag start="^\CMATER / .\{8
    syn region      pam_Mater22_r2     transparent contained containedin=pam_Mater22 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater22_r2a,pam_Mater22_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater22_r1     transparent contained containedin=pam_Mater22 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater22_r2 skipnl keepend
-syn region      pam_Mater22        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{6\}22"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater22_r[1-9] fold keepend
+syn region      pam_Mater22        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{6\}22"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater22_r[1-9] keepend
 " === MATER 22 end}}}
 
 "{{{ === MATER 24 begin
@@ -6426,7 +6426,7 @@ syn region      pam_Mater22        matchgroup=pam_CardTag start="^\CMATER / .\{8
    syn region      pam_Mater24_r2     transparent contained containedin=pam_Mater24 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater24_r2a,pam_Mater24_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater24_r1     transparent contained containedin=pam_Mater24 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater24_r2 skipnl keepend
-syn region      pam_Mater24        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{6\}24"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater24_r[1-9] fold keepend
+syn region      pam_Mater24        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{6\}24"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater24_r[1-9] keepend
 " === MATER 24 end}}}
 
 "{{{ === MATER 25 begin
@@ -6453,7 +6453,7 @@ syn region      pam_Mater24        matchgroup=pam_CardTag start="^\CMATER / .\{8
    syn region      pam_Mater25_r2     transparent contained containedin=pam_Mater25 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater25_r2a,pam_Mater25_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater25_r1     transparent contained containedin=pam_Mater25 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater25_r2 skipnl keepend
-syn region      pam_Mater25        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{6\}25"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater25_r[1-9] fold keepend
+syn region      pam_Mater25        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{6\}25"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater25_r[1-9] keepend
 " === MATER 25 end}}}
 
 "{{{ === MATER 26 begin
@@ -6496,7 +6496,7 @@ syn region      pam_Mater25        matchgroup=pam_CardTag start="^\CMATER / .\{8
    syn region      pam_Mater26_r2     transparent contained containedin=pam_Mater26 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater26_r2a,pam_Mater26_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater26_r1     transparent contained containedin=pam_Mater26 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater26_r2 skipnl keepend
-syn region      pam_Mater26        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{6\}26"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater26_r[1-9] fold keepend
+syn region      pam_Mater26        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{6\}26"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater26_r[1-9] keepend
 " === MATER 26 end}}}
 
 "{{{ === MATER 28 begin
@@ -6523,7 +6523,7 @@ syn region      pam_Mater26        matchgroup=pam_CardTag start="^\CMATER / .\{8
    syn region      pam_Mater28_r2     transparent contained containedin=pam_Mater28 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater28_r2a,pam_Mater28_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater28_r1     transparent contained containedin=pam_Mater28 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater28_r2 skipnl keepend
-syn region      pam_Mater28        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{6\}28"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater28_r[1-9] fold keepend
+syn region      pam_Mater28        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{6\}28"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater28_r[1-9] keepend
 " === MATER 28 end}}}
 
 "{{{ === MATER 30 begin
@@ -6552,7 +6552,7 @@ syn region      pam_Mater28        matchgroup=pam_CardTag start="^\CMATER / .\{8
    syn region      pam_Mater30_r2     transparent contained containedin=pam_Mater30 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater30_r2a,pam_Mater30_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater30_r1     transparent contained containedin=pam_Mater30 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater30_r2 skipnl keepend
-syn region      pam_Mater30        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{6\}30"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater30_r[1-9] fold keepend
+syn region      pam_Mater30        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{6\}30"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater30_r[1-9] keepend
 " === MATER 30 end}}}
 
 "{{{ === MATER 31 begin
@@ -6579,7 +6579,7 @@ syn region      pam_Mater30        matchgroup=pam_CardTag start="^\CMATER / .\{8
    syn region      pam_Mater31_r2     transparent contained containedin=pam_Mater31 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater31_r2a,pam_Mater31_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater31_r1     transparent contained containedin=pam_Mater31 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater31_r2 skipnl keepend
-syn region      pam_Mater31        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{6\}31"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater31_r[1-9] fold keepend
+syn region      pam_Mater31        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{6\}31"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater31_r[1-9] keepend
 " === MATER 31 end}}}
 
 "{{{ === MATER 35 begin
@@ -6622,7 +6622,7 @@ syn region      pam_Mater31        matchgroup=pam_CardTag start="^\CMATER / .\{8
    syn region      pam_Mater35_r2     transparent contained containedin=pam_Mater35 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater35_r2a,pam_Mater35_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater35_r1     transparent contained containedin=pam_Mater35 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater35_r2 skipnl keepend
-syn region      pam_Mater35        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{6\}35"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater35_r[1-9] fold keepend
+syn region      pam_Mater35        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{6\}35"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater35_r[1-9] keepend
 " === MATER 35 end}}}
 
 "{{{ === MATER 36 begin
@@ -6649,7 +6649,7 @@ syn region      pam_Mater35        matchgroup=pam_CardTag start="^\CMATER / .\{8
    syn region      pam_Mater36_r2     transparent contained containedin=pam_Mater36 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater36_r2a,pam_Mater36_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater36_r1     transparent contained containedin=pam_Mater36 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater36_r2 skipnl keepend
-syn region      pam_Mater36        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{6\}36"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater36_r[1-9] fold keepend
+syn region      pam_Mater36        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{6\}36"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater36_r[1-9] keepend
 " === MATER 36 end}}}
 
 "{{{ === MATER 37 begin
@@ -6676,7 +6676,7 @@ syn region      pam_Mater36        matchgroup=pam_CardTag start="^\CMATER / .\{8
    syn region      pam_Mater37_r2     transparent contained containedin=pam_Mater37 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater37_r2a,pam_Mater37_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater37_r1     transparent contained containedin=pam_Mater37 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater37_r2 skipnl keepend
-syn region      pam_Mater37        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{6\}37"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater37_r[1-9] fold keepend
+syn region      pam_Mater37        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{6\}37"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater37_r[1-9] keepend
 " === MATER 37 end}}}
 
 "{{{ === MATER 38 begin
@@ -6715,7 +6715,7 @@ syn region      pam_Mater37        matchgroup=pam_CardTag start="^\CMATER / .\{8
    syn region      pam_Mater38_r2     transparent contained containedin=pam_Mater38 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater38_r2a,pam_Mater38_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater38_r1     transparent contained containedin=pam_Mater38 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater38_r2 skipnl keepend
-syn region      pam_Mater38        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{6\}38"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater38_r[1-9] fold keepend
+syn region      pam_Mater38        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{6\}38"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater38_r[1-9] keepend
 " === MATER 38 end}}}
 
 "{{{ === MATER 41 begin
@@ -6750,7 +6750,7 @@ syn region      pam_Mater38        matchgroup=pam_CardTag start="^\CMATER / .\{8
    syn region      pam_Mater41_r2     transparent contained containedin=pam_Mater41 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater41_r2a,pam_Mater41_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater41_r1     transparent contained containedin=pam_Mater41 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater41_r2 skipnl keepend
-syn region      pam_Mater41        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{6\}41"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater41_r[1-9] fold keepend
+syn region      pam_Mater41        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{6\}41"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater41_r[1-9] keepend
 " === MATER 41 end}}}
 
 "{{{ === MATER 42 begin
@@ -6793,7 +6793,7 @@ syn region      pam_Mater41        matchgroup=pam_CardTag start="^\CMATER / .\{8
    syn region      pam_Mater42_r2     transparent contained containedin=pam_Mater42 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater42_r2a,pam_Mater42_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater42_r1     transparent contained containedin=pam_Mater42 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater42_r2 skipnl keepend
-syn region      pam_Mater42        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{6\}42"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater42_r[1-9] fold keepend
+syn region      pam_Mater42        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{6\}42"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater42_r[1-9] keepend
 " === MATER 42 end}}}
 
 "{{{ === MATER 45 begin
@@ -6834,7 +6834,7 @@ syn region      pam_Mater42        matchgroup=pam_CardTag start="^\CMATER / .\{8
    syn region      pam_Mater45_r2     transparent contained containedin=pam_Mater45 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater45_r2a,pam_Mater45_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater45_r1     transparent contained containedin=pam_Mater45 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater45_r2 skipnl keepend
-syn region      pam_Mater45        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{6\}45"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater45_r[1-9] fold keepend
+syn region      pam_Mater45        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{6\}45"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater45_r[1-9] keepend
 " === MATER 45 end}}}
 
 "{{{ === MATER 47 begin
@@ -6869,7 +6869,7 @@ syn region      pam_Mater45        matchgroup=pam_CardTag start="^\CMATER / .\{8
    syn region      pam_Mater47_r2     transparent contained containedin=pam_Mater47 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater47_r2a,pam_Mater47_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater47_r1     transparent contained containedin=pam_Mater47 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater47_r2 skipnl keepend
-syn region      pam_Mater47        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{6\}47"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater47_r[1-9] fold keepend
+syn region      pam_Mater47        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{6\}47"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater47_r[1-9] keepend
 " === MATER 47 end}}}
 
 "{{{ === MATER 51 begin
@@ -6896,7 +6896,7 @@ syn region      pam_Mater47        matchgroup=pam_CardTag start="^\CMATER / .\{8
    syn region      pam_Mater51_r2     transparent contained containedin=pam_Mater51 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater51_r2a,pam_Mater51_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater51_r1     transparent contained containedin=pam_Mater51 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater51_r2 skipnl keepend
-syn region      pam_Mater51        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{6\}51"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater51_r[1-9] fold keepend
+syn region      pam_Mater51        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{6\}51"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater51_r[1-9] keepend
 " === MATER 51 end}}}
 
 "{{{ === MATER 52 begin
@@ -6975,7 +6975,7 @@ syn region      pam_Mater51        matchgroup=pam_CardTag start="^\CMATER / .\{8
    syn region      pam_Mater52_r2     transparent contained containedin=pam_Mater52 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater52_r2a,pam_Mater52_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater52_r1     transparent contained containedin=pam_Mater52 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater52_r2 skipnl keepend
-syn region      pam_Mater52        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{6\}52"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater52_r[1-9] fold keepend
+syn region      pam_Mater52        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{6\}52"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater52_r[1-9] keepend
 " === MATER 52 end}}}
 
 "{{{ === MATER 61 begin
@@ -7002,7 +7002,7 @@ syn region      pam_Mater52        matchgroup=pam_CardTag start="^\CMATER / .\{8
    syn region      pam_Mater61_r2     transparent contained containedin=pam_Mater61 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater61_r2a,pam_Mater61_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater61_r1     transparent contained containedin=pam_Mater61 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater61_r2 skipnl keepend
-syn region      pam_Mater61        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{6\}61"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater61_r[1-9] fold keepend
+syn region      pam_Mater61        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{6\}61"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater61_r[1-9] keepend
 " === MATER 61 end}}}
 
 "{{{ === MATER 62 begin
@@ -7041,7 +7041,7 @@ syn region      pam_Mater61        matchgroup=pam_CardTag start="^\CMATER / .\{8
    syn region      pam_Mater62_r2     transparent contained containedin=pam_Mater62 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater62_r2a,pam_Mater62_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater62_r1     transparent contained containedin=pam_Mater62 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater62_r2 skipnl keepend
-syn region      pam_Mater62        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{6\}62"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater62_r.* fold keepend
+syn region      pam_Mater62        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{6\}62"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater62_r.* keepend
 " === MATER 62 end}}}
 
 "{{{ === MATER 71 begin
@@ -7103,7 +7103,7 @@ syn region      pam_Mater62        matchgroup=pam_CardTag start="^\CMATER / .\{8
    syn region      pam_Mater71_r2     transparent contained containedin=pam_Mater71 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater71_r2a,pam_Mater71_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater71_r1     transparent contained containedin=pam_Mater71 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater71_r2 skipnl keepend
-syn region      pam_Mater71        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{6\}71"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater71_r[1-9] fold keepend
+syn region      pam_Mater71        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{6\}71"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater71_r[1-9] keepend
 " === MATER 71 end}}}
 
 "{{{ === MATER 99 begin
@@ -7130,7 +7130,7 @@ syn region      pam_Mater71        matchgroup=pam_CardTag start="^\CMATER / .\{8
    syn region      pam_Mater99_r2     transparent contained containedin=pam_Mater99 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater99_r2a,pam_Mater99_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater99_r1     transparent contained containedin=pam_Mater99 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater99_r2 skipnl keepend
-syn region      pam_Mater99        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{6\}99"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater99_r[1-9] fold keepend
+syn region      pam_Mater99        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{6\}99"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater99_r[1-9] keepend
 " === MATER 99 end}}}
 
 "{{{ === MATER 100 begin
@@ -7157,7 +7157,7 @@ syn region      pam_Mater99        matchgroup=pam_CardTag start="^\CMATER / .\{8
    syn region      pam_Mater100_r2     transparent contained containedin=pam_Mater100 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater100_r2a,pam_Mater100_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater100_r1     transparent contained containedin=pam_Mater100 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater100_r2 skipnl keepend
-syn region      pam_Mater100        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}100"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater100_r[1-9] fold keepend
+syn region      pam_Mater100        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}100"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater100_r[1-9] keepend
 " === MATER 100 end}}}
 
 "{{{ === MATER 101 begin
@@ -7184,7 +7184,7 @@ syn region      pam_Mater100        matchgroup=pam_CardTag start="^\CMATER / .\{
    syn region      pam_Mater101_r2     transparent contained containedin=pam_Mater101 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater101_r2a,pam_Mater101_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater101_r1     transparent contained containedin=pam_Mater101 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater101_r2 skipnl keepend
-syn region      pam_Mater101        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}101"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater101_r[1-9] fold keepend
+syn region      pam_Mater101        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}101"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater101_r[1-9] keepend
 " === MATER 101 end}}}
 
 "{{{ === MATER 102/103 begin
@@ -7231,7 +7231,7 @@ syn region      pam_Mater101        matchgroup=pam_CardTag start="^\CMATER / .\{
    syn region      pam_Mater103_r2     transparent contained containedin=pam_Mater103 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater103_r2a,pam_Mater103_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater103_r1     transparent contained containedin=pam_Mater103 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater103_r2 skipnl keepend
-syn region      pam_Mater103        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}10[23]"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater103_r[1-9] fold keepend
+syn region      pam_Mater103        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}10[23]"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater103_r[1-9] keepend
 " === MATER 102/103 end}}}
 
 "{{{ === MATER 105 begin
@@ -7283,7 +7283,7 @@ syn region      pam_Mater103        matchgroup=pam_CardTag start="^\CMATER / .\{
    syn region      pam_Mater105_r2     transparent contained containedin=pam_Mater105 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater105_r2a,pam_Mater105_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater105_r1     transparent contained containedin=pam_Mater105 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater105_r2 skipnl keepend
-syn region      pam_Mater105        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}105"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater105_r.* fold keepend
+syn region      pam_Mater105        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}105"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater105_r.* keepend
 " === MATER 105 end}}}
 
 "{{{ === MATER 106 begin
@@ -7330,7 +7330,7 @@ syn region      pam_Mater105        matchgroup=pam_CardTag start="^\CMATER / .\{
    syn region      pam_Mater106_r2     transparent contained containedin=pam_Mater106 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater106_r2a,pam_Mater106_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater106_r1     transparent contained containedin=pam_Mater106 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater106_r2 skipnl keepend
-syn region      pam_Mater106        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}106"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater106_r[1-9] fold keepend
+syn region      pam_Mater106        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}106"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater106_r[1-9] keepend
 " === MATER 106 end}}}
 
 "{{{ === MATER 108 begin
@@ -7371,7 +7371,7 @@ syn region      pam_Mater106        matchgroup=pam_CardTag start="^\CMATER / .\{
    syn region      pam_Mater108_r2     transparent contained containedin=pam_Mater108 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater108_r2a,pam_Mater108_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater108_r1     transparent contained containedin=pam_Mater108 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater108_r2 skipnl keepend
-syn region      pam_Mater108        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}108"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater108_r[1-9] fold keepend
+syn region      pam_Mater108        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}108"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater108_r[1-9] keepend
 " === MATER 108 end}}}
 
 "{{{ === MATER 109 begin
@@ -7423,7 +7423,7 @@ syn region      pam_Mater108        matchgroup=pam_CardTag start="^\CMATER / .\{
    syn region      pam_Mater109_r2     transparent contained containedin=pam_Mater109 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater109_r2a,pam_Mater109_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater109_r1     transparent contained containedin=pam_Mater109 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater109_r2 skipnl keepend
-syn region      pam_Mater109        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}109"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater109_r[1-9] fold keepend
+syn region      pam_Mater109        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}109"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater109_r[1-9] keepend
 " === MATER 109 end}}}
 
 "{{{ === MATER 110 begin
@@ -7455,7 +7455,7 @@ syn region      pam_Mater109        matchgroup=pam_CardTag start="^\CMATER / .\{
    syn region      pam_Mater110_r2     transparent contained containedin=pam_Mater110 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater110_r2a,pam_Mater110_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater110_r1     transparent contained containedin=pam_Mater110 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater110_r2 skipnl keepend
-syn region      pam_Mater110        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}110"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater110_r[1-9] fold keepend
+syn region      pam_Mater110        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}110"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater110_r[1-9] keepend
 " === MATER 110 end}}}
 
 "{{{ === MATER 115 begin
@@ -7494,7 +7494,7 @@ syn region      pam_Mater110        matchgroup=pam_CardTag start="^\CMATER / .\{
    syn region      pam_Mater115_r2     transparent contained containedin=pam_Mater115 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater115_r2a,pam_Mater115_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater115_r1     transparent contained containedin=pam_Mater115 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater115_r2 skipnl keepend
-syn region      pam_Mater115        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}115"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater115_r[1-9] fold keepend
+syn region      pam_Mater115        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}115"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater115_r[1-9] keepend
 " === MATER 115 end}}}
 
 "{{{ === MATER 116 begin
@@ -7553,7 +7553,7 @@ syn region      pam_Mater115        matchgroup=pam_CardTag start="^\CMATER / .\{
    syn region      pam_Mater116_r2     transparent contained containedin=pam_Mater116 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater116_r2a,pam_Mater116_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater116_r1     transparent contained containedin=pam_Mater116 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater116_r2 skipnl keepend
-syn region      pam_Mater116        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}116"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater116_r[1-9] fold keepend
+syn region      pam_Mater116        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}116"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater116_r[1-9] keepend
 " === MATER 116 end}}}
 
 "{{{ === MATER 117 begin
@@ -7610,7 +7610,7 @@ syn region      pam_Mater116        matchgroup=pam_CardTag start="^\CMATER / .\{
    syn region      pam_Mater117_r2     transparent contained containedin=pam_Mater117 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater117_r2a,pam_Mater117_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater117_r1     transparent contained containedin=pam_Mater117 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater117_r2 skipnl keepend
-syn region      pam_Mater117        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}117"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater117_r[1-9] fold keepend
+syn region      pam_Mater117        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}117"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater117_r[1-9] keepend
 " === MATER 117 end}}}
 
 "{{{ === MATER 118 begin
@@ -7651,7 +7651,7 @@ syn region      pam_Mater117        matchgroup=pam_CardTag start="^\CMATER / .\{
    syn region      pam_Mater118_r2     transparent contained containedin=pam_Mater118 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater118_r2a,pam_Mater118_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater118_r1     transparent contained containedin=pam_Mater118 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater118_r2 skipnl keepend
-syn region      pam_Mater118        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}118"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater118_r[1-9] fold keepend
+syn region      pam_Mater118        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}118"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater118_r[1-9] keepend
 " === MATER 118 end}}}
 
 "{{{ === MATER 121 begin
@@ -7682,7 +7682,7 @@ syn region      pam_Mater118        matchgroup=pam_CardTag start="^\CMATER / .\{
    syn region      pam_Mater121_r2     transparent contained containedin=pam_Mater121 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater121_r2a,pam_Mater121_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater121_r1     transparent contained containedin=pam_Mater121 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater121_r2 skipnl keepend
-syn region      pam_Mater121        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}121"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater121_r[1-9] fold keepend
+syn region      pam_Mater121        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}121"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater121_r[1-9] keepend
 " === MATER 121 end}}}
 
 "{{{ === MATER 126 begin
@@ -7714,7 +7714,7 @@ syn region      pam_Mater121        matchgroup=pam_CardTag start="^\CMATER / .\{
    syn region      pam_Mater126_r2     transparent contained containedin=pam_Mater126 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater126_r2a,pam_Mater126_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater126_r1     transparent contained containedin=pam_Mater126 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater126_r2 skipnl keepend
-syn region      pam_Mater126        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}126"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater126_r[1-9] fold keepend
+syn region      pam_Mater126        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}126"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater126_r[1-9] keepend
 " === MATER 126 end}}}
 
 "{{{ === MATER 127 begin
@@ -7776,7 +7776,7 @@ syn region      pam_Mater126        matchgroup=pam_CardTag start="^\CMATER / .\{
    syn region      pam_Mater127_r2     transparent contained containedin=pam_Mater127 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater127_r2a,pam_Mater127_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater127_r1     transparent contained containedin=pam_Mater127 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater127_r2 skipnl keepend
-syn region      pam_Mater127        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}127"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater127_r[1-9] fold keepend
+syn region      pam_Mater127        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}127"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater127_r[1-9] keepend
 " === MATER 127 end}}}
 
 "{{{ === MATER 128 begin
@@ -7830,7 +7830,7 @@ syn region      pam_Mater127        matchgroup=pam_CardTag start="^\CMATER / .\{
    syn region      pam_Mater128_r2     transparent contained containedin=pam_Mater128 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater128_r2a,pam_Mater128_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater128_r1     transparent contained containedin=pam_Mater128 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater128_r2 skipnl keepend
-syn region      pam_Mater128        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}128"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater128_r[1-9] fold keepend
+syn region      pam_Mater128        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}128"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater128_r[1-9] keepend
 " === MATER 128 end}}}
 
 "{{{ === MATER 130/131/132 begin
@@ -7863,7 +7863,7 @@ syn region      pam_Mater128        matchgroup=pam_CardTag start="^\CMATER / .\{
    syn region      pam_Mater130_r2     transparent contained containedin=pam_Mater130 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater130_r2a,pam_Mater130_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater130_r1     transparent contained containedin=pam_Mater130 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater130_r2 skipnl keepend
-syn region      pam_Mater130        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}13[0-2]"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater130_r[1-9] fold keepend
+syn region      pam_Mater130        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}13[0-2]"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater130_r[1-9] keepend
 " === MATER 130/131/132 end}}}
 
 "{{{ === MATER 143 begin
@@ -7890,7 +7890,7 @@ syn region      pam_Mater130        matchgroup=pam_CardTag start="^\CMATER / .\{
    syn region      pam_Mater143_r2     transparent contained containedin=pam_Mater143 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater143_r2a,pam_Mater143_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater143_r1     transparent contained containedin=pam_Mater143 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater143_r2 skipnl keepend
-syn region      pam_Mater143        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}143"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater143_r[1-9] fold keepend
+syn region      pam_Mater143        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}143"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater143_r[1-9] keepend
 " === MATER 143 end}}}
 
 "{{{ === MATER 150 begin
@@ -7917,7 +7917,7 @@ syn region      pam_Mater143        matchgroup=pam_CardTag start="^\CMATER / .\{
    syn region      pam_Mater150_r2     transparent contained containedin=pam_Mater150 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater150_r2a,pam_Mater150_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater150_r1     transparent contained containedin=pam_Mater150 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater150_r2 skipnl keepend
-syn region      pam_Mater150        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}150"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater150_r[1-9] fold keepend
+syn region      pam_Mater150        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}150"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater150_r[1-9] keepend
 " === MATER 150 end}}}
 
 "{{{ === MATER 151 begin
@@ -7954,7 +7954,7 @@ syn region      pam_Mater150        matchgroup=pam_CardTag start="^\CMATER / .\{
    syn region      pam_Mater151_r2     transparent contained containedin=pam_Mater151 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater151_r2a,pam_Mater151_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater151_r1     transparent contained containedin=pam_Mater151 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater151_r2 skipnl keepend
-syn region      pam_Mater151        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}151"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater151_r[1-9] fold keepend
+syn region      pam_Mater151        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}151"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater151_r[1-9] keepend
 " === MATER 151 end}}}
 
 "{{{ === MATER 152 begin
@@ -7981,7 +7981,7 @@ syn region      pam_Mater151        matchgroup=pam_CardTag start="^\CMATER / .\{
    syn region      pam_Mater152_r2     transparent contained containedin=pam_Mater152 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater152_r2a,pam_Mater152_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater152_r1     transparent contained containedin=pam_Mater152 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater152_r2 skipnl keepend
-syn region      pam_Mater152        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}152"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater152_r[1-9] fold keepend
+syn region      pam_Mater152        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}152"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater152_r[1-9] keepend
 " === MATER 152 end}}}
 
 "{{{ === MATER 161 begin
@@ -8008,7 +8008,7 @@ syn region      pam_Mater152        matchgroup=pam_CardTag start="^\CMATER / .\{
    syn region      pam_Mater161_r2     transparent contained containedin=pam_Mater161 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater161_r2a,pam_Mater161_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater161_r1     transparent contained containedin=pam_Mater161 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater161_r2 skipnl keepend
-syn region      pam_Mater161        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}161"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater161_r[1-9] fold keepend
+syn region      pam_Mater161        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}161"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater161_r[1-9] keepend
 " === MATER 161 end}}}
 
 "{{{ === MATER 162 begin
@@ -8047,7 +8047,7 @@ syn region      pam_Mater161        matchgroup=pam_CardTag start="^\CMATER / .\{
    syn region      pam_Mater162_r2     transparent contained containedin=pam_Mater162 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater162_r2a,pam_Mater162_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater162_r1     transparent contained containedin=pam_Mater162 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater162_r2 skipnl keepend
-syn region      pam_Mater162        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}162"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater162_r[1-9] fold keepend
+syn region      pam_Mater162        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}162"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater162_r[1-9] keepend
 " === MATER 162 end}}}
 
 "{{{ === MATER 171 begin
@@ -8098,7 +8098,7 @@ syn region      pam_Mater162        matchgroup=pam_CardTag start="^\CMATER / .\{
    syn region      pam_Mater171_r2     transparent contained containedin=pam_Mater171 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater171_r2a,pam_Mater171_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater171_r1     transparent contained containedin=pam_Mater171 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater171_r2 skipnl keepend
-syn region      pam_Mater171        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}171"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater171_r[1-9] fold keepend
+syn region      pam_Mater171        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}171"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater171_r[1-9] keepend
 " === MATER 171 end}}}
 
 "{{{ === MATER 200 begin
@@ -8125,7 +8125,7 @@ syn region      pam_Mater171        matchgroup=pam_CardTag start="^\CMATER / .\{
    syn region      pam_Mater200_r2     transparent contained containedin=pam_Mater200 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater200_r2a,pam_Mater200_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater200_r1     transparent contained containedin=pam_Mater200 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater200_r2 skipnl keepend
-syn region      pam_Mater200        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}200"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater200_r[1-9] fold keepend
+syn region      pam_Mater200        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}200"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater200_r[1-9] keepend
 " === MATER 200 end}}}
 
 "{{{ === MATER 201 begin
@@ -8152,7 +8152,7 @@ syn region      pam_Mater200        matchgroup=pam_CardTag start="^\CMATER / .\{
    syn region      pam_Mater201_r2     transparent contained containedin=pam_Mater201 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater201_r2a,pam_Mater201_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater201_r1     transparent contained containedin=pam_Mater201 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater201_r2 skipnl keepend
-syn region      pam_Mater201        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}201"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater201_r[1-9] fold keepend
+syn region      pam_Mater201        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}201"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater201_r[1-9] keepend
 " === MATER 201 end}}}
 
 "{{{ === MATER 202 begin
@@ -8211,7 +8211,7 @@ syn region      pam_Mater201        matchgroup=pam_CardTag start="^\CMATER / .\{
    syn region      pam_Mater202_r2     transparent contained containedin=pam_Mater202 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater202_r2a,pam_Mater202_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater202_r1     transparent contained containedin=pam_Mater202 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater202_r2 skipnl keepend
-syn region      pam_Mater202        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}202"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater202_r[1-9] fold keepend
+syn region      pam_Mater202        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}202"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater202_r[1-9] keepend
 " === MATER 202 end}}}
 
 "{{{ === MATER 203 begin
@@ -8238,7 +8238,7 @@ syn region      pam_Mater202        matchgroup=pam_CardTag start="^\CMATER / .\{
    syn region      pam_Mater203_r2     transparent contained containedin=pam_Mater203 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater203_r2a,pam_Mater203_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater203_r1     transparent contained containedin=pam_Mater203 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater203_r2 skipnl keepend
-syn region      pam_Mater203        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}203"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater203_r[1-9] fold keepend
+syn region      pam_Mater203        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}203"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater203_r[1-9] keepend
 " === MATER 203 end}}}
 
 "{{{ === MATER 204 begin
@@ -8265,7 +8265,7 @@ syn region      pam_Mater203        matchgroup=pam_CardTag start="^\CMATER / .\{
    syn region      pam_Mater204_r2     transparent contained containedin=pam_Mater204 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater204_r2a,pam_Mater204_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater204_r1     transparent contained containedin=pam_Mater204 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater204_r2 skipnl keepend
-syn region      pam_Mater204        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}204"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater204_r[1-9] fold keepend
+syn region      pam_Mater204        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}204"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater204_r[1-9] keepend
 " === MATER 204 end}}}
 
 "{{{ === MATER 205 begin
@@ -8292,7 +8292,7 @@ syn region      pam_Mater204        matchgroup=pam_CardTag start="^\CMATER / .\{
    syn region      pam_Mater205_r2     transparent contained containedin=pam_Mater205 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater205_r2a,pam_Mater205_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater205_r1     transparent contained containedin=pam_Mater205 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater205_r2 skipnl keepend
-syn region      pam_Mater205        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}205"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater205_r[1-9] fold keepend
+syn region      pam_Mater205        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}205"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater205_r[1-9] keepend
 " === MATER 205 end}}}
 
 "{{{ === MATER 212 begin
@@ -8351,7 +8351,7 @@ syn region      pam_Mater205        matchgroup=pam_CardTag start="^\CMATER / .\{
    syn region      pam_Mater212_r2     transparent contained containedin=pam_Mater212 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater212_r2a,pam_Mater212_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater212_r1     transparent contained containedin=pam_Mater212 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater212_r2 skipnl keepend
-syn region      pam_Mater212        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}212"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater212_r[1-9] fold keepend
+syn region      pam_Mater212        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}212"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater212_r[1-9] keepend
 " === MATER 212 end}}}
 
 "{{{ === MATER 213 begin
@@ -8421,7 +8421,7 @@ syn region      pam_Mater212        matchgroup=pam_CardTag start="^\CMATER / .\{
    syn region      pam_Mater213_r2     transparent contained containedin=pam_Mater213 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater213_r2a,pam_Mater213_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater213_r1     transparent contained containedin=pam_Mater213 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater213_r2 skipnl keepend
-syn region      pam_Mater213        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}213"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater213_r[1-9] fold keepend
+syn region      pam_Mater213        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}213"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater213_r[1-9] keepend
 " === MATER 213 end}}}
 
 "{{{ === MATER 214 begin
@@ -8448,7 +8448,7 @@ syn region      pam_Mater213        matchgroup=pam_CardTag start="^\CMATER / .\{
    syn region      pam_Mater214_r2     transparent contained containedin=pam_Mater214 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater214_r2a,pam_Mater214_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater214_r1     transparent contained containedin=pam_Mater214 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater214_r2 skipnl keepend
-syn region      pam_Mater214        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}214"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater214_r[1-9] fold keepend
+syn region      pam_Mater214        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}214"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater214_r[1-9] keepend
 " === MATER 214 end}}}
 
 "{{{ === MATER 220 begin
@@ -8487,7 +8487,7 @@ syn region      pam_Mater214        matchgroup=pam_CardTag start="^\CMATER / .\{
    syn region      pam_Mater220_r2     transparent contained containedin=pam_Mater220 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater220_r2a,pam_Mater220_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater220_r1     transparent contained containedin=pam_Mater220 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater220_r2 skipnl keepend
-syn region      pam_Mater220        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}220"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater220_r[1-9] fold keepend
+syn region      pam_Mater220        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}220"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater220_r[1-9] keepend
 " === MATER 220 end}}}
 
 "{{{ === MATER 221 begin
@@ -8518,7 +8518,7 @@ syn region      pam_Mater220        matchgroup=pam_CardTag start="^\CMATER / .\{
    syn region      pam_Mater221_r2     transparent contained containedin=pam_Mater221 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater221_r2a,pam_Mater221_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater221_r1     transparent contained containedin=pam_Mater221 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater221_r2 skipnl keepend
-syn region      pam_Mater221        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}221"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater221_r[1-9] fold keepend
+syn region      pam_Mater221        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}221"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater221_r[1-9] keepend
 " === MATER 221 end}}}
 
 "{{{ === MATER 222 begin
@@ -8547,7 +8547,7 @@ syn region      pam_Mater221        matchgroup=pam_CardTag start="^\CMATER / .\{
    syn region      pam_Mater222_r2     transparent contained containedin=pam_Mater222 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater222_r2a,pam_Mater222_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater222_r1     transparent contained containedin=pam_Mater222 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater222_r2 skipnl keepend
-syn region      pam_Mater222        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}222"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater222_r[1-9] fold keepend
+syn region      pam_Mater222        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}222"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater222_r[1-9] keepend
 " === MATER 222 end}}}
 
 "{{{ === MATER 223 begin
@@ -8586,7 +8586,7 @@ syn region      pam_Mater222        matchgroup=pam_CardTag start="^\CMATER / .\{
    syn region      pam_Mater223_r2     transparent contained containedin=pam_Mater223 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater223_r2a,pam_Mater223_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater223_r1     transparent contained containedin=pam_Mater223 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater223_r2 skipnl keepend
-syn region      pam_Mater223        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}223"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater223_r[1-9] fold keepend
+syn region      pam_Mater223        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}223"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater223_r[1-9] keepend
 " === MATER 223 end}}}
 
 "{{{ === MATER 224 begin
@@ -8613,7 +8613,7 @@ syn region      pam_Mater223        matchgroup=pam_CardTag start="^\CMATER / .\{
    syn region      pam_Mater224_r2     transparent contained containedin=pam_Mater224 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater224_r2a,pam_Mater224_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater224_r1     transparent contained containedin=pam_Mater224 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater224_r2 skipnl keepend
-syn region      pam_Mater224        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}224"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater224_r[1-9] fold keepend
+syn region      pam_Mater224        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}224"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater224_r[1-9] keepend
 " === MATER 224 end}}}
 
 "{{{ === MATER 225 begin
@@ -8662,7 +8662,7 @@ syn region      pam_Mater224        matchgroup=pam_CardTag start="^\CMATER / .\{
    syn region      pam_Mater225_r2     transparent contained containedin=pam_Mater225 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater225_r2a,pam_Mater225_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater225_r1     transparent contained containedin=pam_Mater225 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater225_r2 skipnl keepend
-syn region      pam_Mater225        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}225"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater225_r[1-9] fold keepend
+syn region      pam_Mater225        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}225"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater225_r[1-9] keepend
 " === MATER 225 end}}}
 
 "{{{ === MATER 226 begin
@@ -8690,7 +8690,7 @@ syn region      pam_Mater225        matchgroup=pam_CardTag start="^\CMATER / .\{
    syn region      pam_Mater226_r2     transparent contained containedin=pam_Mater226 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater226_r2a,pam_Mater226_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater226_r1     transparent contained containedin=pam_Mater226 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater226_r2 skipnl keepend
-syn region      pam_Mater226        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}226"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater226_r[1-9] fold keepend
+syn region      pam_Mater226        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}226"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater226_r[1-9] keepend
 " === MATER 225 end}}}
 
 "{{{ === MATER 230 begin
@@ -8729,7 +8729,7 @@ syn region      pam_Mater226        matchgroup=pam_CardTag start="^\CMATER / .\{
    syn region      pam_Mater230_r2     transparent contained containedin=pam_Mater230 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater230_r2a,pam_Mater230_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater230_r1     transparent contained containedin=pam_Mater230 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater230_r2 skipnl keepend
-syn region      pam_Mater230        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}230"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater230_r[1-9] fold keepend
+syn region      pam_Mater230        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}230"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater230_r[1-9] keepend
 " === MATER 230 end}}}
  
 "{{{ === MATER 240 begin
@@ -8761,7 +8761,7 @@ syn region      pam_Mater230        matchgroup=pam_CardTag start="^\CMATER / .\{
    syn region      pam_Mater240_r2     transparent contained containedin=pam_Mater240 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater240_r2a,pam_Mater240_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater240_r1     transparent contained containedin=pam_Mater240 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater240_r2 skipnl keepend
-syn region      pam_Mater240        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}240"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater240_r[1-9] fold keepend
+syn region      pam_Mater240        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}240"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater240_r[1-9] keepend
 " === MATER 240 end}}}
 
 "{{{ === MATER 301 begin
@@ -8792,7 +8792,7 @@ syn region      pam_Mater240        matchgroup=pam_CardTag start="^\CMATER / .\{
    syn region      pam_Mater301_r2     transparent contained containedin=pam_Mater301 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater301_r2a,pam_Mater301_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater301_r1     transparent contained containedin=pam_Mater301 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater301_r2 skipnl keepend
-syn region      pam_Mater301        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}301"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater301_r[1-9] fold keepend
+syn region      pam_Mater301        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}301"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater301_r[1-9] keepend
 " === MATER 301 end}}}
 
 "{{{ === MATER 302 begin
@@ -8819,7 +8819,7 @@ syn region      pam_Mater301        matchgroup=pam_CardTag start="^\CMATER / .\{
    syn region      pam_Mater302_r2     transparent contained containedin=pam_Mater302 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater302_r2a,pam_Mater302_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater302_r1     transparent contained containedin=pam_Mater302 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater302_r2 skipnl keepend
-syn region      pam_Mater302        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}302"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater302_r[1-9] fold keepend
+syn region      pam_Mater302        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}302"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater302_r[1-9] keepend
 " === MATER 302 end}}}
 
 "{{{ === MATER 303 begin
@@ -8846,7 +8846,7 @@ syn region      pam_Mater302        matchgroup=pam_CardTag start="^\CMATER / .\{
    syn region      pam_Mater303_r2     transparent contained containedin=pam_Mater303 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater303_r2a,pam_Mater303_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater303_r1     transparent contained containedin=pam_Mater303 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater303_r2 skipnl keepend
-syn region      pam_Mater303        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}303"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater303_r[1-9] fold keepend
+syn region      pam_Mater303        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}303"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater303_r[1-9] keepend
 " === MATER 303 end}}}
 
 "{{{ === MATER 304 begin
@@ -8884,7 +8884,7 @@ syn region      pam_Mater303        matchgroup=pam_CardTag start="^\CMATER / .\{
    syn region      pam_Mater304_r2     transparent contained containedin=pam_Mater304 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater304_r2a,pam_Mater304_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater304_r1     transparent contained containedin=pam_Mater304 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater304_r2 skipnl keepend
-syn region      pam_Mater304        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}304"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater304_r[1-9] fold keepend
+syn region      pam_Mater304        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}304"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater304_r[1-9] keepend
 " === MATER 304 end}}}
 
 "{{{ === MATER 305 begin
@@ -8911,7 +8911,7 @@ syn region      pam_Mater304        matchgroup=pam_CardTag start="^\CMATER / .\{
    syn region      pam_Mater305_r2     transparent contained containedin=pam_Mater305 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater305_r2a,pam_Mater305_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater305_r1     transparent contained containedin=pam_Mater305 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater305_r2 skipnl keepend
-syn region      pam_Mater305        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}305"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater305_r[1-9] fold keepend
+syn region      pam_Mater305        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}305"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater305_r[1-9] keepend
 " === MATER 305 end}}}
 
 "{{{ === MATER 306 begin
@@ -8934,7 +8934,7 @@ syn region      pam_Mater305        matchgroup=pam_CardTag start="^\CMATER / .\{
    syn region      pam_Mater306_r2     transparent contained containedin=pam_Mater306 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater306_r2a,pam_Mater306_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater306_r1     transparent contained containedin=pam_Mater306 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater306_r2 skipnl keepend
-syn region      pam_Mater306        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}306"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater306_r[1-7] fold keepend
+syn region      pam_Mater306        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}306"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater306_r[1-7] keepend
 " === MATER 306 end}}}
 
 "{{{ === MATER 371 begin
@@ -8966,7 +8966,7 @@ syn region      pam_Mater306        matchgroup=pam_CardTag start="^\CMATER / .\{
    syn region      pam_Mater371_r2     transparent contained containedin=pam_Mater371 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57f8,@73i8,pam_Comment,pam_Comment_Position,pam_Error,pam_Continue nextgroup=pam_Mater371_r2a,pam_Mater371_r3 skipnl keepend
    " Row 1
    syn region      pam_Mater371_r1     transparent contained containedin=pam_Mater371 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f16x,@41i8x,@49i8x,@57i8x,@65i8x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mater371_r2 skipnl keepend
-syn region      pam_Mater371        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}371"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater371_r[1-9] fold keepend
+syn region      pam_Mater371        matchgroup=pam_CardTag start="^\CMATER / .\{8\}[ ]\{5\}371"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mater371_r[1-9] keepend
 " === MATER 371 zoend}}}
 
 "{{{ MMAT begin
@@ -8979,7 +8979,7 @@ syn region      pam_Mater371        matchgroup=pam_CardTag start="^\CMATER / .\{
    syn region      pam_MMAT_r1     transparent contained containedin=pam_MMAT start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_MMAT_r2 skipnl keepend
    "{{{MULTI_PHYSICS_PARAMETERS
          syn region      pam_MMAT_MULTI_PHYSICS_PARAMETERS_r1   transparent contained containedin=pam_MMAT_MULTI_PHYSICS_PARAMETERS start="\%1c[^\$\#]" end="\n[\$\#]\@!" contains=@1f10,pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
-      syn region      pam_MMAT_MULTI_PHYSICS_PARAMETERS   transparent contained containedin=pam_MMAT matchgroup=pam_CardTag start="^[ ]*\CMULTI_PHYSICS_PARAMETERS" end="^[ ]*\CEND_MULTI_PHYSICS_PARAMETERS" contains=pam_MMAT_MULTI_PHYSICS_PARAMETERS_r1,pam_Comment,pam_Comment_Position,pam_Error fold keepend
+      syn region      pam_MMAT_MULTI_PHYSICS_PARAMETERS   transparent contained containedin=pam_MMAT matchgroup=pam_CardTag start="^[ ]*\CMULTI_PHYSICS_PARAMETERS" end="^[ ]*\CEND_MULTI_PHYSICS_PARAMETERS" contains=pam_MMAT_MULTI_PHYSICS_PARAMETERS_r1,pam_Comment,pam_Comment_Position,pam_Error keepend
    "}}}
    "{{{ELASTICITY
             syn region      pam_MMAT_ELASTICITY_ORTHOTROPIC_LINEAR_r2     transparent contained containedin=pam_MMAT_ELASTICITY_ORTHOTROPIC_LINEAR start="\%1c[^\$\#]" start="^$\n" end="\n[\$\#]\@!" contains=@1f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
@@ -8987,7 +8987,7 @@ syn region      pam_Mater371        matchgroup=pam_CardTag start="^\CMATER / .\{
          syn region      pam_MMAT_ELASTICITY_ORTHOTROPIC_LINEAR   transparent contained containedin=pam_MMAT_ELASTICITY matchgroup=pam_Keyword start="^[ ]*\CORTHOTROPIC_LINEAR" end="\%$" contains=pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
             syn region      pam_MMAT_ELASTICITY_ISOTROPIC_r1     transparent contained containedin=pam_MMAT_ELASTICITY_ISOTROPIC start="\%1c[^\$\#]" start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
          syn region      pam_MMAT_ELASTICITY_ISOTROPIC   transparent contained containedin=pam_MMAT_ELASTICITY matchgroup=pam_Keyword start="^[ ]*\CISOTROPIC" end="\%$" contains=pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
-      syn region      pam_MMAT_ELASTICITY   transparent contained containedin=pam_MMAT matchgroup=pam_CardTag start="^[ ]*\CELASTICITY" end="^[ ]*\CEND_ELASTICITY" contains=pam_Comment,pam_Comment_Position,pam_Error fold keepend
+      syn region      pam_MMAT_ELASTICITY   transparent contained containedin=pam_MMAT matchgroup=pam_CardTag start="^[ ]*\CELASTICITY" end="^[ ]*\CEND_ELASTICITY" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
    "}}}
    "{{{PLASTICITY
             syn region      pam_MMAT_PLASTICITY_KARAFILLIS_BOYCE_r1     transparent contained containedin=pam_MMAT_PLASTICITY_KARAFILLIS_BOYCE start="\%1c[^\$\#]" start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
@@ -9006,7 +9006,7 @@ syn region      pam_Mater371        matchgroup=pam_CardTag start="^\CMATER / .\{
             syn region      pam_MMAT_PLASTICITY_HILL48_r1     transparent contained containedin=pam_MMAT_PLASTICITY_HILL48 start="\%1c[^\$\#]" start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,@11f10,@21f10,@31f10,@41f10,@51f10,@61f10,@71f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_MMAT_PLASTICITY_HILL48_r2 skipnl keepend
          syn region      pam_MMAT_PLASTICITY_HILL48   transparent contained containedin=pam_MMAT_PLASTICITY matchgroup=pam_Keyword start="^[ ]*\CHILL48" end="\%$" contains=pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
          syn region      pam_MMAT_PLASTICITY_VONMISES   transparent contained containedin=pam_MMAT_PLASTICITY matchgroup=pam_Keyword start="^[ ]*\CVONMISES" end="\%$" contains=pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
-      syn region      pam_MMAT_PLASTICITY   transparent contained containedin=pam_MMAT matchgroup=pam_CardTag start="^[ ]*\CPLASTICITY" end="^[ ]*\CEND_PLASTICITY" contains=pam_Comment,pam_Comment_Position,pam_Error fold keepend
+      syn region      pam_MMAT_PLASTICITY   transparent contained containedin=pam_MMAT matchgroup=pam_CardTag start="^[ ]*\CPLASTICITY" end="^[ ]*\CEND_PLASTICITY" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
    "}}}
    "{{{HARDENING
             syn region      pam_MMAT_HARDENING_RATE_FILTERING_r1     transparent contained containedin=pam_MMAT_HARDENING_RATE_FILTERING start="\%1c[^\$\#]" start="^$\n" end="\n[\$\#]\@!" contains=@11f10,@21i10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
@@ -9051,7 +9051,7 @@ syn region      pam_Mater371        matchgroup=pam_CardTag start="^\CMATER / .\{
          syn region      pam_MMAT_HARDENING_SINGLE_CURVE   transparent contained containedin=pam_MMAT_HARDENING matchgroup=pam_Keyword start="^[ ]*\CSINGLE_CURVE" end="^[ ]*RATE"me=s-1 contains=pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
             syn region      pam_MMAT_HARDENING_BILINEAR_r1     transparent contained containedin=pam_MMAT_HARDENING_BILINEAR start="\%1c[^\$\#]" start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
          syn region      pam_MMAT_HARDENING_BILINEAR   transparent contained containedin=pam_MMAT_HARDENING matchgroup=pam_Keyword start="^[ ]*\CBILINEAR" end="^[ ]*RATE"me=s-1 contains=pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
-      syn region      pam_MMAT_HARDENING   transparent contained containedin=pam_MMAT matchgroup=pam_CardTag start="^[ ]*\CHARDENING" end="^[ ]*\CEND_HARDENING" contains=pam_Comment,pam_Comment_Position,pam_Error fold keepend
+      syn region      pam_MMAT_HARDENING   transparent contained containedin=pam_MMAT matchgroup=pam_CardTag start="^[ ]*\CHARDENING" end="^[ ]*\CEND_HARDENING" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
    "}}}
    "{{{KINEMATIC_HARDENING
             syn region      pam_MMAT_KINEMATIC_HARDENING_OWANG_r5     transparent contained containedin=pam_MMAT_KINEMATIC_HARDENING_OWANG start="\%1c[^\$\#]" start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,@21f10,@31f10,@41f10,@51f10,@61f10,@71f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
@@ -9066,7 +9066,7 @@ syn region      pam_Mater371        matchgroup=pam_CardTag start="^\CMATER / .\{
             syn region      pam_MMAT_KINEMATIC_HARDENING_AFCHA_r2     transparent contained containedin=pam_MMAT_KINEMATIC_HARDENING_AFCHA start="\%1c[^\$\#]" start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,@21f10,@31f10,@41f10,@51f10,@61f10,@71f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_MMAT_KINEMATIC_HARDENING_AFCHA_r3 skipnl keepend
             syn region      pam_MMAT_KINEMATIC_HARDENING_AFCHA_r1     transparent contained containedin=pam_MMAT_KINEMATIC_HARDENING_AFCHA start="\%1c[^\$\#]" start="^$\n" end="\n[\$\#]\@!" contains=@1i10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_MMAT_KINEMATIC_HARDENING_AFCHA_r2 skipnl keepend
          syn region      pam_MMAT_KINEMATIC_HARDENING_AFCHA   transparent contained containedin=pam_MMAT_KINEMATIC_HARDENING matchgroup=pam_Keyword start="^[ ]*\CAFCHA" end="\%$" contains=pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
-      syn region      pam_MMAT_KINEMATIC_HARDENING   transparent contained containedin=pam_MMAT matchgroup=pam_CardTag start="^[ ]*\CKINEMATIC_HARDENING" end="^[ ]*\CEND_KINEMATIC_HARDENING" contains=pam_Comment,pam_Comment_Position,pam_Error fold keepend
+      syn region      pam_MMAT_KINEMATIC_HARDENING   transparent contained containedin=pam_MMAT matchgroup=pam_CardTag start="^[ ]*\CKINEMATIC_HARDENING" end="^[ ]*\CEND_KINEMATIC_HARDENING" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
    "}}}
    "{{{FAILURE
             syn region      pam_MMAT_FAILURE_PLASTIC_STRAIN_DAMAGE_r1     transparent contained containedin=pam_MMAT_FAILURE_PLASTIC_STRAIN_DAMAGE start="\%1c[^\$\#]" start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,@21f10,@31f10,@41f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
@@ -9117,19 +9117,19 @@ syn region      pam_Mater371        matchgroup=pam_CardTag start="^\CMATER / .\{
          syn region      pam_MMAT_FAILURE_EXTENDED_COCKCROFT_LATHAM   transparent contained containedin=pam_MMAT_FAILURE matchgroup=pam_Keyword start="^[ ]*\CEXTENDED_COCKCROFT_LATHAM" end="^[ ]*[A-Z]"me=s-1 contains=pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
             syn region      pam_MMAT_FAILURE_TABLE_DRIVEN_LOOKUP_r1     transparent contained containedin=pam_MMAT_FAILURE_TABLE_DRIVEN_LOOKUP start="\%1c[^\$\#]" start="^$\n" end="\n[\$\#]\@!" contains=@1i10,@11i10,@21i10,@31i10,@41f10,@51f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
          syn region      pam_MMAT_FAILURE_TABLE_DRIVEN_LOOKUP   transparent contained containedin=pam_MMAT_FAILURE matchgroup=pam_Keyword start="^[ ]*\CTABLE_DRIVEN_LOOKUP" end="^[ ]*[A-Z]"me=s-1 contains=pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
-      syn region      pam_MMAT_FAILURE   transparent contained containedin=pam_MMAT matchgroup=pam_CardTag start="^[ ]*\CFAILURE" end="^[ ]*\CEND_FAILURE" contains=pam_Comment,pam_Comment_Position,pam_Error fold keepend
+      syn region      pam_MMAT_FAILURE   transparent contained containedin=pam_MMAT matchgroup=pam_CardTag start="^[ ]*\CFAILURE" end="^[ ]*\CEND_FAILURE" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
    "}}}
    "{{{DAMPING
             syn region      pam_MMAT_DAMPING_STIFFNESS_PROPORTIONAL_r1     transparent contained containedin=pam_MMAT_DAMPING_STIFFNESS_PROPORTIONAL start="\%1c[^\$\#]" start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
          syn region      pam_MMAT_DAMPING_STIFFNESS_PROPORTIONAL   transparent contained containedin=pam_MMAT_DAMPING matchgroup=pam_Keyword start="^[ ]*\CSTIFFNESS_PROPORTIONAL" end="\%$" contains=pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
-      syn region      pam_MMAT_DAMPING   transparent contained containedin=pam_MMAT matchgroup=pam_CardTag start="^[ ]*\CDAMPING" end="^[ ]*\CEND_DAMPING" contains=pam_Comment,pam_Comment_Position,pam_Error fold keepend
+      syn region      pam_MMAT_DAMPING   transparent contained containedin=pam_MMAT matchgroup=pam_CardTag start="^[ ]*\CDAMPING" end="^[ ]*\CEND_DAMPING" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
    "}}}
    "{{{THERMAL_EXPANSION
             syn region      pam_MMAT_THERMAL_EXPANSION_ISOTROPIC_r1     transparent contained containedin=pam_MMAT_THERMAL_EXPANSION_ISOTROPIC start="\%1c[^\$\#]" start="^$\n" end="\n[\$\#]\@!" contains=@1f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
          syn region      pam_MMAT_THERMAL_EXPANSION_ISOTROPIC   transparent contained containedin=pam_MMAT_THERMAL_EXPANSION matchgroup=pam_Keyword start="^[ ]*\CISOTROPIC" end="\%$" contains=pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
-      syn region      pam_MMAT_THERMAL_EXPANSION   transparent contained containedin=pam_MMAT matchgroup=pam_CardTag start="^[ ]*\CTHERMAL_EXPANSION" end="^[ ]*\CEND_THERMAL_EXPANSION" contains=pam_Comment,pam_Comment_Position,pam_Error fold keepend
+      syn region      pam_MMAT_THERMAL_EXPANSION   transparent contained containedin=pam_MMAT matchgroup=pam_CardTag start="^[ ]*\CTHERMAL_EXPANSION" end="^[ ]*\CEND_THERMAL_EXPANSION" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
    "}}}
-syn region      pam_MMAT        matchgroup=pam_CardTag start="^\CMMAT  /"rs=s+8 end="^\CEND_MMAT" fold keepend
+syn region      pam_MMAT        matchgroup=pam_CardTag start="^\CMMAT  /"rs=s+8 end="^\CEND_MMAT" keepend
 "}}} MMAT end
 
 "{{{ FPMIN begin
@@ -9142,7 +9142,7 @@ syn region      pam_FPMIN_r2     transparent contained containedin=pam_FPMIN sta
          syn region      pam_FPMIN_DISCRETIZATION_r1   transparent contained containedin=pam_FPMIN_DISCRETIZATION start="\%1c[^\$\#]" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_FPMIN_DISCRETIZATION_LOCAL_H,pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
             syn keyword     pam_FPMIN_DISCRETIZATION_r1_a1  contained containedin=pam_FPMIN_DISCRETIZATION_r1 GLOBAL_H
             hi def link pam_FPMIN_DISCRETIZATION_r1_a1 pam_Keyword
-      syn region      pam_FPMIN_DISCRETIZATION   transparent contained containedin=pam_FPMIN matchgroup=pam_CardTag start="^\CDISCRETIZATION" end="^\CEND_DISCRETIZATION" contains=pam_Comment,pam_Comment_Position,pam_Error fold keepend
+      syn region      pam_FPMIN_DISCRETIZATION   transparent contained containedin=pam_FPMIN matchgroup=pam_CardTag start="^\CDISCRETIZATION" end="^\CEND_DISCRETIZATION" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
             syn region pam_FPMIN_DISCRETIZATION_LOCAL_H_r3 transparent contained containedin=pam_FPMIN_DISCRETIZATION_LOCAL_H start="\%1c." start="^$\n" end="\%$" contains=@pam_Ident,pam_End,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position  skipnl keepend
             syn region pam_FPMIN_DISCRETIZATION_LOCAL_H_r2 transparent contained containedin=pam_FPMIN_DISCRETIZAZION_LOCAL_H start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeError,pam_FreeVar,pam_Comment,pam_Comment_Position nextgroup=pam_FPMIN_DISCRETIZATION_LOCAL_H_r3 skipnl keepend
                syn keyword     pam_FPMIN_DISCRETIZATION_LOCAL_H_r2_a1  contained containedin=pam_FPMIN_DISCRETIZATION_LOCAL_H_r2 PARAMETERS
@@ -9166,10 +9166,10 @@ syn region      pam_FPMIN_r2     transparent contained containedin=pam_FPMIN sta
          syn region      pam_FPMIN_FLUID_r1   transparent contained containedin=pam_FPMIN_FLUID start="." end="\n[\$\#]\@!" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_FPMIN_FLUID_r2 skipnl keepend
             syn keyword     pam_FPMIN_FLUID_r1_a1  contained containedin=pam_FPMIN_FLUID_r1 WATER USER
             hi def link pam_FPMIN_FLUID_r1_a1 pam_Keyword
-      syn region      pam_FPMIN_FLUID   transparent contained containedin=pam_FPMIN matchgroup=pam_CardTag start="^\CFLUID" end="^\CEND_FLUID" contains=pam_Comment,pam_Comment_Position,pam_Error fold keepend
+      syn region      pam_FPMIN_FLUID   transparent contained containedin=pam_FPMIN matchgroup=pam_CardTag start="^\CFLUID" end="^\CEND_FLUID" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
    "}}}
    "{{{BOUNDARY_CONDITIONS
-      syn region      pam_FPMIN_BOUNDARY_CONDITIONS   transparent contained containedin=pam_FPMIN matchgroup=pam_CardTag start="^\CBOUNDARY_CONDITIONS" end="^\CEND_BOUNDARY_CONDITIONS" contains=pam_Comment,pam_Comment_Position,pam_Error fold keepend
+      syn region      pam_FPMIN_BOUNDARY_CONDITIONS   transparent contained containedin=pam_FPMIN matchgroup=pam_CardTag start="^\CBOUNDARY_CONDITIONS" end="^\CEND_BOUNDARY_CONDITIONS" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
             "{{{FREE_SURFACE
             syn region pam_FPMIN_BOUNDARY_CONDITIONS_FREE_SURFACE_r3 transparent contained containedin=pam_FPMIN_BOUNDARY_CONDITIONS_FREE_SURFACE start="\%1c." start="^$\n" end="\%$" contains=@pam_Ident,pam_End,pam_Comment,pam_Comment_Position nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
             syn region pam_FPMIN_BOUNDARY_CONDITIONS_FREE_SURFACE_r2 transparent contained containedin=pam_FPMIN_DISCRETIZAZION_FREE_SURFACE start="\%1c.*\(\CPLANE\|\CSPHERE\)" start="^$\n" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeError,pam_FreeVar,pam_Comment,pam_Comment_Position nextgroup=pam_FPMIN_BOUNDARY_CONDITIONS_FREE_SURFACE_r2,pam_FPMIN_BOUNDARY_CONDITIONS_FREE_SURFACE_r3 skipnl keepend
@@ -9214,13 +9214,13 @@ syn region      pam_FPMIN_r2     transparent contained containedin=pam_FPMIN sta
          syn region      pam_FPMIN_INITIAL_CONDITIONS_r1   transparent contained containedin=pam_FPMIN_INITIAL_CONDITIONS matchgroup=pam_Keyword start="\%1c[ ]*\CREFERENCE_PRESSURE" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_FPMIN_INITIAL_CONDITIONS_r1,pam_Trailing_Error,pam_Comment,pam_Comment_Position skipnl keepend
          syn region      pam_FPMIN_INITIAL_CONDITIONS_r1   transparent contained containedin=pam_FPMIN_INITIAL_CONDITIONS matchgroup=pam_Keyword start="\%1c[ ]*\CVELOCITY" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_FPMIN_INITIAL_CONDITIONS_r1,pam_Trailing_Error,pam_Comment,pam_Comment_Position skipnl keepend
          syn region      pam_FPMIN_INITIAL_CONDITIONS_r1   transparent contained containedin=pam_FPMIN_INITIAL_CONDITIONS matchgroup=pam_Keyword start="\%1c[ ]*\CPRESSURE" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_FPMIN_INITIAL_CONDITIONS_r1,pam_Trailing_Error,pam_Comment,pam_Comment_Position skipnl keepend
-      syn region      pam_FPMIN_INITIAL_CONDITIONS   transparent contained containedin=pam_FPMIN matchgroup=pam_CardTag start="^\CINITIAL_CONDITIONS" end="^\CEND_INITIAL_CONDITIONS" contains=pam_Comment,pam_Comment_Position,pam_Error fold keepend
+      syn region      pam_FPMIN_INITIAL_CONDITIONS   transparent contained containedin=pam_FPMIN matchgroup=pam_CardTag start="^\CINITIAL_CONDITIONS" end="^\CEND_INITIAL_CONDITIONS" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
    "}}}
    "{{{LOADS
          syn region      pam_FPMIN_LOADS_r1   transparent contained containedin=pam_FPMIN_LOADS matchgroup=pam_Keyword start="\%1c[ ]*\CACCELERATION_FIELD" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_FPMIN_LOADS_r1,pam_Trailing_Error,pam_Comment,pam_Comment_Position skipnl keepend
                syn keyword     pam_FPMIN_LOADS_r1_a1  contained containedin=pam_FPMIN_LOADS_r1 GLOBAL CONST CURVE
                hi def link pam_FPMIN_LOADS_r1_a1 pam_Keyword
-      syn region      pam_FPMIN_LOADS   transparent contained containedin=pam_FPMIN matchgroup=pam_CardTag start="^\CLOADS" end="^\CEND_LOADS" contains=pam_Comment,pam_Comment_Position,pam_Error fold keepend
+      syn region      pam_FPMIN_LOADS   transparent contained containedin=pam_FPMIN matchgroup=pam_CardTag start="^\CLOADS" end="^\CEND_LOADS" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
    "}}}
    "{{{TIME_CONTROL
          syn region      pam_FPMIN_TIME_CONTROL_r1   transparent contained containedin=pam_FPMIN_TIME_CONTROL matchgroup=pam_Keyword start="\%1c[ ]*\CFPMDTFAC" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_FPMIN_TIME_CONTROL_r1,pam_Trailing_Error,pam_Comment,pam_Comment_Position skipnl keepend
@@ -9231,7 +9231,7 @@ syn region      pam_FPMIN_r2     transparent contained containedin=pam_FPMIN sta
          syn region      pam_FPMIN_TIME_CONTROL_r1   transparent contained containedin=pam_FPMIN_TIME_CONTROL matchgroup=pam_Keyword start="\%1c[ ]*\CFPM_START" end="\n[\$\#]\@!" contains=pam_FPMIN_TIME_CONTROL_r1_a1,pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_FPMIN_TIME_CONTROL_r1,pam_Trailing_Error,pam_Comment,pam_Comment_Position skipnl keepend
                syn keyword     pam_FPMIN_TIME_CONTROL_r1_a1  contained TIME SENSOR
                hi def link pam_FPMIN_TIME_CONTROL_r1_a1 pam_Keyword
-      syn region      pam_FPMIN_TIME_CONTROL   transparent contained containedin=pam_FPMIN matchgroup=pam_CardTag start="^\CTIME_CONTROL" end="^\CEND_TIME_CONTROL" contains=pam_Comment,pam_Comment_Position,pam_Error fold keepend
+      syn region      pam_FPMIN_TIME_CONTROL   transparent contained containedin=pam_FPMIN matchgroup=pam_CardTag start="^\CTIME_CONTROL" end="^\CEND_TIME_CONTROL" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
    "}}}
    "{{{ADVANCED_CONTROLS
          syn region      pam_FPMIN_ADVANCED_CONTROLS_r1   transparent contained containedin=pam_FPMIN_ADVANCED_CONTROLS matchgroup=pam_Keyword start="\%1c[ ]*\CCV_READ" end="\n[\$\#]\@!" contains=pam_Control_YESNO,pam_String,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_FPMIN_ADVANCED_CONTROLS_r1,pam_Trailing_Error,pam_Comment,pam_Comment_Position skipnl keepend
@@ -9250,9 +9250,9 @@ syn region      pam_FPMIN_r2     transparent contained containedin=pam_FPMIN sta
          syn region      pam_FPMIN_ADVANCED_CONTROLS_r1   transparent contained containedin=pam_FPMIN_ADVANCED_CONTROLS matchgroup=pam_Keyword start="\%1c[ ]*\CFPMDCOMP" end="\n[\$\#]\@!" contains=pam_FPMIN_ADVANCED_CONTROLS_r1_a1,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_FPMIN_ADVANCED_CONTROLS_r1,pam_Trailing_Error,pam_Comment,pam_Comment_Position skipnl keepend
                syn keyword     pam_FPMIN_ADVANCED_CONTROLS_r1_a1  contained LCB VCP RCB X Y Z
                hi def link pam_FPMIN_ADVANCED_CONTROLS_r1_a1 pam_Keyword
-      syn region      pam_FPMIN_ADVANCED_CONTROLS   transparent contained containedin=pam_FPMIN matchgroup=pam_CardTag start="^\CADVANCED_CONTROLS" end="^\CEND_ADVANCED_CONTROLS" contains=pam_Comment,pam_Comment_Position,pam_Error fold keepend
+      syn region      pam_FPMIN_ADVANCED_CONTROLS   transparent contained containedin=pam_FPMIN matchgroup=pam_CardTag start="^\CADVANCED_CONTROLS" end="^\CEND_ADVANCED_CONTROLS" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
    "}}}
-syn region      pam_FPMIN        matchgroup=pam_CardTag start="^\CFPMIN /"rs=s+8 end="^\CEND_FPMIN" contains=pam_Comment,pam_Comment_Position fold keepend
+syn region      pam_FPMIN        matchgroup=pam_CardTag start="^\CFPMIN /"rs=s+8 end="^\CEND_FPMIN" contains=pam_Comment,pam_Comment_Position keepend
 "}}} FPMIN end
 
 " {{{ NUMPAR begin
@@ -9282,9 +9282,9 @@ syn region      pam_FPMIN        matchgroup=pam_CardTag start="^\CFPMIN /"rs=s+8
          syn region      pam_NUMBLOCK_NUMERICAL_DAMPING_COEFFICIENT   transparent contained containedin=pam_NUMBLOCK matchgroup=pam_Keyword start="^[ ]*\CNUMERICAL_DAMPING_COEFFICIENT" end="\n[\$\#]\@!" contains=pam_Float,pam_Control_YESNO,pam_FreeError,pam_FreeVar,pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
          syn region      pam_NUMBLOCK_TIMESTEP_ELIMINATION   transparent contained containedin=pam_NUMBLOCK matchgroup=pam_Keyword start="^[ ]*\CTIMESTEP_ELIMINATION" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeError,pam_FreeVar,pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
          syn region      pam_NUMBLOCK_TIMESTEP_ELIMINATION_RATIO   transparent contained containedin=pam_NUMBLOCK matchgroup=pam_Keyword start="^[ ]*\CTIMESTEP_ELIMINATION_RATIO" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeError,pam_FreeVar,pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
-      syn region      pam_NUMBLOCK   transparent contained containedin=pam_NUMPAR matchgroup=pam_CardTag start="^[ ]*\CNUMBLOCK" end="^[ ]*\CEND_NUMBLOCK" contains=pam_Comment,pam_Comment_Position,pam_Error fold keepend
+      syn region      pam_NUMBLOCK   transparent contained containedin=pam_NUMPAR matchgroup=pam_CardTag start="^[ ]*\CNUMBLOCK" end="^[ ]*\CEND_NUMBLOCK" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
    "}}}
-syn region      pam_NUMPAR        matchgroup=pam_CardTag start="^\CNUMPAR/"rs=s+8 end="^\CEND_NUMPAR" fold keepend
+syn region      pam_NUMPAR        matchgroup=pam_CardTag start="^\CNUMPAR/"rs=s+8 end="^\CEND_NUMPAR" keepend
 " }}} NUMPAR end
 
 " MATERIALIEN end}}}
@@ -9373,7 +9373,7 @@ hi def link pam_KJoin_e3 pam_oddError
       syn match       pam_KJoin_general_r1_e3             display contained containedin=pam_KJoin_general_r1 "\%25c.\{,8\}\%33c"
       syn match       pam_KJoin_general_r1_a3             display contained containedin=pam_KJoin_general_r1 "\%25c\CGENERAL[ _]\%33c"
    syn region      pam_KJoin_general_r1     transparent contained containedin=pam_KJoin_general start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8dim,@33i8dim,@41i8dim,@49i8dim,@57i8dim,@65f8dim,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_KJoin_general_r2 skipnl keepend
-syn region      pam_KJoin_general        matchgroup=pam_Part start="^\CKJOIN / .\{16\}GENERAL[ _]"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_KJoin_general_r[1-2] fold keepend
+syn region      pam_KJoin_general        matchgroup=pam_Part start="^\CKJOIN / .\{16\}GENERAL[ _]"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_KJoin_general_r[1-2] keepend
 
 hi def link pam_KJoin_general_r1_a3 pam_oddArgumentDimmed
 hi def link pam_KJoin_general_r1_e3 pam_oddError
@@ -9388,7 +9388,7 @@ hi def link pam_KJoin_general_r2_e1 pam_oddError
       syn match       pam_Mtojnt_r1_e3             display contained containedin=pam_Mtojnt_r1 "\%25c.\{,8\}\%33c"
       syn match       pam_Mtojnt_r1_a3             display contained containedin=pam_Mtojnt_r1 "\%25c\(\CSPHERICA\|\CTRANSLAT\|\CREVOLUTE\|\CCYLINDRI\|\CPLANAR[ _]\{2\}\|\CUNIVERSA\|\CGENERAL[ _]\|\CFLEX-TOR\|\CPIN[ _]\{5\}\|\CBRACKET[ _]\|\CFREE[ _]\{4\}\)"
    syn region      pam_Mtojnt_r1     transparent contained containedin=pam_Mtojnt start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8dim,@33i8dim,@41i8dim,@49i8dim,@57i8dim,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Mtojnt_r2 skipnl keepend
-syn region      pam_Mtojnt        matchgroup=pam_Part start="^\CMTOJNT/" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mtojnt_r[1-2] fold keepend
+syn region      pam_Mtojnt        matchgroup=pam_Part start="^\CMTOJNT/" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Mtojnt_r[1-2] keepend
 
 hi def link pam_Mtojnt_r1_a3 pam_oddArgumentDimmed
 hi def link pam_Mtojnt_r1_e3 pam_oddError
@@ -9415,14 +9415,14 @@ syn region      pam_Sphel          display matchgroup=pam_Part start="^\CSPHEL[ 
 "{{{ SOLID/BSHEL begin
    syn region      pam_Solid_r2     transparent contained containedin=pam_Solid start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@17i8dim,@25i8dim,@33i8dim,@41i8dim,@49i8dim,@57i8dim,@65i8dim,@73i8dim,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
    syn region      pam_Solid_r1     transparent contained containedin=pam_Solid start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8dim,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Solid_r2 skipnl keepend
-syn region      pam_Solid        matchgroup=pam_Part start="^\CSOLID /"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Solid_r[1-2] fold keepend
-syn region      pam_Solid        matchgroup=pam_Part start="^\CBSHEL /"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Solid_r[1-2] fold keepend
+syn region      pam_Solid        matchgroup=pam_Part start="^\CSOLID /"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Solid_r[1-2] keepend
+syn region      pam_Solid        matchgroup=pam_Part start="^\CBSHEL /"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Solid_r[1-2] keepend
 " SOLID/BSHEL end}}}
 
 "{{{ SHEL8 begin
    syn region      pam_Shel8_r2     transparent contained containedin=pam_Shel8 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@25i8dim,@33i8dim,@41i8dim,@49i8dim,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
    syn region      pam_Shel8_r1     transparent contained containedin=pam_Shel8 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8dim,@25i8dim,@33i8dim,@41i8dim,@49i8dim,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Shel8_r2 skipnl keepend
-syn region      pam_Shel8        matchgroup=pam_Part start="^\CSHEL8 /"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Shel8_r[1-2] fold keepend
+syn region      pam_Shel8        matchgroup=pam_Part start="^\CSHEL8 /"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Shel8_r[1-2] keepend
 " SHEL8 end}}}
 
 "{{{ HEXA20 begin
@@ -9430,7 +9430,7 @@ syn region      pam_Shel8        matchgroup=pam_Part start="^\CSHEL8 /"rs=s+8 en
    syn region      pam_Hexa20_r3     transparent contained containedin=pam_Hexa20 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@17i8dim,@25i8dim,@33i8dim,@41i8dim,@49i8dim,@57i8dim,@65i8dim,@73i8dim,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Hexa20_r4 skipnl keepend
    syn region      pam_Hexa20_r2     transparent contained containedin=pam_Hexa20 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@17i8dim,@25i8dim,@33i8dim,@41i8dim,@49i8dim,@57i8dim,@65i8dim,@73i8dim,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Hexa20_r3 skipnl keepend
    syn region      pam_Hexa20_r1     transparent contained containedin=pam_Hexa20 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8dim,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Hexa20_r2 skipnl keepend
-syn region      pam_Hexa20        matchgroup=pam_Part start="^\CHEXA20/"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Hexa20_r[1-4] fold keepend
+syn region      pam_Hexa20        matchgroup=pam_Part start="^\CHEXA20/"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Hexa20_r[1-4] keepend
 " HEXA20 end}}}
 
 "{{{ BEAM begin
@@ -9441,7 +9441,7 @@ syn region      pam_Hexa20        matchgroup=pam_Part start="^\CHEXA20/"rs=s+8 e
       syn match       pam_Beam_r1_e1             display contained containedin=pam_Beam_r1 "\%59c.\{,6\}"
       syn match       pam_Beam_r1_a1             display contained containedin=pam_Beam_r1 "\%59c[ 01]\{6\}"
    syn region      pam_Beam_r1     transparent contained containedin=pam_Beam start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8dim,@25i8dim,@33i8dim,@41i8dim,@73i8dim,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Beam_r2 skipnl keepend
-syn region      pam_Beam        matchgroup=pam_Part start="^\CBEAM  /"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Beam_r[1-4] fold keepend
+syn region      pam_Beam        matchgroup=pam_Part start="^\CBEAM  /"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Beam_r[1-4] keepend
 hi def link pam_Beam_r1_a1 pam_oddArgumentDimmed
 hi def link pam_Beam_r1_e1 pam_oddError
 hi def link pam_Beam_r1_a2 pam_evenArgumentDimmed
@@ -9452,15 +9452,15 @@ hi def link pam_Beam_r1_e2 pam_evenError
    syn region      pam_Penta15_r3     transparent contained containedin=pam_Penta15 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@17i8dim,@25i8dim,@33i8dim,@41i8dim,@49i8dim,@57i8dim,@65i8dim,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
    syn region      pam_Penta15_r2     transparent contained containedin=pam_Penta15 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@17i8dim,@25i8dim,@33i8dim,@41i8dim,@49i8dim,@57i8dim,@65i8dim,@73i8dim,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Penta15_r3 skipnl keepend
    syn region      pam_Penta15_r1     transparent contained containedin=pam_Penta15 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8dim,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Penta15_r2 skipnl keepend
-syn region      pam_Penta15        matchgroup=pam_Part start="^\CPENT15/"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Penta15_r[1-4] fold keepend
+syn region      pam_Penta15        matchgroup=pam_Part start="^\CPENT15/"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Penta15_r[1-4] keepend
 " PENTA15 end}}}
 
 "{{{ TETRA10 begin
    syn region      pam_Tetra10_r3     transparent contained containedin=pam_Tetra10 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@17i8dim,@25i8dim,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
    syn region      pam_Tetra10_r2     transparent contained containedin=pam_Tetra10 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@17i8dim,@25i8dim,@33i8dim,@41i8dim,@49i8dim,@57i8dim,@65i8dim,@73i8dim,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Tetra10_r3 skipnl keepend
    syn region      pam_Tetra10_r1     transparent contained containedin=pam_Tetra10 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8dim,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Tetra10_r2 skipnl keepend
-syn region      pam_Tetra10        matchgroup=pam_Part start="^\CTETRA /"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Tetra10_r[1-3] fold keepend
-syn region      pam_Tetra10        matchgroup=pam_Part start="^\CTETR10/"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Tetra10_r[1-3] fold keepend
+syn region      pam_Tetra10        matchgroup=pam_Part start="^\CTETRA /"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Tetra10_r[1-3] keepend
+syn region      pam_Tetra10        matchgroup=pam_Part start="^\CTETR10/"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_Tetra10_r[1-3] keepend
 " TETRA10 end}}}
 
 syn region      pam_Node           display matchgroup=pam_Part start="^\CNODE  /" end="$" contains=@9i8id,@17f16dim,@33f16dim,@49f16dim,pam_Error keepend
@@ -9474,8 +9474,8 @@ syn region      pam_CNode          display matchgroup=pam_Part start="^\CCNODE /
    " Row 1   
    syn region      pam_MODELSEL_r1     transparent contained containedin=pam_MODELSEL start="\%17c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Integer,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_MODELSEL_r2 skipnl keepend
    syn region      pam_MODELSEL_r1     transparent contained containedin=pam_MODELSEL start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Integer,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_MODELSEL_r2 skipnl keepend
-syn region      pam_MODELSEL           contained containedin=pam_CNTAC34_r9,pam_CNTAC43_r9,pam_CNTAC44_r9,pam_TIED_r3 matchgroup=pam_CardTag start="^\CMODELSEL" end="^\(\$\)\@!.\{6\}\/"me=e-7 end="^\CEND_MODELSEL" fold keepend
-syn region      pam_MODELSEL           contained containedin=pam_CNTAC34_r9,pam_CNTAC43_r9,pam_CNTAC44_r9,pam_TIED_r3 matchgroup=pam_CardTag start="^[ ]\{8\}\CMODELSEL" end="^\(\$\)\@!.\{6\}\/"me=e-7 end="^[ ]\{8\}\CEND_MODELSEL" fold keepend
+syn region      pam_MODELSEL           contained containedin=pam_CNTAC34_r9,pam_CNTAC43_r9,pam_CNTAC44_r9,pam_TIED_r3 matchgroup=pam_CardTag start="^\CMODELSEL" end="^\(\$\)\@!.\{6\}\/"me=e-7 end="^\CEND_MODELSEL" keepend
+syn region      pam_MODELSEL           contained containedin=pam_CNTAC34_r9,pam_CNTAC43_r9,pam_CNTAC44_r9,pam_TIED_r3 matchgroup=pam_CardTag start="^[ ]\{8\}\CMODELSEL" end="^\(\$\)\@!.\{6\}\/"me=e-7 end="^[ ]\{8\}\CEND_MODELSEL" keepend
 " === MODELSEL end}}}
 
 syn region      pam_Name           contained matchgroup=pam_NameTag start="^\CNAME" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_NameString,pam_Continue keepend
