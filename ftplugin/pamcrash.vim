@@ -40,80 +40,25 @@ set iskeyword+=:,',-,_,.,(,)
 " Setup expression folding
 set foldtext=PamFoldText()
 set foldexpr=PamFold(v:lnum)
+let b:pam_foldElement=""
 " Folding function
 function! PamFold(lnum)
     let l:thisline=getline(a:lnum)
-    let l:lastline=getline(a:lnum-1)
 
-    if l:thisline =~ '^\CBAR   \/'
-       if l:lastline =~ '^\CBAR   \/'
-          return '='
-       else
-          return '>1'
-       endif
-    elseif l:thisline =~ '^\CMEMBR \/'
-       if l:lastline =~ '^\CMEMBR \/'
-          return '='
-       else
-          return '>1'
-       endif
-    elseif l:thisline =~ '^\CNODE  \/'
-       if l:lastline =~ '^\CNODE  \/'
-          return '='
-       else
-          return '>1'
-       endif
-    elseif l:thisline =~ '^\CSHELL \/'
-       if l:lastline =~ '^\CSHELL \/'
-          return '='
-       else
-          return '>1'
-       endif
-    elseif l:thisline =~ '^\CTETR4 \/'
-       if l:lastline =~ '^\CTETR4 \/'
-          return '='
-       else
-          return '>1'
-       endif
-    elseif l:thisline =~ '^\CPENTA6\/'
-       if l:lastline =~ '^\CPENTA6\/'
-          return '='
-       else
-          return '>1'
-       endif
-    elseif l:thisline =~ '^\CSPHEL \/'
-       if l:lastline =~ '^\CSPHEL \/'
-          return '='
-       else
-          return '>1'
-       endif
-    elseif l:thisline =~ '^\CCNODE \/'
-       if l:lastline =~ '^\CCNODE \/'
-          return '='
-       else
-          return '>1'
-       endif
-    elseif l:thisline =~ '^\CSOLID \/'
-       if l:lastline =~ '^\CSOLID \/'
-          return '='
-       elseif getline(a:lnum-2) =~ '^\CSOLID \/'
-          return '='
-       else
-          return '>1'
-       endif
-    elseif l:thisline =~ '^\CTETR10\/'
-       if l:lastline =~ '^\CTETR10\/'
-          return '='
-       elseif getline(a:lnum-2) =~ '^\CTETR10\/'
-          return '='
-       elseif getline(a:lnum-3) =~ '^\CTETR10\/'
-          return '='
-       else
-          return '>1'
-       endif
-    elseif l:thisline =~ '^[ ]*\CMETA'
+    if l:thisline =~ '^[\$\# ]'
        return '='
-    elseif l:thisline =~ '^[^\#\$].\{5\}\/'
+    elseif l:thisline =~ '^\CMETRIC\/'
+       let b:pam_foldElement="METRIC"
+       return '>1'
+    elseif l:thisline =~ '^\CNODE  \/' || l:thisline =~ '^\CSHELL \/' || l:thisline =~ '^\CSOLID \/' || l:thisline =~ '^\CMEMBR \/' || l:thisline =~ '^\CBAR   \/' || l:thisline =~ '^\CBEAM  \/' || l:thisline =~ '^\CCNODE \/' || l:thisline =~ '^\CMASS  \/' || l:thisline =~ '^\CNSMAS \/' || l:thisline =~ '^\CNSMAS2\/' || l:thisline =~ '^\CBSHEL \/' || l:thisline =~ '^\CELINK \/' || l:thisline =~ '^\CGAP   \/' || l:thisline =~ '^\CHEXA20\/' || l:thisline =~ '^\CIMPMA \/' || l:thisline =~ '^\CJOINT \/' || l:thisline =~ '^\CKJOIN \/' || l:thisline =~ '^\CMTOJNT\/' || l:thisline =~ '^\CPENTA6\/' || l:thisline =~ '^\CPENT15\/' || l:thisline =~ '^\CPLINK \/' || l:thisline =~ '^\CSHEL6 \/' || l:thisline =~ '^\CSHEL8 \/' || l:thisline =~ '^\CSLINK \/' || l:thisline =~ '^\CSPHEL \/' || l:thisline =~ '^\CSPHELO\/' || l:thisline =~ '^\CSPRGBM\/' || l:thisline =~ '^\CSPRING\/' || l:thisline =~ '^\CTETR4 \/' || l:thisline =~ '^\CTETR10\/' || l:thisline =~ '^\CTIED  \/' || l:thisline =~ '^\CTSHEL \/' || l:thisline =~ '^\CSLINK \/'
+       if b:pam_foldElement==l:thisline[0:5] || b:pam_foldElement == "METRIC"
+          return '='
+       else
+          let b:pam_foldElement=l:thisline[0:5]
+          return '>1'
+       endif
+    elseif l:thisline =~ '^[^\#\$][A-Z0-9_ ]\{5\}\/'
+       let b:pam_foldElement=""
        return '>1'
     else
        return '='
