@@ -224,6 +224,16 @@ function! pamcomplete#Complete(findstart, base)
             endif
          endif
 "  }}}
+"  {{{ TRSSEQ
+      elseif synIDattr(slist[0], "name") =~ "pam_TRSSEQ"
+         if synIDattr(slist[1], "name") =~ "pam_TRSSEQ_r3"
+            if synIDattr(slist[3], "name") =~ "pam_TRSSEQ_r3_[ae]1"
+               let start = 8
+            elseif synIDattr(slist[4], "name") =~ "pam_TRSSEQ_r3_[ae]1"
+               let start = 8
+            endif
+         endif
+"  }}}
 " {{{ BFLUX
       elseif synIDattr(slist[0], "name") =~ "pam_BFLUX"
          if synIDattr(slist[1], "name") =~ "pam_BFLUX_r1"
@@ -3918,6 +3928,16 @@ function! pamcomplete#Complete(findstart, base)
             elseif synIDattr(slist[4], "name") =~ "pam_OPTLIS_r3_[ae]1"
                call add (items,{'word':'BAGIN','menu':'Selection by Airbag ID'})
                call add (items,{'word':'CNTAC','menu':'Selection by Interface ID'})
+            endif
+         endif
+"  }}}
+"  {{{ TRSSEQ
+      elseif synIDattr(slist[0], "name") =~ "pam_TRSSEQ"
+         if synIDattr(slist[1], "name") =~ "pam_TRSSEQ_r3"
+            if synIDattr(slist[3], "name") =~ "pam_TRSSEQ_r3_[ae]1"
+               call add (items,{'word':'TRSFM','menu':'Selection by Transformation ID'})
+            elseif synIDattr(slist[4], "name") =~ "pam_TRSSEQ_r3_[ae]1"
+               call add (items,{'word':'TRSFM','menu':'Selection by Transformation ID'})
             endif
          endif
 "  }}}
@@ -18828,6 +18848,16 @@ function! pamcomplete#pamHints()
             return "QUALIFIER - Option List Selection Type (menu)"
          elseif synIDattr(slist[4], "name") =~ "pam_OPTLIS_r3_[ae]1"
             return "QUALIFIER - Option List Selection Type (menu)"
+         endif
+      endif
+"  }}}
+"  {{{ TRSSEQ
+   elseif synIDattr(slist[0], "name") =~ "pam_TRSSEQ"
+      if synIDattr(slist[1], "name") =~ "pam_TRSSEQ_r3"
+         if synIDattr(slist[3], "name") =~ "pam_TRSSEQ_r3_[ae]1"
+            return "QUALIFIER - Transformation Selection Keyword (menu)"
+         elseif synIDattr(slist[4], "name") =~ "pam_TRSSEQ_r3_[ae]1"
+            return "QUALIFIER - Transformation Selection Keyword (menu)"
          endif
       endif
 "  }}}

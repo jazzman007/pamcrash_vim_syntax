@@ -4036,6 +4036,21 @@ syn region      pam_FRITAB          matchgroup=pam_CardTag start="^\CFRITAB/" en
 syn region      pam_OPTLIS          matchgroup=pam_CardTag start="^\COPTLIS/" end="^\CEND_OPTLIS" contains=pam_OPTLIS_r[1-3] keepend
 "=== OPTLIS end}}}
 
+"{{{=== TRSSEQ begin
+   syn region      pam_TRSSEQ_Line   transparent contained start="\%1c." end="\n[\$\#]\@!" contains=pam_TRSSEQ_r3_a1,pam_TRSSEQ_r3_e1,pam_Integer15,pam_Colon,pam_Comment,pam_Comment_Position,pam_Error
+   " Row 3 
+   syn region      pam_TRSSEQ_r3     transparent contained containedin=pam_TRSSEQ start="\%1c." start="^$\n" matchgroup=pam_CardTag end="\%$" contains=pam_TRSSEQ_Modular,pam_TRSSEQ_Line,pam_Comment,pam_Comment_Position,pam_End,pam_Error,pam_FreeError,pam_FreeVar nextgroup=pam_TRSSEQ_r3,pam_End,pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
+      syn match       pam_TRSSEQ_r3_e1             display contained containedin=pam_TRSSEQ_r3,pam_TRSSEQ_Modular "\%9c.\{,5\}"
+      syn match       pam_TRSSEQ_r3_a1             display contained containedin=pam_TRSSEQ_r3,pam_TRSSEQ_Modular "\%9c\CTRSFM"
+      hi def link pam_TRSSEQ_r3_a1 pam_oddArgument
+      hi def link pam_TRSSEQ_r3_e1 pam_oddError
+   "Row 2 (Name)
+   syn region      pam_TRSSEQ_r2     transparent contained containedin=pam_TRSSEQ start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_TRSSEQ_r3 skipnl keepend
+   "Row 1
+   syn region      pam_TRSSEQ_r1     transparent contained containedin=pam_TRSSEQ start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TRSSEQ_r2 skipnl keepend
+syn region      pam_TRSSEQ          matchgroup=pam_CardTag start="^\CTRSSEQ/" end="^\CEND_TRSSEQ" contains=pam_TRSSEQ_r[1-3] keepend
+"=== TRSSEQ end}}}
+
 "{{{=== VARDEF begin
    syn match       pam_EndVARDEF        display contained "^\CEND_VARDEF"
    hi def link pam_EndVARDEF  pam_CardTag

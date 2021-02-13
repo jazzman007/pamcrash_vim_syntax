@@ -1,5 +1,5 @@
 $TRSFM Transformation Card
-TRSFM / 
+TRSFM /        1
 $#                                                                         TITLE
 NAME TRSFM / ->1                                                                
         END
