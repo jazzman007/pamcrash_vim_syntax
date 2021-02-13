@@ -1,5 +1,5 @@
 $TIED Element
-TIED  /                         
+TIED  /                                 
 NAME TIED
         PART
         END

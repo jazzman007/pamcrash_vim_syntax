@@ -1677,18 +1677,27 @@ hi def link pam_Control_PICK_arg pam_Argument
 " {{{ CATEXP
    syn match       pam_EndCATEXP        display contained "^\CEND_CATEXP"
    hi def link pam_EndCATEXP pam_CardTag
-   syn region      pam_Control_CATEXP_r7     transparent contained containedin=pam_Control_CATEXP start="\%1c." start="^$\n" matchgroup=pam_CardTag end="\%$" contains=@pam_Ident,pam_Comment,pam_Comment_Position,pam_End,pam_Error,pam_Float nextgroup=pam_EndCATEXP,pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
-   syn region      pam_Control_CATEXP_r6     transparent contained containedin=pam_Control_CATEXP matchgroup=pam_Keyword start="\%1c[ ]*\CFRAME" start="^$\n" end="\n[\$\#]\@!" contains=pam_Integer,pam_Comment,pam_Comment_Position,pam_FreeVar nextgroup=pam_Control_CATEXP_r4,pam_Control_CATEXP_r5,pam_Control_CATEXP_r7 skipnl keepend
-   syn region      pam_Control_CATEXP_r5     transparent contained containedin=pam_Control_CATEXP matchgroup=pam_Keyword start="\%1c[ ]*\CEXPORT_VAR" start="^$\n" end="\n[\$\#]\@!" contains=pam_Control_CATEXP_arg2,pam_Integer,pam_Comment,pam_Comment_Position,pam_FreeVar nextgroup=pam_Control_CATEXP_r4,pam_Control_CATEXP_r6,pam_Control_CATEXP_r7 skipnl keepend
-   syn region      pam_Control_CATEXP_r4     transparent contained containedin=pam_Control_CATEXP matchgroup=pam_Keyword start="\%1c[ ]*\CEXPORT_POINT" start="^$\n" end="\n[\$\#]\@!" contains=pam_Control_CATEXP_arg,pam_Float,pam_Comment,pam_Comment_Position,pam_FreeVar nextgroup=pam_Control_CATEXP_r5,pam_Control_CATEXP_r6,pam_Control_CATEXP_r7 skipnl keepend
-   syn region      pam_Control_CATEXP_r3     transparent contained containedin=pam_Control_CATEXP matchgroup=pam_Keyword start="\%1c[ ]*\CWRITE" start="^$\n" end="\n[\$\#]\@!" contains=pam_String,pam_Comment,pam_Comment_Position,pam_FreeVar nextgroup=pam_Control_CATEXP_r4,pam_Control_CATEXP_r5,pam_Control_CATEXP_r6,pam_Control_CATEXP_r7 skipnl keepend
+   syn region      pam_Control_CATEXP_r5     transparent contained containedin=pam_Control_CATEXP start="\%1c." start="^$\n" matchgroup=pam_CardTag end="\%$" contains=@pam_Ident,pam_Comment,pam_Comment_Position,pam_End,pam_Error,pam_Float nextgroup=pam_EndCATEXP,pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
+   syn region      pam_Control_CATEXP_r4     transparent contained containedin=pam_Control_CATEXP matchgroup=pam_Keyword start="\%1c[ ]*\CFRAME" start="^$\n" end="\n[\$\#]\@!" contains=pam_Integer,pam_Comment,pam_Comment_Position,pam_FreeVar nextgroup=pam_Control_CATEXP_r4,pam_Control_CATEXP_r5,pam_Control_CATEXP_r7 skipnl keepend
+   syn region      pam_Control_CATEXP_r4     transparent contained containedin=pam_Control_CATEXP matchgroup=pam_Keyword start="\%1c[ ]*\CEXPORT_VAR" start="^$\n" end="\n[\$\#]\@!" contains=pam_Control_CATEXP_arg2,pam_Comment,pam_Comment_Position,pam_FreeVar nextgroup=pam_Control_CATEXP_r4,pam_Control_CATEXP_r5 skipnl keepend
+   syn region      pam_Control_CATEXP_r4     transparent contained containedin=pam_Control_CATEXP matchgroup=pam_Keyword start="\%1c[ ]*\CEXPORT_POINT" start="^$\n" end="\n[\$\#]\@!" contains=pam_Control_CATEXP_arg,pam_Float,pam_Comment,pam_Comment_Position,pam_FreeVar nextgroup=pam_Control_CATEXP_r4,pam_Control_CATEXP_r5 skipnl keepend
+   syn region      pam_Control_CATEXP_r4     transparent contained containedin=pam_Control_CATEXP matchgroup=pam_Keyword start="\%1c[ ]*\CEXPORT_MESH" start="^$\n" end="\n[\$\#]\@!" contains=pam_Control_CATEXP_arg3,pam_Comment,pam_Comment_Position,pam_FreeVar nextgroup=pam_Control_CATEXP_r4,pam_Control_CATEXP_r5 skipnl keepend
+   syn region      pam_Control_CATEXP_r4     transparent contained containedin=pam_Control_CATEXP matchgroup=pam_Keyword start="\%1c[ ]*\CDATA_PROTECTION" start="^$\n" end="\n[\$\#]\@!" contains=pam_Control_YESNO,pam_Comment,pam_Comment_Position,pam_FreeVar nextgroup=pam_Control_CATEXP_r4,pam_Control_CATEXP_r5 skipnl keepend
+   syn region      pam_Control_CATEXP_r4_Comments transparent contained containedin=pam_Control_CATEXP start="\%1c[\$\#]" start="^$\n" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position nextgroup=pam_Control_CATEXP_r4_Comments,pam_Control_CATEXP_r4 skipnl keepend
+      syn keyword  pam_Control_CATEXP_r4_TRANSFORMATION_1_arg contained containedin=pam_Control_CATEXP_r4_TRANSFORMATION_1 ORIEN NODPOS NODE PTS MATRIX TRAROT EULER GLOBAL SYMXY SYMXZ SYMYZ RESET
+      syn region   pam_Control_CATEXP_r4_TRANSFORMATION_1 contained matchgroup=pam_HeaderKW start="^[ ]\{16\}" end="$" contains=pam_Error,pam_Continue,pam_Float,pam_FreeVar keepend
+      hi def link pam_Control_CATEXP_r4_TRANSFORMATION_1_arg pam_Argument
+   syn  region     pam_Control_CATEXP_r4 contained containedin=pam_Control_CATEXP matchgroup=pam_HeaderKW start="^[ ]*\CTRANSFORMATION" matchgroup=pam_End end="^[ ]*END[ ]*\n" contains=pam_Control_CATEXP_r4_TRANSFORMATION_1,pam_Error,pam_Continue,pam_Comment,pam_Comment_Position nextgroup=pam_Control_CATEXP_r4,pam_Control_CATEXP_r5,pam_Control_CATEXP_r4_Comments keepend
+   syn region      pam_Control_CATEXP_r3     transparent contained containedin=pam_Control_CATEXP matchgroup=pam_Keyword start="\%1c[ ]*\CWRITE" start="^$\n" end="\n[\$\#]\@!" contains=pam_String,pam_Comment,pam_Comment_Position,pam_FreeVar nextgroup=pam_Control_CATEXP_r4,pam_Control_CATEXP_r5 skipnl keepend
    syn region      pam_Control_CATEXP_r2     transparent contained containedin=pam_Control_CATEXP start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position,pam_FreeVar nextgroup=pam_Control_CATEXP_r3 skipnl keepend
    syn region      pam_Control_CATEXP_r1         transparent contained containedin=pam_Control_CATEXP start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Control_CATEXP_r2 skipnl keepend
 syn region      pam_Control_CATEXP               matchgroup=pam_CardTag start="^\CCATEXP/" end="^\CEND_CATEXP" contains=pam_Control_CATEXP_r[1-6] keepend
-syn keyword     pam_Control_CATEXP_arg          contained containedin=pam_Control_CATEXP_r4 FINAL INTERVAL
+syn keyword     pam_Control_CATEXP_arg          contained FINAL INTERVAL
 hi def link pam_Control_CATEXP_arg pam_Argument
-syn keyword     pam_Control_CATEXP_arg2          contained containedin=pam_Control_CATEXP_r5 DISPLACEMENT FIBER_FRACTION NODE ELEMENT
+syn keyword     pam_Control_CATEXP_arg2          contained DISPLACEMENT VELOCITY STRESS STRAIN PLAS_EP THICK THICK0 ORTH_DIR1 TEMPERATURE USER_RESULT_1 USER_RESULT_2 USER_RESULT_3 USER_RESULT_4 USER_RESULT_5 USER_RESULT_6 USER_RESULT_7 USER_RESULT_8 USER_RESULT_9 USER_RESULT_10 FIBER_FRACTION  FIBER_ORIENTATION_TENSOR FIBER_LENGTH WELD_MEETING_ANGLE AUSTENITE FERRITE BAINITE MARTENSITE NODE ELEMENT
 hi def link pam_Control_CATEXP_arg2 pam_Argument
+syn keyword     pam_Control_CATEXP_arg3          contained INITIAL DEFORM
+hi def link pam_Control_CATEXP_arg3 pam_Argument
 " CATEXP end }}}
 
 " {{{ PICEXP
@@ -1714,6 +1723,15 @@ hi def link pam_Control_PICEXP_arg pam_Argument
    syn region      pam_Control_CATIMP_r4     transparent contained containedin=pam_Control_CATIMP matchgroup=pam_Keyword start="^\CMAPPING_CONTROL" start="^$\n" end="\n[\$\#]\@!" contains=pam_Control_CATIMP_MAPPING_CONTROL_arg,pam_Float,pam_Comment,pam_Comment_Position,pam_FreeVar nextgroup=pam_Control_CATIMP_r4,pam_Control_CATIMP_r5 skipnl keepend
    syn region      pam_Control_CATIMP_r4     transparent contained containedin=pam_Control_CATIMP matchgroup=pam_Keyword start="^\CFRAME" start="^$\n" end="\n[\$\#]\@!" contains=pam_Integer,pam_Comment,pam_Comment_Position,pam_FreeVar nextgroup=pam_Control_CATIMP_r4,pam_Control_CATIMP_r5 skipnl keepend
    syn region      pam_Control_CATIMP_r4     transparent contained containedin=pam_Control_CATIMP matchgroup=pam_Keyword start="^\CIMPORT_POINT" start="^$\n" end="\n[\$\#]\@!" contains=pam_Control_CATIMP_IMPORT_POINT_arg,pam_Float,pam_Comment,pam_Comment_Position,pam_FreeVar nextgroup=pam_Control_CATIMP_r4,pam_Control_CATIMP_r5 skipnl keepend
+   syn region      pam_Control_CATIMP_r4     transparent contained containedin=pam_Control_CATIMP matchgroup=pam_Keyword start="^\CIMPORT_MESH" start="^$\n" end="\n[\$\#]\@!" contains=pam_Control_CATIMP_IMPORT_POINT_arg2,pam_Comment,pam_Comment_Position,pam_FreeVar nextgroup=pam_Control_CATIMP_r4,pam_Control_CATIMP_r5 skipnl keepend
+   syn region      pam_Control_CATIMP_r4     transparent contained containedin=pam_Control_CATIMP matchgroup=pam_Keyword start="^\CIMPORT_CHECK" start="^$\n" end="\n[\$\#]\@!" contains=pam_Control_YESNO,pam_Comment,pam_Comment_Position,pam_FreeVar nextgroup=pam_Control_CATIMP_r4,pam_Control_CATIMP_r5 skipnl keepend
+   syn region      pam_Control_CATIMP_r4     transparent contained containedin=pam_Control_CATIMP matchgroup=pam_Keyword start="^\CTIME_TRANSFORM" start="^$\n" end="\n[\$\#]\@!" contains=pam_Float,pam_Comment,pam_Comment_Position,pam_FreeVar nextgroup=pam_Control_CATIMP_r4,pam_Control_CATIMP_r5 skipnl keepend
+   syn region      pam_Control_CATIMP_r4     transparent contained containedin=pam_Control_CATIMP matchgroup=pam_Keyword start="^\CVAR_TRANSFORM" start="^$\n" end="\n[\$\#]\@!" contains=pam_Control_CATIMP_IMPORT_POINT_arg3,pam_Float,pam_Comment,pam_Comment_Position,pam_FreeVar nextgroup=pam_Control_CATIMP_r4,pam_Control_CATIMP_r5 skipnl keepend
+   syn region      pam_Control_CATIMP_r4_Comments transparent contained containedin=pam_Control_CATIMP start="\%1c[\$\#]" start="^$\n" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position nextgroup=pam_Control_CATIMP_r4_Comments,pam_Control_CATIMP_r4 skipnl keepend
+      syn keyword  pam_Control_CATIMP_r4_TRANSFORMATION_1_arg contained containedin=pam_Control_CATIMP_r4_TRANSFORMATION_1 ORIEN NODPOS NODE PTS MATRIX TRAROT EULER GLOBAL SYMXY SYMXZ SYMYZ RESET
+      syn region   pam_Control_CATIMP_r4_TRANSFORMATION_1 contained matchgroup=pam_HeaderKW start="^[ ]\{16\}" end="$" contains=pam_Error,pam_Continue,pam_Float,pam_FreeVar keepend
+      hi def link pam_Control_CATIMP_r4_TRANSFORMATION_1_arg pam_Argument
+   syn  region     pam_Control_CATIMP_r4 contained containedin=pam_Control_CATIMP matchgroup=pam_HeaderKW start="^[ ]*\CTRANSFORMATION" matchgroup=pam_End end="^[ ]*END[ ]*\n" contains=pam_Control_CATIMP_r4_TRANSFORMATION_1,pam_Error,pam_Continue,pam_Comment,pam_Comment_Position nextgroup=pam_Control_CATIMP_r4,pam_Control_CATIMP_r5,pam_Control_CATIMP_r4_Comments keepend
    syn region      pam_Control_CATIMP_r3     transparent contained containedin=pam_Control_CATIMP matchgroup=pam_Keyword start="\%1c[ ]*\CREAD" start="^$\n" end="\n[\$\#]\@!" contains=pam_String,pam_Comment,pam_Comment_Position nextgroup=pam_Control_CATIMP_r4,pam_Control_CATIMP_r5 skipnl keepend
    syn region      pam_Control_CATIMP_r2     transparent contained containedin=pam_Control_CATIMP start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_Control_CATIMP_r3 skipnl keepend
    syn region      pam_Control_CATIMP_r1         transparent contained containedin=pam_Control_CATIMP start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Control_CATIMP_r2 skipnl keepend
@@ -1722,7 +1740,11 @@ syn keyword     pam_Control_CATIMP_IMPORT_POINT_arg           contained SINGLE I
 hi def link pam_Control_CATIMP_IMPORT_POINT_arg pam_Argument
 syn keyword     pam_Control_CATIMP_MAPPING_CONTROL_arg           contained COINCIDENT GEOMETRIC
 hi def link pam_Control_CATIMP_MAPPING_CONTROL_arg pam_Argument
-syn keyword     pam_Control_CATIMP_IMPORT_VAR_arg           contained DISPLACEMENT FIBER_FRACTION FIBER_LENGTH FIBER_ORIENTATIN_TENSOR USER_RESULT_1 USER_RESULT_2 USER_RESULT_3 USER_RESULT_4 USER_RESULT_5 USER_RESULT_6 USER_RESULT_7 USER_RESULT_8 USER_RESULT_9 USER_RESULT_10 NODE ELEMENT
+syn keyword     pam_Control_CATIMP_MAPPING_CONTROL_arg2           contained INITIAL DEFORM
+hi def link pam_Control_CATIMP_MAPPING_CONTROL_arg2 pam_Argument
+syn keyword     pam_Control_CATIMP_MAPPING_CONTROL_arg3           contained DISPX DISPY DISPZ VELX VELY VELZ SCALE OFFSET
+hi def link pam_Control_CATIMP_MAPPING_CONTROL_arg3 pam_Argument
+syn keyword     pam_Control_CATIMP_IMPORT_VAR_arg           contained DISPLACEMENT VELOCITY STRESS STRAIn PLAS_EP THICK THICK0 ORTH_DIR1 TEMPERATURE FIBER_FRACTION FIBER_LENGTH FIBER_ORIENTATIN_TENSOR USER_RESULT_1 USER_RESULT_2 USER_RESULT_3 USER_RESULT_4 USER_RESULT_5 USER_RESULT_6 USER_RESULT_7 USER_RESULT_8 USER_RESULT_9 USER_RESULT_10 WELD_MEETING_ANGLE AUSTENITE FERRITE BEINITE MARTENSITE PRESSURE NODE ELEMENT
 hi def link pam_Control_CATIMP_IMPORT_VAR_arg pam_Argument
 " CATIMP end }}}
 
@@ -1751,12 +1773,14 @@ hi def link pam_Control_PICIMP_SOURCE_CONTROL_arg pam_Argument
    syn region      pam_Control_USRACT_r4     transparent contained containedin=pam_Control_USRACT start="\%1c." start="^$\n" matchgroup=pam_CardTag end="\%$" contains=@pam_Ident,pam_Comment,pam_Comment_Position,pam_End,pam_Error,pam_Float nextgroup=pam_EndUSRACT,pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
    syn region      pam_Control_USRACT_r3     transparent contained containedin=pam_Control_USRACT start="\%1c[ ]\{8\}" start="^$\n" end="^[ ]\{8\}END" contains=pam_End,pam_Control_USRACT_arg,pam_Comment,pam_Comment_Position nextgroup=pam_Control_USRACT_r4 skipnl keepend
    syn region      pam_Control_USRACT_r2     transparent contained containedin=pam_Control_USRACT start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_Control_USRACT_r3 skipnl keepend
-   syn region      pam_Control_USRACT_r1         transparent contained containedin=pam_Control_USRACT start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Control_USRACT_r2 skipnl keepend
-syn region      pam_Control_USRACT               matchgroup=pam_CardTag start="^\CUSRACT/" end="^\CEND_USRACT" contains=pam_Error,pam_Float,pam_Integer,pam_Comment,pam_Comment_Position,pam_FreeVar keepend
+   syn region      pam_Control_USRACT_r1         transparent contained containedin=pam_Control_USRACT start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Control_USRACT_arg3,pam_Float,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Control_USRACT_r2 skipnl keepend
+syn region      pam_Control_USRACT               matchgroup=pam_CardTag start="^\CUSRACT/ " end="^\CEND_USRACT" contains=pam_Error,pam_Float,pam_Integer,pam_Comment,pam_Comment_Position,pam_FreeVar keepend
 syn keyword     pam_Control_USRACT_arg           contained containedin=pam_Control_USRACT_r3 NODE 
 syn keyword     pam_Control_USRACT_arg2           contained containedin=pam_Control_USRACT_r3 COOR
+syn keyword     pam_Control_USRACT_arg3           contained containedin=pam_Control_USRACT_r1 TIME CYCLE
 hi def link pam_Control_USRACT_arg pam_HeaderKW
 hi def link pam_Control_USRACT_arg2 pam_Argument
+hi def link pam_Control_USRACT_arg3 pam_Argument
 " USRACT end }}}
 
 " {{{OCTRL
@@ -2531,7 +2555,7 @@ syn region      pam_MODEL           matchgroup=pam_CardTag start="^\CMODEL /" en
 
 " {{{=== RMSSOL begin
    "Row 4 (Selection)
-   syn region      pam_RMSSOL_r4     transparent contained containedin=pam_RMSSOL start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_MODELSEL,pam_Comment,pam_Comment_Position,pam_End,pam_Error keepend skipnl
+   syn region      pam_RMSSOL_r4     transparent contained containedin=pam_RMSSOL start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_MODELSEL,pam_Comment,pam_Comment_Position,pam_End,pam_Error keepend skipnl
    "Row 3
       syn match    pam_RMSSOL_r3_e1             display contained "\%9c.\{,8\}"
       syn match    pam_RMSSOL_r3_a1             display contained "\%9c\CVARS    "
@@ -3035,13 +3059,16 @@ syn region      pam_SENSOR5      matchgroup=pam_CardTag start="^\CSENSOR/ .\{8\}
    syn region      pam_SENSOR6_r1     transparent contained  start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25i8,@33i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_SENSOR6_r2 skipnl keepend
 syn region      pam_SENSOR6      matchgroup=pam_CardTag start="^\CSENSOR/ .\{8\}[ ]\{7\}6"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_SENSOR6_r[1-3] keepend
 " SENSOR 7
+   " Row 4
+   syn region      pam_SENSOR7_r4     transparent contained start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1i8,@9i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
    " Row 3
    syn region      pam_SENSOR7_r3     transparent contained start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41f8,@49f8,@57i8,@65f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
+   syn region      pam_SENSOR7_r3     transparent contained start="\%1c.*\%81c&" start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41f8,@49f8,@57i8,@65f8,pam_Continue,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_SENSOR7_r4,pam_Comment,pam_Comment_Position skipnl keepend
    " Row 2
    syn region      pam_SENSOR7_r2     transparent contained start="\%1c." start="^$\n" end="\(\%81c&\|\%81c\-\)\@<!$\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_SENSOR7_r3 skipnl keepend
    " Row 1
    syn region      pam_SENSOR7_r1     transparent contained  start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25i8,@33i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_SENSOR7_r2 skipnl keepend
-syn region      pam_SENSOR7      matchgroup=pam_CardTag start="^\CSENSOR/ .\{8\}[ ]\{7\}7"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_SENSOR7_r[1-3] keepend
+syn region      pam_SENSOR7      matchgroup=pam_CardTag start="^\CSENSOR/ .\{8\}[ ]\{7\}7"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_SENSOR7_r[1-4] keepend
 " SENSOR 8
    " Row 3
    syn region      pam_SENSOR8_r3     transparent contained start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
@@ -3918,7 +3945,7 @@ syn region      pam_NSMAS          matchgroup=pam_CardTag start="^\CNSMAS[ 2]/" 
    "Row 2 (Name)
    syn region      pam_TIED_r2     transparent contained containedin=pam_TIED start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_TIED_r3 skipnl keepend
    "Row 1
-   syn region      pam_TIED_r1     transparent contained containedin=pam_TIED start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TIED_r2 skipnl keepend
+   syn region      pam_TIED_r1     transparent contained containedin=pam_TIED start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25i8,@33i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TIED_r2 skipnl keepend
 syn region      pam_TIED          matchgroup=pam_CardTag start="^\CTIED  /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_TIED_r[1-3] keepend
 "=== TIED end}}}
 
@@ -4073,7 +4100,7 @@ syn region      pam_VARDEF          matchgroup=pam_CardTag start="^\CVARDEF/" en
    " Row 2 (Name)
    syn region      pam_CDATA_r2     transparent contained containedin=pam_CDATA start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_CDATA_r3,pam_EndCDATA skipnl keepend
    " Row 1
-   syn region      pam_CDATA_r1     transparent contained containedin=pam_CDATA start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Integer,pam_FreeVar,pam_Continue,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_CDATA_r2 skipnl keepend
+   syn region      pam_CDATA_r1     transparent contained containedin=pam_CDATA start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,pam_FreeVar,pam_Continue,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_CDATA_r2 skipnl keepend
 syn region      pam_CDATA          matchgroup=pam_CardTag start="^\CCDATA /" end="^\CEND_CDATA" contains=pam_CDATA_r[1-3] keepend
    syn match       pam_EndCDATA        display contained "^\CEND_CDATA"
    hi def link pam_EndCDATA pam_CardTag

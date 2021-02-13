@@ -163,10 +163,12 @@ function! pamcomplete#Complete(findstart, base)
             " IDPRT
             if synIDattr(slist[2], "name") =~ "pam_17.*"
                let start = 16
-            endif
             " ITPR
-            if synIDattr(slist[2], "name") =~ "pam_25.*"
+            elseif synIDattr(slist[2], "name") =~ "pam_25.*"
                let start = 24
+            " IPROJ
+            elseif synIDattr(slist[2], "name") =~ "pam_33.*"
+               let start = 32
             endif
          endif
 " }}}
@@ -2918,6 +2920,14 @@ function! pamcomplete#Complete(findstart, base)
             elseif synIDattr(slist[2], "name") =~ "pam_57.*"
                let start = 56
             endif
+         elseif synIDattr(slist[1], "name") =~ "pam_SENSOR7_r4"
+            " IAXIS
+            if synIDattr(slist[2], "name") =~ "pam_1.8.*"
+               let start = 0 
+            " IFRA
+            elseif synIDattr(slist[2], "name") =~ "pam_9.*"
+               let start = 8 
+            endif
          elseif synIDattr(slist[1], "name") =~ "pam_SENSOR8_r3"
             " IDBAG
             if synIDattr(slist[2], "name") =~ "pam_9.*"
@@ -4047,6 +4057,11 @@ function! pamcomplete#Complete(findstart, base)
                call add (items,{'word':'       0','abbr':'0 (default)','menu':'Stops if Projection Fails for All Nodes'})
                call add (items,{'word':'       1','abbr':'1','menu':'Stops if Projection Fails for at least One Node'})
                call add (items,{'word':'      -1','abbr':'-1','menu':'No Stop'})
+            " IPROJ
+            elseif synIDattr(slist[2], "name") =~ "pam_33.*"
+               call add (items,{'word':'       0','abbr':'0 (default)','menu':'Slave Node is Projected onto 2D Faces or 3D External Faces'})
+               call add (items,{'word':'       1','abbr':'1 (default)','menu':'Slave Node is Projected onto 2D Faces or 3D External Faces'})
+               call add (items,{'word':'       2','abbr':'2','menu':'Slave Node is Projected onto 2D Faces or all 3D Faces'})
             endif
          endif
 " }}}
@@ -4978,6 +4993,18 @@ function! pamcomplete#Complete(findstart, base)
                call add (items,{'word':'       2','menu':'Translational Acceleration'})
                call add (items,{'word':'      10','menu':'Absolute Distance between Nodes'})
                call add (items,{'word':'      20','menu':'Value of the Increase or Decrease in the Absolute Distance'})
+            endif
+         elseif synIDattr(slist[1], "name") =~ "pam_SENSOR7_r4"
+            " IAXIS
+            if synIDattr(slist[2], "name") =~ "pam_1.8.*"
+               call add (items,{'word':'       0','abbr':'0 (default)','menu':'Axis Defined by IDNOD1 and IDNOD2'})
+               call add (items,{'word':'       1','abbr':'1','menu':'X Axis Used'})
+               call add (items,{'word':'       2','abbr':'2','menu':'Y Axis Used'})
+               call add (items,{'word':'       3','abbr':'3','menu':'Z Axis Used'})
+
+            " IFRA
+            elseif synIDattr(slist[2], "name") =~ "pam_9.*"
+               let items = s:getTags("FRAME",8)
             endif
          elseif synIDattr(slist[1], "name") =~ "pam_SENSOR8_r3"
             " IDBAG
@@ -18335,6 +18362,12 @@ function! pamcomplete#pamHints()
          elseif synIDattr(slist[2], "name") =~ "pam_65.*"
             return "TIMEfil - Time Interval for Acceleration Filter"
          endif
+      elseif synIDattr(slist[1], "name") =~ "pam_SENSOR7_r4"
+         if synIDattr(slist[2], "name") =~ "pam_1.8.*"
+            return "IAXIS - Flag to define the Axis to Use for Motion Computing (menu)"
+         elseif synIDattr(slist[2], "name") =~ "pam_9.*"
+            return "IFRA - Local Frame ID (tag)"
+         endif
       elseif synIDattr(slist[1], "name") =~ "pam_SENSOR8_r3"
          if synIDattr(slist[2], "name") =~ "pam_9.*"
             return "IDBAG - Airbag ID (tag)"
@@ -18720,6 +18753,8 @@ function! pamcomplete#pamHints()
             return "IDPTR (tag)"
          elseif synIDattr(slist[2], "name") =~ "pam_25.*"
             return "IPCHK - Check on TIED Connections (menu)"
+         elseif synIDattr(slist[2], "name") =~ "pam_33.*"
+            return "IPROJ - Projection method (menu)"
          endif
       endif
 "  }}}
@@ -20916,6 +20951,8 @@ function! pamcomplete#pamHints()
             return "NGEDG - Number of Solids over Shell Edge"
          elseif synIDattr(slist[2], "name") =~ "pam_17.*"
             return "NGTHK - Number of Solids over Thickness"
+         elseif synIDattr(slist[2], "name") =~ "pam_25.*"
+            return "XLENGTH - Minimal Length of the Generated Solid Element"
          endif
       endif
 "  }}}
