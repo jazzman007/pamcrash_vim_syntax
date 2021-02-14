@@ -7,7 +7,7 @@ $#  DTELIM    TSCALF   DTRATIO
                               
 $#   TCONT    EPSINI  COULFRIC
                               
-$#       A      Ashs        Is        It        Ir      ITPR      Asht
+$#       A      Ashs        Is        It        Ir IJMT ITPR      Asht
                                                            0          
 $#     Ist      COGs      COGt    RT1RR1    RT2RR2
                                                   

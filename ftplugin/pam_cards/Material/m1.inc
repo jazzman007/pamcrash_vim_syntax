@@ -13,7 +13,7 @@ $#     LC1       LC2       LC3       LC4       LC5       LC6       LC7       LC8
          0         0         0         0         0         0         0         0
 $#  EPSLN1    EPSLN2    EPSLN3    EPSLN4    EPSLN5    EPSLN6    EPSLN7    EPSLN8
         0.        0.        0.        0.        0.        0.        0.        0.
-$#                                                     BLANK       KSI        Fo
+$#  STRAT7    STRAT8    STRAT9                         BLANK       KSI        Fo
                                                                     0.        0.
 $#  STRAT3    STRAT4    STRAT5    STRAT6        Q1        Q2        Q3
         0.        0.        0.        0.        0.        0.        0.

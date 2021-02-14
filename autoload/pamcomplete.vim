@@ -1156,8 +1156,11 @@ function! pamcomplete#Complete(findstart, base)
          " }}}
          " {{{ BEAM
          elseif synIDattr(slist[1], "name") =~ "pam_PART_BEAM_r5"
+            " IJMT
+            if synIDattr(slist[2], "name") =~ "pam_51.*"
+               let start = 50
             " ITPR
-            if synIDattr(slist[2], "name") =~ "pam_56.*"
+            elseif synIDattr(slist[2], "name") =~ "pam_56.*"
                let start = 55
             endif
          elseif synIDattr(slist[1], "name") =~ "pam_PART_BEAM_r9"
@@ -2114,6 +2117,14 @@ function! pamcomplete#Complete(findstart, base)
                " LC8
                elseif synIDattr(slist[2], "name") =~ "pam_71.*"
                   let start = 70
+               endif
+            elseif synIDattr(slist[1], "name") =~ "pam_MATER151_r14" 
+               " IBEAM
+               if synIDattr(slist[2], "name") =~ "pam_1.10.*"
+                  let start = 0
+               " ICOMP
+               elseif synIDattr(slist[2], "name") =~ "pam_41.*"
+                  let start = 40
                endif
             endif
             " }}}
@@ -5474,8 +5485,12 @@ function! pamcomplete#Complete(findstart, base)
       " }}}
          " {{{ BEAM
          elseif synIDattr(slist[1], "name") =~ "pam_PART_BEAM_r5"
+            " IJMT
+            if synIDattr(slist[2], "name") =~ "pam_51.*"
+               call add (items,{'word':'    1','abbr':'1','menu':'Torsial Inertia Activated'})
+               call add (items,{'word':'    2','abbr':'2 (default)','menu':'Torsial Inertia Deactivated'})
             " ITPR
-            if synIDattr(slist[2], "name") =~ "pam_56.*"
+            elseif synIDattr(slist[2], "name") =~ "pam_56.*"
                call add (items,{'word':'    0','menu':'Constant Section Beam'})
                call add (items,{'word':'    1','menu':'Tapered Beam'})
             endif
@@ -6545,6 +6560,10 @@ function! pamcomplete#Complete(findstart, base)
                      call add (items,{'word':'    1','menu':'Functions of Temperature'})
                      call add (items,{'word':'    2','menu':'Functions of Strain Rate'})
                      call add (items,{'word':'    3','menu':'Functions of Strain'})
+                     call add (items,{'word':'   10','menu':'Like 0, but with Embedded Beam Model'})
+                     call add (items,{'word':'   11','menu':'Like 1, but with Embedded Beam Model'})
+                     call add (items,{'word':'   12','menu':'Like 2, but with Embedded Beam Model'})
+                     call add (items,{'word':'   13','menu':'Like 3, but with Embedded Beam Model'})
                   " IHYST
                   elseif synIDattr(slist[3], "name") =~ "pam_76.*"
                      call add (items,{'word':'    0','menu':'Exponential Unloading Path'})
@@ -6557,6 +6576,10 @@ function! pamcomplete#Complete(findstart, base)
                   call add (items,{'word':'    1','menu':'Functions of Temperature'})
                   call add (items,{'word':'    2','menu':'Functions of Strain Rate'})
                   call add (items,{'word':'    3','menu':'Functions of Strain'})
+                  call add (items,{'word':'   10','menu':'Like 0, but with Embedded Beam Model'})
+                  call add (items,{'word':'   11','menu':'Like 1, but with Embedded Beam Model'})
+                  call add (items,{'word':'   12','menu':'Like 2, but with Embedded Beam Model'})
+                  call add (items,{'word':'   13','menu':'Like 3, but with Embedded Beam Model'})
                " IHYST
                elseif synIDattr(slist[2], "name") =~ "pam_76.*"
                   call add (items,{'word':'    0','menu':'Exponential Unloading Path'})
@@ -6621,6 +6644,16 @@ function! pamcomplete#Complete(findstart, base)
                " LC8
                elseif synIDattr(slist[2], "name") =~ "pam_71.*"
                   let items = s:getTags("FUNCT",10)
+               endif
+            elseif synIDattr(slist[1], "name") =~ "pam_MATER151_r14" 
+               " IBEAM
+               if synIDattr(slist[2], "name") =~ "pam_1.10.*"
+                  call add (items,{'word':'         1','abbr':'1','menu':'Beam Model with Rigid Through Thickness Direction'})
+                  call add (items,{'word':'         2','abbr':'2','menu':'Beam Model with Elastic Through Thickness Direction'})
+               " ICOMP
+               elseif synIDattr(slist[2], "name") =~ "pam_41.*"
+                  call add (items,{'word':'         0','abbr':'0 (default)','menu':'Deactivated under Biaxial Compression'})
+                  call add (items,{'word':'         1','abbr':'1','menu':'Activated under Biaxial Compression'})
                endif
             endif
             " }}}
@@ -6717,6 +6750,7 @@ function! pamcomplete#Complete(findstart, base)
                call add (items,{'word':'     101','menu':'Creep Generalized Power Laww(IMP)'})
                call add (items,{'word':'     102','menu':'Creep Combined Power Law(IMP)'})
                call add (items,{'word':'     103','menu':'Creep Time Hardening Law(IMP)'})
+               call add (items,{'word':'     104','menu':'Creep Anand Model with Temperature-dependend Hardening(IMP)'})
             endif
          elseif synIDattr(slist[1], "name") =~ "pam_Mater.*_r2a"
             " FILTER
@@ -8647,6 +8681,8 @@ function! pamcomplete#pamHints()
             return "It - Bending Moment of Inertia about t-Axis"
          elseif synIDattr(slist[2], "name") =~ "pam_41.*"
             return "Ir - Bending Moment of Inertia about r-Axis"
+         elseif synIDattr(slist[2], "name") =~ "pam_51.*"
+            return "IJMT - Flag to Activate Torsial Lump Inertia in case of Lump Matrix (menu)"
          elseif synIDattr(slist[2], "name") =~ "pam_56.*"
             return "ITPR - Flag for Tapered Beam (menu)"
          elseif synIDattr(slist[2], "name") =~ "pam_56.*"
@@ -12741,6 +12777,18 @@ function! pamcomplete#pamHints()
                elseif synIDattr(slist[2], "name") =~ "pam_71.*"
                   return "THET28 || ERAT28 || EPSI28 - Temperature || Strain Rate || Strain for the Eighth Curve"
                endif
+            elseif synIDattr(slist[1], "name") =~ "pam_Mater151.*_r14" 
+               if synIDattr(slist[2], "name") =~ "pam_1.10.*"
+                  return "IBEAM - Beam Model Flag (menu)"
+               elseif synIDattr(slist[2], "name") =~ "pam_11.*"
+                  return "Ethick - Elactic Stiffness Modulus of the Through Thickness Beam"
+               elseif synIDattr(slist[2], "name") =~ "pam_21.*"
+                  return "UCSIZA - Aspect Ratio Between Small and Big Half of Elliptical Tow Cross-Section"
+               elseif synIDattr(slist[2], "name") =~ "pam_31.*"
+                  return "UCSIZB - Size Ratio between Unit Cell Width and Tow Width"
+               elseif synIDattr(slist[2], "name") =~ "pam_41.*"
+                  return "ICOMP - Biaxial Compression Beam Model Activation Flag (menu)"
+               endif
             endif
          " }}}
          " {{{ Mater 152
@@ -15154,7 +15202,13 @@ function! pamcomplete#pamHints()
                   return "LC1 - First Flow Curve ID (tag)"
                endif
             elseif synIDattr(slist[1], "name") =~ "pam_Mater1.*_r8" 
-               if synIDattr(slist[2], "name") =~ "pam_61.*"
+               if synIDattr(slist[2], "name") =~ "pam_1.10.*"
+                  return "STRAT7 - Seventh Strain Rate Parameter"
+               elseif synIDattr(slist[2], "name") =~ "pam_11.*"
+                  return "STRAT8 - Eigth Strain Rate Parameter"
+               elseif synIDattr(slist[2], "name") =~ "pam_21.*"
+                  return "STRAT9 - Ninth Strain Rate Parameter"
+               elseif synIDattr(slist[2], "name") =~ "pam_61.*"
                   return "KSI - Stiffness Proportional Damping Ratio"
                elseif synIDattr(slist[2], "name") =~ "pam_71.*"
                   return "Fo - Damping Target Frequency"
