@@ -9,8 +9,8 @@ $#PCP    SLFACM     FSVNL                                                 TLSTIF
              0.        0.                                                       
 $#  FRITYP     VALUE     XDMP1               BLANK  IDCNTPTY
 CONST             0.        0.                              
-$#RMV     ILEAKIAC32               IFRED              ADJTOL
-    0         0    0                                        
+$#RMV     ILEAKIAC32               IFRED              ADJTOLIDCPT
+    0         0    0                                             
 
 $#                                      BLANK                       TshadowIPRES
                                                                                 

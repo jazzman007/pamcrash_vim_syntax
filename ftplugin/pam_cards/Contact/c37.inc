@@ -9,7 +9,7 @@ $#ANK    SLFACM     FSVNLBLANK    PENKIN                                  TLSTIF
              0.        0.             0.                                        
 $#  FRITYP     VALUE     XDMP1
 CONST             0.        0.
-$#EAKBLANK IRMV          BLANKIOMITIFRED
+$#EAKBLANK IRMVIAC32     BLANKIOMITIFRED
     0         0                         
 
 $#                                                                    BLANKIPRES

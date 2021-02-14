@@ -494,40 +494,6 @@ function! pamcomplete#Complete(findstart, base)
             endif
          endif
 " }}}
-"  {{{ THMAT
-      elseif synIDattr(slist[0], "name") =~ "pam_THMAT"
-         if synIDattr(slist[1], "name") =~ "pam_THMAT_MASS_DENSITY_r2"
-            " FUN
-            if synIDattr(slist[2], "name") =~ "pam_1.10.*"
-               let start = 0
-            endif
-         elseif synIDattr(slist[1], "name") =~ "pam_THMAT_CONDUCTIVITY_r2"
-            " FUN
-            if synIDattr(slist[2], "name") =~ "pam_1.10.*"
-               let start = 0
-            " FUN
-            elseif synIDattr(slist[2], "name") =~ "pam_11.*"
-               let start = 10
-            " FUN
-            elseif synIDattr(slist[2], "name") =~ "pam_21.*"
-               let start = 20
-            " FUN
-            elseif synIDattr(slist[2], "name") =~ "pam_31.*"
-               let start = 30
-            " FUN
-            elseif synIDattr(slist[2], "name") =~ "pam_41.*"
-               let start = 40
-            " FUN
-            elseif synIDattr(slist[2], "name") =~ "pam_51.*"
-               let start = 50
-            endif
-         elseif synIDattr(slist[1], "name") =~ "pam_THMAT_SPECIFIC_HEAT_r2c"
-            " FUN
-            if synIDattr(slist[2], "name") =~ "pam_1.10.*"
-               let start = 0
-            endif
-         endif
-"  }}}
 " {{{ LAYER
       elseif synIDattr(slist[0], "name") =~ "pam_LAYER"
          if synIDattr(slist[1], "name") =~ "pam_LAYER_r3"
@@ -719,6 +685,9 @@ function! pamcomplete#Complete(findstart, base)
                " IRMV
                elseif synIDattr(slist[2], "name") =~ "pam_11.*"
                   let start = 10
+               " IAC32
+               elseif synIDattr(slist[2], "name") =~ "pam_16.*"
+                  let start = 15
                " IOMIT
                elseif synIDattr(slist[2], "name") =~ "pam_31.*"
                   let start = 30
@@ -787,6 +756,9 @@ function! pamcomplete#Complete(findstart, base)
                " IFRED
                elseif synIDattr(slist[2], "name") =~ "pam_36.*"
                   let start = 35
+               " IDCPT
+               elseif synIDattr(slist[2], "name") =~ "pam_61.*"
+                  let start = 60
                endif
             elseif synIDattr(slist[1], "name") =~ "pam_CNTAC.*_r7"
                " IUPA
@@ -1046,6 +1018,45 @@ function! pamcomplete#Complete(findstart, base)
             endif
          elseif synIDattr(slist[1], "name") =~ "pam_PLY15_r7"
             " IHARD
+            if synIDattr(slist[2], "name") =~ "pam_1.10.*"
+               let start = 0
+            endif
+         elseif synIDattr(slist[1], "name") =~ "pam_PLY15_r8"
+            " LC1
+            if synIDattr(slist[2], "name") =~ "pam_1.10.*"
+               let start = 0
+            " LC2
+            elseif synIDattr(slist[2], "name") =~ "pam_11.*"
+               let start = 10
+            " LC3
+            elseif synIDattr(slist[2], "name") =~ "pam_21.*"
+               let start = 20
+            " LC4
+            elseif synIDattr(slist[2], "name") =~ "pam_31.*"
+               let start = 30
+            " LC5
+            elseif synIDattr(slist[2], "name") =~ "pam_41.*"
+               let start = 40
+            " LC6
+            elseif synIDattr(slist[2], "name") =~ "pam_51.*"
+               let start = 50
+            " LC7
+            elseif synIDattr(slist[2], "name") =~ "pam_61.*"
+               let start = 60
+            " LC8
+            elseif synIDattr(slist[2], "name") =~ "pam_71.*"
+               let start = 70
+            endif
+         elseif synIDattr(slist[1], "name") =~ "pam_PLY15_r10"
+            " LAYTYPm
+            if synIDattr(slist[2], "name") =~ "pam_31.*"
+               let start = 30
+            " LAYTYPR0
+            elseif synIDattr(slist[2], "name") =~ "pam_71.*"
+               let start = 70
+            endif
+         elseif synIDattr(slist[1], "name") =~ "pam_PLY15_r11"
+            " IFUNRET
             if synIDattr(slist[2], "name") =~ "pam_1.10.*"
                let start = 0
             endif
@@ -1521,6 +1532,15 @@ function! pamcomplete#Complete(findstart, base)
                endif
             endif
             " }}}
+         " {{{ MATER 241
+         elseif synIDattr(slist[1], "name") =~ "pam_Mater241.*"
+            if synIDattr(slist[1], "name") =~ "pam_Mater241.*_r7"
+               " IDAMP
+               if synIDattr(slist[2], "name") =~ "pam_9.*"
+                  let start = 8
+               endif
+            endif
+            " }}}
          " {{{ MATER 301
          elseif synIDattr(slist[1], "name") =~ "pam_Mater301.*"
             if synIDattr(slist[1], "name") =~ "pam_MATER301.*_r4"
@@ -1632,6 +1652,54 @@ function! pamcomplete#Complete(findstart, base)
                " IFCONP
                if synIDattr(slist[2], "name") =~ "pam_21.*"
                   let start = 20
+               endif
+            endif
+            " }}}
+         " {{{ MATER 307
+         elseif synIDattr(slist[1], "name") =~ "pam_Mater307.*"
+            if synIDattr(slist[1], "name") =~ "pam_MATER307.*_r4" 
+               " IELAST
+               if synIDattr(slist[2], "name") =~ "pam_11.*"
+                  let start = 10
+               endif
+            elseif synIDattr(slist[1], "name") =~ "pam_MATER307.*_r[57]f" 
+               " LC1_N
+               if synIDattr(slist[2], "name") =~ "pam_1.10.*"
+                  let start = 0
+               " LC2_N
+               elseif synIDattr(slist[2], "name") =~ "pam_11.*"
+                  let start = 10
+               " LC3_N
+               elseif synIDattr(slist[2], "name") =~ "pam_21.*"
+                  let start = 20
+               " LC4_N
+               elseif synIDattr(slist[2], "name") =~ "pam_31.*"
+                  let start = 30
+               " LC5_N
+               elseif synIDattr(slist[2], "name") =~ "pam_41.*"
+                  let start = 40
+               " LC6_N
+               elseif synIDattr(slist[2], "name") =~ "pam_51.*"
+                  let start = 50
+               " LC7_N
+               elseif synIDattr(slist[2], "name") =~ "pam_61.*"
+                  let start = 60
+               " L87_N
+               elseif synIDattr(slist[2], "name") =~ "pam_71.*"
+                  let start = 70
+               endif
+            elseif synIDattr(slist[1], "name") =~ "pam_MATER307.*_r7l" 
+               " IDELA
+               if synIDattr(slist[2], "name") =~ "pam_1.10.*"
+                  let start = 0
+               endif
+            elseif synIDattr(slist[1], "name") =~ "pam_MATER307.*_r8l" 
+               " IDRUP
+               if synIDattr(slist[2], "name") =~ "pam_11.*"
+                  let start = 10
+               " IELIM
+               elseif synIDattr(slist[2], "name") =~ "pam_61.*"
+                  let start = 60
                endif
             endif
             " }}}
@@ -2641,8 +2709,19 @@ function! pamcomplete#Complete(findstart, base)
 "  }}}
 "  {{{ MMAT
       elseif synIDattr(slist[0], "name") =~ "pam_MMAT.*"
+         " {{{ PLASTICITY
+         if synIDattr(slist[1], "name") =~ "pam_MMAT_PLASTICITY"
+            if synIDattr(slist[2], "name") =~ "pam_MMAT_PLASTICITY_RAGHAVA_MISES"
+               if synIDattr(slist[3], "name") =~ "pam_MMAT_PLASTICITY_RAGHAVA_MISES_r1"
+                  " IFLOW
+                  if synIDattr(slist[4], "name") =~ "pam_51.*"
+                     let start = 50
+                  endif
+               endif
+            endif
+         " }}}
          " {{{ HARDENING
-         if synIDattr(slist[1], "name") =~ "pam_MMAT_HARDENING"
+         elseif synIDattr(slist[1], "name") =~ "pam_MMAT_HARDENING"
             if synIDattr(slist[2], "name") =~ "pam_MMAT_HARDENING_MULTIPLE_CURVES"
                if synIDattr(slist[3], "name") =~ "pam_MMAT_HARDENING_MULTIPLE_CURVES_r1"
                   " LC1
@@ -2740,6 +2819,13 @@ function! pamcomplete#Complete(findstart, base)
                   " INTERP
                   if synIDattr(slist[4], "name") =~ "pam_11.*"
                      let start = 10
+                  endif
+               endif
+            elseif synIDattr(slist[2], "name") =~ "pam_MMAT_FAILURE_MODIFIED_MOHR_COULOMB"
+               if synIDattr(slist[3], "name") =~ "pam_MMAT_FAILURE_MODIFIED_MOHR_COULOMB_r1"
+                  " ICUTD
+                  if synIDattr(slist[4], "name") =~ "pam_71.*"
+                     let start = 70
                   endif
                endif
             elseif synIDattr(slist[2], "name") =~ "pam_MMAT_FAILURE_DUCTILE_LOOKU"
@@ -4213,40 +4299,6 @@ function! pamcomplete#Complete(findstart, base)
             endif
          endif
 " }}}
-"  {{{ THMAT
-      elseif synIDattr(slist[0], "name") =~ "pam_THMAT"
-         if synIDattr(slist[1], "name") =~ "pam_THMAT_MASS_DENSITY_r2"
-            " FUN
-            if synIDattr(slist[2], "name") =~ "pam_1.10.*"
-               let items = s:getTags("FUNCT",10)
-            endif
-         elseif synIDattr(slist[1], "name") =~ "pam_THMAT_CONDUCTIVITY_r2"
-            " FUN
-            if synIDattr(slist[2], "name") =~ "pam_1.10.*"
-               let items = s:getTags("FUNCT",10)
-            " FUN
-            elseif synIDattr(slist[2], "name") =~ "pam_11.*"
-               let items = s:getTags("FUNCT",10)
-            " FUN
-            elseif synIDattr(slist[2], "name") =~ "pam_21.*"
-               let items = s:getTags("FUNCT",10)
-            " FUN
-            elseif synIDattr(slist[2], "name") =~ "pam_31.*"
-               let items = s:getTags("FUNCT",10)
-            " FUN
-            elseif synIDattr(slist[2], "name") =~ "pam_41.*"
-               let items = s:getTags("FUNCT",10)
-            " FUN
-            elseif synIDattr(slist[2], "name") =~ "pam_51.*"
-               let items = s:getTags("FUNCT",10)
-            endif
-         elseif synIDattr(slist[1], "name") =~ "pam_THMAT_SPECIFIC_HEAT_r2c"
-            " FUN
-            if synIDattr(slist[2], "name") =~ "pam_1.10.*"
-               let items = s:getTags("FUNCT",10)
-            endif
-         endif
-"  }}}
 "  {{{ TEMBC
       elseif synIDattr(slist[0], "name") =~ "pam_TEMBC"
          if synIDattr(slist[1], "name") =~ "pam_TEMBC_r1"
@@ -4603,6 +4655,7 @@ function! pamcomplete#Complete(findstart, base)
                   call add (items,{'word':'CONST     ','menu':'Constant Value Friction'})
                   call add (items,{'word':'COUFR     ','menu':'Coulomb Friction by Part'})
                   call add (items,{'word':'FRTAB     ','menu':'Friction Table Definition'})
+                  call add (items,{'word':'ADVFR     ','menu':'Advanced Friction Model Definition'})
                endif
             elseif synIDattr(slist[1], "name") =~ "pam_CNTAC.*_r6"
                " ILEAK
@@ -4616,6 +4669,9 @@ function! pamcomplete#Complete(findstart, base)
                   if synIDattr(slist[1], "name") =~ "pam_CNTAC4[36]_r6"
                      call add (items,{'word':'    4','menu':'Local Removal per Contact Pair'})
                   endif
+               " IAC32
+               elseif synIDattr(slist[2], "name") =~ "pam_16.*"
+                  call add (items,{'word':'    2','menu':'Pairs are Deactivated According to Connectivity'})
                " IOMIT
                elseif synIDattr(slist[2], "name") =~ "pam_31.*"
                   call add (items,{'word':'   -1','menu':'Deactivated'})
@@ -4734,6 +4790,10 @@ function! pamcomplete#Complete(findstart, base)
                elseif synIDattr(slist[2], "name") =~ "pam_36.*"
                   call add (items,{'word':'    0','abbr':'0 (default)','menu':'Deactivated'})
                   call add (items,{'word':'    1','abbr':'1','menu':'Activated'})
+               " IDCPT
+               elseif synIDattr(slist[2], "name") =~ "pam_61.*"
+                  call add (items,{'word':'    0','abbr':'0 (default)','menu':'Node-to-Segment'})
+                  call add (items,{'word':'    1','abbr':'1','menu':'Point-to-Segment'})
                endif
             elseif synIDattr(slist[1], "name") =~ "pam_CNTAC.*_r7"
                " IUPA
@@ -5332,6 +5392,52 @@ function! pamcomplete#Complete(findstart, base)
             " IHARD
             if synIDattr(slist[2], "name") =~ "pam_1.10.*"
                call add (items,{'word':'         1','abbr':'1 (default)','menu':'Power Law'})
+               call add (items,{'word':'         2','abbr':'2','menu':'Multiple Curves'})
+            endif
+         elseif synIDattr(slist[1], "name") =~ "pam_PLY15_r8"
+            " LC1
+            if synIDattr(slist[2], "name") =~ "pam_1.10.*"
+               let items = s:getTags("FUNCT",10)
+            " LC2
+            elseif synIDattr(slist[2], "name") =~ "pam_11.*"
+               let items = s:getTags("FUNCT",10)
+            " LC3
+            elseif synIDattr(slist[2], "name") =~ "pam_21.*"
+               let items = s:getTags("FUNCT",10)
+            " LC4
+            elseif synIDattr(slist[2], "name") =~ "pam_31.*"
+               let items = s:getTags("FUNCT",10)
+            " LC5
+            elseif synIDattr(slist[2], "name") =~ "pam_41.*"
+               let items = s:getTags("FUNCT",10)
+            " LC6
+            elseif synIDattr(slist[2], "name") =~ "pam_51.*"
+               let items = s:getTags("FUNCT",10)
+            " LC7
+            elseif synIDattr(slist[2], "name") =~ "pam_61.*"
+               let items = s:getTags("FUNCT",10)
+            " LC8
+            elseif synIDattr(slist[2], "name") =~ "pam_71.*"
+               let items = s:getTags("FUNCT",10)
+            endif
+         elseif synIDattr(slist[1], "name") =~ "pam_PLY15_r10"
+            " LAYTYPm
+            if synIDattr(slist[2], "name") =~ "pam_31.*"
+               call add (items,{'word':'         0','abbr':'0 (default)','menu':'Power Law'})
+               call add (items,{'word':'         1','abbr':'1','menu':'Linear Law'})
+               call add (items,{'word':'         2','abbr':'2','menu':'Logarithmic Law'})
+               call add (items,{'word':'         3','abbr':'3','menu':'Tangent Hyperbolic Law'})
+            " LAYTYPR0
+            elseif synIDattr(slist[2], "name") =~ "pam_71.*"
+               call add (items,{'word':'         0','abbr':'0 (default)','menu':'Power Law'})
+               call add (items,{'word':'         1','abbr':'1','menu':'Linear Law'})
+               call add (items,{'word':'         2','abbr':'2','menu':'Logarithmic Law'})
+               call add (items,{'word':'         3','abbr':'3','menu':'Tangent Hyperbolic Law'})
+            endif
+         elseif synIDattr(slist[1], "name") =~ "pam_PLY15_r11"
+            " IFUNRET
+            if synIDattr(slist[2], "name") =~ "pam_1.10.*"
+               let items = s:getTags("FUNCT",10)
             endif
          " }}}
          " {{{ PLYFAILX
@@ -5927,6 +6033,18 @@ function! pamcomplete#Complete(findstart, base)
                endif
             endif
             " }}}
+         " {{{ MATER 241
+         elseif synIDattr(slist[1], "name") =~ "pam_Mater241.*"
+            if synIDattr(slist[1], "name") =~ "pam_Mater241.*_r7"
+               " IDAMP
+               if synIDattr(slist[2], "name") =~ "pam_9.*"
+                  call add (items,{'word':'       0','abbr':'0','menu':'No Damping'})
+                  call add (items,{'word':'       1','abbr':'1','menu':'Parallel Damping'})
+                  call add (items,{'word':'       2','abbr':'2','menu':'Serial Damping'})
+                  call add (items,{'word':'       3','abbr':'3','menu':'Serial Force-Dependent Damping'})
+               endif
+            endif
+            " }}}
          " {{{ MATER 301
          elseif synIDattr(slist[1], "name") =~ "pam_Mater301.*"
             if synIDattr(slist[1], "name") =~ "pam_MATER301.*_r4"
@@ -6058,6 +6176,57 @@ function! pamcomplete#Complete(findstart, base)
                   call add (items,{'word':'         1','abbr':'1 (default)','menu':'Constant Damaged Original Stiffness'})
                   call add (items,{'word':'         2','abbr':'2','menu':'Constant Undamaged Original Stiffness'})
                   call add (items,{'word':'         3','abbr':'3','menu':'Symmetric Damage Behavior'})
+               endif
+            endif
+            " }}}
+         " {{{ MATER 307
+         elseif synIDattr(slist[1], "name") =~ "pam_Mater307.*"
+            if synIDattr(slist[1], "name") =~ "pam_MATER307.*_r4" 
+               " IELAST
+               if synIDattr(slist[2], "name") =~ "pam_11.*"
+                  call add (items,{'word':'         0','abbr':'0 (default)','menu':'Inelastic Behavior Allowed'})
+                  call add (items,{'word':'         1','abbr':'1','menu':'Pure Elastic Behavior Enforced'})
+               endif
+            elseif synIDattr(slist[1], "name") =~ "pam_MATER307.*_r[57]f" 
+               " LC1_N
+               if synIDattr(slist[2], "name") =~ "pam_1.10.*"
+                  let items = s:getTags("FUNCT",10)
+               " LC2_N
+               elseif synIDattr(slist[2], "name") =~ "pam_11.*"
+                  let items = s:getTags("FUNCT",10)
+               " LC3_N
+               elseif synIDattr(slist[2], "name") =~ "pam_21.*"
+                  let items = s:getTags("FUNCT",10)
+               " LC4_N
+               elseif synIDattr(slist[2], "name") =~ "pam_31.*"
+                  let items = s:getTags("FUNCT",10)
+               " LC5_N
+               elseif synIDattr(slist[2], "name") =~ "pam_41.*"
+                  let items = s:getTags("FUNCT",10)
+               " LC6_N
+               elseif synIDattr(slist[2], "name") =~ "pam_51.*"
+                  let items = s:getTags("FUNCT",10)
+               " LC7_N
+               elseif synIDattr(slist[2], "name") =~ "pam_61.*"
+                  let items = s:getTags("FUNCT",10)
+               " L87_N
+               elseif synIDattr(slist[2], "name") =~ "pam_71.*"
+                  let items = s:getTags("FUNCT",10)
+               endif
+            elseif synIDattr(slist[1], "name") =~ "pam_MATER307.*_r7l" 
+               " IDELA
+               if synIDattr(slist[2], "name") =~ "pam_1.10.*"
+                  call add (items,{'word':'POWER     ','abbr':'POWER','menu':'Power Model'})
+                  call add (items,{'word':'MAX       ','abbr':'MAX','menu':'Maximum Criterion Model'})
+               endif
+            elseif synIDattr(slist[1], "name") =~ "pam_MATER307.*_r8l" 
+               " IDRUP
+               if synIDattr(slist[2], "name") =~ "pam_11.*"
+                  let items = s:getTags("RUPMO",10)
+               " IELIM
+               elseif synIDattr(slist[2], "name") =~ "pam_61.*"
+                  call add (items,{'word':'         0','abbr':'0 (default)','menu':'Element Eliminated as Soon as One Integration Point Fully Damaged'})
+                  call add (items,{'word':'         1','abbr':'1','menu':'Element Eliminated when All Integration Points Fully Damaged'})
                endif
             endif
             " }}}
@@ -7230,8 +7399,20 @@ function! pamcomplete#Complete(findstart, base)
 "  }}}
 "  {{{ MMAT
       elseif synIDattr(slist[0], "name") =~ "pam_MMAT.*"
+         " {{{ PLASTICITY
+         if synIDattr(slist[1], "name") =~ "pam_MMAT_PLASTICITY"
+            if synIDattr(slist[2], "name") =~ "pam_MMAT_PLASTICITY_RAGHAVA_MISES"
+               if synIDattr(slist[3], "name") =~ "pam_MMAT_PLASTICITY_RAGHAVA_MISES_r1"
+                  " IFLOW
+                  if synIDattr(slist[4], "name") =~ "pam_51.*"
+                     call add (items,{'word':'         0','abbr':'0 (default)','menu':'Classical Raghava-Mises Model'})
+                     call add (items,{'word':'         1','abbr':'1','menu':'Special Polymer Model'})
+                  endif
+               endif
+            endif
+         " }}}
          " {{{ HARDENING
-         if synIDattr(slist[1], "name") =~ "pam_MMAT_HARDENING"
+         elseif synIDattr(slist[1], "name") =~ "pam_MMAT_HARDENING"
             if synIDattr(slist[2], "name") =~ "pam_MMAT_HARDENING_MULTIPLE_CURVES"
                if synIDattr(slist[3], "name") =~ "pam_MMAT_HARDENING_MULTIPLE_CURVES_r1"
                   " LC1
@@ -7342,6 +7523,14 @@ function! pamcomplete#Complete(findstart, base)
                   if synIDattr(slist[4], "name") =~ "pam_11.*"
                      call add (items,{'word':'         0','abbr':'0 (default)','menu':'Logarithmic Interpolation'})
                      call add (items,{'word':'         1','abbr':'1','menu':'Linear Interpolation'})
+                  endif
+               endif
+            elseif synIDattr(slist[2], "name") =~ "pam_MMAT_FAILURE_MODIFIED_MOHR_COULOMB"
+               if synIDattr(slist[3], "name") =~ "pam_MMAT_FAILURE_MODIFIED_MOHR_COULOMB_r1"
+                  " ICUTD
+                  if synIDattr(slist[4], "name") =~ "pam_71.*"
+                     call add (items,{'word':'    0','abbr':'0 (default)','menu':'Damage Cut-off Activated'})
+                     call add (items,{'word':'    1','abbr':'1','menu':'Damage Cut-off Deactivated'})
                   endif
                endif
             elseif synIDattr(slist[2], "name") =~ "pam_MMAT_FAILURE_DUCTILE_LOOKU"
@@ -8280,6 +8469,8 @@ function! pamcomplete#pamHints()
                return 'ILEAK - Leackage Area Obstruction Flag (menu)'
             elseif synIDattr(slist[2], "name") =~ "pam_11.*"
                return 'IRMV - Initial Penetration Treatment Flag (menu)'
+            elseif synIDattr(slist[2], "name") =~ "pam_16.*"
+               return 'IAC32 - Automatic LINK/TIED Compatibility (menu)'
             elseif synIDattr(slist[2], "name") =~ "pam_31.*"
                return 'IOMIT - Small Element Treatment Flag (menu)'
             elseif synIDattr(slist[2], "name") =~ "pam_36.*"
@@ -8354,6 +8545,8 @@ function! pamcomplete#pamHints()
                return 'DTHKPLK - Local Slave Node Contact Thickness Reduction for LINKs'
             elseif synIDattr(slist[2], "name") =~ "pam_51.*"
                return 'ADJTOL - Distance Tolerance for Adjustment of Slave Nodes'
+            elseif synIDattr(slist[2], "name") =~ "pam_61.*"
+               return 'IDCPT - Contact Description Type Flag (menu)'
             endif
          elseif synIDattr(slist[1], "name") =~ "pam_CNTAC.*_r7"
             if synIDattr(slist[2], "name") =~ "pam_11.*"
@@ -9269,6 +9462,126 @@ function! pamcomplete#pamHints()
                endif
             endif
          " }}}
+         " {{{ Mater 307
+         elseif synIDattr(slist[1], "name") =~ "pam_Mater307.*"
+            if synIDattr(slist[1], "name") =~ "pam_Mater307.*_r4" 
+               if synIDattr(slist[2], "name") =~ "pam_11.*"
+                  return "IELAST - Flag to Enforce Pure Elastic Behaviou (menu)"
+               elseif synIDattr(slist[2], "name") =~ "pam_21.*"
+                  return "RSURF - Cohesive Surface Scale Factor"
+               elseif synIDattr(slist[2], "name") =~ "pam_71.*"
+                  return "KSI - Stiffness Proportional Damping Ratio"
+               endif
+            elseif synIDattr(slist[1], "name") =~ "pam_Mater307.*_r5l" 
+               if synIDattr(slist[2], "name") =~ "pam_1.10.*"
+                  return "SigID_N - Lookup Table ID for Strain Function (tag)"
+               elseif synIDattr(slist[2], "name") =~ "pam_11.*"
+                  return "ArgEps_N - Index of the Strain in Normal Mode"
+               elseif synIDattr(slist[2], "name") =~ "pam_21.*"
+                  return "ArgDeps_N - Index of the Strain Rate in Normal Mode"
+               elseif synIDattr(slist[2], "name") =~ "pam_31.*"
+                  return "ArgThk_N - Index of the Thickness in Normal Mode"
+               endif
+            elseif synIDattr(slist[1], "name") =~ "pam_Mater307.*_r5f" 
+               if synIDattr(slist[2], "name") =~ "pam_1.10.*"
+                  return "LC1_N - First Normal Curve ID (tag)"
+               elseif synIDattr(slist[2], "name") =~ "pam_11.*"
+                  return "LC2_N - Second Normal Curve ID (tag)"
+               elseif synIDattr(slist[2], "name") =~ "pam_21.*"
+                  return "LC3_N - Third Normal Curve ID (tag)"
+               elseif synIDattr(slist[2], "name") =~ "pam_31.*"
+                  return "LC4_N - Fourth Normal Curve ID (tag)"
+               elseif synIDattr(slist[2], "name") =~ "pam_41.*"
+                  return "LC5_N - Fifth Normal Curve ID (tag)"
+               elseif synIDattr(slist[2], "name") =~ "pam_51.*"
+                  return "LC6_N - Sixth Normal Curve ID (tag)"
+               elseif synIDattr(slist[2], "name") =~ "pam_61.*"
+                  return "LC7_N - Seventh Normal Curve ID (tag)"
+               elseif synIDattr(slist[2], "name") =~ "pam_71.*"
+                  return "LC8_N - Eigth Normal Curve ID (tag)"
+               endif
+            elseif synIDattr(slist[1], "name") =~ "pam_Mater307.*_r6l" 
+               if synIDattr(slist[2], "name") =~ "pam_1.10.*"
+                  return "SigID_S - Lookup Table ID for Strain Function (tag)"
+               elseif synIDattr(slist[2], "name") =~ "pam_11.*"
+                  return "ArgEps_S - Index of the Strain in Shear Mode"
+               elseif synIDattr(slist[2], "name") =~ "pam_21.*"
+                  return "ArgDeps_S - Index of the Strain Rate in Shear Mode"
+               elseif synIDattr(slist[2], "name") =~ "pam_31.*"
+                  return "ArgThk_S - Index of the Thickness in Shear Mode"
+               endif
+            elseif synIDattr(slist[1], "name") =~ "pam_Mater307.*_r6f" 
+               if synIDattr(slist[2], "name") =~ "pam_1.10.*"
+                  return "ERATE1_N - First Strain Rate in Normal Mode"
+               elseif synIDattr(slist[2], "name") =~ "pam_11.*"
+                  return "ERATE2_N - Second Strain Rate in Normal Mode"
+               elseif synIDattr(slist[2], "name") =~ "pam_21.*"
+                  return "ERATE3_N - Third Strain Rate in Normal Mode"
+               elseif synIDattr(slist[2], "name") =~ "pam_31.*"
+                  return "ERATE4_N - Fourth Strain Rate in Normal Mode"
+               elseif synIDattr(slist[2], "name") =~ "pam_41.*"
+                  return "ERATE5_N - Fifth Strain Rate in Normal Mode"
+               elseif synIDattr(slist[2], "name") =~ "pam_51.*"
+                  return "ERATE6_N - Sixth Strain Rate in Normal Mode"
+               elseif synIDattr(slist[2], "name") =~ "pam_61.*"
+                  return "ERATE7_N - Seventh Strain Rate in Normal Mode"
+               elseif synIDattr(slist[2], "name") =~ "pam_71.*"
+                  return "ERATE8_N - Eigth Strain Rate in Normal Mode"
+               endif
+            elseif synIDattr(slist[1], "name") =~ "pam_Mater307.*_r7l" 
+               if synIDattr(slist[2], "name") =~ "pam_1.10.*"
+                  return "IDELA - Interaction Model Definition Keyword (menu)"
+               elseif synIDattr(slist[2], "name") =~ "pam_11.*"
+                  return "ETA - Value as Required by IDELA"
+               endif
+            elseif synIDattr(slist[1], "name") =~ "pam_Mater307.*_r7f" 
+               if synIDattr(slist[2], "name") =~ "pam_1.10.*"
+                  return "LC1_S - First Shear Curve ID (tag)"
+               elseif synIDattr(slist[2], "name") =~ "pam_11.*"
+                  return "LC2_S - Second Shear Curve ID (tag)"
+               elseif synIDattr(slist[2], "name") =~ "pam_21.*"
+                  return "LC3_S - Third Shear Curve ID (tag)"
+               elseif synIDattr(slist[2], "name") =~ "pam_31.*"
+                  return "LC4_S - Fourth Shear Curve ID (tag)"
+               elseif synIDattr(slist[2], "name") =~ "pam_41.*"
+                  return "LC5_S - Fifth Shear Curve ID (tag)"
+               elseif synIDattr(slist[2], "name") =~ "pam_51.*"
+                  return "LC6_S - Sixth Shear Curve ID (tag)"
+               elseif synIDattr(slist[2], "name") =~ "pam_61.*"
+                  return "LC7_S - Seventh Shear Curve ID (tag)"
+               elseif synIDattr(slist[2], "name") =~ "pam_71.*"
+                  return "LC8_S - Eigth Shear Curve ID (tag)"
+               endif
+            elseif synIDattr(slist[1], "name") =~ "pam_Mater307.*_r8l" 
+               if synIDattr(slist[2], "name") =~ "pam_1.10.*"
+                  return "DamMax - Maximal Damage at which Element Elimination is Initiated"
+               elseif synIDattr(slist[2], "name") =~ "pam_11.*"
+                  return "IDRUP - Rupture Model ID (tag)"
+               elseif synIDattr(slist[2], "name") =~ "pam_61.*"
+                  return "IELIM - Element Elimination Reduction Criteria (menu)"
+               elseif synIDattr(slist[2], "name") =~ "pam_71.*"
+                  return "Ncycle - Number of Cycles for Stress Reduction for Element Elimination"
+               endif
+            elseif synIDattr(slist[1], "name") =~ "pam_Mater307.*_r8f" 
+               if synIDattr(slist[2], "name") =~ "pam_1.10.*"
+                  return "ERATE1_S - First Strain Rate in Shear Mode"
+               elseif synIDattr(slist[2], "name") =~ "pam_11.*"
+                  return "ERATE2_S - Second Strain Rate in Shear Mode"
+               elseif synIDattr(slist[2], "name") =~ "pam_21.*"
+                  return "ERATE3_S - Third Strain Rate in Shear Mode"
+               elseif synIDattr(slist[2], "name") =~ "pam_31.*"
+                  return "ERATE4_S - Fourth Strain Rate in Shear Mode"
+               elseif synIDattr(slist[2], "name") =~ "pam_41.*"
+                  return "ERATE5_S - Fifth Strain Rate in Shear Mode"
+               elseif synIDattr(slist[2], "name") =~ "pam_51.*"
+                  return "ERATE6_S - Sixth Strain Rate in Shear Mode"
+               elseif synIDattr(slist[2], "name") =~ "pam_61.*"
+                  return "ERATE7_S - Seventh Strain Rate in Shear Mode"
+               elseif synIDattr(slist[2], "name") =~ "pam_71.*"
+                  return "ERATE8_S - Eigth Strain Rate in Shear Mode"
+               endif
+            endif
+         " }}}
          " {{{ Mater 371
          elseif synIDattr(slist[1], "name") =~ "pam_Mater371.*"
             if synIDattr(slist[1], "name") =~ "pam_Mater371.*_r4" 
@@ -9416,6 +9729,8 @@ function! pamcomplete#pamHints()
                   return "NU - Poisson's Ratio"
                elseif synIDattr(slist[2], "name") =~ "pam_41.*"
                   return "ALPHA - Thermal Expansion Coefficient"
+               elseif synIDattr(slist[2], "name") =~ "pam_51.*"
+                  return "Gr - Torsional and Transverse Shear Modulus"
                endif
             elseif synIDattr(slist[1], "name") =~ "pam_Mater201.*_r6" 
                if synIDattr(slist[2], "name") =~ "pam_1.10.*"
@@ -10698,6 +11013,62 @@ function! pamcomplete#pamHints()
                   return "ELTRIG - Threshold elongation for the Stretch Reflex"
                elseif synIDattr(slist[2], "name") =~ "pam_25.*"
                   return "NMCY - Interval in Number of Cycles for the Filter to Smooth the Muscle's Elongation Rate"
+               endif
+            endif
+         " }}}
+         " {{{ Mater 241
+         elseif synIDattr(slist[1], "name") =~ "pam_Mater241.*"
+            if synIDattr(slist[1], "name") =~ "pam_Mater241.*_r4" 
+               if synIDattr(slist[2], "name") =~ "pam_1.8.*"
+                  return "Fmax - Maximum Isometric Muscle Force"
+               elseif synIDattr(slist[2], "name") =~ "pam_9.*"
+                  return "Smax - Maximum Isometric Muscle Stress"
+               elseif synIDattr(slist[2], "name") =~ "pam_Mater241_r4_a1"
+                  return "AUTO - Automatic Computation of Muscle Force"
+               elseif synIDattr(slist[2], "name") =~ "pam_17.*"
+                  return "ALopt - Ratio of Muscle Fiber's Rest Length"
+               endif
+            elseif synIDattr(slist[1], "name") =~ "pam_Mater241.*_r5" 
+               if synIDattr(slist[2], "name") =~ "pam_9.*"
+                  return "dWdes - Width of F_isom on Descending Limb"
+               elseif synIDattr(slist[2], "name") =~ "pam_17.*"
+                  return "nCEdes - Exponent of F_isom on Descending Limb"
+               elseif synIDattr(slist[2], "name") =~ "pam_25.*"
+                  return "dWasc - Width of F_isom on Ascending Limb"
+               elseif synIDattr(slist[2], "name") =~ "pam_33.*"
+                  return "nCEasc - Exponent of F_isom on Ascending Limb"
+               elseif synIDattr(slist[2], "name") =~ "pam_41.*"
+                  return "Arel0 - Maximum Value of A_rel"
+               elseif synIDattr(slist[2], "name") =~ "pam_49.*"
+                  return "Brel0 - Maximum Value of B_rel"
+               elseif synIDattr(slist[2], "name") =~ "pam_57.*"
+                  return "Secc - Step in Inclinaison between Eccentric and Concentric Force-velocity Relations"
+               elseif synIDattr(slist[2], "name") =~ "pam_65.*"
+                  return "Fecc - Coordinate of Pole Normalized to F_max"
+               endif
+            elseif synIDattr(slist[1], "name") =~ "pam_Mater241.*_r6" 
+               if synIDattr(slist[2], "name") =~ "pam_17.*"
+                  return "nPEE - Exponent of F_PEE"
+               elseif synIDattr(slist[2], "name") =~ "pam_25.*"
+                  return "FPEE - Force of PEE if stretched to dWdes"
+               elseif synIDattr(slist[2], "name") =~ "pam_33.*"
+                  return "lSEE0 - Rest Length of SEE"
+               elseif synIDattr(slist[2], "name") =~ "pam_41.*"
+                  return "dUSEEnl - Relative Stretch at Non-linear Transition in F_SEE"
+               elseif synIDattr(slist[2], "name") =~ "pam_49.*"
+                  return "dUSEEl - Relative Stretch in Linear Part for Force Increase dF_SEE"
+               elseif synIDattr(slist[2], "name") =~ "pam_57.*"
+                  return "dFSEE0 - Force at Non-linear Transition in F_SEE"
+               endif
+            elseif synIDattr(slist[1], "name") =~ "pam_Mater241.*_r7" 
+               if synIDattr(slist[2], "name") =~ "pam_9.*"
+                  return "IDAMP - Flag for Damping Model (menu)"
+               elseif synIDattr(slist[2], "name") =~ "pam_17.*"
+                  return "DAMPPE || SCALFSE - Damping Coefficient of Parallel Element || Scale Factor dor d_SE"
+               elseif synIDattr(slist[2], "name") =~ "pam_25.*"
+                  return "DAMPFSE - Damping Coefficient for Force-Dependent Serial Element"
+               elseif synIDattr(slist[2], "name") =~ "pam_41.*"
+                  return "NCYCLE - Interval in Number of Cycles for the Filter ro Smooth the Muscle's Lengthening/Shortening Elongation Length"
                endif
             endif
          " }}}
@@ -15757,6 +16128,8 @@ function! pamcomplete#pamHints()
                   return "B22 - Back-stress Component B22"
                elseif synIDattr(slist[4], "name") =~ "pam_41.*"
                   return "B33 - Back-stress Component B33"
+               elseif synIDattr(slist[4], "name") =~ "pam_51.*"
+                  return "IFLOW - Non-Associated Flow Model Flag (menu)"
                endif
             endif
          elseif synIDattr(slist[2], "name") =~ "pam_MMAT_PLASTICITY_RAGHAVA_HILL"
@@ -15899,6 +16272,34 @@ function! pamcomplete#pamHints()
                   return "n - Work Hardening Exponent"
                elseif synIDattr(slist[4], "name") =~ "pam_31.*"
                   return "SIGMAmax - Maximum Plastic Stress Cut-off"
+               endif
+            endif
+         elseif synIDattr(slist[2], "name") =~ "pam_MMAT_HARDENING_RATE_EXTENDED_JOHNSON_COOK"
+            if synIDattr(slist[3], "name") =~ "pam_MMAT_HARDENING_RATE_EXTENDED_JOHNSON_COOK_r1"
+               if synIDattr(slist[4], "name") =~ "pam_1.10.*"
+                  return "ERATE0 - Strain Rate Parameter 1"
+               elseif synIDattr(slist[4], "name") =~ "pam_11.*"
+                  return "C - Strain Rate Parameter 2"
+               elseif synIDattr(slist[4], "name") =~ "pam_21.*"
+                  return "A - Strain Rate Parameter 3"
+               endif
+            endif
+         elseif synIDattr(slist[2], "name") =~ "pam_MMAT_HARDENING_POLYMER_B"
+            if synIDattr(slist[3], "name") =~ "pam_MMAT_HARDENING_POLYMER_B_r1"
+               if synIDattr(slist[4], "name") =~ "pam_1.10.*"
+                  return "A1 - First Aplitude Coefficient"
+               elseif synIDattr(slist[4], "name") =~ "pam_11.*"
+                  return "D1 - First Decay Coefficient"
+               elseif synIDattr(slist[4], "name") =~ "pam_21.*"
+                  return "A2 - Second Aplitude Coefficient"
+               elseif synIDattr(slist[4], "name") =~ "pam_31.*"
+                  return "D2 - Second Decay Coefficient"
+               elseif synIDattr(slist[4], "name") =~ "pam_41.*"
+                  return "A3 - Third Amplitude Coefficient"
+               elseif synIDattr(slist[4], "name") =~ "pam_51.*"
+                  return "G - Growth Parameter"
+               elseif synIDattr(slist[4], "name") =~ "pam_61.*"
+                  return "SIGMA0 - Initial Yield Stress"
                endif
             endif
          elseif synIDattr(slist[2], "name") =~ "pam_MMAT_HARDENING_KRUPK"
@@ -16527,6 +16928,8 @@ function! pamcomplete#pamHints()
                   return "c4 - MMC Parameter c4"
                elseif synIDattr(slist[4], "name") =~ "pam_61.*"
                   return "Lc_model - Local MMC Characteristic Failure Length"
+               elseif synIDattr(slist[4], "name") =~ "pam_71.*"
+                  return "ICUTD - Damage Cut-off Activation Flag (menu)"
                endif
             endif
          elseif synIDattr(slist[2], "name") =~ "pam_MMAT_FAILURE_ANISOTROPIC_FAILURE"
@@ -16702,38 +17105,6 @@ function! pamcomplete#pamHints()
       if synIDattr(slist[1], "name") =~ "pam_THMAT_r1"
          if synIDattr(slist[2], "name") =~ "pam_9.8.*"
             return "IDMAT - Material Entity ID"
-         endif
-      elseif synIDattr(slist[1], "name") =~ "pam_THMAT_CONDUCTANCE_r2"
-         if synIDattr(slist[2], "name") =~ "pam_1.10.*"
-            return "K - Thermal Conductance Value"
-         endif
-      elseif synIDattr(slist[1], "name") =~ "pam_THMAT_MASS_DENSITY_r2"
-         if synIDattr(slist[2], "name") =~ "pam_1.10.*"
-            return "RHO || IFUNRHOt - Constant Mass Density || Function ID (tag)"
-         endif
-      elseif synIDattr(slist[1], "name") =~ "pam_THMAT_CONDUCTIVITY_r2"
-         if synIDattr(slist[2], "name") =~ "pam_1.10.*"
-            return "Kp || IFUNKpT - Constant Thermal Conductivity || Function ID (tag)"
-         elseif synIDattr(slist[2], "name") =~ "pam_11.*"
-            return "Kpyy || IFUNKpyy - Thermal Conductivity yy || Function ID (tag)"
-         elseif synIDattr(slist[2], "name") =~ "pam_21.*"
-            return "Kpxy || IFUNKpxy - Thermal Conductivity xy || Function ID (tag)"
-         elseif synIDattr(slist[2], "name") =~ "pam_31.*"
-            return "Kpzz || IFUNKpzz - Thermal Conductivity zz || Function ID (tag)"
-         elseif synIDattr(slist[2], "name") =~ "pam_41.*"
-            return "Kpxz || IFUNKpxz - Thermal Conductivity xz || Function ID (tag)"
-         elseif synIDattr(slist[2], "name") =~ "pam_51.*"
-            return "Kpyz || IFUNKpyz - Thermal Conductivity yz || Function ID (tag)"
-         endif
-      elseif synIDattr(slist[1], "name") =~ "pam_THMAT_SPECIFIC_HEAT_r2"
-         if synIDattr(slist[2], "name") =~ "pam_1.10.*"
-            return "Cp - Constant Specific Heat"
-         endif
-      elseif synIDattr(slist[1], "name") =~ "pam_THMAT_SPECIFIC_HEAT_r2c"
-         if synIDattr(slist[2], "name") =~ "pam_1.10.*"
-            return "Function ID (tag)"
-         elseif synIDattr(slist[2], "name") =~ "pam_11.*"
-            return "Href - Reference Enthalpy"
          endif
       endif
 "  }}}
@@ -17802,6 +18173,68 @@ function! pamcomplete#pamHints()
             return "n - Work Hardening Exponent"
          elseif synIDattr(slist[2], "name") =~ "pam_41.*"
             return "SIGMAmax - Maximum Plastic Stress Cut-off Value"
+         endif
+      elseif synIDattr(slist[1], "name") =~ "pam_PLY15_r8"
+         if synIDattr(slist[2], "name") =~ "pam_1.10.*"
+            return "LC1 - First True Stress - Plastic Strain Curve ID (tag)"
+         elseif synIDattr(slist[2], "name") =~ "pam_11.*"
+            return "LC2 - Second True Stress - Plastic Strain Curve ID (tag)"
+         elseif synIDattr(slist[2], "name") =~ "pam_21.*"
+            return "LC3 - Third True Stress - Plastic Strain Curve ID (tag)"
+         elseif synIDattr(slist[2], "name") =~ "pam_31.*"
+            return "LC4 - Fourth True Stress - Plastic Strain Curve ID (tag)"
+         elseif synIDattr(slist[2], "name") =~ "pam_41.*"
+            return "LC5 - Fifth True Stress - Plastic Strain Curve ID (tag)"
+         elseif synIDattr(slist[2], "name") =~ "pam_51.*"
+            return "LC6 - Sixth True Stress - Plastic Strain Curve ID (tag)"
+         elseif synIDattr(slist[2], "name") =~ "pam_61.*"
+            return "LC7 - Seventh True Stress - Plastic Strain Curve ID (tag)"
+         elseif synIDattr(slist[2], "name") =~ "pam_71.*"
+            return "LC8 - Eighth True Stress - Plastic Strain Curve ID (tag)"
+         endif
+      elseif synIDattr(slist[1], "name") =~ "pam_PLY15_r9"
+         if synIDattr(slist[2], "name") =~ "pam_1.10.*"
+            return "ERATE1 - First Strain Rate Value"
+         elseif synIDattr(slist[2], "name") =~ "pam_11.*"
+            return "ERATE2 - Second Strain Rate Value"
+         elseif synIDattr(slist[2], "name") =~ "pam_21.*"
+            return "ERATE3 - Third Strain Rate Value"
+         elseif synIDattr(slist[2], "name") =~ "pam_31.*"
+            return "ERATE4 - Fourth Strain Rate Value"
+         elseif synIDattr(slist[2], "name") =~ "pam_41.*"
+            return "ERATE5 - Fifth Strain Rate Value"
+         elseif synIDattr(slist[2], "name") =~ "pam_51.*"
+            return "ERATE6 - Sixth Strain Rate Value"
+         elseif synIDattr(slist[2], "name") =~ "pam_61.*"
+            return "ERATE7 - Seventh Strain Rate Value"
+         elseif synIDattr(slist[2], "name") =~ "pam_71.*"
+            return "ERATE8 - Eighth Strain Rate Value"
+         endif
+      elseif synIDattr(slist[1], "name") =~ "pam_PLY15_r10"
+         if synIDattr(slist[2], "name") =~ "pam_1.10.*"
+            return "ERATErm - Initial Strain Rate Threshold for Matrix Young's Modulus"
+         elseif synIDattr(slist[2], "name") =~ "pam_11.*"
+            return "Dm - First Parameter of the Matrix Young's Modulus Strain Rate Dependency Law"
+         elseif synIDattr(slist[2], "name") =~ "pam_21.*"
+            return "Nm - Second Parameter of the Matrix Young's Modulus Strain Rate Dependency Law"
+         elseif synIDattr(slist[2], "name") =~ "pam_31.*"
+            return "LAWTYPm - Type of Law for the Matrix Young's Modulus (menu)"
+         elseif synIDattr(slist[2], "name") =~ "pam_41.*"
+            return "ERATErR0 - Initial Strain Rate Threshold for Initial Yield Stress"
+         elseif synIDattr(slist[2], "name") =~ "pam_51.*"
+            return "DR0 - First Parameter of the Initial Yield Stress Strain Rate Dependency Law"
+         elseif synIDattr(slist[2], "name") =~ "pam_61.*"
+            return "NR0 - Second Parameter of the Initial Yield Stress Strain Rate Dependency Law"
+         elseif synIDattr(slist[2], "name") =~ "pam_71.*"
+            return "LAWTYPR0 - Type of Law for Initial Yield Stress (menu)"
+         endif
+      elseif synIDattr(slist[1], "name") =~ "pam_PLY15_r11"
+         if synIDattr(slist[2], "name") =~ "pam_1.10.*"
+            return "IFUNRET - Retention Factor Curve ID (tag)"
+         elseif synIDattr(slist[2], "name") =~ "pam_11.*"
+            return "Dmax - Maximum Damage"
+         elseif synIDattr(slist[2], "name") =~ "pam_21.*"
+            return "Fmax - Maximum Value of Psedo-Grain Failure Indicator"
          endif
       " }}}
       " {{{ PLYFAIL

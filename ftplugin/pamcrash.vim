@@ -233,6 +233,8 @@ map <silent> ,m22 ,,,,kk:r ~/.vim/ftplugin/pam_cards/Material/m22.inc<CR>dd
 map <silent> ,m230 ,,,,kk:r ~/.vim/ftplugin/pam_cards/Material/m230.inc<CR>dd
 "Material Type 240
 map <silent> ,m240 ,,,,kk:r ~/.vim/ftplugin/pam_cards/Material/m240.inc<CR>dd
+"Material Type 241
+map <silent> ,m241 ,,,,kk:r ~/.vim/ftplugin/pam_cards/Material/m241.inc<CR>dd
 " Material Type 24
 map <silent> ,m24 ,,,,kk:r ~/.vim/ftplugin/pam_cards/Material/m24.inc<CR>dd
 " Material Type 25
@@ -255,6 +257,8 @@ map <silent> ,m304 ,,,,kk:r ~/.vim/ftplugin/pam_cards/Material/m304.inc<CR>dd
 map <silent> ,m305 ,,,,kk:r ~/.vim/ftplugin/pam_cards/Material/m305.inc<CR>dd
 "Material Type 306
 map <silent> ,m306 ,,,,kk:r ~/.vim/ftplugin/pam_cards/Material/m306.inc<CR>dd
+"Material Type 307
+map <silent> ,m307 ,,,,kk:r ~/.vim/ftplugin/pam_cards/Material/m307.inc<CR>dd
 " Material Type 30
 map <silent> ,m30 ,,,,kk:r ~/.vim/ftplugin/pam_cards/Material/m30.inc<CR>dd
 " Material Type 31

@@ -5,8 +5,8 @@ $# BLANK                                                     QVM           IDMPD
                                                               1.               0
 $#                                                                         TITLE
 NAME 1=>mat201                                                                  
-$#       E        NU                         ALPHA
-                                                  
+$#       E        NU                         ALPHA        Gr
+                                                            
 
 $#    KSIm      KSIb      KSIt
                   0.        0.
