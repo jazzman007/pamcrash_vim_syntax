@@ -1,7 +1,7 @@
 " Vim filetype plugin file
 " Language:     PAM-CRASH
 " Maintainer:   Roman Firt (roman.firt@yahoo.de) 
-" Last Change:  2014 May 26
+" Last Change:  2021 February 16
 
 
 " Only do this when not done yet for this buffer

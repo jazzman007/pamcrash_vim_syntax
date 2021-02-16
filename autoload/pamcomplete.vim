@@ -1,6 +1,7 @@
 " Vim completion script
 " Language:     PAMCRASH
 " Maintainer:   Roman Firt (roman.firt@yahoo.de)
+" License:      WTFPL (see LICENSE file)
 
 function! pamcomplete#Complete(findstart, base)
    let elements = ['pam_Solid','pam_Hexa20','pam_Penta6','pam_Penta15','pam_Tetra10','pam_Tetr4','pam_Shell','pam_Shel6','pam_Shel8','pam_Membr','pam_Bar','pam_Sphel','pam_ELink','pam_LLink','pam_SLink']

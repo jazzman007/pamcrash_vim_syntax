@@ -1,16 +1,31 @@
-" ========================================================
+" ====================================================================
 " Vim syntax file
 " Language: PAM-CRASH,PAM-STAMP,PAM-COMFORT Input Deck
-" Syntax File Version: 9.0
+" Syntax File Version: 10.0
 " Author: Roman Firt (roman.firt@yahoo.de)
-" Latest Revision: 3. February 2021
-" =========================================================
-" NO WARRANTY! USE AT YOUR OWN RISK!
-" =========================================================
+" Latest Revision: 16. February 2021
+" ====================================================================
+"             DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+"                    Version 2, December 2004
+"
+" Copyright (C) 2004 Sam Hocevar <sam@hocevar.net>
+"
+" Everyone is permitted to copy and distribute verbatim or modified
+" copies of this license document, and changing it is allowed as long
+" as the name is changed.
+"
+"            DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+"   TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
+"
+"  0. You just DO WHAT THE FUCK YOU WANT TO.
+"
+" ====================================================================
 "
 " ToDo: 
 "
-" =========================================================
+"    - 2020.5 MMAT Input
+"
+" ====================================================================
 "
 " Release Notes:
 "    1.0 - Beta, added highlighting for white background Terminals
@@ -60,6 +75,9 @@
 "    7.3 - PREFILTER TYPE fix
 "    8.0 - VPS 2018 Syntax Implemented
 "    9.0 - VPS 2019 Syntax Implemented
+"   10.0 - VPS 2020 Syntax Implemented
+"        - Expression-based Folding
+"        - WTFPL License added
 " =========================================================
 if exists("b:current_syntax")
   finish
