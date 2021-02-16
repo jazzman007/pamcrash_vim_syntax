@@ -3,7 +3,7 @@ $#       IDFASCI
 FASCI /        1
 $#                                                                         TITLE
 NAME FASCI / ->1                                                               
-$# BLANK    NACT NACTfac
+$#   ACT    NACT NACTfac
                         
 $# BLANK     ALF    PCSA    WMAS QUALIFI   L0fib
                                                 

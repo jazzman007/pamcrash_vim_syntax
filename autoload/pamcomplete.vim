@@ -257,8 +257,11 @@ function! pamcomplete#Complete(findstart, base)
 " {{{ FASCI
       elseif synIDattr(slist[0], "name") =~ "pam_FASCI"
          if synIDattr(slist[1], "name") =~ "pam_FASCI_r3"
-            " NACR
-            if synIDattr(slist[2], "name") =~ "pam_9.*"
+            " ACT
+            if synIDattr(slist[2], "name") =~ "pam_1.8.*"
+               let start = 0
+            " NACT
+            elseif synIDattr(slist[2], "name") =~ "pam_9.*"
                let start = 8
             endif
          elseif synIDattr(slist[1], "name") =~ "pam_FASCI_r4"
@@ -4375,8 +4378,14 @@ function! pamcomplete#Complete(findstart, base)
 " {{{ FASCI
       elseif synIDattr(slist[0], "name") =~ "pam_FASCI"
          if synIDattr(slist[1], "name") =~ "pam_FASCI_r3"
-            " NACR
-            if synIDattr(slist[2], "name") =~ "pam_9.*"
+            " ACT
+            if synIDattr(slist[2], "name") =~ "pam_1.8.*"
+               call add (items,{'word':'       0','abbr':'0 (default)','menu':'Time Activation for Material 240 only'})
+               call add (items,{'word':'       1','abbr':'1','menu':'Time Activation for Material 241 only'})
+               call add (items,{'word':'       2','abbr':'2','menu':'Zajac Model Depending on Stimulation Activation'})
+               call add (items,{'word':'       3','abbr':'3','menu':'Hatze Model Depending on Stimulation'})
+            " NACT
+            elseif synIDattr(slist[2], "name") =~ "pam_9.*"
                let items = s:getTags("FUNCT",8)
             endif
          elseif synIDattr(slist[1], "name") =~ "pam_FASCI_r4"
@@ -21334,7 +21343,9 @@ function! pamcomplete#pamHints()
             return "IDFASCI - Entity ID"
          endif
       elseif synIDattr(slist[1], "name") =~ "pam_FASCI_r3"
-         if synIDattr(slist[2], "name") =~ "pam_9.*"
+         if synIDattr(slist[2], "name") =~ "pam_1.8.*"
+            return "ACT - Flag to Activate Muscle Model Activation (menu)"
+         elseif synIDattr(slist[2], "name") =~ "pam_9.*"
             return "NACT - Muscle Active State-Time Curve ID (tag)"
          elseif synIDattr(slist[2], "name") =~ "pam_17.*"
             return "NACTfac - Muscle Passive State-Time Curve Multiplier"
@@ -21350,6 +21361,30 @@ function! pamcomplete#pamHints()
             return "QUALIFIER - Definition of Muscle Fiber's Rest Length (menu)"
          elseif synIDattr(slist[2], "name") =~ "pam_41.*"
             return "L0fib - Muscle Fiber's Rest Length"
+         endif
+      elseif synIDattr(slist[1], "name") =~ "pam_FASCI_r5_1"
+         if synIDattr(slist[2], "name") =~ "pam_9.*"
+            return "q0 - Minimim Muscle Activation"
+         endif
+      elseif synIDattr(slist[1], "name") =~ "pam_FASCI_r5_2"
+         if synIDattr(slist[2], "name") =~ "pam_9.*"
+            return "q0 - Minimim Muscle Activation"
+         elseif synIDattr(slist[2], "name") =~ "pam_17.*"
+            return "PARAM1 - Time Constant of Rising Activation"
+         elseif synIDattr(slist[2], "name") =~ "pam_25.*"
+            return "PARAM2 - Ratio Between Muscle Time Activation and the Muscle Time Constant Deactivation"
+         endif
+      elseif synIDattr(slist[1], "name") =~ "pam_FASCI_r5_3"
+         if synIDattr(slist[2], "name") =~ "pam_9.*"
+            return "q0 - Minimim Muscle Activation"
+         elseif synIDattr(slist[2], "name") =~ "pam_17.*"
+            return "c - Hatze Constant c"
+         elseif synIDattr(slist[2], "name") =~ "pam_25.*"
+            return "ETA - Hatze Constant eta"
+         elseif synIDattr(slist[2], "name") =~ "pam_33.*"
+            return "k - Hatze Constant k"
+         elseif synIDattr(slist[2], "name") =~ "pam_41.*"
+            return "m - Hatze Constant m"
          endif
       elseif synIDattr(slist[1], "name") =~ "pam_FASCI_r5"
          if synIDattr(slist[2], "name") =~ "pam_9.*"

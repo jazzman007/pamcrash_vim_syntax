@@ -1948,9 +1948,9 @@ syn region      pam_Control_CKCTRL                matchgroup=pam_CardTag start="
    syn region    pam_Control_CKCTRL_GLOBAL_BOX        contained containedin=pam_Control_CKCTRL matchgroup=pam_Keyword start="GLOBAL_BOX" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Float,pam_Control_CKCTRL_GLOBAL_BOX_arg,pam_Continue,pam_Error,pam_FreeError,pam_FreeVar
       syn keyword pam_Control_CKCTRL_GLOBAL_BOX_arg   contained containedin=pam_Control_CKCTRL_GLOBAL_BOX INFO WARNING ERROR RATIO NCYCLE TIME
       hi def link pam_Control_CKCTRL_GLOBAL_BOX_arg pam_Argument
-   syn region    pam_Control_CKCTRL_FREE_NODE_NULL_VELOCITY        contained containedin=pam_Control_CKCTRL matchgroup=pam_Keyword start="FREE_NODE_NULL_VELOCITY" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Float,pam_Control_CKCTRL_FREE_NODE_NULL_VELOCITY_arg,pam_Continue,pam_Error,pam_FreeError,pam_FreeVar
-      syn keyword pam_Control_CKCTRL_FREE_NODE_NULL_VELOCITY_arg   contained containedin=pam_Control_CKCTRL_FREE_NODE_NULL_VELOCITY INFO WARNING ERROR RATIO NCYCLE TIME
-      hi def link pam_Control_CKCTRL_FREE_NODE_NULL_VELOCITY_arg pam_Argument
+   syn region    pam_Control_CKCTRL_FREE_NODE_NULL_VELO        contained containedin=pam_Control_CKCTRL matchgroup=pam_Keyword start="FREE_NODE_NULL_VELO" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Float,pam_Control_CKCTRL_FREE_NODE_NULL_VELO_arg,pam_Continue,pam_Error,pam_FreeError,pam_FreeVar
+      syn keyword pam_Control_CKCTRL_FREE_NODE_NULL_VELO_arg   contained containedin=pam_Control_CKCTRL_FREE_NODE_NULL_VELO INFO WARNING ERROR NNODE NCYCLE TIME
+      hi def link pam_Control_CKCTRL_FREE_NODE_NULL_VELO_arg pam_Argument
 " CKCTRL end}}}
 
 " {{{ PRCTRL
@@ -2740,8 +2740,11 @@ syn region      pam_Control_MSTAGE                matchgroup=pam_HeaderKW start=
    syn region      pam_BAG_TURBULENCE        contained containedin=pam_BAGIN matchgroup=pam_HeaderKW start="^[ ]\{16\}\CTURBULENCE" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Float keepend
       syn match pam_BAG_TURBULENCE_arg contained containedin=pam_BAG_TURBULENCE "KEPSILON"
       hi def link pam_BAG_TURBULENCE_arg pam_Argument
+         syn region      pam_BAG_FPM_GAS_DYN_FPM_LIMITER   transparent contained containedin=pam_BAG_FPM_GAS_DYN matchgroup=pam_Keyword start="^[ ]\{16,\}\CFPM_LIMITER" end="\n[\$\#]\@!" contains=pam_Control_YESNO,pam_FreeError,pam_FreeVar,pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
+         syn region      pam_BAG_FPM_GAS_DYN_FPM_TRANGE   transparent contained containedin=pam_BAG_FPM_GAS_DYN matchgroup=pam_Keyword start="^[ ]\{16,\}\CFPM_TRANGE" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeError,pam_FreeVar,pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
          syn region      pam_BAG_FPM_GAS_DYN_NOSLIP   transparent contained containedin=pam_BAG_FPM_GAS_DYN matchgroup=pam_Keyword start="^[ ]\{16,\}\CNOSLIP" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeError,pam_FreeVar,pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
          syn region      pam_BAG_FPM_GAS_DYN_MODEL   transparent contained containedin=pam_BAG_FPM_GAS_DYN matchgroup=pam_Keyword start="^[ ]\{16,\}\CMODEL" end="\n[\$\#]\@!" contains=pam_Integer,pam_FreeError,pam_FreeVar,pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
+         syn region      pam_BAG_FPM_GAS_DYN_INFLATOR_MODEL   transparent contained containedin=pam_BAG_FPM_GAS_DYN matchgroup=pam_Keyword start="^[ ]\{16,\}\CINFLATOR_MODEL" end="\n[\$\#]\@!" contains=pam_Integer,pam_FreeError,pam_FreeVar,pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
    syn region      pam_BAG_FPM_GAS_DYN        contained containedin=pam_BAGIN matchgroup=pam_CardTag start="^[ ]\{16\}\CFPM_GASDYN" end="^[ ]\{16\}\CEND_FPM_GASDYN" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Float,pam_Comment,pam_Comment_Position keepend
    syn region      pam_BAG_WALL_LAW        contained containedin=pam_BAGIN matchgroup=pam_HeaderKW start="^[ ]\{16\}\CWALL_LAW" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Float keepend
       syn keyword pam_BAG_WALL_LAW_arg contained containedin=pam_BAG_WALL_LAW MOMENTUM
@@ -2752,6 +2755,7 @@ syn region      pam_Control_MSTAGE                matchgroup=pam_HeaderKW start=
       syn keyword pam_BAG_FPMDCOMP_arg contained containedin=pam_BAG_FPMDCOMP LCB VCB RBC X Y Z
       hi def link pam_BAG_FPMDCOMP_arg pam_Argument
    syn region      pam_BAG_FPMMPROCS        contained containedin=pam_BAGIN matchgroup=pam_HeaderKW start="^[ ]\{16\}\CFPMMPROCS" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Integer keepend
+   syn region      pam_BAG_FPMFILLBOUND        contained containedin=pam_BAGIN matchgroup=pam_HeaderKW start="^[ ]\{16\}\CFPMFILLBOUND" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Integer keepend
    syn region      pam_BAG_FPMTBUF        contained containedin=pam_BAGIN matchgroup=pam_HeaderKW start="^[ ]\{16\}\CFPMTBUF" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Control_YESNO keepend
       syn keyword pam_BAG_FPMTBUF contained containedin=pam_BAG_FPMTBUF CONSTANT AUTO
       hi def link pam_BAG_FPMTBUF pam_Argument
@@ -3361,21 +3365,30 @@ syn region      pam_SLIPR                matchgroup=pam_CardTag start="^\CSLIPR 
    syn region      pam_FASCI_r6     transparent contained containedin=pam_FASCI start="\%1c." start="^$\n" matchgroup=pam_CardTag end="\%$" contains=@pam_Ident,pam_Comment,pam_Comment_Position,pam_End,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position keepend
    " Row 5 
    syn region      pam_FASCI_r5     transparent contained containedin=pam_FASCI start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9f8,@17f8,@25f8,@33f8,@41f8,@49f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_FASCI_r6 skipnl keepend
+   syn region      pam_FASCI_r5_1     transparent contained containedin=pam_FASCI start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_FASCI_r6 skipnl keepend
+   syn region      pam_FASCI_r5_2     transparent contained containedin=pam_FASCI start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9f8,@17f8,@25f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_FASCI_r6 skipnl keepend
+   syn region      pam_FASCI_r5_3     transparent contained containedin=pam_FASCI start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9f8,@17f8,@25f8,@33f8,@41f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_FASCI_r6 skipnl keepend
    " Row 4 
    syn region      pam_FASCI_r4     transparent contained containedin=pam_FASCI start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9f8,@17f8,@25f8,@41f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_FASCI_r5 skipnl keepend
-      syn match       pam_FASCI_r4_e1             display contained containedin=pam_FASCI_r4 "\%33c.\{8\}"
-      syn match       pam_FASCI_r4_a1             display contained containedin=pam_FASCI_r4 "\%33c[ ]\{8\}"
-      syn match       pam_FASCI_r4_a1             display contained containedin=pam_FASCI_r4 "\%33c\CCONSTANT"
-      syn match       pam_FASCI_r4_a1             display contained containedin=pam_FASCI_r4 "\%33c\CSCALE   "
+   syn region      pam_FASCI_r4_1     transparent contained containedin=pam_FASCI start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9f8,@17f8,@25f8,@41f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_FASCI_r5_1 skipnl keepend
+   syn region      pam_FASCI_r4_2     transparent contained containedin=pam_FASCI start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9f8,@17f8,@25f8,@41f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_FASCI_r5_2 skipnl keepend
+   syn region      pam_FASCI_r4_3     transparent contained containedin=pam_FASCI start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9f8,@17f8,@25f8,@41f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_FASCI_r5_3 skipnl keepend
+      syn match       pam_FASCI_r4_e1             display contained containedin=pam_FASCI_r4,pam_FASCI_r4_1,pam_FASCI_r4_2,pam_FASCI_r4_3 "\%33c.\{8\}"
+      syn match       pam_FASCI_r4_a1             display contained containedin=pam_FASCI_r4,pam_FASCI_r4_1,pam_FASCI_r4_2,pam_FASCI_r4_3 "\%33c[ ]\{8\}"
+      syn match       pam_FASCI_r4_a1             display contained containedin=pam_FASCI_r4,pam_FASCI_r4_1,pam_FASCI_r4_2,pam_FASCI_r4_3 "\%33c\CCONSTANT"
+      syn match       pam_FASCI_r4_a1             display contained containedin=pam_FASCI_r4,pam_FASCI_r4_1,pam_FASCI_r4_2,pam_FASCI_r4_3 "\%33c\CSCALE   "
       hi def link pam_FASCI_r4_a1 pam_evenArgument
       hi def link pam_FASCI_r4_e1 pam_evenError
    " Row 3 
-   syn region      pam_FASCI_r3     transparent contained containedin=pam_FASCI start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_FASCI_r4 skipnl keepend
+   syn region      pam_FASCI_r3     transparent contained containedin=pam_FASCI start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1i8,@9i8,@17f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_FASCI_r4 skipnl keepend
+   syn region      pam_FASCI_r3_1     transparent contained containedin=pam_FASCI start="\%1c       1" start="^$\n" end="\n[\$\#]\@!" contains=@1i8,@9i8,@17f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_FASCI_r4_1 skipnl keepend
+   syn region      pam_FASCI_r3_2     transparent contained containedin=pam_FASCI start="\%1c       2" start="^$\n" end="\n[\$\#]\@!" contains=@1i8,@9i8,@17f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_FASCI_r4_2 skipnl keepend
+   syn region      pam_FASCI_r3_3     transparent contained containedin=pam_FASCI start="\%1c       3" start="^$\n" end="\n[\$\#]\@!" contains=@1i8,@9i8,@17f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_FASCI_r4_3 skipnl keepend
    "Row 2 (Name)
-   syn region      pam_FASCI_r2     transparent contained containedin=pam_FASCI start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_FASCI_r3 skipnl keepend
+   syn region      pam_FASCI_r2     transparent contained containedin=pam_FASCI start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_FASCI_r3,pam_FASCI_r3_1,pam_FASCI_r3_2,pam_FASCI_r3_3 skipnl keepend
    "Row 1
    syn region      pam_FASCI_r1     transparent contained containedin=pam_FASCI start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_FASCI_r2 skipnl keepend
-syn region      pam_FASCI                matchgroup=pam_CardTag start="^\CFASCI /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_FASCI_r[1-4] keepend
+syn region      pam_FASCI                matchgroup=pam_CardTag start="^\CFASCI /" end="^\(\$\)\@!.\{6\}\/"me=e-7 keepend
 " === FASCI end}}}
 
 " {{{=== GASPEC begin
@@ -3594,7 +3607,7 @@ syn region      pam_CNTAC36        matchgroup=pam_CardTag start="^\CCNTAC / .\{8
    " Row 5
    syn region      pam_CNTAC37_r5     transparent contained containedin=pam_CNTAC37 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@11f10,@21f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_CNTAC37_r6 skipnl keepend
       syn match       pam_CNTAC37_r5_e1             display contained containedin=pam_CNTAC37_r5 "\%1c.\{,10\}"
-      syn match       pam_CNTAC37_r5_a1             display contained containedin=pam_CNTAC37_r5 "\%1c[ ]*\(\CCONST\|\CCOUFR\|\CFRTAB\)[ ]*\%11c"
+      syn match       pam_CNTAC37_r5_a1             display contained containedin=pam_CNTAC37_r5 "\%1c[ ]*\(\CCONST\|\CCOUFR\|\CFRTAB\|\CADVFR\)[ ]*\%11c"
       hi def link pam_CNTAC37_r5_a1 pam_oddArgument
       hi def link pam_CNTAC37_r5_e1 pam_oddError
    " Row 4
@@ -3621,7 +3634,7 @@ syn region      pam_CNTAC37        matchgroup=pam_CardTag start="^\CCNTAC / .\{8
    " Row 5
    syn region      pam_CNTAC43_r5     transparent contained containedin=pam_CNTAC43 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@11f10,@21f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_CNTAC43_r6 skipnl keepend
       syn match       pam_CNTAC43_r5_e1             display contained containedin=pam_CNTAC43_r5 "\%1c.\{,10\}"
-      syn match       pam_CNTAC43_r5_a1             display contained containedin=pam_CNTAC43_r5 "\%1c[ ]*\(\CCONST\|\CCOUFR\|\CFRTAB\)[ ]*\%11c"
+      syn match       pam_CNTAC43_r5_a1             display contained containedin=pam_CNTAC43_r5 "\%1c[ ]*\(\CCONST\|\CCOUFR\|\CFRTAB\|\CADVFR\)[ ]*\%11c"
       hi def link pam_CNTAC43_r5_a1 pam_oddArgument
       hi def link pam_CNTAC43_r5_e1 pam_oddError
    " Row 4
@@ -3677,7 +3690,7 @@ syn region      pam_CNTAC44        matchgroup=pam_CardTag start="^\CCNTAC / .\{8
    " Row 5
    syn region      pam_CNTAC46_r5     transparent contained containedin=pam_CNTAC46 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@11f10,@21f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_CNTAC46_r6 skipnl keepend
       syn match       pam_CNTAC46_r5_e1             display contained containedin=pam_CNTAC46_r5 "\%1c.\{,10\}"
-      syn match       pam_CNTAC46_r5_a1             display contained containedin=pam_CNTAC46_r5 "\%1c[ ]*\(\CCONST\|\CCOUFR\|\CFRTAB\)[ ]*\%11c"
+      syn match       pam_CNTAC46_r5_a1             display contained containedin=pam_CNTAC46_r5 "\%1c[ ]*\(\CCONST\|\CCOUFR\|\CFRTAB\|\CADVFR\)[ ]*\%11c"
       hi def link pam_CNTAC46_r5_a1 pam_oddArgument
       hi def link pam_CNTAC46_r5_e1 pam_oddError
    " Row 4
@@ -3966,6 +3979,7 @@ syn region      pam_NODCO          matchgroup=pam_CardTag start="^\CNODCO /" end
    syn region      pam_LINCO_r2     transparent contained containedin=pam_LINCO start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_LINCO_r3 skipnl keepend
    "Row 1
       syn match       pam_LINCO_r1_e1             display contained containedin=pam_LINCO_r1 "\%17c.\{,8\}"
+      syn match       pam_LINCO_r1_a1             display contained containedin=pam_LINCO_r1 "\%17c[ ]\{8\}"
       syn match       pam_LINCO_r1_a1             display contained containedin=pam_LINCO_r1 "\%17c\CSTRUCT  \|ACOUST  \|THERM   "
       syn match       pam_LINCO_r1_v1             display contained containedin=pam_LINCO_r1 "\%17c[ ]*\[[^\[]\{-}\]\%25c"
       syn match       pam_LINCO_r1_v1             display contained containedin=pam_LINCO_r1 "\%17c[ ]*<[^<]\{-}>\%25c"
