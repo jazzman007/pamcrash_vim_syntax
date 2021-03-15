@@ -9319,6 +9319,31 @@ syn region      pam_Mater371        matchgroup=pam_CardTag start="^\CMATER / .\{
 syn region      pam_MMAT        matchgroup=pam_CardTag start="^\CMMAT  /"rs=s+8 end="^\CEND_MMAT" keepend
 "}}} MMAT end
 
+"{{{ MMAT new begin
+   "Row 3 (META)
+   syn region      pam_MMATnew_r3     transparent contained containedin=pam_MMATnew start="^[\$\#]" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position nextgroup=pam_MMATnew_r3 skipnl keepend
+   syn region      pam_MMATnew_r3     transparent contained containedin=pam_MMATnew start="^META" end="^END_META" contains=pam_GroupMeta nextgroup=pam_MMATnew_r3 skipnl keepend
+   "Row 2 (Name)
+   syn region      pam_MMATnew_r2     transparent contained containedin=pam_MMATnew start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_MMATnew_r3 skipnl keepend
+   "Row 1
+   syn region      pam_MMATnew_r1     transparent contained containedin=pam_MMATnew start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,pam_MMATnew_r1_a1,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_MMATnew_r2 skipnl keepend
+       syn keyword       pam_MMATnew_r1_a1             contained containedin=pam_MMATnew_r1 2020
+       hi def link pam_MMATnew_r1_a1 pam_Keyword
+   " {{{ PHYSICS 
+       " {{{ MECHANICAL
+          " {{{ ELASTO_VISCO_PLASTICITY
+          syn region      pam_MMATnew_MECHANICAL_EVP   transparent contained matchgroup=pam_Keyword start="\CELASTO_VISCO_PLASTICITY" end="\%$" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
+          " }}}
+       syn region      pam_MMATnew_MECHANICAL   transparent contained containedin=pam_MMATnew matchgroup=pam_CardTag start="^[ ]*\CMECHANICAL" end="^[ ]*\CEND_MECHANICAL" contains=pam_MMATnew_MECHANICAL_EVP,pam_Comment,pam_Comment_Position,pam_Error keepend
+       " }}}
+   " }}}
+   " {{{ MODULES
+      " {{{ MASS DENSITY
+      " }}}
+   " }}}
+syn region      pam_MMATnew        matchgroup=pam_CardTag start="^\CMMAT  /.*\%17c[ ]\+2020[ ]*$"rs=s+8 end="^\CEND_MMAT" keepend
+"}}} MMAT new end
+
 "{{{ FPMIN begin
    "Row 2 (Name)
 syn region      pam_FPMIN_r2     transparent contained containedin=pam_FPMIN start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=@pam_FPMIN_Mandatory skipnl keepend
