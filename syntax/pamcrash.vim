@@ -9332,13 +9332,39 @@ syn region      pam_MMAT        matchgroup=pam_CardTag start="^\CMMAT  /"rs=s+8 
    " {{{ PHYSICS 
        " {{{ MECHANICAL
           " {{{ ELASTO_VISCO_PLASTICITY
-          syn region      pam_MMATnew_MECHANICAL_EVP   transparent contained matchgroup=pam_Keyword start="\CELASTO_VISCO_PLASTICITY" end="\%$" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
+          syn region      pam_MMATnew_MECHANICAL_EVP   transparent contained matchgroup=pam_Keyword start="\CELASTO_VISCO_PLASTICITY" end="\%$" contains=pam_Comment,pam_Comment_Position,pam_Error,pam_MMATnew_DEPENDENCY_PHASE keepend
           " }}}
        syn region      pam_MMATnew_MECHANICAL   transparent contained containedin=pam_MMATnew matchgroup=pam_CardTag start="^[ ]*\CMECHANICAL" end="^[ ]*\CEND_MECHANICAL" contains=pam_MMATnew_MECHANICAL_EVP,pam_Comment,pam_Comment_Position,pam_Error keepend
        " }}}
    " }}}
+   " {{{ DEPENDENCY
+         syn region      pam_MMATnew_DEPENDENCY_PHASE     transparent contained matchgroup=pam_CardTag start="^[ ]*\CDEPENDENCY" end="\n[\$\#]\@!" contains=pam_MMATnew_DEPENDENCY_PHASE_arg,pam_Comment,pam_Comment_Position,pam_Error keepend
+         syn keyword     pam_MMATnew_DEPENDENCY_PHASE_arg contained containedin=pam_MMATnew_DEPENDENCY_PHASE PHASE
+         hi def link pam_MMATnew_DEPENDENCY_PHASE_arg pam_Keyword
+   " }}}
    " {{{ MODULES
       " {{{ MASS DENSITY
+       syn region      pam_MMATnew_MODULE_MASS_DENSITY   transparent contained containedin=pam_MMATnew_MECHANICAL_EVP matchgroup=pam_CardTag start="^[ ]*\CMASS_DENSITY" end="^[ ]*\CEND_MASS_DENSITY" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
+         " {{{ MODEL
+         syn region      pam_MMATnew_MASS_DENSITY_MODEL transparent contained containedin=pam_MMATnew_MODULE_MASS_DENSITY matchgroup=pam_CardTag start="^[ ]*\CMODEL" end="^[ ]*\CEND_MODEL" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
+            " {{{ HOMOGENEOUS
+            syn region      pam_MMATnew_MASS_DENSITY_MODEL_HOMOGENEOUS transparent contained containedin=pam_MMATnew_MASS_DENSITY_MODEL matchgroup=pam_Keyword start="\CHOMOGENEOUS" end="\%$" contains=pam_MMATnew_MASS_DENSITY_MODEL_HOMOGENEOUS_RHO,pam_Comment,pam_Comment_Position,pam_Error keepend
+               syn region      pam_MMATnew_MASS_DENSITY_MODEL_HOMOGENEOUS_RHO transparent contained matchgroup=pam_Argument start="^[ ]*\CRHO" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               
+            " }}} 
+         " }}} 
+      " }}}
+      " {{{ ELASTICITY
+       syn region      pam_MMATnew_MODULE_ELASTICITY   transparent contained containedin=pam_MMATnew_MECHANICAL_EVP matchgroup=pam_CardTag start="^[ ]*\CELASTICITY" end="^[ ]*\CEND_ELASTICITY" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
+         " {{{ MODEL
+         syn region      pam_MMATnew_ELASTICITY_MODEL transparent contained containedin=pam_MMATnew_MODULE_ELASTICITY matchgroup=pam_CardTag start="^[ ]*\CMODEL" end="^[ ]*\CEND_MODEL" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
+            " {{{ ISOTROPIC_LINEAR
+            syn region      pam_MMATnew_ELASTICITY_MODEL_ISOTROPIC_LINEAR transparent contained containedin=pam_MMATnew_ELASTICITY_MODEL matchgroup=pam_Keyword start="\CISOTROPIC_LINEAR" end="\%$" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
+               syn region      pam_MMATnew_ELASTICITY_MODEL_ISOTROPIC_LINEAR_E transparent contained containedin=pam_MMATnew_ELASTICITY_MODEL_ISOTROPIC_LINEAR matchgroup=pam_Argument start="^[ ]*\CE" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               syn region      pam_MMATnew_ELASTICITY_MODEL_ISOTROPIC_LINEAR_NU transparent contained containedin=pam_MMATnew_ELASTICITY_MODEL_ISOTROPIC_LINEAR matchgroup=pam_Argument start="^[ ]*\CNU" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               
+            " }}} 
+         " }}} 
       " }}}
    " }}}
 syn region      pam_MMATnew        matchgroup=pam_CardTag start="^\CMMAT  /.*\%17c[ ]\+2020[ ]*$"rs=s+8 end="^\CEND_MMAT" keepend
