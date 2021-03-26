@@ -9355,14 +9355,39 @@ syn region      pam_MMAT        matchgroup=pam_CardTag start="^\CMMAT  /"rs=s+8 
          " }}} 
       " }}}
       " {{{ ELASTICITY
-       syn region      pam_MMATnew_MODULE_ELASTICITY   transparent contained containedin=pam_MMATnew_MECHANICAL_EVP matchgroup=pam_CardTag start="^[ ]*\CELASTICITY" end="^[ ]*\CEND_ELASTICITY" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
+       syn region      pam_MMATnew_MODULE_ELASTICITY   transparent contained containedin=pam_MMATnew_MECHANICAL_EVP matchgroup=pam_CardTag start="^[ ]*\CELASTICITY" end="^[ ]*\CEND_ELASTICITY" contains=pam_Comment,pam_Comment_Position,pam_FreeError,pam_Error keepend
          " {{{ MODEL
-         syn region      pam_MMATnew_ELASTICITY_MODEL transparent contained containedin=pam_MMATnew_MODULE_ELASTICITY matchgroup=pam_CardTag start="^[ ]*\CMODEL" end="^[ ]*\CEND_MODEL" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
+         syn region      pam_MMATnew_ELASTICITY_MODEL transparent contained containedin=pam_MMATnew_MODULE_ELASTICITY matchgroup=pam_CardTag start="^[ ]*\CMODEL" end="^[ ]*\CEND_MODEL" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
             " {{{ ISOTROPIC_LINEAR
-            syn region      pam_MMATnew_ELASTICITY_MODEL_ISOTROPIC_LINEAR transparent contained containedin=pam_MMATnew_ELASTICITY_MODEL matchgroup=pam_Keyword start="\CISOTROPIC_LINEAR" end="\%$" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
+            syn region      pam_MMATnew_ELASTICITY_MODEL_ISOTROPIC_LINEAR transparent contained containedin=pam_MMATnew_ELASTICITY_MODEL matchgroup=pam_Keyword start="\CISOTROPIC_LINEAR" end="\%$" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
                syn region      pam_MMATnew_ELASTICITY_MODEL_ISOTROPIC_LINEAR_E transparent contained containedin=pam_MMATnew_ELASTICITY_MODEL_ISOTROPIC_LINEAR matchgroup=pam_Argument start="^[ ]*\CE" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
                syn region      pam_MMATnew_ELASTICITY_MODEL_ISOTROPIC_LINEAR_NU transparent contained containedin=pam_MMATnew_ELASTICITY_MODEL_ISOTROPIC_LINEAR matchgroup=pam_Argument start="^[ ]*\CNU" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
-               
+            " }}} 
+         " }}} 
+      " }}}
+      " {{{ PLASTICITY YIELD CONDITION
+       syn region      pam_MMATnew_MODULE_PLASTICITY_YIELD_CONDITION   transparent contained containedin=pam_MMATnew_MECHANICAL_EVP matchgroup=pam_CardTag start="^[ ]*\CPLASTICITY_YIELD_CONDITION" end="^[ ]*\CEND_PLASTICITY_YIELD_CONDITION" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+         " {{{ MODEL
+         syn region      pam_MMATnew_PLASTICITY_YIELD_CONDITION_MODEL transparent contained containedin=pam_MMATnew_MODULE_PLASTICITY_YIELD_CONDITION matchgroup=pam_CardTag start="^[ ]*\CMODEL" end="^[ ]*\CEND_MODEL" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+            " {{{ VON_MISES
+            syn region      pam_MMATnew_PLASTICITY_YIELD_CONDITION_MODEL_VON_MISES transparent contained containedin=pam_MMATnew_PLASTICITY_YIELD_CONDITION_MODEL matchgroup=pam_Keyword start="\CVON_MISES" end="\%$" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+            " }}} 
+            " {{{ RAGHAVA_HILL
+            syn region      pam_MMATnew_PLASTICITY_YIELD_CONDITION_MODEL_RAGHAVA_HILL transparent contained containedin=pam_MMATnew_PLASTICITY_YIELD_CONDITION_MODEL matchgroup=pam_Keyword start="\CRAGHAVA_HILL" end="\%$" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               syn region      pam_MMATnew_PLASTICITY_YIELD_CONDITION_MODEL_RAGHAVA_HILL transparent contained containedin=pam_MMATnew_PLASTICITY_YIELD_CONDITION_MODEL_RAGHAVA_HILL matchgroup=pam_Argument start="^[ ]*\C[FGHLMN]" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               syn region      pam_MMATnew_PLASTICITY_YIELD_CONDITION_MODEL_RAGHAVA_HILL transparent contained containedin=pam_MMATnew_PLASTICITY_YIELD_CONDITION_MODEL_RAGHAVA_HILL matchgroup=pam_Argument start="^[ ]*\CALPHA" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+            " }}} 
+            " {{{ HERSHEY
+            syn region      pam_MMATnew_PLASTICITY_YIELD_CONDITION_MODEL_HERSHEY transparent contained containedin=pam_MMATnew_PLASTICITY_YIELD_CONDITION_MODEL matchgroup=pam_Keyword start="\CHERSHEY" end="\%$" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               syn region      pam_MMATnew_PLASTICITY_YIELD_CONDITION_MODEL_HERSHEY transparent contained containedin=pam_MMATnew_PLASTICITY_YIELD_CONDITION_MODEL_HERSHEY matchgroup=pam_Argument start="^[ ]*\CA" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+            " }}} 
+            " {{{ HILL48
+            syn region      pam_MMATnew_PLASTICITY_YIELD_CONDITION_MODEL_HILL48 transparent contained containedin=pam_MMATnew_PLASTICITY_YIELD_CONDITION_MODEL matchgroup=pam_Keyword start="\CHILL48" end="\%$" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               syn region      pam_MMATnew_PLASTICITY_YIELD_CONDITION_MODEL_HILL48 transparent contained containedin=pam_MMATnew_PLASTICITY_YIELD_CONDITION_MODEL_HILL48 matchgroup=pam_Argument start="^[ ]*\C[FGHLMN]" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+            " }}} 
+            " {{{ KARAFILLIS_BOYCE
+            syn region      pam_MMATnew_PLASTICITY_YIELD_CONDITION_MODEL_KARAFILLIS_BOYCE transparent contained containedin=pam_MMATnew_PLASTICITY_YIELD_CONDITION_MODEL matchgroup=pam_Keyword start="\CKARAFILLIS_BOYCE" end="\%$" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               syn region      pam_MMATnew_PLASTICITY_YIELD_CONDITION_MODEL_KARAFILLIS_BOYCE transparent contained containedin=pam_MMATnew_PLASTICITY_YIELD_CONDITION_MODEL_KARAFILLIS_BOYCE matchgroup=pam_Argument start="^[ ]*\C[AC]" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
             " }}} 
          " }}} 
       " }}}
