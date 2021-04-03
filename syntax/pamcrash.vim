@@ -9374,20 +9374,76 @@ syn region      pam_MMAT        matchgroup=pam_CardTag start="^\CMMAT  /"rs=s+8 
             " }}} 
             " {{{ RAGHAVA_HILL
             syn region      pam_MMATnew_PLASTICITY_YIELD_CONDITION_MODEL_RAGHAVA_HILL transparent contained containedin=pam_MMATnew_PLASTICITY_YIELD_CONDITION_MODEL matchgroup=pam_Keyword start="\CRAGHAVA_HILL" end="\%$" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
-               syn region      pam_MMATnew_PLASTICITY_YIELD_CONDITION_MODEL_RAGHAVA_HILL transparent contained containedin=pam_MMATnew_PLASTICITY_YIELD_CONDITION_MODEL_RAGHAVA_HILL matchgroup=pam_Argument start="^[ ]*\C[FGHLMN]" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
-               syn region      pam_MMATnew_PLASTICITY_YIELD_CONDITION_MODEL_RAGHAVA_HILL transparent contained containedin=pam_MMATnew_PLASTICITY_YIELD_CONDITION_MODEL_RAGHAVA_HILL matchgroup=pam_Argument start="^[ ]*\CALPHA" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               syn region      pam_MMATnew_PLASTICITY_YIELD_CONDITION_MODEL_RAGHAVA_HILL_1 transparent contained containedin=pam_MMATnew_PLASTICITY_YIELD_CONDITION_MODEL_RAGHAVA_HILL matchgroup=pam_Argument start="^[ ]*\C[FGHLMN]" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               syn region      pam_MMATnew_PLASTICITY_YIELD_CONDITION_MODEL_RAGHAVA_HILL_1 transparent contained containedin=pam_MMATnew_PLASTICITY_YIELD_CONDITION_MODEL_RAGHAVA_HILL matchgroup=pam_Argument start="^[ ]*\CALPHA" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
             " }}} 
             " {{{ HERSHEY
             syn region      pam_MMATnew_PLASTICITY_YIELD_CONDITION_MODEL_HERSHEY transparent contained containedin=pam_MMATnew_PLASTICITY_YIELD_CONDITION_MODEL matchgroup=pam_Keyword start="\CHERSHEY" end="\%$" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
-               syn region      pam_MMATnew_PLASTICITY_YIELD_CONDITION_MODEL_HERSHEY transparent contained containedin=pam_MMATnew_PLASTICITY_YIELD_CONDITION_MODEL_HERSHEY matchgroup=pam_Argument start="^[ ]*\CA" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               syn region      pam_MMATnew_PLASTICITY_YIELD_CONDITION_MODEL_HERSHEY_1 transparent contained containedin=pam_MMATnew_PLASTICITY_YIELD_CONDITION_MODEL_HERSHEY matchgroup=pam_Argument start="^[ ]*\CA" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
             " }}} 
             " {{{ HILL48
             syn region      pam_MMATnew_PLASTICITY_YIELD_CONDITION_MODEL_HILL48 transparent contained containedin=pam_MMATnew_PLASTICITY_YIELD_CONDITION_MODEL matchgroup=pam_Keyword start="\CHILL48" end="\%$" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
-               syn region      pam_MMATnew_PLASTICITY_YIELD_CONDITION_MODEL_HILL48 transparent contained containedin=pam_MMATnew_PLASTICITY_YIELD_CONDITION_MODEL_HILL48 matchgroup=pam_Argument start="^[ ]*\C[FGHLMN]" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               syn region      pam_MMATnew_PLASTICITY_YIELD_CONDITION_MODEL_HILL48_1 transparent contained containedin=pam_MMATnew_PLASTICITY_YIELD_CONDITION_MODEL_HILL48 matchgroup=pam_Argument start="^[ ]*\C[FGHLMN]" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
             " }}} 
             " {{{ KARAFILLIS_BOYCE
             syn region      pam_MMATnew_PLASTICITY_YIELD_CONDITION_MODEL_KARAFILLIS_BOYCE transparent contained containedin=pam_MMATnew_PLASTICITY_YIELD_CONDITION_MODEL matchgroup=pam_Keyword start="\CKARAFILLIS_BOYCE" end="\%$" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
-               syn region      pam_MMATnew_PLASTICITY_YIELD_CONDITION_MODEL_KARAFILLIS_BOYCE transparent contained containedin=pam_MMATnew_PLASTICITY_YIELD_CONDITION_MODEL_KARAFILLIS_BOYCE matchgroup=pam_Argument start="^[ ]*\C[AC]" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               syn region      pam_MMATnew_PLASTICITY_YIELD_CONDITION_MODEL_KARAFILLIS_BOYCE_1 transparent contained containedin=pam_MMATnew_PLASTICITY_YIELD_CONDITION_MODEL_KARAFILLIS_BOYCE matchgroup=pam_Argument start="^[ ]*\C[AC]" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+            " }}} 
+         " }}} 
+      " }}}
+      " {{{ PLASTICITY POTENTIAL
+       syn region      pam_MMATnew_MODULE_PLASTICITY_POTENTIAL   transparent contained containedin=pam_MMATnew_MECHANICAL_EVP matchgroup=pam_CardTag start="^[ ]*\CPLASTICITY_POTENTIAL" end="^[ ]*\CEND_PLASTICITY_POTENTIAL" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+         " {{{ MODEL
+         syn region      pam_MMATnew_PLASTICITY_POTENTIAL_MODEL transparent contained containedin=pam_MMATnew_MODULE_PLASTICITY_POTENTIAL matchgroup=pam_CardTag start="^[ ]*\CMODEL" end="^[ ]*\CEND_MODEL" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+            " {{{ RAGHAVA_HILL
+            syn region      pam_MMATnew_PLASTICITY_POTENTIAL_MODEL_RAGHAVA_HILL transparent contained containedin=pam_MMATnew_PLASTICITY_POTENTIAL_MODEL matchgroup=pam_Keyword start="\CRAGHAVA_HILL" end="\%$" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               syn region      pam_MMATnew_PLASTICITY_POTENTIAL_MODEL_RAGHAVA_HILL_1 transparent contained containedin=pam_MMATnew_PLASTICITY_POTENTIAL_MODEL_RAGHAVA_HILL matchgroup=pam_Argument start="^[ ]*\C[FGHLMN]" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               syn region      pam_MMATnew_PLASTICITY_POTENTIAL_MODEL_RAGHAVA_HILL_1 transparent contained containedin=pam_MMATnew_PLASTICITY_POTENTIAL_MODEL_RAGHAVA_HILL matchgroup=pam_Argument start="^[ ]*\CNU_EP" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+            " }}} 
+            " {{{ HILL48
+            syn region      pam_MMATnew_PLASTICITY_POTENTIAL_MODEL_HILL48 transparent contained containedin=pam_MMATnew_PLASTICITY_POTENTIAL_MODEL matchgroup=pam_Keyword start="\CHILL48" end="\%$" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               syn region      pam_MMATnew_PLASTICITY_POTENTIAL_MODEL_HILL48_1 transparent contained containedin=pam_MMATnew_PLASTICITY_POTENTIAL_MODEL_HILL48 matchgroup=pam_Argument start="^[ ]*\C[FGHLMN]" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+            " }}} 
+         " }}} 
+      " }}}
+      " {{{ PLASTICITY ISOTROPIC HARDENING
+       syn region      pam_MMATnew_MODULE_PLASTICITY_ISOTROPIC_HARDENING   transparent contained containedin=pam_MMATnew_MECHANICAL_EVP matchgroup=pam_CardTag start="^[ ]*\CPLASTICITY_ISOTROPIC_HARDENING" end="^[ ]*\CEND_PLASTICITY_ISOTROPIC_HARDENING" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+         " {{{ MODEL
+         syn region      pam_MMATnew_PLASTICITY_ISOTROPIC_HARDENING_MODEL transparent contained containedin=pam_MMATnew_MODULE_PLASTICITY_ISOTROPIC_HARDENING matchgroup=pam_CardTag start="^[ ]*\CMODEL" end="^[ ]*\CEND_MODEL" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+            " {{{ TABULAR
+            syn region      pam_MMATnew_PLASTICITY_ISOTROPIC_HARDENING_MODEL_TABULAR transparent contained containedin=pam_MMATnew_PLASTICITY_ISOTROPIC_HARDENING_MODEL matchgroup=pam_Keyword start="\CTABULAR" end="\%$" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               syn region      pam_MMATnew_PLASTICITY_ISOTROPIC_HARDENING_MODEL_TABULAR_1 transparent contained containedin=pam_MMATnew_PLASTICITY_ISOTROPIC_HARDENING_MODEL_TABULAR matchgroup=pam_Argument start="^[ ]*\CYC" end="\n[\$\#]\@!" contains=pam_Integer,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                  syn keyword pam_MMATnew_PLASTICITY_ISOTROPIC_HARDENING_MODEL_TABULAR_1_arg contained containedin=pam_MMATnew_PLASTICITY_ISOTROPIC_HARDENING_MODEL_TABULAR_1 TABLE
+                  hi def link pam_MMATnew_PLASTICITY_ISOTROPIC_HARDENING_MODEL_TABULAR_1_arg pam_Argument
+            " }}} 
+            " {{{ SWIFT RATIONAL
+            syn region      pam_MMATnew_PLASTICITY_ISOTROPIC_HARDENING_MODEL_SWIFT_RATIONAL transparent contained containedin=pam_MMATnew_PLASTICITY_ISOTROPIC_HARDENING_MODEL matchgroup=pam_Keyword start="\CSWIFT_RATIONAL" end="\%$" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               syn region      pam_MMATnew_PLASTICITY_ISOTROPIC_HARDENING_MODEL_SWIFT_RATIONAL_1 transparent contained containedin=pam_MMATnew_PLASTICITY_ISOTROPIC_HARDENING_MODEL_SWIFT_RATIONAL matchgroup=pam_Argument start="^[ ]*\C[KN]" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               syn region      pam_MMATnew_PLASTICITY_ISOTROPIC_HARDENING_MODEL_SWIFT_RATIONAL_1 transparent contained containedin=pam_MMATnew_PLASTICITY_ISOTROPIC_HARDENING_MODEL_SWIFT_RATIONAL matchgroup=pam_Argument start="^[ ]*\CEPSI0" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               syn region      pam_MMATnew_PLASTICITY_ISOTROPIC_HARDENING_MODEL_SWIFT_RATIONAL_1 transparent contained containedin=pam_MMATnew_PLASTICITY_ISOTROPIC_HARDENING_MODEL_SWIFT_RATIONAL matchgroup=pam_Argument start="^[ ]*\CR[123]" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+            " }}} 
+            " {{{ KRUPKOWSKI
+            syn region      pam_MMATnew_PLASTICITY_ISOTROPIC_HARDENING_MODEL_KRUPKOWSKI transparent contained containedin=pam_MMATnew_PLASTICITY_ISOTROPIC_HARDENING_MODEL matchgroup=pam_Keyword start="\CKRUPKOWSKI" end="\%$" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               syn region      pam_MMATnew_PLASTICITY_ISOTROPIC_HARDENING_MODEL_KRUPKOWSKI_1 transparent contained containedin=pam_MMATnew_PLASTICITY_ISOTROPIC_HARDENING_MODEL_KRUPKOWSKI matchgroup=pam_Argument start="^[ ]*\C[KN]" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               syn region      pam_MMATnew_PLASTICITY_ISOTROPIC_HARDENING_MODEL_KRUPKOWSKI_1 transparent contained containedin=pam_MMATnew_PLASTICITY_ISOTROPIC_HARDENING_MODEL_KRUPKOWSKI matchgroup=pam_Argument start="^[ ]*\CEPSI0" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               syn region      pam_MMATnew_PLASTICITY_ISOTROPIC_HARDENING_MODEL_KRUPKOWSKI_1 transparent contained containedin=pam_MMATnew_PLASTICITY_ISOTROPIC_HARDENING_MODEL_KRUPKOWSKI matchgroup=pam_Argument start="^[ ]*\CSIGMA_MAX" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+            " }}} 
+            " {{{ POWER
+            syn region      pam_MMATnew_PLASTICITY_ISOTROPIC_HARDENING_MODEL_POWER transparent contained containedin=pam_MMATnew_PLASTICITY_ISOTROPIC_HARDENING_MODEL matchgroup=pam_Keyword start="\CPOWER" end="\%$" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               syn region      pam_MMATnew_PLASTICITY_ISOTROPIC_HARDENING_MODEL_POWER_1 transparent contained containedin=pam_MMATnew_PLASTICITY_ISOTROPIC_HARDENING_MODEL_POWER matchgroup=pam_Argument start="^[ ]*\C[ABN]" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               syn region      pam_MMATnew_PLASTICITY_ISOTROPIC_HARDENING_MODEL_POWER_1 transparent contained containedin=pam_MMATnew_PLASTICITY_ISOTROPIC_HARDENING_MODEL_POWER matchgroup=pam_Argument start="^[ ]*\CSIGMA_MAX" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+            " }}} 
+            " {{{ POLYMER
+            syn region      pam_MMATnew_PLASTICITY_ISOTROPIC_HARDENING_MODEL_POLYMER transparent contained containedin=pam_MMATnew_PLASTICITY_ISOTROPIC_HARDENING_MODEL matchgroup=pam_Keyword start="\CPOLYMER" end="\%$" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               syn region      pam_MMATnew_PLASTICITY_ISOTROPIC_HARDENING_MODEL_POLYMER_1 transparent contained containedin=pam_MMATnew_PLASTICITY_ISOTROPIC_HARDENING_MODEL_POLYMER matchgroup=pam_Argument start="^[ ]*\CSIGMA[YL]" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               syn region      pam_MMATnew_PLASTICITY_ISOTROPIC_HARDENING_MODEL_POLYMER_1 transparent contained containedin=pam_MMATnew_PLASTICITY_ISOTROPIC_HARDENING_MODEL_POLYMER matchgroup=pam_Argument start="^[ ]*\CSIGMA_PLAT" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               syn region      pam_MMATnew_PLASTICITY_ISOTROPIC_HARDENING_MODEL_POLYMER_1 transparent contained containedin=pam_MMATnew_PLASTICITY_ISOTROPIC_HARDENING_MODEL_POLYMER matchgroup=pam_Argument start="^[ ]*\CE0" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               syn region      pam_MMATnew_PLASTICITY_ISOTROPIC_HARDENING_MODEL_POLYMER_1 transparent contained containedin=pam_MMATnew_PLASTICITY_ISOTROPIC_HARDENING_MODEL_POLYMER matchgroup=pam_Argument start="^[ ]*\C[BN]" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+            " }}} 
+            " {{{ GENERALIZED_VOCE
+            syn region      pam_MMATnew_PLASTICITY_ISOTROPIC_HARDENING_MODEL_GENERALIZED_VOCE transparent contained containedin=pam_MMATnew_PLASTICITY_ISOTROPIC_HARDENING_MODEL matchgroup=pam_Keyword start="\CGENERALIZED_VOCE" end="\%$" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               syn region      pam_MMATnew_PLASTICITY_ISOTROPIC_HARDENING_MODEL_GENERALIZED_VOCE_1 transparent contained containedin=pam_MMATnew_PLASTICITY_ISOTROPIC_HARDENING_MODEL_GENERALIZED_VOCE matchgroup=pam_Argument start="^[ ]*\C[QT]R[1-4]" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               syn region      pam_MMATnew_PLASTICITY_ISOTROPIC_HARDENING_MODEL_GENERALIZED_VOCE_1 transparent contained containedin=pam_MMATnew_PLASTICITY_ISOTROPIC_HARDENING_MODEL_GENERALIZED_VOCE matchgroup=pam_Argument start="^[ ]*\CSIGMA0" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
             " }}} 
          " }}} 
       " }}}
