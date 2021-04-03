@@ -9447,6 +9447,22 @@ syn region      pam_MMAT        matchgroup=pam_CardTag start="^\CMMAT  /"rs=s+8 
             " }}} 
          " }}} 
       " }}}
+      " {{{ PLASTICITY HARDENING RATE
+       syn region      pam_MMATnew_MODULE_PLASTICITY_HARDENING_RATE   transparent contained containedin=pam_MMATnew_MECHANICAL_EVP matchgroup=pam_CardTag start="^[ ]*\CPLASTICITY_HARDENING_RATE" end="^[ ]*\CEND_PLASTICITY_HARDENING_RATE" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+         " {{{ MODEL
+         syn region      pam_MMATnew_PLASTICITY_HARDENING_RATE_MODEL transparent contained containedin=pam_MMATnew_MODULE_PLASTICITY_HARDENING_RATE matchgroup=pam_CardTag start="^[ ]*\CMODEL" end="^[ ]*\CEND_MODEL" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+            " {{{ JOHNSON_COOK
+            syn region      pam_MMATnew_PLASTICITY_HARDENING_RATE_MODEL_JOHNSON_COOK transparent contained containedin=pam_MMATnew_PLASTICITY_HARDENING_RATE_MODEL matchgroup=pam_Keyword start="\CJOHNSON_COOK" end="\%$" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               syn region      pam_MMATnew_PLASTICITY_HARDENING_RATE_MODEL_JOHNSON_COOK_1 transparent contained containedin=pam_MMATnew_PLASTICITY_HARDENING_RATE_MODEL_JOHNSON_COOK matchgroup=pam_Argument start="^[ ]*\C[AC]" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               syn region      pam_MMATnew_PLASTICITY_HARDENING_RATE_MODEL_JOHNSON_COOK_1 transparent contained containedin=pam_MMATnew_PLASTICITY_HARDENING_RATE_MODEL_JOHNSON_COOK matchgroup=pam_Argument start="^[ ]*\CPSR_REF" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+            " }}} 
+            " {{{ MODIFIED_COWPER_SYMONDS
+            syn region      pam_MMATnew_PLASTICITY_HARDENING_RATE_MODEL_MODIFIED_COWPER_SYMONDS transparent contained containedin=pam_MMATnew_PLASTICITY_HARDENING_RATE_MODEL matchgroup=pam_Keyword start="\CMODIFIED_COWPER_SYMONDS" end="\%$" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               syn region      pam_MMATnew_PLASTICITY_HARDENING_RATE_MODEL_MODIFIED_COWPER_SYMONDS_1 transparent contained containedin=pam_MMATnew_PLASTICITY_HARDENING_RATE_MODEL_MODIFIED_COWPER_SYMONDS matchgroup=pam_Argument start="^[ ]*\CC" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               syn region      pam_MMATnew_PLASTICITY_HARDENING_RATE_MODEL_MODIFIED_COWPER_SYMONDS_1 transparent contained containedin=pam_MMATnew_PLASTICITY_HARDENING_RATE_MODEL_MODIFIED_COWPER_SYMONDS matchgroup=pam_Argument start="^[ ]*\CPSR_REF" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+            " }}} 
+         " }}} 
+      " }}}
    " }}}
 syn region      pam_MMATnew        matchgroup=pam_CardTag start="^\CMMAT  /.*\%17c[ ]\+2020[ ]*$"rs=s+8 end="^\CEND_MMAT" keepend
 "}}} MMAT new end
