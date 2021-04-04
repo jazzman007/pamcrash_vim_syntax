@@ -9463,6 +9463,96 @@ syn region      pam_MMAT        matchgroup=pam_CardTag start="^\CMMAT  /"rs=s+8 
             " }}} 
          " }}} 
       " }}}
+      " {{{ COMBINED_RATE_HARDENING
+       syn region      pam_MMATnew_MODULE_PLASTICITY_COMBINED_RATE_HARDENING   transparent contained containedin=pam_MMATnew_MECHANICAL_EVP matchgroup=pam_CardTag start="^[ ]*\CPLASTICITY_COMBINED_RATE_HARDENING" end="^[ ]*\CEND_PLASTICITY_COMBINED_RATE_HARDENING" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+         " {{{ MODEL
+         syn region      pam_MMATnew_PLASTICITY_COMBINED_RATE_HARDENING_MODEL transparent contained containedin=pam_MMATnew_MODULE_PLASTICITY_COMBINED_RATE_HARDENING matchgroup=pam_CardTag start="^[ ]*\CMODEL" end="^[ ]*\CEND_MODEL" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+            " {{{ TABULAR
+            syn region      pam_MMATnew_PLASTICITY_COMBINED_RATE_HARDENING_MODEL_TABULAR transparent contained containedin=pam_MMATnew_PLASTICITY_COMBINED_RATE_HARDENING_MODEL matchgroup=pam_Keyword start="\CTABULAR" end="\%$" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               syn region      pam_MMATnew_PLASTICITY_COMBINED_RATE_HARDENING_MODEL_TABULAR_1 transparent contained containedin=pam_MMATnew_PLASTICITY_COMBINED_RATE_HARDENING_MODEL_TABULAR matchgroup=pam_Argument start="^[ ]*\CYC" end="\n[\$\#]\@!" contains=pam_Integer,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                  syn keyword pam_MMATnew_PLASTICITY_COMBINED_RATE_HARDENING_MODEL_TABULAR_1_arg contained containedin=pam_MMATnew_PLASTICITY_COMBINED_RATE_HARDENING_MODEL_TABULAR_1 TABLE
+                  hi def link pam_MMATnew_PLASTICITY_COMBINED_RATE_HARDENING_MODEL_TABULAR_1_arg pam_Argument
+            " }}} 
+         " }}} 
+      " }}}
+      " {{{ DAMAGE
+       syn region      pam_MMATnew_MODULE_DAMAGE   transparent contained containedin=pam_MMATnew_MECHANICAL_EVP matchgroup=pam_CardTag start="^[ ]*\CDAMAGE" end="^[ ]*\CEND_DAMAGE" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+         " {{{ MODEL
+         syn region      pam_MMATnew_DAMAGE_MODEL transparent contained containedin=pam_MMATnew_MODULE_DAMAGE matchgroup=pam_CardTag start="^[ ]*\CMODEL" end="^[ ]*\CEND_MODEL" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+            " {{{ PLASTIC_STRAIN_SOFTENING
+            syn region      pam_MMATnew_DAMAGE_MODEL_PLASTIC_STRAIN_SOFTENING transparent contained containedin=pam_MMATnew_DAMAGE_MODEL matchgroup=pam_Keyword start="\CPLASTIC_STRAIN_SOFTENING" end="\%$" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               syn region      pam_MMATnew_DAMAGE_MODEL_PLASTIC_STRAIN_SOFTENING_1 transparent contained containedin=pam_MMATnew_DAMAGE_MODEL_PLASTIC_STRAIN_SOFTENING matchgroup=pam_Argument start="^[ ]*\C[ABCDMN]" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+            " }}} 
+         " }}} 
+      " }}}
+      " {{{ FAILURE
+       syn region      pam_MMATnew_FAILURE   transparent contained containedin=pam_MMATnew_MECHANICAL_EVP matchgroup=pam_CardTag start="^[ ]*\CFAILURE" end="^[ ]*\CEND_FAILURE" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+         " {{{ INSTABILITY_RISK
+         syn region      pam_MMATnew_FAILURE_INSTABILITY_RISK   transparent contained containedin=pam_MMATnew_FAILURE matchgroup=pam_CardTag start="^[ ]*\CINSTABILITY_RISK" end="^[ ]*\CEND_INSTABILITY_RISK" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+            " {{{ MODEL
+            syn region      pam_MMATnew_FAILURE_INSTABILITY_RISK_MODEL transparent contained containedin=pam_MMATnew_FAILURE_INSTABILITY_RISK matchgroup=pam_CardTag start="^[ ]*\CMODEL" end="^[ ]*\CEND_MODEL" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               " {{{ HILL_STOEREN_RICE
+               syn region      pam_MMATnew_FAILURE_INSTABILITY_RISK_HILL_STOEREN_RICE transparent contained containedin=pam_MMATnew_FAILURE_INSTABILITY_RISK_MODEL matchgroup=pam_Keyword start="\CHILL_STOEREN_RICE" end="\%$" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                  syn region      pam_MMATnew_FAILURE_INSTABILITY_RISK_HILL_STOEREN_RICE_1 transparent contained containedin=pam_MMATnew_FAILURE_INSTABILITY_RISK_HILL_STOEREN_RICE matchgroup=pam_Argument start="^[ ]*\C[CN]" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                  syn region      pam_MMATnew_FAILURE_INSTABILITY_RISK_HILL_STOEREN_RICE_1 transparent contained containedin=pam_MMATnew_FAILURE_INSTABILITY_RISK_HILL_STOEREN_RICE matchgroup=pam_Argument start="^[ ]*\CSTRAIN_RATE_RATIO" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               " }}} 
+               " {{{ GENERALIZED_NECKING
+               syn region      pam_MMATnew_FAILURE_INSTABILITY_RISK_GENERALIZED_NECKING transparent contained containedin=pam_MMATnew_FAILURE_INSTABILITY_RISK_MODEL matchgroup=pam_Keyword start="\CGENERALIZED_NECKING" end="\%$" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                  syn region      pam_MMATnew_FAILURE_INSTABILITY_RISK_GENERALIZED_NECKING_1 transparent contained containedin=pam_MMATnew_FAILURE_INSTABILITY_RISK_GENERALIZED_NECKING matchgroup=pam_Argument start="^[ ]*\CEPS_UNIAXIAL_TENSION" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                  syn region      pam_MMATnew_FAILURE_INSTABILITY_RISK_GENERALIZED_NECKING_1 transparent contained containedin=pam_MMATnew_FAILURE_INSTABILITY_RISK_GENERALIZED_NECKING matchgroup=pam_Argument start="^[ ]*\CEPS_PLANE_STRAIN" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                  syn region      pam_MMATnew_FAILURE_INSTABILITY_RISK_GENERALIZED_NECKING_1 transparent contained containedin=pam_MMATnew_FAILURE_INSTABILITY_RISK_GENERALIZED_NECKING matchgroup=pam_Argument start="^[ ]*\CEPS_EQUIBIAXIAL_TENSION" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                  syn region      pam_MMATnew_FAILURE_INSTABILITY_RISK_GENERALIZED_NECKING_1 transparent contained containedin=pam_MMATnew_FAILURE_INSTABILITY_RISK_GENERALIZED_NECKING matchgroup=pam_Argument start="^[ ]*\CM" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                  syn region      pam_MMATnew_FAILURE_INSTABILITY_RISK_GENERALIZED_NECKING_1 transparent contained containedin=pam_MMATnew_FAILURE_INSTABILITY_RISK_GENERALIZED_NECKING matchgroup=pam_Argument start="^[ ]*\CSTRAIN_RATE_RATIO" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               " }}} 
+            " }}}
+         " }}} 
+         " {{{ INSTABILITY_EVOLUTION
+         syn region      pam_MMATnew_FAILURE_INSTABILITY_EVOLUTION   transparent contained containedin=pam_MMATnew_FAILURE matchgroup=pam_CardTag start="^[ ]*\CINSTABILITY_EVOLUTION" end="^[ ]*\CEND_INSTABILITY_EVOLUTION" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+            " {{{ MODEL
+            syn region      pam_MMATnew_FAILURE_INSTABILITY_EVOLUTION_MODEL transparent contained containedin=pam_MMATnew_FAILURE_INSTABILITY_EVOLUTION matchgroup=pam_CardTag start="^[ ]*\CMODEL" end="^[ ]*\CEND_MODEL" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               " {{{ POSTNECKING_GREVE_ANDRES
+               syn region      pam_MMATnew_FAILURE_INSTABILITY_EVOLUTION_POSTNECKING_GREVE_ANDRES transparent contained containedin=pam_MMATnew_FAILURE_INSTABILITY_EVOLUTION_MODEL matchgroup=pam_Keyword start="\CPOSTNECKING_GREVE_ANDRES" end="\%$" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                  syn region      pam_MMATnew_FAILURE_INSTABILITY_EVOLUTION_POSTNECKING_GREVE_ANDRES_1 transparent contained containedin=pam_MMATnew_FAILURE_INSTABILITY_EVOLUTION_POSTNECKING_GREVE_ANDRES matchgroup=pam_Argument start="^[ ]*\CLC" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               " }}} 
+            " }}}
+         " }}} 
+         " {{{ FAILURE_RISK
+         syn region      pam_MMATnew_FAILURE_FAILURE_RISK   transparent contained containedin=pam_MMATnew_FAILURE matchgroup=pam_CardTag start="^[ ]*\CFAILURE_RISK" end="^[ ]*\CEND_FAILURE_RISK" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+            " {{{ MODEL
+            syn region      pam_MMATnew_FAILURE_FAILURE_RISK_MODEL transparent contained containedin=pam_MMATnew_FAILURE_FAILURE_RISK matchgroup=pam_CardTag start="^[ ]*\CMODEL" end="^[ ]*\CEND_MODEL" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               " {{{ MODIFIED_MOHR_COULOMB
+               syn region      pam_MMATnew_FAILURE_FAILURE_RISK_MODIFIED_MOHR_COULOMB transparent contained containedin=pam_MMATnew_FAILURE_FAILURE_RISK_MODEL matchgroup=pam_Keyword start="\CMODIFIED_MOHR_COULOMB" end="\%$" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                  syn region      pam_MMATnew_FAILURE_FAILURE_RISK_MODIFIED_MOHR_COULOMB_1 transparent contained containedin=pam_MMATnew_FAILURE_FAILURE_RISK_MODIFIED_MOHR_COULOMB matchgroup=pam_Argument start="^[ ]*\C[KN]" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                  syn region      pam_MMATnew_FAILURE_FAILURE_RISK_MODIFIED_MOHR_COULOMB_1 transparent contained containedin=pam_MMATnew_FAILURE_FAILURE_RISK_MODIFIED_MOHR_COULOMB matchgroup=pam_Argument start="^[ ]*\CC[1-4]" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               " }}} 
+               " {{{ RELATIVE_THICKNESS
+               syn region      pam_MMATnew_FAILURE_FAILURE_RISK_RELATIVE_THICKNESS transparent contained containedin=pam_MMATnew_FAILURE_FAILURE_RISK_MODEL matchgroup=pam_Keyword start="\CRELATIVE_THICKNESS" end="\%$" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                  syn region      pam_MMATnew_FAILURE_FAILURE_RISK_RELATIVE_THICKNESS_1 transparent contained containedin=pam_MMATnew_FAILURE_FAILURE_RISK_RELATIVE_THICKNESS matchgroup=pam_Argument start="^[ ]*\CREL_THI[CN]" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               " }}} 
+               " {{{ MAXIMUM_STRAINING
+               syn region      pam_MMATnew_FAILURE_FAILURE_RISK_MAXIMUM_STRAINING transparent contained containedin=pam_MMATnew_FAILURE_FAILURE_RISK_MODEL matchgroup=pam_Keyword start="\CMAXIMUM_STRAINING" end="\%$" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                  syn region      pam_MMATnew_FAILURE_FAILURE_RISK_MAXIMUM_STRAINING_1 transparent contained containedin=pam_MMATnew_FAILURE_FAILURE_RISK_MAXIMUM_STRAINING matchgroup=pam_Argument start="^[ ]*\CEPSLIM" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               " }}} 
+            " }}}
+         " }}} 
+         " {{{ FAILURE_EVOLUTION
+         syn region      pam_MMATnew_FAILURE_FAILURE_EVOLUTION   transparent contained containedin=pam_MMATnew_FAILURE matchgroup=pam_CardTag start="^[ ]*\CFAILURE_EVOLUTION" end="^[ ]*\CEND_FAILURE_EVOLUTION" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+            " {{{ MODEL
+            syn region      pam_MMATnew_FAILURE_FAILURE_EVOLUTION_MODEL transparent contained containedin=pam_MMATnew_FAILURE_FAILURE_EVOLUTION matchgroup=pam_CardTag start="^[ ]*\CMODEL" end="^[ ]*\CEND_MODEL" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               " {{{ INSTANT
+               syn region      pam_MMATnew_FAILURE_FAILURE_EVOLUTION_INSTANT transparent contained containedin=pam_MMATnew_FAILURE_FAILURE_EVOLUTION_MODEL matchgroup=pam_Keyword start="\CINSTANT" end="\%$" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               " }}} 
+               " {{{ LINEAR_PLASTIC_DISPLACEMENT
+               syn region      pam_MMATnew_FAILURE_FAILURE_EVOLUTION_LINEAR_PLASTIC_DISPLACEMENT transparent contained containedin=pam_MMATnew_FAILURE_FAILURE_EVOLUTION_MODEL matchgroup=pam_Keyword start="\CLINEAR_PLASTIC_DISPLACEMENT" end="\%$" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                  syn region      pam_MMATnew_FAILURE_FAILURE_EVOLUTION_LINEAR_PLASTIC_DISPLACEMENT_1 transparent contained containedin=pam_MMATnew_FAILURE_FAILURE_EVOLUTION_LINEAR_PLASTIC_DISPLACEMENT matchgroup=pam_Argument start="^[ ]*\CUPF" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                  syn region      pam_MMATnew_FAILURE_FAILURE_EVOLUTION_LINEAR_PLASTIC_DISPLACEMENT_1 transparent contained containedin=pam_MMATnew_FAILURE_FAILURE_EVOLUTION_LINEAR_PLASTIC_DISPLACEMENT matchgroup=pam_Argument start="^[ ]*\CREDUCTION" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               " }}} 
+            " }}}
+         " }}} 
+      " }}}
+   " }}}
+   " {{{ TABLE 
+       syn region      pam_MMATnew_TABLE   transparent contained containedin=pam_MMATnew matchgroup=pam_CardTag start="^[ ]*\CTABLE" end="^[ ]*\CEND_TABLE" contains=pam_MMATnew_TABLE_EVP,pam_Comment,pam_Comment_Position,pam_Error keepend
    " }}}
 syn region      pam_MMATnew        matchgroup=pam_CardTag start="^\CMMAT  /.*\%17c[ ]\+2020[ ]*$"rs=s+8 end="^\CEND_MMAT" keepend
 "}}} MMAT new end
