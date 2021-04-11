@@ -1107,6 +1107,37 @@ function! pamcomplete#Complete(findstart, base)
          " }}}
          endif
 "  }}}
+"  {{{ MPART
+      elseif synIDattr(slist[0], "name") =~ "pam_MPART.*" || synIDattr(slist[0], "name") =~ "pam_PART_MODULAR.*"
+         if synIDattr(slist[1], "name") =~ "pam_MPART.*_r1"
+            " ATYPE
+            if synIDattr(slist[2], "name") =~ "pam_MPART.*_r1_[ae]2"
+               let start = 16
+            endif
+         elseif synIDattr(slist[1], "name") =~ "pam_MPART.*_r3"
+            " IDMMAT
+            if synIDattr(slist[2], "name") =~ "pam_1.10.*"
+               let start = 0
+            " IDNUMPAR
+            elseif synIDattr(slist[2], "name") =~ "pam_11.*"
+               let start = 10
+            endif
+         elseif synIDattr(slist[1], "name") =~ "pam_MPART_SHELL_GEOMETRY"
+            if synIDattr(slist[2], "name") =~ "pam_MPART_SHELL_GEOMETRY_r2"
+               " IORT
+               if synIDattr(slist[3], "name") =~ "pam_1.10.*"
+                  let start = 0
+               endif
+            endif
+         elseif synIDattr(slist[1], "name") =~ "pam_MPART_SOLID_GEOMETRY"
+            if synIDattr(slist[2], "name") =~ "pam_MPART_SOLID_GEOMETRY_r[12]"
+               " IORT[12]
+               if synIDattr(slist[3], "name") =~ "pam_1.10.*"
+                  let start = 0
+               endif
+            endif
+         endif
+"  }}}
 "  {{{ PART
       elseif synIDattr(slist[0], "name") =~ "pam_PART.*"
          if synIDattr(slist[1], "name") =~ "pam_PART.*_r1"
@@ -2678,37 +2709,6 @@ function! pamcomplete#Complete(findstart, base)
                endif
             endif
             " }}}
-         endif
-"  }}}
-"  {{{ MPART
-      elseif synIDattr(slist[0], "name") =~ "pam_MPART.*"
-         if synIDattr(slist[1], "name") =~ "pam_MPART.*_r1"
-            " ATYPE
-            if synIDattr(slist[2], "name") =~ "pam_MPART.*_r1_[ae]2"
-               let start = 16
-            endif
-         elseif synIDattr(slist[1], "name") =~ "pam_MPART.*_r3"
-            " IDMMAT
-            if synIDattr(slist[2], "name") =~ "pam_1.10.*"
-               let start = 0
-            " IDNUMPAR
-            elseif synIDattr(slist[2], "name") =~ "pam_11.*"
-               let start = 10
-            endif
-         elseif synIDattr(slist[1], "name") =~ "pam_MPART_SHELL_GEOMETRY"
-            if synIDattr(slist[2], "name") =~ "pam_MPART_SHELL_GEOMETRY_r2"
-               " IORT
-               if synIDattr(slist[3], "name") =~ "pam_1.10.*"
-                  let start = 0
-               endif
-            endif
-         elseif synIDattr(slist[1], "name") =~ "pam_MPART_SOLID_GEOMETRY"
-            if synIDattr(slist[2], "name") =~ "pam_MPART_SOLID_GEOMETRY_r[12]"
-               " IORT[12]
-               if synIDattr(slist[3], "name") =~ "pam_1.10.*"
-                  let start = 0
-               endif
-            endif
          endif
 "  }}}
 "  {{{ MMAT
@@ -5514,6 +5514,40 @@ function! pamcomplete#Complete(findstart, base)
          " }}}
          endif
 "  }}}
+"  {{{ MPART
+      elseif synIDattr(slist[0], "name") =~ "pam_MPART.*" || synIDattr(slist[0], "name") =~ "pam_PART_MODULAR.*"
+         if synIDattr(slist[1], "name") =~ "pam_MPART.*_r1"
+            " ATYPE
+            if synIDattr(slist[2], "name") =~ "pam_MPART.*_r1_[ae]2"
+               call add (items,{'word':'   SHELL'})
+               call add (items,{'word':'   SOLID'})
+            endif
+         elseif synIDattr(slist[1], "name") =~ "pam_MPART.*_r3"
+            " IDMMAT
+            if synIDattr(slist[2], "name") =~ "pam_1.10.*"
+               let items = s:getTags("MMAT",10)
+            " IDNUMPAR
+            elseif synIDattr(slist[2], "name") =~ "pam_11.*"
+               let items = s:getTags("NUMPAR",10)
+            endif
+         elseif synIDattr(slist[1], "name") =~ "pam_MPART_SHELL_GEOMETRY"
+            if synIDattr(slist[2], "name") =~ "pam_MPART_SHELL_GEOMETRY_r2"
+               " IORT
+               if synIDattr(slist[3], "name") =~ "pam_1.10.*"
+                  call add (items,{'word':'         0','menu':'Definition via Vector in Global Coordinate System'})
+                  call add (items,{'word':'         1','menu':'Definition in the Local Element Frame'})
+               endif
+            endif
+         elseif synIDattr(slist[1], "name") =~ "pam_MPART_SOLID_GEOMETRY"
+            if synIDattr(slist[2], "name") =~ "pam_MPART_SOLID_GEOMETRY_r[12]"
+               " IORT[12]
+               if synIDattr(slist[3], "name") =~ "pam_1.10.*"
+                  call add (items,{'word':'         0','menu':'Definition via Vector in Global Coordinate System'})
+                  call add (items,{'word':'         1','menu':'Definition in the Local Element Frame'})
+               endif
+            endif
+         endif
+"  }}}
 "  {{{ PART
       elseif synIDattr(slist[0], "name") =~ "pam_PART.*"
          if synIDattr(slist[1], "name") =~ "pam_PART.*_r1"
@@ -7373,40 +7407,6 @@ function! pamcomplete#Complete(findstart, base)
          " }}}
          endif
 "  }}}
-"  {{{ MPART
-      elseif synIDattr(slist[0], "name") =~ "pam_MPART.*"
-         if synIDattr(slist[1], "name") =~ "pam_MPART.*_r1"
-            " ATYPE
-            if synIDattr(slist[2], "name") =~ "pam_MPART.*_r1_[ae]2"
-               call add (items,{'word':'   SHELL'})
-               call add (items,{'word':'   SOLID'})
-            endif
-         elseif synIDattr(slist[1], "name") =~ "pam_MPART.*_r3"
-            " IDMMAT
-            if synIDattr(slist[2], "name") =~ "pam_1.10.*"
-               let items = s:getTags("MMAT",10)
-            " IDNUMPAR
-            elseif synIDattr(slist[2], "name") =~ "pam_11.*"
-               let items = s:getTags("NUMPAR",10)
-            endif
-         elseif synIDattr(slist[1], "name") =~ "pam_MPART_SHELL_GEOMETRY"
-            if synIDattr(slist[2], "name") =~ "pam_MPART_SHELL_GEOMETRY_r2"
-               " IORT
-               if synIDattr(slist[3], "name") =~ "pam_1.10.*"
-                  call add (items,{'word':'         0','menu':'Definition via Vector in Global Coordinate System'})
-                  call add (items,{'word':'         1','menu':'Definition in the Local Element Frame'})
-               endif
-            endif
-         elseif synIDattr(slist[1], "name") =~ "pam_MPART_SOLID_GEOMETRY"
-            if synIDattr(slist[2], "name") =~ "pam_MPART_SOLID_GEOMETRY_r[12]"
-               " IORT[12]
-               if synIDattr(slist[3], "name") =~ "pam_1.10.*"
-                  call add (items,{'word':'         0','menu':'Definition via Vector in Global Coordinate System'})
-                  call add (items,{'word':'         1','menu':'Definition in the Local Element Frame'})
-               endif
-            endif
-         endif
-"  }}}
 "  {{{ MMAT
       elseif synIDattr(slist[0], "name") =~ "pam_MMAT.*"
          " {{{ PLASTICITY
@@ -8699,6 +8699,80 @@ function! pamcomplete#pamHints()
          endif
       endif
       " }}}
+"  }}}
+"  {{{ MPART
+   elseif synIDattr(slist[0], "name") =~ "pam_MPART.*" || synIDattr(slist[0], "name") =~ "pam_PART_MODULAR.*"
+      if synIDattr(slist[1], "name") =~ ".*_r1"
+         if synIDattr(slist[2], "name") =~ "pam_9.*"
+            return "IDMPRT - MPart ID"
+         elseif synIDattr(slist[2], "name") =~ ".*_r1_[ae]2"
+            return "ATYPE - MPart Type (menu)"
+         elseif synIDattr(slist[2], "name") =~ "pam_25.*"
+            return "IDMAT - Material ID (tag)"
+         elseif synIDattr(slist[2], "name") =~ "pam_57.*"
+            return "IDNUMPAR - Numerical Parameter ID (tag)"
+         endif
+      elseif synIDattr(slist[1], "name") =~ "pam_MPART.*_r3"
+         if synIDattr(slist[2], "name") =~ "pam_1.10.*"
+            return "IDMMAT - Modular Material ID (tag)"
+         elseif synIDattr(slist[2], "name") =~ "pam_11.*"
+            return "IDNUMPAR - Numerical Parameter Definition ID (tag)"
+         endif
+      elseif synIDattr(slist[1], "name") =~ "pam_MPART_.*_CONTACT"
+         if synIDattr(slist[2], "name") =~ "pam_MPART_.*_CONTACT_r1"
+            if synIDattr(slist[3], "name") =~ "pam_1.10.*"
+               return "TCONT - Thickness For Contact"
+            elseif synIDattr(slist[3], "name") =~ "pam_11.*"
+               return "COULFRIC - Coulomb Friction Coefficient"
+            endif
+         endif
+      elseif synIDattr(slist[1], "name") =~ "pam_MPART_SHELL_GEOMETRY"
+         if synIDattr(slist[2], "name") =~ "pam_MPART_SHELL_GEOMETRY_r1"
+            if synIDattr(slist[3], "name") =~ "pam_1.10.*"
+               return "H - Shell Thickness"
+            endif
+         elseif synIDattr(slist[2], "name") =~ "pam_MPART_SHELL_GEOMETRY_r2"
+            if synIDattr(slist[3], "name") =~ "pam_1.10.*"
+               return "IORT - Orthotropic Axis Definition Flag (menu)"
+            elseif synIDattr(slist[3], "name") =~ "pam_11.*"
+               return "XDIR - X Component of the Orientation Axis"
+            elseif synIDattr(slist[3], "name") =~ "pam_21.*"
+               return "YDIR - Y Component of the Orientation Axis"
+            elseif synIDattr(slist[3], "name") =~ "pam_31.*"
+               return "ZDIR - Z Component of the Orientation Axis"
+            elseif synIDattr(slist[3], "name") =~ "pam_41.*"
+               return "Aoff - Offset Angle of the Orthotropic Orientation Axis"
+            endif
+         endif
+      elseif synIDattr(slist[1], "name") =~ "pam_MPART_SOLID_GEOMETRY"
+         if synIDattr(slist[2], "name") =~ "pam_MPART_SOLID_GEOMETRY_r1"
+            if synIDattr(slist[3], "name") =~ "pam_1.10.*"
+               return "IORT1 - Orthotropic Axis Definition Flag (menu)"
+            elseif synIDattr(slist[3], "name") =~ "pam_11.*"
+               return "XDIR1 - X Component of the Orientation Axis"
+            elseif synIDattr(slist[3], "name") =~ "pam_21.*"
+               return "YDIR1 - Y Component of the Orientation Axis"
+            elseif synIDattr(slist[3], "name") =~ "pam_31.*"
+               return "ZDIR1 - Z Component of the Orientation Axis"
+            endif
+         elseif synIDattr(slist[2], "name") =~ "pam_MPART_SOLID_GEOMETRY_r2"
+            if synIDattr(slist[3], "name") =~ "pam_1.10.*"
+               return "IORT2 - Orthotropic Axis Definition Flag (menu)"
+            elseif synIDattr(slist[3], "name") =~ "pam_11.*"
+               return "XDIR2 - X Component of the Orientation Axis"
+            elseif synIDattr(slist[3], "name") =~ "pam_21.*"
+               return "YDIR2 - Y Component of the Orientation Axis"
+            elseif synIDattr(slist[3], "name") =~ "pam_31.*"
+               return "ZDIR2 - Z Component of the Orientation Axis"
+            endif
+         endif
+      elseif synIDattr(slist[1], "name") =~ "pam_MPART_SHELL_INIT_CONDITIONS"
+         if synIDattr(slist[2], "name") =~ "pam_MPART_SHELL_INIT_CONDITIONS_r1"
+            if synIDattr(slist[3], "name") =~ "pam_1.10.*"
+               return "EPSINI - Initial Equivalent Plastic Strain"
+            endif
+         endif
+      endif
 "  }}}
 "  {{{ PART
    elseif synIDattr(slist[0], "name") =~ "pam_PART.*"
@@ -15954,76 +16028,6 @@ function! pamcomplete#pamHints()
          " }}}
          endif
       "  }}}
-      endif
-"  }}}
-"  {{{ MPART
-   elseif synIDattr(slist[0], "name") =~ "pam_MPART.*"
-      if synIDattr(slist[1], "name") =~ "pam_MPART.*_r1"
-         if synIDattr(slist[2], "name") =~ "pam_9.*"
-            return "IDMPRT - MPart ID"
-         elseif synIDattr(slist[2], "name") =~ "pam_MPART.*_r1_[ae]2"
-            return "ATYPE - MPart Type (menu)"
-         endif
-      elseif synIDattr(slist[1], "name") =~ "pam_MPART.*_r3"
-         if synIDattr(slist[2], "name") =~ "pam_1.10.*"
-            return "IDMMAT - Modular Material ID (tag)"
-         elseif synIDattr(slist[2], "name") =~ "pam_11.*"
-            return "IDNUMPAR - Numerical Parameter Definition ID (tag)"
-         endif
-      elseif synIDattr(slist[1], "name") =~ "pam_MPART_.*_CONTACT"
-         if synIDattr(slist[2], "name") =~ "pam_MPART_.*_CONTACT_r1"
-            if synIDattr(slist[3], "name") =~ "pam_1.10.*"
-               return "TCONT - Thickness For Contact"
-            elseif synIDattr(slist[3], "name") =~ "pam_11.*"
-               return "COULFRIC - Coulomb Friction Coefficient"
-            endif
-         endif
-      elseif synIDattr(slist[1], "name") =~ "pam_MPART_SHELL_GEOMETRY"
-         if synIDattr(slist[2], "name") =~ "pam_MPART_SHELL_GEOMETRY_r1"
-            if synIDattr(slist[3], "name") =~ "pam_1.10.*"
-               return "H - Shell Thickness"
-            endif
-         elseif synIDattr(slist[2], "name") =~ "pam_MPART_SHELL_GEOMETRY_r2"
-            if synIDattr(slist[3], "name") =~ "pam_1.10.*"
-               return "IORT - Orthotropic Axis Definition Flag (menu)"
-            elseif synIDattr(slist[3], "name") =~ "pam_11.*"
-               return "XDIR - X Component of the Orientation Axis"
-            elseif synIDattr(slist[3], "name") =~ "pam_21.*"
-               return "YDIR - Y Component of the Orientation Axis"
-            elseif synIDattr(slist[3], "name") =~ "pam_31.*"
-               return "ZDIR - Z Component of the Orientation Axis"
-            elseif synIDattr(slist[3], "name") =~ "pam_41.*"
-               return "Aoff - Offset Angle of the Orthotropic Orientation Axis"
-            endif
-         endif
-      elseif synIDattr(slist[1], "name") =~ "pam_MPART_SOLID_GEOMETRY"
-         if synIDattr(slist[2], "name") =~ "pam_MPART_SOLID_GEOMETRY_r1"
-            if synIDattr(slist[3], "name") =~ "pam_1.10.*"
-               return "IORT1 - Orthotropic Axis Definition Flag (menu)"
-            elseif synIDattr(slist[3], "name") =~ "pam_11.*"
-               return "XDIR1 - X Component of the Orientation Axis"
-            elseif synIDattr(slist[3], "name") =~ "pam_21.*"
-               return "YDIR1 - Y Component of the Orientation Axis"
-            elseif synIDattr(slist[3], "name") =~ "pam_31.*"
-               return "ZDIR1 - Z Component of the Orientation Axis"
-            endif
-         elseif synIDattr(slist[2], "name") =~ "pam_MPART_SOLID_GEOMETRY_r2"
-            if synIDattr(slist[3], "name") =~ "pam_1.10.*"
-               return "IORT2 - Orthotropic Axis Definition Flag (menu)"
-            elseif synIDattr(slist[3], "name") =~ "pam_11.*"
-               return "XDIR2 - X Component of the Orientation Axis"
-            elseif synIDattr(slist[3], "name") =~ "pam_21.*"
-               return "YDIR2 - Y Component of the Orientation Axis"
-            elseif synIDattr(slist[3], "name") =~ "pam_31.*"
-               return "ZDIR2 - Z Component of the Orientation Axis"
-            endif
-         endif
-      elseif synIDattr(slist[1], "name") =~ "pam_MPART_SHELL_INIT_CONDITIONS"
-         if synIDattr(slist[2], "name") =~ "pam_MPART_SHELL_INIT_CONDITIONS_r1"
-            if synIDattr(slist[3], "name") =~ "pam_1.10.*"
-               return "EPSINI - Initial Equivalent Plastic Strain"
-            endif
-         endif
       endif
 "  }}}
 "  {{{ MMAT
