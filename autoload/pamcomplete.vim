@@ -4,7 +4,7 @@
 " License:      WTFPL (see LICENSE file)
 
 function! pamcomplete#Complete(findstart, base)
-   let elements = ['pam_Solid','pam_Hexa20','pam_Penta6','pam_Penta15','pam_Tetra10','pam_Tetr4','pam_Shell','pam_Shel6','pam_Shel8','pam_Membr','pam_Bar','pam_Sphel','pam_ELink','pam_LLink','pam_SLink']
+   let elements = ['pam_Solid','pam_Hexa20','pam_Penta6','pam_Penta15','pam_Tetra10','pam_Tetr4','pam_Shell','pam_Shel6','pam_Shel8','pam_Membr','pam_Bar','pam_Sphel','pam_ELink','pam_LLink','pam_SLink','pam_Pyra5','pam_Pyra13']
 " {{{ first part, return the beginning of the matching
    if a:findstart
       let line = getline('.')
@@ -19167,6 +19167,24 @@ function! pamcomplete#pamHints()
          return "H - Element Thickness"
       endif
 "  }}}
+"  {{{ PYRA5
+   elseif synIDattr(slist[0], "name") =~ "pam_Pyra5"
+      if synIDattr(slist[1], "name") =~ "pam_9.*"
+         return "IDEL"
+      elseif synIDattr(slist[1], "name") =~ "pam_17.*"
+         return "IDPTR (tag)"
+      elseif synIDattr(slist[1], "name") =~ "pam_25.*"
+         return "IDNOD1"
+      elseif synIDattr(slist[1], "name") =~ "pam_33.*"
+         return "IDNOD2"
+      elseif synIDattr(slist[1], "name") =~ "pam_41.*"
+         return "IDNOD3"
+      elseif synIDattr(slist[1], "name") =~ "pam_49.*"
+         return "IDNOD4"
+      elseif synIDattr(slist[1], "name") =~ "pam_57.*"
+         return "IDNOD5"
+      endif
+"  }}}
 "  {{{ RBODY[0-2]
    elseif synIDattr(slist[0], "name") =~ "pam_RBODY[0-2]"
       if synIDattr(slist[1], "name") =~ "pam_RBODY[0-2]_r1"
@@ -19993,6 +20011,46 @@ function! pamcomplete#pamHints()
          return "IDNOD5"
       elseif synIDattr(slist[1], "name") =~ "pam_65.*"
          return "IDNOD6"
+      endif
+"  }}}
+"  {{{ PYRA13
+   elseif synIDattr(slist[0], "name") =~ "pam_Pyra13"
+      if synIDattr(slist[1], "name") =~ "pam_Pyra13_r1"
+         if synIDattr(slist[2], "name") =~ "pam_9.*"
+            return "IDEL"
+         elseif synIDattr(slist[2], "name") =~ "pam_17.*"
+            return "IDPTR (tag)"
+         endif
+      elseif synIDattr(slist[1], "name") =~ "pam_Pyra13_r2"
+         if synIDattr(slist[2], "name") =~ "pam_17.*"
+            return "IDNOD1"
+         elseif synIDattr(slist[2], "name") =~ "pam_25.*"
+            return "IDNOD2"
+         elseif synIDattr(slist[2], "name") =~ "pam_33.*"
+            return "IDNOD3"
+         elseif synIDattr(slist[2], "name") =~ "pam_41.*"
+            return "IDNOD4"
+         elseif synIDattr(slist[2], "name") =~ "pam_49.*"
+            return "IDNOD5"
+         elseif synIDattr(slist[2], "name") =~ "pam_57.*"
+            return "IDNOD6"
+         elseif synIDattr(slist[2], "name") =~ "pam_65.*"
+            return "IDNOD7"
+         elseif synIDattr(slist[2], "name") =~ "pam_73.*"
+            return "IDNOD8"
+         endif
+      elseif synIDattr(slist[1], "name") =~ "pam_Pyra13_r3"
+         if synIDattr(slist[2], "name") =~ "pam_17.*"
+            return "IDNOD9"
+         elseif synIDattr(slist[2], "name") =~ "pam_25.*"
+            return "IDNOD10"
+         elseif synIDattr(slist[2], "name") =~ "pam_33.*"
+            return "IDNOD11"
+         elseif synIDattr(slist[2], "name") =~ "pam_41.*"
+            return "IDNOD12"
+         elseif synIDattr(slist[2], "name") =~ "pam_49.*"
+            return "IDNOD13"
+         endif
       endif
 "  }}}
 "  {{{ PENT15

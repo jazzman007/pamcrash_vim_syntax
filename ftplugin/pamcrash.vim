@@ -50,7 +50,7 @@ function! PamFold(lnum)
     elseif l:thisline =~ '^\CMETRIC\/'
        let b:pam_foldElement="METRIC"
        return '>1'
-    elseif l:thisline =~ '^\CNODE  \/' || l:thisline =~ '^\CSHELL \/' || l:thisline =~ '^\CSOLID \/' || l:thisline =~ '^\CMEMBR \/' || l:thisline =~ '^\CBAR   \/' || l:thisline =~ '^\CBEAM  \/' || l:thisline =~ '^\CCNODE \/' || l:thisline =~ '^\CMASS  \/' || l:thisline =~ '^\CNSMAS \/' || l:thisline =~ '^\CNSMAS2\/' || l:thisline =~ '^\CBSHEL \/' || l:thisline =~ '^\CELINK \/' || l:thisline =~ '^\CGAP   \/' || l:thisline =~ '^\CHEXA20\/' || l:thisline =~ '^\CIMPMA \/' || l:thisline =~ '^\CJOINT \/' || l:thisline =~ '^\CKJOIN \/' || l:thisline =~ '^\CMTOJNT\/' || l:thisline =~ '^\CPENTA6\/' || l:thisline =~ '^\CPENT15\/' || l:thisline =~ '^\CPLINK \/' || l:thisline =~ '^\CSHEL6 \/' || l:thisline =~ '^\CSHEL8 \/' || l:thisline =~ '^\CSLINK \/' || l:thisline =~ '^\CSPHEL \/' || l:thisline =~ '^\CSPHELO\/' || l:thisline =~ '^\CSPRGBM\/' || l:thisline =~ '^\CSPRING\/' || l:thisline =~ '^\CTETR4 \/' || l:thisline =~ '^\CTETR10\/' || l:thisline =~ '^\CTIED  \/' || l:thisline =~ '^\CTSHEL \/' || l:thisline =~ '^\CSLINK \/'
+    elseif l:thisline =~ '^\CNODE  \/' || l:thisline =~ '^\CSHELL \/' || l:thisline =~ '^\CSOLID \/' || l:thisline =~ '^\CMEMBR \/' || l:thisline =~ '^\CBAR   \/' || l:thisline =~ '^\CBEAM  \/' || l:thisline =~ '^\CCNODE \/' || l:thisline =~ '^\CMASS  \/' || l:thisline =~ '^\CNSMAS \/' || l:thisline =~ '^\CNSMAS2\/' || l:thisline =~ '^\CBSHEL \/' || l:thisline =~ '^\CELINK \/' || l:thisline =~ '^\CGAP   \/' || l:thisline =~ '^\CHEXA20\/' || l:thisline =~ '^\CIMPMA \/' || l:thisline =~ '^\CJOINT \/' || l:thisline =~ '^\CKJOIN \/' || l:thisline =~ '^\CMTOJNT\/' || l:thisline =~ '^\CPENTA6\/' || l:thisline =~ '^\CPENT15\/' || l:thisline =~ '^\CPLINK \/' || l:thisline =~ '^\CSHEL6 \/' || l:thisline =~ '^\CSHEL8 \/' || l:thisline =~ '^\CSLINK \/' || l:thisline =~ '^\CSPHEL \/' || l:thisline =~ '^\CSPHELO\/' || l:thisline =~ '^\CSPRGBM\/' || l:thisline =~ '^\CSPRING\/' || l:thisline =~ '^\CTETR4 \/' || l:thisline =~ '^\CTETR10\/' || l:thisline =~ '^\CTIED  \/' || l:thisline =~ '^\CTSHEL \/' || l:thisline =~ '^\CSLINK \/' || l:thisline =~ '^\CPYRA5 \/' || l:thisline =~ '^\CPYRA13\/'
        if b:pam_foldElement==l:thisline[0:5] || b:pam_foldElement == "METRIC"
           return '='
        else
@@ -521,6 +521,10 @@ map <silent> ,ete ,,,,kk:r ~/.vim/ftplugin/pam_cards/Element/ete.inc<CR>dd
 map <silent> ,eti ,,,,kk:r ~/.vim/ftplugin/pam_cards/Element/eti.inc<CR>dd
 "TSHEL Element
 map <silent> ,ets ,,,,kk:r ~/.vim/ftplugin/pam_cards/Element/ets.inc<CR>dd
+"PYRA13 Element
+map <silent> ,ey1 ,,,,kk:r ~/.vim/ftplugin/pam_cards/Element/ey1.inc<CR>dd
+"PYRA5 Element
+map <silent> ,ey5 ,,,,kk:r ~/.vim/ftplugin/pam_cards/Element/ey5.inc<CR>dd
 
 " ==== Others ====
 

@@ -79,6 +79,8 @@ Element
    ,ete   TETRA Element
    ,eti   TIED Element
    ,ets   TSHEL Element
+   ,ey1   PYRA13 Element
+   ,ey5   PYRA5 Element
 
 Others
 
