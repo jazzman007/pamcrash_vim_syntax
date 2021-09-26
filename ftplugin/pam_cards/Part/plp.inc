@@ -7,7 +7,7 @@ $#  DTELIM    TSCALF   DTRATIO
                               
 $#   TCONT    EPSINI  COULFRIC
                               
-$#   RSEAR     NLAYR     SPWLG     NGESP    SPOTRA     THETA   IRADBEN    PHYRAD
+$#   RSEAR     NLAYR     SPWLG     NGESP    SPOTRA     THETA  IMPLKMET    PHYRAD
                                                                                 
 $#      
 END_PART

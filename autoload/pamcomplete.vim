@@ -1244,7 +1244,7 @@ function! pamcomplete#Complete(findstart, base)
          " }}}
          " {{{ PLINK
          elseif synIDattr(slist[1], "name") =~ "pam_PART_PLINK_r5"
-            " IRADBEN
+            " IMPLKMET
             if synIDattr(slist[2], "name") =~ "pam_61.*"
                let start = 60
             endif
@@ -4933,6 +4933,7 @@ function! pamcomplete#Complete(findstart, base)
                call add (items,{'word':'      11','menu':'Orthotropic Friction with Arbitrary Oriantation'})
                call add (items,{'word':'      12','menu':'User-Defined Friction'})
                call add (items,{'word':'      13','menu':'Lookup Table Dependent'})
+               call add (items,{'word':'      15','menu':'User-defined Plugin'})
             elseif synIDattr(slist[2], "name") =~ "pam_25.*"
                " IPCUR/IVCIR
                if synIDattr(slist[1], "name") =~ "pam_FRICT2_r1"
@@ -5698,10 +5699,12 @@ function! pamcomplete#Complete(findstart, base)
          " }}}
          " {{{ PLINK
          elseif synIDattr(slist[1], "name") =~ "pam_PART_PLINK_r5"
-            " IRADBEN
+            " IMPLKMET
             if synIDattr(slist[2], "name") =~ "pam_61.*"
                call add (items,{'word':'         0','menu':'Axial Displacement due to Bending'})
                call add (items,{'word':'         1','menu':'No Axial Displacement due to Bending'})
+               call add (items,{'word':'         2','menu':'Axial Displacement due to Bending'})
+               call add (items,{'word':'         3','menu':'OTMCO Formulation Used'})
             endif
          " }}}
          endif
@@ -9099,7 +9102,7 @@ function! pamcomplete#pamHints()
          elseif synIDattr(slist[2], "name") =~ "pam_51.*"
             return "THETA - Angle Criterion for Segment Removal in Multi-PLINK Connections"
          elseif synIDattr(slist[2], "name") =~ "pam_61.*"
-            return "IRADBEN - Bending Correction of Radius Flag (menu)"
+            return "IMPLKMET - Moment Transmition Flag for MPC-Links (menu)"
          elseif synIDattr(slist[2], "name") =~ "pam_71.*"
             return "PHYRAD - MPC PLINK Radius when Using SSR"
          endif
@@ -15626,7 +15629,7 @@ function! pamcomplete#pamHints()
                elseif synIDattr(slist[2], "name") =~ "pam_21.*"
                   return "Et - Tangent Modulus"
                elseif synIDattr(slist[2], "name") =~ "pam_31.*"
-                  return "ALPHA - Thermal Expansion Coefficient"
+                  return "ALPHA - Thermal Expansion Coefficient in X-Direction"
                elseif synIDattr(slist[2], "name") =~ "pam_61.*"
                   return "STRAT1 - First Strain Rate Parameter"
                elseif synIDattr(slist[2], "name") =~ "pam_71.*"
@@ -15637,6 +15640,10 @@ function! pamcomplete#pamHints()
                   return "K - Bulk Modulus"
                elseif synIDattr(slist[2], "name") =~ "pam_Mater1.*_r5_[ae]1"
                   return "KEYWORD - Hardening Type (menu)"
+               elseif synIDattr(slist[2], "name") =~ "pam_61.*"
+                  return "ALPHAY - Thermal Expansion Coefficient in Y-Direction"
+               elseif synIDattr(slist[2], "name") =~ "pam_71.*"
+                  return "ALPHAZ - Thermal Expansion Coefficient in Z-Direction"
                endif
             elseif synIDattr(slist[1], "name") =~ "pam_Mater1l_r6" 
                if synIDattr(slist[2], "name") =~ "pam_1.10.*"

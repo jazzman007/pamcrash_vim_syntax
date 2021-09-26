@@ -7,8 +7,8 @@ $#                                                                         TITLE
 NAME 1=>mat1                                                                    
 $#       G    SIGMAy        Et     ALPHA     BLANK     BLANK    STRAT1    STRAT2
         0.CURVE             0.                                      0.        0.
-$#       K   KEYWORD
-        0.          
+$#       K   KEYWORD                                            ALPHAY    ALPHAZ
+        0.                                                                      
 $#     LC1       LC2       LC3       LC4       LC5       LC6       LC7       LC8
          0         0         0         0         0         0         0         0
 $#  EPSLN1    EPSLN2    EPSLN3    EPSLN4    EPSLN5    EPSLN6    EPSLN7    EPSLN8
