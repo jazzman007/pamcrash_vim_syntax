@@ -6866,6 +6866,7 @@ function! pamcomplete#Complete(findstart, base)
                if synIDattr(slist[2], "name") =~ "pam_1.10.*"
                   call add (items,{'word':'         1','abbr':'1','menu':'Beam Model with Rigid Through Thickness Direction'})
                   call add (items,{'word':'         2','abbr':'2','menu':'Beam Model with Elastic Through Thickness Direction'})
+                  call add (items,{'word':'         3','abbr':'3','menu':'Truss Model with Elastic Through Thickness Support'})
                " ICOMP
                elseif synIDattr(slist[2], "name") =~ "pam_41.*"
                   call add (items,{'word':'         0','abbr':'0 (default)','menu':'Deactivated under Biaxial Compression'})
@@ -11225,7 +11226,7 @@ function! pamcomplete#pamHints()
          " }}}
          " {{{ Mater 101
          elseif synIDattr(slist[1], "name") =~ "pam_Mater101.*"
-            if synIDattr(slist[1], "name") =~ "pam_Mater101.*_r4" 
+            if synIDattr(slist[1], "name") =~ "pam_Mater101_r4" 
                if synIDattr(slist[2], "name") =~ "pam_1.10.*"
                   return "E - Young's Modulus"
                elseif synIDattr(slist[2], "name") =~ "pam_21.*"
@@ -11241,11 +11242,79 @@ function! pamcomplete#pamHints()
                elseif synIDattr(slist[2], "name") =~ "pam_71.*"
                   return "As - Transverse shear Correction Factor"
                endif
-            elseif synIDattr(slist[1], "name") =~ "pam_Mater101.*_r8" 
+            elseif synIDattr(slist[1], "name") =~ "pam_Mater101g_r4" 
+               if synIDattr(slist[2], "name") =~ "pam_11.*"
+                  return "NALPHA1 - First Generalized Membrane Stress Component per Temperature Unit"
+               elseif synIDattr(slist[2], "name") =~ "pam_21.*"
+                  return "NALPHA2 - Second Generalized Membrane Stress Component per Temperature Unit"
+               elseif synIDattr(slist[2], "name") =~ "pam_31.*"
+                  return "NALPHA3 - Third Generalized Membrane Stress Component per Temperature Unit"
+               endif
+            elseif synIDattr(slist[1], "name") =~ "pam_Mater101g_r5" 
+               if synIDattr(slist[2], "name") =~ "pam_1.10.*"
+                  return "Dm11 - x-x Component of Membrane Stiffness Matrix"
+               elseif synIDattr(slist[2], "name") =~ "pam_11.*"
+                  return "Dm12 - x-y Component of Membrane Stiffness Matrix"
+               elseif synIDattr(slist[2], "name") =~ "pam_21.*"
+                  return "Dm13 - x-xy Component of Membrane Stiffness Matrix"
+               elseif synIDattr(slist[2], "name") =~ "pam_31.*"
+                  return "Dm22 - y-y Component of Membrane Stiffness Matrix"
+               elseif synIDattr(slist[2], "name") =~ "pam_41.*"
+                  return "Dm23 - y-xy Component of Membrane Stiffness Matrix"
+               elseif synIDattr(slist[2], "name") =~ "pam_51.*"
+                  return "Dm33 - xy-xy Component of Membrane Stiffness Matrix"
+               endif
+            elseif synIDattr(slist[1], "name") =~ "pam_Mater101g_r6" 
+               if synIDattr(slist[2], "name") =~ "pam_1.10.*"
+                  return "Df11 - x-x Component of Bending Stiffness Matrix"
+               elseif synIDattr(slist[2], "name") =~ "pam_11.*"
+                  return "Df12 - x-y Component of Bending Stiffness Matrix"
+               elseif synIDattr(slist[2], "name") =~ "pam_21.*"
+                  return "Df13 - x-xy Component of Bending Stiffness Matrix"
+               elseif synIDattr(slist[2], "name") =~ "pam_31.*"
+                  return "Df22 - y-y Component of Bending Stiffness Matrix"
+               elseif synIDattr(slist[2], "name") =~ "pam_41.*"
+                  return "Df23 - y-xy Component of Bending Stiffness Matrix"
+               elseif synIDattr(slist[2], "name") =~ "pam_51.*"
+                  return "Df33 - xy-xy Component of Bending Stiffness Matrix"
+               endif
+            elseif synIDattr(slist[1], "name") =~ "pam_Mater101g_r7" 
+               if synIDattr(slist[2], "name") =~ "pam_1.10.*"
+                  return "Dc11 - x-x Component of Transverse Shear Stiffness Matrix"
+               elseif synIDattr(slist[2], "name") =~ "pam_11.*"
+                  return "Dc12 - x-y Component of Transverse Shear Stiffness Matrix"
+               elseif synIDattr(slist[2], "name") =~ "pam_21.*"
+                  return "Dc22 - y-y Component of Transverse Shear Stiffness Matrix"
+               endif
+            elseif synIDattr(slist[1], "name") =~ "pam_Mater101_r8" 
                if synIDattr(slist[2], "name") =~ "pam_61.*"
                   return "KSI - Stiffness Proportional Damping Ratio"
                elseif synIDattr(slist[2], "name") =~ "pam_71.*"
                   return "Fo - Damping Target Frequency"
+               endif
+            elseif synIDattr(slist[1], "name") =~ "pam_Mater101g_r8" 
+               if synIDattr(slist[2], "name") =~ "pam_1.10.*"
+                  return "Dmf11 - x-x Component of Membrane-Bending Coupling Stiffness Matrix"
+               elseif synIDattr(slist[2], "name") =~ "pam_11.*"
+                  return "Dmf12 - x-y Component of Membrane-Bending Coupling Stiffness Matrix"
+               elseif synIDattr(slist[2], "name") =~ "pam_21.*"
+                  return "Dmf13 - x-xy Component of Membrane-Bending Coupling Stiffness Matrix"
+               elseif synIDattr(slist[2], "name") =~ "pam_31.*"
+                  return "Dmf22 - y-y Component of Membrane-Bending Coupling Stiffness Matrix"
+               elseif synIDattr(slist[2], "name") =~ "pam_41.*"
+                  return "Dmf23 - y-xy Component of Membrane-Bending Coupling Stiffness Matrix"
+               elseif synIDattr(slist[2], "name") =~ "pam_51.*"
+                  return "Dmf33 - xy-xy Component of Membrane-Bending Coupling Stiffness Matrix"
+               elseif synIDattr(slist[2], "name") =~ "pam_61.*"
+                  return "KSI - Stiffness Proportional Damping Ratio"
+               endif
+            elseif synIDattr(slist[1], "name") =~ "pam_Mater101g_r9" 
+               if synIDattr(slist[2], "name") =~ "pam_11.*"
+                  return "MALPHA1 - First Generalized Bending Stress Component per Temperature Unit"
+               elseif synIDattr(slist[2], "name") =~ "pam_21.*"
+                  return "MALPHA2 - Second Generalized Bending Stress Component per Temperature Unit"
+               elseif synIDattr(slist[2], "name") =~ "pam_31.*"
+                  return "MALPHA3 - Third Generalized Bending Stress Component per Temperature Unit"
                endif
             endif
          " }}}
@@ -13237,15 +13306,19 @@ function! pamcomplete#pamHints()
                endif
             elseif synIDattr(slist[1], "name") =~ "pam_Mater151.*_r14" 
                if synIDattr(slist[2], "name") =~ "pam_1.10.*"
-                  return "IBEAM - Beam Model Flag (menu)"
+                  return "IBEAM - Yarn Coupling Model Flag (menu)"
                elseif synIDattr(slist[2], "name") =~ "pam_11.*"
-                  return "Ethick - Elactic Stiffness Modulus of the Through Thickness Beam"
+                  return "Ethick - Elastic Stiffness Modulus of the Through Thickness Beam"
                elseif synIDattr(slist[2], "name") =~ "pam_21.*"
-                  return "UCSIZA - Aspect Ratio Between Small and Big Half of Elliptical Tow Cross-Section"
+                  return "UCSIZA - First Yarn Coupling Geometry Parameter"
                elseif synIDattr(slist[2], "name") =~ "pam_31.*"
-                  return "UCSIZB - Size Ratio between Unit Cell Width and Tow Width"
+                  return "UCSIZB - Second Yarn Coupling Geometry Parameter"
                elseif synIDattr(slist[2], "name") =~ "pam_41.*"
                   return "ICOMP - Biaxial Compression Beam Model Activation Flag (menu)"
+               elseif synIDattr(slist[2], "name") =~ "pam_51.*"
+                  return "SCALEA - Stiffness Scaling Parameter for First Fiber Direction"
+               elseif synIDattr(slist[2], "name") =~ "pam_61.*"
+                  return "SCALEB - Stiffness Scaling Parameter for Second Fiber Direction"
                endif
             endif
          " }}}
