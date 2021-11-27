@@ -5,8 +5,8 @@ $# BLANK                                                     QVM           IDMPD
                                                               1.               0
 $#                                                                         TITLE
 NAME 1=>mat213                                                                  
-$#       E       NUE    SIGMAy        Et     ALPHA
-        0.        0.CURVE             0.          
+$#       E       NUE    SIGMAy        Et     ALPHA     IDRUP
+        0.        0.CURVE             0.                    
 $#   BLANK
           
 $#    KSIm      KSIb      KSIt

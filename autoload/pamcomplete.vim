@@ -1346,10 +1346,24 @@ function! pamcomplete#Complete(findstart, base)
             " }}}
          " {{{ MATER 212
          elseif synIDattr(slist[1], "name") =~ "pam_Mater212.*"
-            if synIDattr(slist[1], "name") =~ "pam_MATER212.*_r7" 
+            if synIDattr(slist[1], "name") =~ "pam_MATER212.*_r4" 
+               " IDRUP
+               if synIDattr(slist[2], "name") =~ "pam_51.*"
+                  let start = 50
+               endif
+            elseif synIDattr(slist[1], "name") =~ "pam_MATER212.*_r7" 
                " FLIM
                if synIDattr(slist[2], "name") =~ "pam_71.*"
                   let start = 70
+               endif
+            endif
+            " }}}
+         " {{{ MATER 213
+         elseif synIDattr(slist[1], "name") =~ "pam_Mater213.*"
+            if synIDattr(slist[1], "name") =~ "pam_MATER213.*_r4" 
+               " IDRUP
+               if synIDattr(slist[2], "name") =~ "pam_51.*"
+                  let start = 50
                endif
             endif
             " }}}
@@ -5822,11 +5836,25 @@ function! pamcomplete#Complete(findstart, base)
             " }}}
          " {{{ MATER 212
          elseif synIDattr(slist[1], "name") =~ "pam_Mater212.*"
-            if synIDattr(slist[1], "name") =~ "pam_MATER212.*_r7" 
+            if synIDattr(slist[1], "name") =~ "pam_MATER212.*_r4" 
+               " IDRUP
+               if synIDattr(slist[2], "name") =~ "pam_51.*"
+                  let items = s:getTags("RUPMO",10)
+               endif
+            elseif synIDattr(slist[1], "name") =~ "pam_MATER212.*_r7" 
                " FLIM
                if synIDattr(slist[2], "name") =~ "pam_71.*"
                   call add (items,{'word':'    0','menu':'Minimum Plastic Strain'})
                   call add (items,{'word':'    1','menu':'Maximum Plastic Strain'})
+               endif
+            endif
+            " }}}
+         " {{{ MATER 213
+         elseif synIDattr(slist[1], "name") =~ "pam_Mater213.*"
+            if synIDattr(slist[1], "name") =~ "pam_MATER213.*_r4" 
+               " IDRUP
+               if synIDattr(slist[2], "name") =~ "pam_51.*"
+                  let items = s:getTags("RUPMO",10)
                endif
             endif
             " }}}
@@ -9967,6 +9995,8 @@ function! pamcomplete#pamHints()
                   return "Et - Hardening Modulus"
                elseif synIDattr(slist[2], "name") =~ "pam_41.*"
                   return "ALPHA - Thermal Expansion Coefficient"
+               elseif synIDattr(slist[2], "name") =~ "pam_51.*"
+                  return "IDRUP - Rupture Model ID (tag)"
                endif
             elseif synIDattr(slist[1], "name") =~ "pam_Mater212.*_r6" 
                if synIDattr(slist[2], "name") =~ "pam_1.10.*"
@@ -10009,6 +10039,8 @@ function! pamcomplete#pamHints()
                   return "Et - Hardening Modulus"
                elseif synIDattr(slist[2], "name") =~ "pam_41.*"
                   return "ALPHA - Thermal Expansion Coefficient"
+               elseif synIDattr(slist[2], "name") =~ "pam_51.*"
+                  return "IDRUP - Rupture Model ID (tag)"
                endif
             elseif synIDattr(slist[1], "name") =~ "pam_Mater213.*_r6" 
                if synIDattr(slist[2], "name") =~ "pam_1.10.*"
