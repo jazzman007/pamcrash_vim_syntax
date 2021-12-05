@@ -4695,6 +4695,9 @@ function! pamcomplete#Complete(findstart, base)
                   endif
                " IAC32
                elseif synIDattr(slist[2], "name") =~ "pam_16.*"
+                  if synIDattr(slist[0], "name") =~ "pam_CNTAC43"
+                     call add (items,{'word':'    0','menu':'No Treatment'})
+                  endif
                   call add (items,{'word':'    2','menu':'Pairs are Deactivated According to Connectivity'})
                " IOMIT
                elseif synIDattr(slist[2], "name") =~ "pam_31.*"
@@ -4799,6 +4802,7 @@ function! pamcomplete#Complete(findstart, base)
                elseif synIDattr(slist[2], "name") =~ "pam_16.*"
                   call add (items,{'word':'    0','menu':'Automatic De-/Reactivation of Slave Entites'})
                   call add (items,{'word':'    1','menu':'No Automatic Treatment'})
+                  call add (items,{'word':'    2','menu':'Pair Deactivated According to PLINK, TIED, MPC-LINK Connectivity'})
                " ITHKSV
                elseif synIDattr(slist[2], "name") =~ "pam_21.*"
                   let items = s:getTags("FUNCT",10)

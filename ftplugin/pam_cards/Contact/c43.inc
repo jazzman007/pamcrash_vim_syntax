@@ -9,7 +9,7 @@ $#ANK    SLFACM     FSVNL                                        BLANK    TLSTIF
              0.        0.                                                       
 $#  FRITYP     VALUE     XDMP1
 CONST             0.        0.
-$#   BLANK IRMV               BLANKIFRED
+$#   BLANK IRMVIAC32          BLANKIFRED
               0                         
 
 $#                                                                    BLANKIPRES
