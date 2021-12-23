@@ -2209,40 +2209,6 @@ function! pamcomplete#Complete(findstart, base)
                if synIDattr(slist[2], "name") =~ "pam_61.*"
                   let start = 60
                endif
-            elseif synIDattr(slist[1], "name") =~ "pam_MATER151_r1[02]"
-               " LC1
-               if synIDattr(slist[2], "name") =~ "pam_1.10.*"
-                  let start = 0
-               " LC2
-               elseif synIDattr(slist[2], "name") =~ "pam_11.*"
-                  let start = 10
-               " LC3
-               elseif synIDattr(slist[2], "name") =~ "pam_21.*"
-                  let start = 20
-               " LC4
-               elseif synIDattr(slist[2], "name") =~ "pam_31.*"
-                  let start = 30
-               " LC5
-               elseif synIDattr(slist[2], "name") =~ "pam_41.*"
-                  let start = 40
-               " LC6
-               elseif synIDattr(slist[2], "name") =~ "pam_51.*"
-                  let start = 50
-               " LC7
-               elseif synIDattr(slist[2], "name") =~ "pam_61.*"
-                  let start = 60
-               " LC8
-               elseif synIDattr(slist[2], "name") =~ "pam_71.*"
-                  let start = 70
-               endif
-            elseif synIDattr(slist[1], "name") =~ "pam_MATER151_r14" 
-               " IBEAM
-               if synIDattr(slist[2], "name") =~ "pam_1.10.*"
-                  let start = 0
-               " ICOMP
-               elseif synIDattr(slist[2], "name") =~ "pam_41.*"
-                  let start = 40
-               endif
             endif
             " }}}
          " {{{ MATER 152
@@ -6866,43 +6832,6 @@ function! pamcomplete#Complete(findstart, base)
                if synIDattr(slist[2], "name") =~ "pam_61.*"
                   call add (items,{'word':'    1','abbr':'1','menu':'Linear Usage'})
                   call add (items,{'word':'    2','abbr':'2 (default)','menu':'Exponential Usage'})
-               endif
-            elseif synIDattr(slist[1], "name") =~ "pam_MATER151_r1[02]"
-               " LC1
-               if synIDattr(slist[2], "name") =~ "pam_1.10.*"
-                  let items = s:getTags("FUNCT",10)
-               " LC2
-               elseif synIDattr(slist[2], "name") =~ "pam_11.*"
-                  let items = s:getTags("FUNCT",10)
-               " LC3
-               elseif synIDattr(slist[2], "name") =~ "pam_21.*"
-                  let items = s:getTags("FUNCT",10)
-               " LC4
-               elseif synIDattr(slist[2], "name") =~ "pam_31.*"
-                  let items = s:getTags("FUNCT",10)
-               " LC5
-               elseif synIDattr(slist[2], "name") =~ "pam_41.*"
-                  let items = s:getTags("FUNCT",10)
-               " LC6
-               elseif synIDattr(slist[2], "name") =~ "pam_51.*"
-                  let items = s:getTags("FUNCT",10)
-               " LC7
-               elseif synIDattr(slist[2], "name") =~ "pam_61.*"
-                  let items = s:getTags("FUNCT",10)
-               " LC8
-               elseif synIDattr(slist[2], "name") =~ "pam_71.*"
-                  let items = s:getTags("FUNCT",10)
-               endif
-            elseif synIDattr(slist[1], "name") =~ "pam_MATER151_r14" 
-               " IBEAM
-               if synIDattr(slist[2], "name") =~ "pam_1.10.*"
-                  call add (items,{'word':'         1','abbr':'1','menu':'Beam Model with Rigid Through Thickness Direction'})
-                  call add (items,{'word':'         2','abbr':'2','menu':'Beam Model with Elastic Through Thickness Direction'})
-                  call add (items,{'word':'         3','abbr':'3','menu':'Truss Model with Elastic Through Thickness Support'})
-               " ICOMP
-               elseif synIDattr(slist[2], "name") =~ "pam_41.*"
-                  call add (items,{'word':'         0','abbr':'0 (default)','menu':'Deactivated under Biaxial Compression'})
-                  call add (items,{'word':'         1','abbr':'1','menu':'Activated under Biaxial Compression'})
                endif
             endif
             " }}}
@@ -13268,93 +13197,9 @@ function! pamcomplete#pamHints()
                elseif synIDattr(slist[2], "name") =~ "pam_61.*"
                   return "IFORM - C2 Parameter Usage in Effective Area"
                endif
-            elseif synIDattr(slist[1], "name") =~ "pam_Mater151.*_r10" 
-               if synIDattr(slist[2], "name") =~ "pam_1.10.*"
-                  return "LC11 - First Flow Curve ID (tag)"
-               elseif synIDattr(slist[2], "name") =~ "pam_11.*"
-                  return "LC12 - Second Flow Curve ID (tag)"
-               elseif synIDattr(slist[2], "name") =~ "pam_21.*"
-                  return "LC13 - Third Flow Curve ID (tag)"
-               elseif synIDattr(slist[2], "name") =~ "pam_31.*"
-                  return "LC14 - Fourth Flow Curve ID (tag)"
-               elseif synIDattr(slist[2], "name") =~ "pam_41.*"
-                  return "LC15 - Fifth Flow Curve ID (tag)"
-               elseif synIDattr(slist[2], "name") =~ "pam_51.*"
-                  return "LC16 - Sixth Flow Curve ID (tag)"
-               elseif synIDattr(slist[2], "name") =~ "pam_61.*"
-                  return "LC17 - Seventh Flow Curve ID (tag)"
-               elseif synIDattr(slist[2], "name") =~ "pam_71.*"
-                  return "LC18 - Eighth Flow Curve ID (tag)"
-               endif
-            elseif synIDattr(slist[1], "name") =~ "pam_Mater151.*_r11" 
-               if synIDattr(slist[2], "name") =~ "pam_1.10.*"
-                  return "THET11 || ERAT11 || EPSI11 - Temperature || Strain Rate || Strain for the First Curve"
-               elseif synIDattr(slist[2], "name") =~ "pam_11.*"
-                  return "THET12 || ERAT12 || EPSI12 - Temperature || Strain Rate || Strain for the Second Curve"
-               elseif synIDattr(slist[2], "name") =~ "pam_21.*"
-                  return "THET13 || ERAT13 || EPSI13 - Temperature || Strain Rate || Strain for the Third Curve"
-               elseif synIDattr(slist[2], "name") =~ "pam_31.*"
-                  return "THET14 || ERAT14 || EPSI14 - Temperature || Strain Rate || Strain for the Fourth Curve"
-               elseif synIDattr(slist[2], "name") =~ "pam_41.*"
-                  return "THET15 || ERAT15 || EPSI15 - Temperature || Strain Rate || Strain for the Fifth Curve"
-               elseif synIDattr(slist[2], "name") =~ "pam_51.*"
-                  return "THET16 || ERAT16 || EPSI16 - Temperature || Strain Rate || Strain for the Sixth Curve"
-               elseif synIDattr(slist[2], "name") =~ "pam_61.*"
-                  return "THET17 || ERAT17 || EPSI17 - Temperature || Strain Rate || Strain for the Seventh Curve"
-               elseif synIDattr(slist[2], "name") =~ "pam_71.*"
-                  return "THET18 || ERAT18 || EPSI18 - Temperature || Strain Rate || Strain for the Eighth Curve"
-               endif
-            elseif synIDattr(slist[1], "name") =~ "pam_Mater151.*_r12" 
-               if synIDattr(slist[2], "name") =~ "pam_1.10.*"
-                  return "LC21 - First Flow Curve ID (tag)"
-               elseif synIDattr(slist[2], "name") =~ "pam_11.*"
-                  return "LC22 - Second Flow Curve ID (tag)"
-               elseif synIDattr(slist[2], "name") =~ "pam_21.*"
-                  return "LC23 - Third Flow Curve ID (tag)"
-               elseif synIDattr(slist[2], "name") =~ "pam_31.*"
-                  return "LC24 - Fourth Flow Curve ID (tag)"
-               elseif synIDattr(slist[2], "name") =~ "pam_41.*"
-                  return "LC25 - Fifth Flow Curve ID (tag)"
-               elseif synIDattr(slist[2], "name") =~ "pam_51.*"
-                  return "LC26 - Sixth Flow Curve ID (tag)"
-               elseif synIDattr(slist[2], "name") =~ "pam_61.*"
-                  return "LC27 - Seventh Flow Curve ID (tag)"
-               elseif synIDattr(slist[2], "name") =~ "pam_71.*"
-                  return "LC28 - Eighth Flow Curve ID (tag)"
-               endif
-            elseif synIDattr(slist[1], "name") =~ "pam_Mater151.*_r13" 
-               if synIDattr(slist[2], "name") =~ "pam_1.10.*"
-                  return "THET21 || ERAT21 || EPSI21 - Temperature || Strain Rate || Strain for the First Curve"
-               elseif synIDattr(slist[2], "name") =~ "pam_11.*"
-                  return "THET22 || ERAT22 || EPSI22 - Temperature || Strain Rate || Strain for the Second Curve"
-               elseif synIDattr(slist[2], "name") =~ "pam_21.*"
-                  return "THET23 || ERAT23 || EPSI23 - Temperature || Strain Rate || Strain for the Third Curve"
-               elseif synIDattr(slist[2], "name") =~ "pam_31.*"
-                  return "THET24 || ERAT24 || EPSI24 - Temperature || Strain Rate || Strain for the Fourth Curve"
-               elseif synIDattr(slist[2], "name") =~ "pam_41.*"
-                  return "THET25 || ERAT25 || EPSI25 - Temperature || Strain Rate || Strain for the Fifth Curve"
-               elseif synIDattr(slist[2], "name") =~ "pam_51.*"
-                  return "THET26 || ERAT26 || EPSI26 - Temperature || Strain Rate || Strain for the Sixth Curve"
-               elseif synIDattr(slist[2], "name") =~ "pam_61.*"
-                  return "THET27 || ERAT27 || EPSI27 - Temperature || Strain Rate || Strain for the Seventh Curve"
-               elseif synIDattr(slist[2], "name") =~ "pam_71.*"
-                  return "THET28 || ERAT28 || EPSI28 - Temperature || Strain Rate || Strain for the Eighth Curve"
-               endif
-            elseif synIDattr(slist[1], "name") =~ "pam_Mater151.*_r14" 
-               if synIDattr(slist[2], "name") =~ "pam_1.10.*"
-                  return "IBEAM - Yarn Coupling Model Flag (menu)"
-               elseif synIDattr(slist[2], "name") =~ "pam_11.*"
-                  return "Ethick - Elastic Stiffness Modulus of the Through Thickness Beam"
-               elseif synIDattr(slist[2], "name") =~ "pam_21.*"
-                  return "UCSIZA - First Yarn Coupling Geometry Parameter"
-               elseif synIDattr(slist[2], "name") =~ "pam_31.*"
-                  return "UCSIZB - Second Yarn Coupling Geometry Parameter"
-               elseif synIDattr(slist[2], "name") =~ "pam_41.*"
-                  return "ICOMP - Biaxial Compression Beam Model Activation Flag (menu)"
-               elseif synIDattr(slist[2], "name") =~ "pam_51.*"
-                  return "SCALEA - Stiffness Scaling Parameter for First Fiber Direction"
-               elseif synIDattr(slist[2], "name") =~ "pam_61.*"
-                  return "SCALEB - Stiffness Scaling Parameter for Second Fiber Direction"
+            elseif synIDattr(slist[1], "name") =~ "pam_Mater151.*_r1[0-4]" 
+               if synIDattr(slist[2], "name") =~ "pam_.*"
+                  return "Optional Value - cannot be uniquely detected"
                endif
             endif
          " }}}

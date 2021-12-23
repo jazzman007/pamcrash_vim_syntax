@@ -13,3 +13,5 @@ $#      As    IHOMOG     BLANK  NCYCplas
         0.                              
 $#   IHARD         a         b         n  SIGMAmax
                   0.        0.        0.        0.
+                                                                                
+                              
