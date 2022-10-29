@@ -1968,10 +1968,10 @@ syn region      pam_Control_CKCTRL                matchgroup=pam_CardTag start="
       syn keyword pam_Control_CKCTRL_CONNECTION_EARLY_ELIMINATION_arg   contained containedin=pam_Control_CKCTRL_CONNECTION_EARLY_ELIMINATION INFO WARNING ERROR NELE NCYCLE
       hi def link pam_Control_CKCTRL_CONNECTION_EARLY_ELIMINATION_arg pam_Argument
    syn region    pam_Control_CKCTRL_CNTAC_PENETRATION_REMOVAL        contained containedin=pam_Control_CKCTRL matchgroup=pam_Keyword start="CNTAC_PENETRATION_REMOVAL" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Float,pam_Control_CKCTRL_CNTAC_PENETRATION_REMOVAL_arg,pam_Continue,pam_Error,pam_FreeError,pam_FreeVar
-      syn keyword pam_Control_CKCTRL_CNTAC_PENETRATION_REMOVAL_arg   contained containedin=pam_Control_CKCTRL_CNTAC_PENETRATION_REMOVAL INFO WARNING ERROR HCONT_MIN
+      syn keyword pam_Control_CKCTRL_CNTAC_PENETRATION_REMOVAL_arg   contained containedin=pam_Control_CKCTRL_CNTAC_PENETRATION_REMOVAL INFO WARNING ERROR HCONT_MIN HCONT_RATIO_MIN
       hi def link pam_Control_CKCTRL_CNTAC_PENETRATION_REMOVAL_arg pam_Argument
    syn region    pam_Control_CKCTRL_CNTAC_PENETRATION_DEPTH        contained containedin=pam_Control_CKCTRL matchgroup=pam_Keyword start="CNTAC_PENETRATION_DEPTH" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Float,pam_Control_CKCTRL_CNTAC_PENETRATION_DEPTH_arg,pam_Continue,pam_Error,pam_FreeError,pam_FreeVar
-      syn keyword pam_Control_CKCTRL_CNTAC_PENETRATION_DEPTH_arg   contained containedin=pam_Control_CKCTRL_CNTAC_PENETRATION_DEPTH INFO WARNING ERROR PENET_MAX
+      syn keyword pam_Control_CKCTRL_CNTAC_PENETRATION_DEPTH_arg   contained containedin=pam_Control_CKCTRL_CNTAC_PENETRATION_DEPTH INFO WARNING ERROR PENET_MAX PENET_RATIO_MAX
       hi def link pam_Control_CKCTRL_CNTAC_PENETRATION_DEPTH_arg pam_Argument
    syn region    pam_Control_CKCTRL_SHELL_GEOMETRY_QUALITY        contained containedin=pam_Control_CKCTRL matchgroup=pam_Keyword start="SHELL_GEOMETRY_QUALITY" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Float,pam_Control_CKCTRL_SHELL_GEOMETRY_QUALITY_arg,pam_Continue,pam_Error,pam_FreeError,pam_FreeVar
       syn keyword pam_Control_CKCTRL_SHELL_GEOMETRY_QUALITY_arg   contained containedin=pam_Control_CKCTRL_SHELL_GEOMETRY_QUALITY INFO WARNING ERROR WARP_ANGLE QUAD_MAX_ANGLE QUAD_MIN_ANGLE TRIA_MAX_ANGLE TRIA_MIN_ANGLE ASPECT_RATIO
@@ -2053,24 +2053,33 @@ hi def link pam_Control_TCTRL_SHELL_TIMESTEP_arg pam_Argument
 syn region      pam_Control_ECTRL                matchgroup=pam_CardTag start="^\CECTRL /" end="^\CEND_ECTRL[ ]*" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Comment,pam_Comment_Position,pam_Continue keepend
    syn region      pam_Control_ECTRL_THICKNESS_INTEGRATION      contained containedin=pam_Control_ECTRL matchgroup=pam_Keyword start="THICKNESS_INTEGRATION" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Control_ECTRL_THICKNESS_INTEGRATION_arg,pam_Continue,pam_Error,pam_FreeError,pam_FreeVar
       syn keyword     pam_Control_ECTRL_THICKNESS_INTEGRATION_arg  contained containedin=pam_Control_ECTRL_THICKNESS_INTEGRATION UNIFORM GAUSS SIMPSON
+      hi def link pam_Control_ECTRL_THICKNESS_INTEGRATION_arg pam_Argument
    syn region    pam_Control_ECTRL_SHELL_FORMULATION       contained containedin=pam_Control_ECTRL matchgroup=pam_Keyword start="SHELL_FORMULATION" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Integer,pam_Continue
    syn region    pam_Control_ECTRL_SOLID_FORMULATION       contained containedin=pam_Control_ECTRL matchgroup=pam_Keyword start="SOLID_FORMULATION" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Integer,pam_Continue
    syn region    pam_Control_ECTRL_BEAM_FORMULATION       contained containedin=pam_Control_ECTRL matchgroup=pam_Keyword start="BEAM_FORMULATION" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Integer,pam_Continue
    syn region      pam_Control_ECTRL_ANTIDRILL      contained containedin=pam_Control_ECTRL matchgroup=pam_Keyword start="ANTIDRILL" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Control_ECTRL_ANTIDRILL_arg,pam_Continue,pam_Error,pam_FreeError,pam_FreeVar
       syn keyword     pam_Control_ECTRL_ANTIDRILL_arg  contained containedin=pam_Control_ECTRL_ANTIDRILL PROJECTION RBODY PROJECTION_RBODY PENALTY NO
+      hi def link pam_Control_ECTRL_ANTIDRILL_arg pam_Argument
    syn region      pam_Control_ECTRL_OTMCO_UPDATE_METHOD      contained containedin=pam_Control_ECTRL matchgroup=pam_Keyword start="OTMCO_UPDATE_METHOD" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Control_ECTRL_OTMCO_UPDATE_METHOD_arg,pam_Continue,pam_Error,pam_FreeError,pam_FreeVar
       syn keyword     pam_Control_ECTRL_OTMCO_UPDATE_METHOD_arg  contained containedin=pam_Control_ECTRL_OTMCO_UPDATE_METHOD LINEAR ROTATION_INCREMENT ROTATION_ANGLE
+      hi def link pam_Control_ECTRL_OTMCO_UPDATE_METHOD_arg pam_Argument
    syn region    pam_Control_ECTRL_KINJ       contained containedin=pam_Control_ECTRL matchgroup=pam_Keyword start="KINJ" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Float,pam_Continue
    syn region    pam_Control_ECTRL_POST_CUTOFF_SLOPE       contained containedin=pam_Control_ECTRL matchgroup=pam_Keyword start="POST_CUTOFF_SLOPE" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Float,pam_Continue
+   syn region    pam_Control_ECTRL_DAMPING_TARGET_FREQUENCY       contained containedin=pam_Control_ECTRL matchgroup=pam_Keyword start="DAMPING_TARGET_FREQUENCY" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Float,pam_Continue
    syn region    pam_Control_ECTRL_NUMERICAL_DAMPING       contained containedin=pam_Control_ECTRL matchgroup=pam_Keyword start="NUMERICAL_DAMPING" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_CONTROL_YESNO,pam_Continue
    syn region    pam_Control_ECTRL_MPC_PLINK_FORMULATION       contained containedin=pam_Control_ECTRL matchgroup=pam_Keyword start="MPC-PLINK_FORMULATION" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Integer,pam_Continue
    syn region    pam_Control_ECTRL_MPC_PLINK_OTMCO       contained containedin=pam_Control_ECTRL matchgroup=pam_Keyword start="MPC_PLINK_OTMCO" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_CONTROL_YESNO,pam_Continue
    syn region      pam_Control_ECTRL_ZROTSHELL      contained containedin=pam_Control_ECTRL matchgroup=pam_Keyword start="ZROTSHELL" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Control_ECTRL_ZROTSHELL_arg,pam_Float,pam_Continue,pam_Error,pam_FreeError,pam_FreeVar
       syn keyword     pam_Control_ECTRL_ZROTSHELL_arg  contained containedin=pam_Control_ECTRL_ZROTSHELL PENALTY
+      hi def link pam_Control_ECTRL_ZROTSHELL_arg pam_Argument
    syn region    pam_Control_ECTRL_ENFORCE_ELASTIC       contained containedin=pam_Control_ECTRL matchgroup=pam_Keyword start="ENFORCE_ELASTIC" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_CONTROL_YESNO,pam_Continue,pam_Error,pam_FreeError,pam_FreeVar
    syn region    pam_Control_ECTRL_SPRINGBACK       contained containedin=pam_Control_ECTRL matchgroup=pam_Keyword start="SPRINGBACK" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_CONTROL_YESNO,pam_Continue,pam_Error,pam_FreeError,pam_FreeVar
    syn region      pam_Control_ECTRL_GEOM_STIFFNESS_MATRIX      contained containedin=pam_Control_ECTRL matchgroup=pam_Keyword start="GEOM_STIFFNESS_MATRIX" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Control_ECTRL_GEOM_STIFFNESS_MATRIX_arg,pam_Float,pam_Continue,pam_Error,pam_FreeError,pam_FreeVar
       syn keyword     pam_Control_ECTRL_GEOM_STIFFNESS_MATRIX_arg  contained containedin=pam_Control_ECTRL_GEOM_STIFFNESS_MATRIX ITERATION INCREMENT YES NO
+      hi def link pam_Control_ECTRL_GEOM_STIFFNESS_MATRIX_arg pam_Argument
+   syn region      pam_Control_ECTRL_PLASTICITY_1D      contained containedin=pam_Control_ECTRL matchgroup=pam_Keyword start="PLASTICITY_1D" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Control_ECTRL_PLASTICITY_1D_arg,pam_Continue,pam_Error,pam_FreeError,pam_FreeVar
+      syn keyword     pam_Control_ECTRL_PLASTICITY_1D_arg  contained containedin=pam_Control_ECTRL_PLASTICITY_1D REDUCED FULL
+      hi def link pam_Control_ECTRL_PLASTICITY_1D_arg pam_Argument
    syn region    pam_Control_ECTRL_SHELL_ENHANCED_STRAIN       contained containedin=pam_Control_ECTRL matchgroup=pam_Keyword start="SHELL_ENHANCED_STRAIN" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_CONTROL_YESNO,pam_Continue,pam_Error,pam_FreeError,pam_FreeVar
    syn region    pam_Control_ECTRL_FLEXIBILITY       contained containedin=pam_Control_ECTRL matchgroup=pam_Keyword start="FLEXIBILITY" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_CONTROL_YESNO,pam_Continue,pam_Error,pam_FreeError,pam_FreeVar
    syn region    pam_Control_ECTRL_TRIANGLE_HYBRID_STRAIN       contained containedin=pam_Control_ECTRL matchgroup=pam_Keyword start="TRIANGLE_HYBRID_STRAIN" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_CONTROL_YESNO,pam_Continue,pam_Error,pam_FreeError,pam_FreeVar
@@ -2084,8 +2093,10 @@ syn region      pam_Control_ECTRL                matchgroup=pam_CardTag start="^
    syn region    pam_Control_ECTRL_RATEFILTER_TIME       contained containedin=pam_Control_ECTRL matchgroup=pam_Keyword start="RATEFILTER_TIME" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Float,pam_Continue
    syn region      pam_Control_ECTRL_RATESCALE      contained containedin=pam_Control_ECTRL matchgroup=pam_Keyword start="RATESCALE" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Control_ECTRL_RATESCALE_arg,pam_Float,pam_Continue,pam_Error,pam_FreeError,pam_FreeVar
       syn keyword     pam_Control_ECTRL_RATESCALE_arg  contained containedin=pam_Control_ECTRL_RATESCALE CONSTANT CURVE FUNCTS FUNCTR
+      hi def link pam_Control_ECTRL_RATESCALE_arg pam_Argument
    syn region      pam_Control_ECTRL_RATECURVE      contained containedin=pam_Control_ECTRL matchgroup=pam_Keyword start="RATECURVE" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Control_ECTRL_RATECURVE_arg,pam_Float,pam_Continue,pam_Error,pam_FreeError,pam_FreeVar
       syn keyword     pam_Control_ECTRL_RATECURVE_arg  contained containedin=pam_Control_ECTRL_RATECURVE LINEAR LOG
+      hi def link pam_Control_ECTRL_RATECURVE_arg pam_Argument
    syn region    pam_Control_ECTRL_METRIC_3D_LOAD       contained containedin=pam_Control_ECTRL matchgroup=pam_Keyword start="METRIC_3D_LOAD" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Float,pam_Continue
    syn region    pam_Control_ECTRL_ENERGY_MONITORING       contained containedin=pam_Control_ECTRL matchgroup=pam_Keyword start="ENERGY_MONITORING" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Float,pam_Continue
    syn region    pam_Control_ECTRL_PLINK_DIST_CHECK       contained containedin=pam_Control_ECTRL matchgroup=pam_Keyword start="PLINK_DIST_CHECK" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Float,pam_Continue
@@ -2094,13 +2105,6 @@ syn region      pam_Control_ECTRL                matchgroup=pam_CardTag start="^
    syn region    pam_Control_ECTRL_SPRINGFORWARD       contained containedin=pam_Control_ECTRL matchgroup=pam_Keyword start="SPRINGFORWARD" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Float,pam_Continue
    syn region    pam_Control_ECTRL_SIMPLFMASS       contained containedin=pam_Control_ECTRL matchgroup=pam_Keyword start="SIMPLFMASS" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar
 
-hi def link pam_Control_ECTRL_THICKNESS_INTEGRATION_arg pam_Argument
-hi def link pam_Control_ECTRL_ANTIDRILL_arg pam_Argument
-hi def link pam_Control_ECTRL_OTMCO_UPDATE_METHOD_arg pam_Argument
-hi def link pam_Control_ECTRL_ZROTSHELL_arg pam_Argument
-hi def link pam_Control_ECTRL_GEOM_STIFFNESS_MATRIX_arg pam_Argument
-hi def link pam_Control_ECTRL_RATESCALE_arg pam_Argument
-hi def link pam_Control_ECTRL_RATECURVE_arg pam_Argument
 
 " ECTRL end}}}
 
@@ -2109,7 +2113,9 @@ syn region      pam_Control_EOCTRL                matchgroup=pam_CardTag start="
    syn region    pam_Control_EOCTRL_COMPRESSION       contained containedin=pam_Control_EOCTRL matchgroup=pam_Keyword start="COMPRESSION" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_CONTROL_YESNO,pam_Continue,pam_Error,pam_FreeError,pam_FreeVar
    syn region    pam_Control_EOCTRL_STRIPPED_INPUT       contained containedin=pam_Control_EOCTRL matchgroup=pam_Keyword start="STRIPPED_INPUT" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_CONTROL_YESNO,pam_Continue,pam_Error,pam_FreeError,pam_FreeVar
    syn region   pam_CONTROL_EOCTRL_ERFFILL        matchgroup=pam_Argument start="^\CERFFIL" end="^\CEND_ERFFIL" contained containedin=pam_Control_EOCTRL contains=pam_Comment,pam_Comment_Position
-
+   syn region      pam_Control_EOCTRL_MESH_DEACTIVATION      contained containedin=pam_Control_EOCTRL matchgroup=pam_Keyword start="MESH_DEACTIVATION" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Control_EOCTRL_MESH_DEACTIVATION_arg,pam_Continue,pam_Error,pam_FreeError,pam_FreeVar
+      syn keyword     pam_Control_EOCTRL_MESH_DEACTIVATION_arg  contained containedin=pam_Control_EOCTRL_MESH_DEACTIVATION IGNORED
+      hi def link pam_Control_EOCTRL_MESH_DEACTIVATION_arg pam_Argument
 " EOCTRL end}}}
 
 " {{{ CCTRL
@@ -2162,6 +2168,9 @@ syn region      pam_Control_ANALYSIS_TYPE        contained containedin=pam_Contr
    syn match pam_Control_ANALYSIS_arg          contained containedin=pam_Control_ANALYSIS_TYPE "QUASI-STATIC"
 syn region      pam_Control_PENALTY_K3D        contained containedin=pam_Control_ICTRL matchgroup=pam_HeaderKW start="\CPENALTY_K3D" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Float,pam_Continue keepend
 syn region      pam_Control_PENALTY_M3D        contained containedin=pam_Control_ICTRL matchgroup=pam_HeaderKW start="\CPENALTY_M3D" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Float,pam_Continue keepend
+syn region      pam_Control_SUBSTR_REDUCTION        contained containedin=pam_Control_ICTRL matchgroup=pam_HeaderKW start="\CSUBSTR_REDUCTION" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Control_SUBSTR_REDUCTION_arg,pam_Error,pam_FreeError,pam_FreeVar,pam_Continue keepend
+   syn keyword     pam_Control_SUBSTR_REDUCTION_arg         contained containedin=pam_Control_SUBSTR_REDUCTION STATIC DYNAMIC
+   hi def link pam_Control_SUBSTR_REDUCTION_arg pam_Argument
 syn region      pam_Control_SOLVER_MATRIX        contained containedin=pam_Control_ICTRL matchgroup=pam_HeaderKW start="\CSOLVER_MATRIX" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Integer,pam_Continue keepend
 syn region      pam_Control_SOLVER_MEMORY_OOC        contained containedin=pam_Control_ICTRL matchgroup=pam_HeaderKW start="\CSOLVER_MEMORY_OOC" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_String,pam_Continue keepend
 syn region      pam_Control_RHS_BLOCK_SIZE        contained containedin=pam_Control_ICTRL matchgroup=pam_HeaderKW start="\CRHS_BLOCK_SIZE" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Integer,pam_Continue keepend
