@@ -2640,7 +2640,7 @@ syn region      pam_MODEL           matchgroup=pam_CardTag start="^\CMODEL /" en
 
 " {{{=== RMSSOL begin
    "Row 4 (Selection)
-   syn region      pam_RMSSOL_r4     transparent contained containedin=pam_RMSSOL start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_MODELSEL,pam_Comment,pam_Comment_Position,pam_End,pam_Error keepend skipnl
+   syn region      pam_RMSSOL_r4     transparent contained containedin=pam_RMSSOL start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25f8,@33i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_MODELSEL,pam_Comment,pam_Comment_Position,pam_End,pam_Error keepend skipnl
    "Row 3
       syn match    pam_RMSSOL_r3_e1             display contained "\%9c.\{,8\}"
       syn match    pam_RMSSOL_r3_a1             display contained "\%9c\CVARS    "

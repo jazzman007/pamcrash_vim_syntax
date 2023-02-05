@@ -3718,6 +3718,11 @@ function! pamcomplete#Complete(findstart, base)
             elseif synIDattr(slist[2], "name") =~ "pam_17.*"
                let start = 16
             endif
+         elseif synIDattr(slist[1], "name") =~ "pam_RMSSOL_r4"
+            " ITRIA
+            if synIDattr(slist[2], "name") =~ "pam_33.*"
+               let start = 32 
+            endif
          endif
 "  }}}
 "  {{{ FUNCSW
@@ -8278,6 +8283,12 @@ function! pamcomplete#Complete(findstart, base)
             " ISENS
             elseif synIDattr(slist[2], "name") =~ "pam_17.*"
                let items = s:getTags("SENSOR",8)
+            endif
+         elseif synIDattr(slist[1], "name") =~ "pam_RMSSOL_r4"
+            " ITRIA
+            if synIDattr(slist[2], "name") =~ "pam_33.*"
+               call add (items,{'word':'       1','abbr':'1 (default)','menu':'Triangle Shell Elements are Remeshed as 6-node Elements'})
+               call add (items,{'word':'       2','abbr':'2','menu':'Triangle Shell Elements are Remeshed as 8-node Elements'})
             endif
          endif
 "  }}}
@@ -21499,6 +21510,8 @@ function! pamcomplete#pamHints()
             return "NGTHK - Number of Solids over Thickness"
          elseif synIDattr(slist[2], "name") =~ "pam_25.*"
             return "XLENGTH - Minimal Length of the Generated Solid Element"
+         elseif synIDattr(slist[2], "name") =~ "pam_33.*"
+            return "ITRIA - Flag to Control the Remeshing of Triangle Shell Elements (menu)"
          endif
       endif
 "  }}}
