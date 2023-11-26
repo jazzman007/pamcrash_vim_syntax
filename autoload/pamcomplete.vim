@@ -2934,6 +2934,9 @@ function! pamcomplete#Complete(findstart, base)
             " FILTER
             elseif col('.') >= 33 && col('.') <= 40
                let start = 32
+            " IFRCDIR
+            elseif synIDattr(slist[2], "name") =~ "pam_41.*"
+               let start = 40
             endif
          endif
 " }}}
@@ -3720,8 +3723,8 @@ function! pamcomplete#Complete(findstart, base)
             endif
          elseif synIDattr(slist[1], "name") =~ "pam_RMSSOL_r4"
             " ITRIA
-            if synIDattr(slist[2], "name") =~ "pam_33.*"
-               let start = 32 
+            if synIDattr(slist[2], "name") =~ "pam_41.*"
+               let start = 40 
             endif
          endif
 "  }}}
@@ -4966,6 +4969,11 @@ function! pamcomplete#Complete(findstart, base)
             elseif col('.') >= 33 && col('.') <= 40
                call add (items,{'word':'CYCLE   ','abbr':'CYCLE (default)','menu':'CYCLE Filter'})
                call add (items,{'word':'TIME    ','abbr':'TIME','menu':'TIME Filter'})
+            " IFRCDIR
+            elseif synIDattr(slist[2], "name") =~ "pam_41.*"
+               call add (items,{'word':'       0','abbr':'0 (default)','menu':'Normal Direction is one of the Line connecting the Two Nodes dirung the Computation'})
+               call add (items,{'word':'       1','abbr':'1 (default)','menu':'Normal Direction is one of the Line connecting the Two Nodes dirung the Computation'})
+               call add (items,{'word':'       2','abbr':'2','menu':'Normal Direction is one of the Line connection the nodes at initialization and updated according to MPC mean Rotation '})
             endif
          endif
 " }}}
@@ -8286,7 +8294,7 @@ function! pamcomplete#Complete(findstart, base)
             endif
          elseif synIDattr(slist[1], "name") =~ "pam_RMSSOL_r4"
             " ITRIA
-            if synIDattr(slist[2], "name") =~ "pam_33.*"
+            if synIDattr(slist[2], "name") =~ "pam_41.*"
                call add (items,{'word':'       1','abbr':'1 (default)','menu':'Triangle Shell Elements are Remeshed as 6-node Elements'})
                call add (items,{'word':'       2','abbr':'2','menu':'Triangle Shell Elements are Remeshed as 8-node Elements'})
             endif
@@ -10751,6 +10759,8 @@ function! pamcomplete#pamHints()
                   return "NLOADLWr - Curve ID for Lower Force Limit (tag)"
                elseif synIDattr(slist[2], "name") =~ "pam_21.*"
                   return "NDAMPr - Curve ID for Damping Firce (tag)"
+               elseif synIDattr(slist[2], "name") =~ "pam_31.*"
+                  return "KSITR - Constant Stiffness Proportional Damping Ratio along r-Axis"
                endif
             elseif synIDattr(slist[1], "name") =~ "pam_Mater225x_r5" 
                if synIDattr(slist[2], "name") =~ "pam_1.10.*"
@@ -10759,6 +10769,8 @@ function! pamcomplete#pamHints()
                   return "DAMVTR - Constant Viscous Damping Coefficient along R-Axis"
                elseif synIDattr(slist[2], "name") =~ "pam_21.*"
                   return "DAMSTR - Constant Stiffness Proportinal Damping Ratio Along R-Axis"
+               elseif synIDattr(slist[2], "name") =~ "pam_31.*"
+                  return "KSITR - Constant Stiffness Proportional Damping Ratio along r-Axis"
                endif
             elseif synIDattr(slist[1], "name") =~ "pam_Mater225_r6" 
                if synIDattr(slist[2], "name") =~ "pam_1.10.*"
@@ -10767,6 +10779,8 @@ function! pamcomplete#pamHints()
                   return "NLOADLWs - Curve ID for Lower Force Limit (tag)"
                elseif synIDattr(slist[2], "name") =~ "pam_21.*"
                   return "NDAMPs - Curve ID for Damping Firce (tag)"
+               elseif synIDattr(slist[2], "name") =~ "pam_31.*"
+                  return "KSITS - Constant Stiffness Proportional Damping Ratio along s-Axis"
                endif
             elseif synIDattr(slist[1], "name") =~ "pam_Mater225x_r6" 
                if synIDattr(slist[2], "name") =~ "pam_1.10.*"
@@ -10775,6 +10789,8 @@ function! pamcomplete#pamHints()
                   return "DAMVTS - Constant Viscous Damping Coefficient along S-Axis"
                elseif synIDattr(slist[2], "name") =~ "pam_21.*"
                   return "DAMSTS - Constant Stiffness Proportinal Damping Ratio Along S-Axis"
+               elseif synIDattr(slist[2], "name") =~ "pam_31.*"
+                  return "KSITS - Constant Stiffness Proportional Damping Ratio along s-Axis"
                endif
             elseif synIDattr(slist[1], "name") =~ "pam_Mater225_r7" 
                if synIDattr(slist[2], "name") =~ "pam_1.10.*"
@@ -10783,6 +10799,8 @@ function! pamcomplete#pamHints()
                   return "NLOADLWt - Curve ID for Lower Force Limit (tag)"
                elseif synIDattr(slist[2], "name") =~ "pam_21.*"
                   return "NDAMPt - Curve ID for Damping Firce (tag)"
+               elseif synIDattr(slist[2], "name") =~ "pam_31.*"
+                  return "KSITT - Constant Stiffness Proportional Damping Ratio along t-Axis"
                endif
             elseif synIDattr(slist[1], "name") =~ "pam_Mater225x_r7" 
                if synIDattr(slist[2], "name") =~ "pam_1.10.*"
@@ -10791,6 +10809,8 @@ function! pamcomplete#pamHints()
                   return "DAMVTT - Constant Viscous Damping Coefficient along T-Axis"
                elseif synIDattr(slist[2], "name") =~ "pam_21.*"
                   return "DAMSTT - Constant Stiffness Proportinal Damping Ratio Along T-Axis"
+               elseif synIDattr(slist[2], "name") =~ "pam_31.*"
+                  return "KSITT - Constant Stiffness Proportional Damping Ratio along t-Axis"
                endif
             elseif synIDattr(slist[1], "name") =~ "pam_Mater225_r8" 
                if synIDattr(slist[2], "name") =~ "pam_1.10.*"
@@ -10799,6 +10819,8 @@ function! pamcomplete#pamHints()
                   return "MLOADLWr - Curve ID for Lower Moment Limit (tag)"
                elseif synIDattr(slist[2], "name") =~ "pam_21.*"
                   return "MDAMPr - Curve ID for Damping Firce (tag)"
+               elseif synIDattr(slist[2], "name") =~ "pam_31.*"
+                  return "KSIRR - Constant Stiffness Proportional Damping Ratio along r-Axis"
                endif
             elseif synIDattr(slist[1], "name") =~ "pam_Mater225x_r8" 
                if synIDattr(slist[2], "name") =~ "pam_1.10.*"
@@ -10807,6 +10829,8 @@ function! pamcomplete#pamHints()
                   return "DAMVRR - Constant Viscous Damping Coefficient about R-Axis"
                elseif synIDattr(slist[2], "name") =~ "pam_21.*"
                   return "DAMSRR - Constant Stiffness Proportinal Damping Ratio about R-Axis"
+               elseif synIDattr(slist[2], "name") =~ "pam_31.*"
+                  return "KSIRR - Constant Stiffness Proportional Damping Ratio along r-Axis"
                endif
             elseif synIDattr(slist[1], "name") =~ "pam_Mater225_r9" 
                if synIDattr(slist[2], "name") =~ "pam_1.10.*"
@@ -10815,6 +10839,8 @@ function! pamcomplete#pamHints()
                   return "MLOADLWs - Curve ID for Lower Moment Limit (tag)"
                elseif synIDattr(slist[2], "name") =~ "pam_21.*"
                   return "MDAMPs - Curve ID for Damping Firce (tag)"
+               elseif synIDattr(slist[2], "name") =~ "pam_31.*"
+                  return "KSIRS - Constant Stiffness Proportional Damping Ratio along s-Axis"
                endif
             elseif synIDattr(slist[1], "name") =~ "pam_Mater225x_r9" 
                if synIDattr(slist[2], "name") =~ "pam_1.10.*"
@@ -10823,6 +10849,8 @@ function! pamcomplete#pamHints()
                   return "DAMVRS - Constant Viscous Damping Coefficient about S-Axis"
                elseif synIDattr(slist[2], "name") =~ "pam_21.*"
                   return "DAMSRS - Constant Stiffness Proportinal Damping Ratio about S-Axis"
+               elseif synIDattr(slist[2], "name") =~ "pam_31.*"
+                  return "KSIRS - Constant Stiffness Proportional Damping Ratio along s-Axis"
                endif
             elseif synIDattr(slist[1], "name") =~ "pam_Mater225_r10" 
                if synIDattr(slist[2], "name") =~ "pam_1.10.*"
@@ -10831,6 +10859,8 @@ function! pamcomplete#pamHints()
                   return "MLOADLWt - Curve ID for Lower Moment Limit (tag)"
                elseif synIDattr(slist[2], "name") =~ "pam_21.*"
                   return "MDAMPt - Curve ID for Damping Firce (tag)"
+               elseif synIDattr(slist[2], "name") =~ "pam_31.*"
+                  return "KSIRT - Constant Stiffness Proportional Damping Ratio along t-Axis"
                endif
             elseif synIDattr(slist[1], "name") =~ "pam_Mater225x_r10" 
                if synIDattr(slist[2], "name") =~ "pam_1.10.*"
@@ -10839,6 +10869,8 @@ function! pamcomplete#pamHints()
                   return "DAMVRT - Constant Viscous Damping Coefficient about T-Axis"
                elseif synIDattr(slist[2], "name") =~ "pam_21.*"
                   return "DAMSRT - Constant Stiffness Proportinal Damping Ratio about T-Axis"
+               elseif synIDattr(slist[2], "name") =~ "pam_31.*"
+                  return "KSIRT - Constant Stiffness Proportional Damping Ratio along t-Axis"
                endif
             elseif synIDattr(slist[1], "name") =~ "pam_Mater225.*_r11" 
                if col('.') == 8 
@@ -18526,6 +18558,8 @@ function! pamcomplete#pamHints()
             return "IFMON - Monitoring Option (menu)"
          elseif col('.') >= 33 && col('.') <= 40
             return "FILTER - Failure Criterion Time Windows Type (menu)"
+         elseif synIDattr(slist[2], "name") =~ "pam_41.*"
+            return "IFRCDIR - Normal Direction for MPC-PLINK Failure Evaluation (menu)"
          endif
       elseif synIDattr(slist[1], "name") =~ "pam_RUPMO[01]_r3"
          if synIDattr(slist[2], "name") =~ "pam_9.*"
@@ -20771,6 +20805,26 @@ function! pamcomplete#pamHints()
          endif
       endif
 "  }}}
+"  {{{ GRPSUB
+   elseif synIDattr(slist[0], "name") =~ "pam_GRPSUB"
+      if synIDattr(slist[1], "name") =~ "pam_GRPSUB_r1"
+         if synIDattr(slist[2], "name") =~ "pam_9.*"
+            return "IDNOD"
+         elseif col('.') == 19
+            return "X Displacement Constraint"
+         elseif col('.') == 20
+            return "Y Displacement Constraint"
+         elseif col('.') == 21
+            return "Z Displacement Constraint"
+         elseif col('.') == 22
+            return "X Rotation Constraint"
+         elseif col('.') == 23
+            return "Y Rotation Constraint"
+         elseif col('.') == 24
+            return "Z Rotation Constraint"
+         endif
+      endif
+"  }}}
 "  {{{ MDBODY
    elseif synIDattr(slist[0], "name") =~ "pam_MDBODY"
       if synIDattr(slist[1], "name") =~ "pam_MDBODY_r1"
@@ -21510,7 +21564,7 @@ function! pamcomplete#pamHints()
             return "NGTHK - Number of Solids over Thickness"
          elseif synIDattr(slist[2], "name") =~ "pam_25.*"
             return "XLENGTH - Minimal Length of the Generated Solid Element"
-         elseif synIDattr(slist[2], "name") =~ "pam_33.*"
+         elseif synIDattr(slist[2], "name") =~ "pam_41.*"
             return "ITRIA - Flag to Control the Remeshing of Triangle Shell Elements (menu)"
          endif
       endif

@@ -5,8 +5,8 @@ $#
 NAME RMSSOL -> 1
 $#          CRIT     KW1     KW2           VCRIT           RMESH
         VARS                                                    
-$#         NGEDG   NGTHK XLENGTH   ITRIA
-                                        
+$#         NGEDG   NGTHK         XLENGTH   ITRIA
+                                                
 $#
 MODELSEL
 $#
