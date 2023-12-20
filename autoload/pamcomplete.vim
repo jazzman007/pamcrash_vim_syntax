@@ -677,6 +677,11 @@ function! pamcomplete#Complete(findstart, base)
                elseif synIDattr(slist[2], "name") =~ "pam_41.*"
                   let start = 40
                endif
+            elseif synIDattr(slist[1], "name") =~ "pam_CNTAC.*_r4"
+               " IPCP
+               if synIDattr(slist[2], "name") =~ "pam_1.5.*"
+                  let start = 0
+               endif
             elseif synIDattr(slist[1], "name") =~ "pam_CNTAC.*_r5"
                " FRITYP
                if synIDattr(slist[2], "name") =~ "pam_CNTAC.*_r5_[ae]1"
@@ -4647,6 +4652,14 @@ function! pamcomplete#Complete(findstart, base)
                   call add (items,{'word':'    0','menu':'Constant Thickness (Hcont)'})
                   call add (items,{'word':'    2','menu':'Thickness by PART (Tcont), no Zero Thickness'})
                endif
+            elseif synIDattr(slist[1], "name") =~ "pam_CNTAC.*_r4"
+               " IPCP
+               if synIDattr(slist[2], "name") =~ "pam_1.5.*"
+                  call add (items,{'word':'    0','menu':'With Penalty Constraint'})
+                  call add (items,{'word':'    1','menu':'With Penalty Constraint'})
+                  call add (items,{'word':'    2','menu':'With Lagrange Constraint'})
+                  call add (items,{'word':'    3','menu':'With Augmented Lagrange Constraint'})
+               endif
             elseif synIDattr(slist[1], "name") =~ "pam_CNTAC.*_r5"
                " FRITYP
                if synIDattr(slist[2], "name") =~ "pam_CNTAC.*_r5_[ae]1.*"
@@ -4721,7 +4734,7 @@ function! pamcomplete#Complete(findstart, base)
                   call add (items,{'word':'    0','menu':'Deactivated (EXPL only)'})
                   call add (items,{'word':'    1','menu':'With Penalty Constraint'})
                   call add (items,{'word':'    2','menu':'With Lagrange Constraint'})
-                  call add (items,{'word':'    3','menu':'With AUgmented Lagrange Constraint'})
+                  call add (items,{'word':'    3','menu':'With Augmented Lagrange Constraint'})
                " ICPCUR
                elseif synIDattr(slist[2], "name") =~ "pam_16i.*"
                   let items = s:getTags("FUNCT",10)
@@ -5467,8 +5480,9 @@ function! pamcomplete#Complete(findstart, base)
                call add (items,{'word':'         7','menu':'Three Invariant Criterion'})
                call add (items,{'word':'         8','menu':'User-Defined Criterion'})
                call add (items,{'word':'         9','menu':'Equivalent Shear Stress Criterion'})
-               call add (items,{'word':'        10','menu':'Puck 2000 Modell'})
-               call add (items,{'word':'        11','menu':'Waas-Pineda Modell'})
+               call add (items,{'word':'        10','menu':'Puck 2000 Model'})
+               call add (items,{'word':'        11','menu':'Waas-Pineda Model'})
+               call add (items,{'word':'        12','menu':'User-Defined Model'})
             " IFUNmfc
             elseif synIDattr(slist[2], "name") =~ "pam_41.*" || (synIDattr(slist[2], "name") =~ "pam_PLYFAIL.*_r1" && synIDattr(slist[3], "name") =~ "pam_41.*")
                let items = s:getTags("FUNCT",10)
@@ -8439,7 +8453,9 @@ function! pamcomplete#pamHints()
                return 'NINSEC - Node-to-Edge Activation Flag'
             endif
          elseif synIDattr(slist[1], "name") =~ "pam_CNTAC.*_r4"
-            if synIDattr(slist[2], "name") =~ "pam_6.10.*"
+            if synIDattr(slist[2], "name") =~ "pam_1.5.*"
+               return 'IPCP - Precise Contact Pressure Calculation Flag (menu)'
+            elseif synIDattr(slist[2], "name") =~ "pam_6.10.*"
                return 'SLFACM - Scale Factor for Sliding Interface Penalty'
             elseif synIDattr(slist[2], "name") =~ "pam_16.10.*"
                return 'FSVNL - Nonlinear Penalty Stiffness Parameter'
@@ -18943,6 +18959,14 @@ function! pamcomplete#pamHints()
          elseif synIDattr(slist[2], "name") =~ "pam_25.*"
             return "IFRA - Local Coordinate Frame ID (tag)"
          endif
+      elseif synIDattr(slist[1], "name") =~ "pam_SECFO_PLANE_r3a"
+         if synIDattr(slist[2], "name") =~ "pam_17.8.*"
+            return "IDNODt - Cutting Plane Vector Tail Node"
+         elseif synIDattr(slist[2], "name") =~ "pam_25.8.*"
+            return "IDNODh - Cutting Plane Vector Head Node"
+         elseif synIDattr(slist[2], "name") =~ "pam_57.8.*"
+            return "RADIUS - Cross-Section Selection Limitation"
+         endif
       elseif synIDattr(slist[1], "name") =~ "pam_SECFO_PLANE_r3"
          if synIDattr(slist[2], "name") =~ "pam_9.8.*"
             return "Xtail - X Coordinate of Tail Vector"
@@ -20654,6 +20678,12 @@ function! pamcomplete#pamHints()
             return "CONST2 - Constant Value for Direction 2"
          elseif synIDattr(slist[2], "name") =~ "pam_41.*"
             return "CONST3 - Constant Value for Direction 3"
+         endif
+      elseif synIDattr(slist[1], "name") =~ "pam_BDFOR.*_r4a"
+         if synIDattr(slist[2], "name") =~ "pam_17.*"
+            return "IDNODt - Cutting Plane Vector Tail Node"
+         elseif synIDattr(slist[2], "name") =~ "pam_25.*"
+            return "IDNODh - Cutting Plane Vector Head Node"
          endif
       elseif synIDattr(slist[1], "name") =~ "pam_BDFOR.*_r4"
          if synIDattr(slist[2], "name") =~ "pam_9.*"
