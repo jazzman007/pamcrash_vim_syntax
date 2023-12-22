@@ -3434,41 +3434,10 @@ function! pamcomplete#Complete(findstart, base)
 "  }}}
 "  {{{ RETRA
       elseif synIDattr(slist[0], "name") =~ "pam_RETRA"
-         if synIDattr(slist[1], "name") =~ "pam_RETRA_r1"
-            " NBW2
-            if synIDattr(slist[2], "name") =~ "pam_57.*"
-               let start = 56
-            endif
-         elseif synIDattr(slist[1], "name") =~ "pam_RETRA_r3"
-            " ISENSR
-            if synIDattr(slist[2], "name") =~ "pam_9.*"
-               let start = 8
-            " ISPOOL
-            elseif synIDattr(slist[2], "name") =~ "pam_17.*"
+         if synIDattr(slist[1], "name") =~ "pam_RETRA[12X]_r1"
+            " RETTYP
+            if synIDattr(slist[2], "name") =~ "pam_17.*"
                let start = 16
-            " ISENSP
-            elseif synIDattr(slist[2], "name") =~ "pam_25.*"
-               let start = 24
-            " IREELR
-            elseif synIDattr(slist[2], "name") =~ "pam_33.*"
-               let start = 32
-            " IREELC
-            elseif synIDattr(slist[2], "name") =~ "pam_41.*"
-               let start = 40
-            " ICOURFR
-            elseif synIDattr(slist[2], "name") =~ "pam_49.*"
-               let start = 48
-            endif
-         elseif synIDattr(slist[1], "name") =~ "pam_RETRA_r4"
-            " LLCURV
-            if synIDattr(slist[2], "name") =~ "pam_9.*"
-               let start = 8
-            " LLSENS
-            elseif synIDattr(slist[2], "name") =~ "pam_17.*"
-               let start = 16
-            " LLFLAG
-            elseif synIDattr(slist[2], "name") =~ "pam_25.*"
-               let start = 24
             endif
          endif
 "  }}}
@@ -7876,43 +7845,11 @@ function! pamcomplete#Complete(findstart, base)
 "  }}}
 "  {{{ RETRA
       elseif synIDattr(slist[0], "name") =~ "pam_RETRA"
-         if synIDattr(slist[1], "name") =~ "pam_RETRA_r1"
-            " NBW2
-            if synIDattr(slist[2], "name") =~ "pam_57.*"
-               call add (items,{'word':'       0','menu':'Inside Element to be Entered'})
-               call add (items,{'word':'       1','menu':'No Inside Element to be Entered, Pull-Out Disabled'})
-            endif
-         elseif synIDattr(slist[1], "name") =~ "pam_RETRA_r3"
-            " ISENSR
-            if synIDattr(slist[2], "name") =~ "pam_9.*"
-               let items = s:getTags("SENSOR",8)
-            " ISPOOL
-            elseif synIDattr(slist[2], "name") =~ "pam_17.*"
-               let items = s:getTags("FUNCT",8)
-            " ISENSP
-            elseif synIDattr(slist[2], "name") =~ "pam_25.*"
-               let items = s:getTags("SENSOR",8)
-            " IREELR
-            elseif synIDattr(slist[2], "name") =~ "pam_33.*"
-               let items = s:getTags("FUNCT",8)
-            " IREELC
-            elseif synIDattr(slist[2], "name") =~ "pam_41.*"
-               let items = s:getTags("FUNCT",8)
-            " ICURFRC
-            elseif synIDattr(slist[2], "name") =~ "pam_49.*"
-               let items = s:getTags("FUNCT",8)
-            endif
-         elseif synIDattr(slist[1], "name") =~ "pam_RETRA_r4"
-            " LLCURV
-            if synIDattr(slist[2], "name") =~ "pam_9.*"
-               let items = s:getTags("FUNCT",8)
-            " LLSENS
-            elseif synIDattr(slist[2], "name") =~ "pam_17.*"
-               let items = s:getTags("SENSOR",8)
-            " LLFLAG
-            elseif synIDattr(slist[2], "name") =~ "pam_25.*"
-               call add (items,{'word':'       0','abbr':'0 (default)','menu':'Global Outlet'})
-               call add (items,{'word':'       1','abbr':'1','menu':'Local Outlet Starting with Zero'})
+         if synIDattr(slist[1], "name") =~ "pam_RETRA[12X]_r1"
+            " RETTYP
+            if synIDattr(slist[2], "name") =~ "pam_17.*"
+               call add (items,{'word':'       1','menu':'1D Retractor/Pretensioner'})
+               call add (items,{'word':'       2','menu':'2D Retractor/Pretensioner'})
             endif
          endif
 "  }}}
@@ -21031,43 +20968,11 @@ function! pamcomplete#pamHints()
 "  }}}
 "  {{{ RETRA
    elseif synIDattr(slist[0], "name") =~ "pam_RETRA"
-      if synIDattr(slist[1], "name") =~ "pam_RETRA_r1"
+      if synIDattr(slist[1], "name") =~ "pam_RETRA[12X]_r1"
          if synIDattr(slist[2], "name") =~ "pam_9.*"
             return "IDRET"
          elseif synIDattr(slist[2], "name") =~ "pam_17.*"
-            return "IDNOD - Structure Attachement Node ID"
-         elseif synIDattr(slist[2], "name") =~ "pam_25.*"
-            return "FRETRA - Retractor Pretension Force Value"
-         elseif synIDattr(slist[2], "name") =~ "pam_33.*"
-            return "FRCOUT - Length Fraction for Retractor Element Pull-Out"
-         elseif synIDattr(slist[2], "name") =~ "pam_41.*"
-            return "FRCIN - Length Fraction for Retractor Element Pull-In"
-         elseif synIDattr(slist[2], "name") =~ "pam_57.*"
-            return "NBW2 - Inside Element Definition Flag (menu)"
-         endif
-      elseif synIDattr(slist[1], "name") =~ "pam_RETRA_r3"
-         if synIDattr(slist[2], "name") =~ "pam_9.*"
-            return "ISENSR - Sensor ID for Triggering the Retractor Locking (tag)"
-         elseif synIDattr(slist[2], "name") =~ "pam_17.*"
-            return "ISPOOL - Curve ID for Spool Effect after Locking (tag)"
-         elseif synIDattr(slist[2], "name") =~ "pam_25.*"
-            return "ISENSP - Sensor ID of Triggering the Pyrotechnical Pretensioner (tag)"
-         elseif synIDattr(slist[2], "name") =~ "pam_33.*"
-            return "IREELR - Reel-in Rate Curve ID (tag)"
-         elseif synIDattr(slist[2], "name") =~ "pam_41.*"
-            return "IREELC - Reel-in Langth Curve ID (tag)"
-         elseif synIDattr(slist[2], "name") =~ "pam_49.*"
-            return "ICURFRC - Pretensioner Force Limit Curve ID (tag)"
-         elseif synIDattr(slist[2], "name") =~ "pam_57.*"
-            return "NLOADL - Number of Load Limiter Stages"
-         endif
-      elseif synIDattr(slist[1], "name") =~ "pam_RETRA_r4"
-         if synIDattr(slist[2], "name") =~ "pam_9.*"
-            return "LLCURV - Curve ID of Load Limiter Stage (tag)"
-         elseif synIDattr(slist[2], "name") =~ "pam_17.*"
-            return "LLSENS - Sensor ID for Triggering the Load Limiter Stage (tag)"
-         elseif synIDattr(slist[2], "name") =~ "pam_25.*"
-            return "LLFLAG - Reference Length Selection Flag (menu)"
+            return "RETTYP - Rectractor Type (menu)"
          endif
       endif
 "  }}}

@@ -1,9 +1,9 @@
 " ====================================================================
 " Vim syntax file
 " Language: PAM-CRASH,PAM-STAMP,PAM-COMFORT Input Deck
-" Syntax File Version: 11.0
+" Syntax File Version: 12.0 (dedicated to Bram (1961-2023))
 " Author: Roman Firt (roman.firt@yahoo.de)
-" Latest Revision: 23. December 2021
+" Latest Revision: 22. December 2023
 " ====================================================================
 "             DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
 "                    Version 2, December 2004
@@ -3433,17 +3433,71 @@ syn region      pam_BELTS                matchgroup=pam_CardTag start="^\CBELTS 
 " === BELTS end}}}
 
 " {{{=== RETRA begin
-   "Row 4
-   syn region      pam_RETRA_r4     transparent contained containedin=pam_RETRA start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_RETRA_r4,pam_RETRA_r5 keepend skipnl
-   " Row 5 (Node Selection)
-   syn region      pam_RETRA_r5     transparent contained containedin=pam_RETRA start="\%1c.[ ]\{7\}\u" start="^$\n" matchgroup=pam_CardTag end="\%$" contains=@pam_Ident,pam_Comment,pam_Comment_Position,pam_End,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position keepend
-   "Row 3
-   syn region      pam_RETRA_r3     transparent contained containedin=pam_RETRA start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8,@17i8,@25i8,@33i8,@41i8,@49i8,@57i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_RETRA_r4,pam_RETRA_r5 skipnl keepend
    "Row 2 (Name)
-   syn region      pam_RETRA_r2     transparent contained containedin=pam_RETRA start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_RETRA_r3 skipnl keepend
+   syn region      pam_RETRAX_r2     transparent contained containedin=pam_RETRAX start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_Comment,pam_Comment_Position skipnl keepend
    "Row 1
-   syn region      pam_RETRA_r1     transparent contained containedin=pam_RETRA start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f8,@33f8,@41f8,@57i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_RETRA_r2 skipnl keepend
-syn region      pam_RETRA                matchgroup=pam_CardTag start="^\CRETRA /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_RETRA_r[1-4] keepend
+   syn region      pam_RETRAX_r1     transparent contained containedin=pam_RETRAX start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_RETRAX_r2 skipnl keepend
+   syn region      pam_RETRAX               matchgroup=pam_CardTag start="^\CRETRA /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_RETRAX_r[1-2] keepend
+   "Row 3
+   syn region      pam_RETRA1_r3     transparent contained containedin=pam_RETRA1 start="\%1c." start="^$\n" end="\%$" contains=pam_Comment,pam_Comment_Position keepend
+   "Row 2 (Name)
+   syn region      pam_RETRA1_r2     transparent contained containedin=pam_RETRA1 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_RETRA1_r3 skipnl keepend
+   "Row 1
+   syn region      pam_RETRA1_r1     transparent contained containedin=pam_RETRA1 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_RETRA1_r2 skipnl keepend
+syn region      pam_RETRA1               matchgroup=pam_CardTag start="^\CRETRA / .\{8\}[ ]\{7\}1"rs=s+8 end="^\CEND_RETRA" contains=pam_RETRA1_r[1-3] keepend
+   "Row 3
+   syn region      pam_RETRA2_r3     transparent contained containedin=pam_RETRA2 start="\%1c." start="^$\n" end="\%$" contains=pam_Comment,pam_Comment_Position keepend
+   "Row 2 (Name)
+   syn region      pam_RETRA2_r2     transparent contained containedin=pam_RETRA2 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_RETRA2_r3 skipnl keepend
+   "Row 1
+   syn region      pam_RETRA2_r1     transparent contained containedin=pam_RETRA2 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_RETRA2_r2 skipnl keepend
+syn region      pam_RETRA2               matchgroup=pam_CardTag start="^\CRETRA / .\{8\}[ ]\{7\}2"rs=s+8 end="^\CEND_RETRA" contains=pam_RETRA2_r[1-3] keepend
+   " {{{ SLOT
+   syn region      pam_RETRA_SLOT     transparent contained containedin=pam_RETRA1_r3,pam_RETRA2_r3 matchgroup=pam_Keyword start="\%1c[ ]*\CSLOT" end="^[ ]*END_SLOT" contains=pam_RETRA_SLOT_arg,pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
+      syn region      pam_RETRA_SLOT_arg     transparent contained containedin=pam_RETRA_SLOT matchgroup=pam_Argument start="\%1c[ ]*\CATTACHEMENT_NODE" start="^$\n" end="\n[\$\#]\@!" contains=pam_FreeVar,pam_FreeError,pam_Integer,pam_Comment,pam_Comment_Position,pam_Error keepend
+      syn region      pam_RETRA_SLOT_arg     transparent contained containedin=pam_RETRA_SLOT matchgroup=pam_Argument start="\%1c[ ]*\CELEMENT_PULL_OUT_FRACTION" start="^$\n" end="\n[\$\#]\@!" contains=pam_FreeVar,pam_FreeError,pam_Float,pam_Comment,pam_Comment_Position,pam_Error keepend
+      syn region      pam_RETRA_SLOT_arg     transparent contained  containedin=pam_RETRA_SLOT matchgroup=pam_Argument start="\%1c[ ]*\CELEMENT_PULL_IN_FRACTION" start="^$\n" end="\n[\$\#]\@!" contains=pam_FreeVar,pam_FreeError,pam_Float,pam_Comment,pam_Comment_Position,pam_Error keepend
+   " }}} END SLOT
+   " {{{ PRETENSIONER
+   syn region      pam_RETRA_PRETENSIONER     transparent contained containedin=pam_RETRA1_r3,pam_RETRA2_r3 matchgroup=pam_Keyword start="\%1c[ ]*\CPRETENSIONER" end="^[ ]*END_PRETENSIONER" contains=pam_RETRA_PRETENSIONER_arg,pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
+      syn region      pam_RETRA_PRETENSIONER_arg     transparent contained containedin=pam_RETRA_PRETENSIONER matchgroup=pam_Argument start="\%1c[ ]*\CPRETENSION_FORCE" start="^$\n" end="\n[\$\#]\@!" contains=pam_FreeVar,pam_FreeError,pam_Float,pam_Comment,pam_Comment_Position,pam_Error keepend
+   " }}} END PRETENSIONER
+   " {{{ LOCKING
+   syn region      pam_RETRA_LOCKING     transparent contained containedin=pam_RETRA1_r3,pam_RETRA2_r3 matchgroup=pam_Keyword start="\%1c[ ]*\CLOCKING" end="^[ ]*END_LOCKING" contains=pam_RETRA_LOCKING_arg,pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
+      syn region      pam_RETRA_LOCKING_arg     transparent contained containedin=pam_RETRA_LOCKING matchgroup=pam_Argument start="\%1c[ ]*\CLOCKING_SENSOR" start="^$\n" end="\n[\$\#]\@!" contains=pam_FreeVar,pam_FreeError,pam_Integer,pam_Comment,pam_Comment_Position,pam_Error keepend
+      syn region      pam_RETRA_LOCKING_arg     transparent contained containedin=pam_RETRA_LOCKING matchgroup=pam_Argument start="\%1c[ ]*\CSPOOL_EFFECT_OUTLET" start="^$\n" end="\n[\$\#]\@!" contains=pam_FreeVar,pam_FreeError,pam_Integer,pam_Comment,pam_Comment_Position,pam_Error keepend
+   " }}} END LOCKING
+   " {{{ PYROTECHNIC
+   syn region      pam_RETRA_PYROTECHNIC     transparent contained containedin=pam_RETRA1_r3,pam_RETRA2_r3 matchgroup=pam_Keyword start="\%1c[ ]*\CPYROTECHNIC" end="^[ ]*END_PYROTECHNIC" contains=pam_RETRA_PYROTECHNIC_arg,pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
+      syn region      pam_RETRA_PYROTECHNIC_arg     transparent contained containedin=pam_RETRA_PYROTECHNIC matchgroup=pam_Argument start="\%1c[ ]*\CPYRO_SENSOR" start="^$\n" end="\n[\$\#]\@!" contains=pam_FreeVar,pam_FreeError,pam_Integer,pam_Comment,pam_Comment_Position,pam_Error keepend
+      syn region      pam_RETRA_PYROTECHNIC_arg     transparent contained containedin=pam_RETRA_PYROTECHNIC matchgroup=pam_Argument start="\%1c[ ]*\CREEL_IN_RATE" start="^$\n" end="\n[\$\#]\@!" contains=pam_FreeVar,pam_FreeError,pam_Integer,pam_Comment,pam_Comment_Position,pam_Error keepend
+      syn region      pam_RETRA_PYROTECHNIC_arg     transparent contained containedin=pam_RETRA_PYROTECHNIC matchgroup=pam_Argument start="\%1c[ ]*\CREEL_IN_LENGTH" start="^$\n" end="\n[\$\#]\@!" contains=pam_FreeVar,pam_FreeError,pam_Integer,pam_Comment,pam_Comment_Position,pam_Error keepend
+      syn region      pam_RETRA_PYROTECHNIC_arg     transparent contained containedin=pam_RETRA_PYROTECHNIC matchgroup=pam_Argument start="\%1c[ ]*\CREEL_IN_FORCE_LIMIT" start="^$\n" end="\n[\$\#]\@!" contains=pam_FreeVar,pam_FreeError,pam_Integer,pam_Comment,pam_Comment_Position,pam_Error keepend
+   " }}} END PYROTECHNIC
+   " {{{ LOAD_LIMITER
+   syn region      pam_RETRA_LOAD_LIMITER     transparent contained containedin=pam_RETRA1_r3,pam_RETRA2_r3 matchgroup=pam_Keyword start="\%1c[ ]*\CLOAD_LIMITER" end="^[ ]*END_LOAD_LIMITER" contains=pam_RETRA_LOAD_LIMITER_arg,pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
+      syn region      pam_RETRA_LOAD_LIMITER_arg     transparent contained containedin=pam_RETRA_LOAD_LIMITER matchgroup=pam_Argument start="\%1c[ ]*\CLOAD_LIMITER_FORCE" start="^$\n" end="\n[\$\#]\@!" contains=pam_FreeVar,pam_FreeError,pam_Integer,pam_Comment,pam_Comment_Position,pam_Error keepend
+      syn region      pam_RETRA_LOAD_LIMITER_arg     transparent contained containedin=pam_RETRA_LOAD_LIMITER matchgroup=pam_Argument start="\%1c[ ]*\CLOAD_LIMITER_SENSOR" start="^$\n" end="\n[\$\#]\@!" contains=pam_FreeVar,pam_FreeError,pam_Integer,pam_Comment,pam_Comment_Position,pam_Error keepend
+      syn region      pam_RETRA_LOAD_LIMITER_arg     transparent contained containedin=pam_RETRA_LOAD_LIMITER matchgroup=pam_Argument start="\%1c[ ]*\CREFERENCE_LENGTH" start="^$\n" end="\n[\$\#]\@!" contains=pam_FreeVar,pam_FreeErrorpam_Comment,pam_Comment_Position,pam_Error keepend
+        syn keyword   pam_RETRA_LOAD_LIMITER_arg_1   contained containedin=pam_RETRA_LOAD_LIMITER_arg GLOBAL LOCAL
+        hi def link pam_RETRA_LOAD_LIMITER_arg_1 pam_Keyword
+   " {{{ OUTER_1D_BELT
+   syn region      pam_RETRA_OUTER_1D_BELT     transparent contained containedin=pam_RETRA1_r3 matchgroup=pam_Keyword start="\%1c[ ]*\COUTER_1D_BELT" end="^[ ]*END_OUTER_1D_BELT" contains=pam_RETRA_OUTER_1D_BELT_arg,pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
+      syn region   pam_RETRA_OUTER_1D_BELT_arg transparent contained containedin=pam_RETRA_OUTER_1D_BELT start="\%1c." start="^$\n" matchgroup=pam_CardTag end="\%$" contains=@pam_Ident,pam_Comment,pam_Comment_Position,pam_End,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position keepend
+   " }}} END OUTER_1D_BELT
+   " }}} END LOAD_LIMITER
+   " {{{ OUTER_1D_BELT
+   syn region      pam_RETRA_OUTER_1D_BELT     transparent contained containedin=pam_RETRA1_r3 matchgroup=pam_Keyword start="\%1c[ ]*\COUTER_1D_BELT" end="^[ ]*END_OUTER_1D_BELT" contains=pam_RETRA_OUTER_1D_BELT_arg,pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
+      syn region   pam_RETRA_OUTER_1D_BELT_arg transparent contained containedin=pam_RETRA_OUTER_1D_BELT start="\%1c." start="^$\n" matchgroup=pam_CardTag end="\%$" contains=@pam_Ident,pam_Comment,pam_Comment_Position,pam_End,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position keepend
+   " }}} END OUTER_1D_BELT
+   " {{{ INNER_1D_BELT
+   syn region      pam_RETRA_INNER_1D_BELT     transparent contained containedin=pam_RETRA1_r3 matchgroup=pam_Keyword start="\%1c[ ]*\CINNER_1D_BELT" end="^[ ]*END_INNER_1D_BELT" contains=pam_RETRA_INNER_1D_BELT_arg,pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
+      syn region   pam_RETRA_INNER_1D_BELT_arg transparent contained containedin=pam_RETRA_INNER_1D_BELT start="\%1c." start="^$\n" matchgroup=pam_CardTag end="\%$" contains=@pam_Ident,pam_Comment,pam_Comment_Position,pam_End,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position keepend
+   " }}} END INNER_1D_BELT
+   " {{{ 2D_BELT
+   syn region      pam_RETRA_2D_BELT     transparent contained containedin=pam_RETRA2_r3 matchgroup=pam_Keyword start="\%1c[ ]*\C2D_BELT" end="^[ ]*END_2D_BELT" contains=pam_RETRA_2D_BELT_arg,pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
+      syn region   pam_RETRA_2D_BELT_arg transparent contained containedin=pam_RETRA_2D_BELT start="\%1c." start="^$\n" matchgroup=pam_CardTag end="\%$" contains=@pam_Ident,pam_Comment,pam_Comment_Position,pam_End,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position keepend
+   " }}} END 2D_BELT
 " === RETRA end}}}
 
 " {{{=== SLIPR begin
