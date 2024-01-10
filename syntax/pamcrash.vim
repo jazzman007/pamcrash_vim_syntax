@@ -2062,6 +2062,8 @@ syn region      pam_Control_ECTRL                matchgroup=pam_CardTag start="^
       syn keyword     pam_Control_ECTRL_THICKNESS_INTEGRATION_arg  contained containedin=pam_Control_ECTRL_THICKNESS_INTEGRATION UNIFORM GAUSS SIMPSON
       hi def link pam_Control_ECTRL_THICKNESS_INTEGRATION_arg pam_Argument
    syn region    pam_Control_ECTRL_SHELL_FORMULATION       contained containedin=pam_Control_ECTRL matchgroup=pam_Keyword start="SHELL_FORMULATION" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Integer,pam_Continue
+   syn region      pam_Control_ECTRL_ORTHO_FRAME      contained containedin=pam_Control_ECTRL matchgroup=pam_Keyword start="ORTHO_FRAME" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Control_ECTRL_ORTHO_FRAME_arg,pam_Continue,pam_Error,pam_FreeError,pam_FreeVar
+      syn keyword     pam_Control_ECTRL_ORTHO_FRAME_arg  contained containedin=pam_Control_ECTRL_ORTHO_FRAME FIXED EMBEDDED
    syn region    pam_Control_ECTRL_SOLID_FORMULATION       contained containedin=pam_Control_ECTRL matchgroup=pam_Keyword start="SOLID_FORMULATION" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Integer,pam_Continue
    syn region    pam_Control_ECTRL_BEAM_FORMULATION       contained containedin=pam_Control_ECTRL matchgroup=pam_Keyword start="BEAM_FORMULATION" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Integer,pam_Continue
    syn region      pam_Control_ECTRL_ANTIDRILL      contained containedin=pam_Control_ECTRL matchgroup=pam_Keyword start="ANTIDRILL" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Control_ECTRL_ANTIDRILL_arg,pam_Continue,pam_Error,pam_FreeError,pam_FreeVar
@@ -2087,6 +2089,10 @@ syn region      pam_Control_ECTRL                matchgroup=pam_CardTag start="^
    syn region      pam_Control_ECTRL_PLASTICITY_1D      contained containedin=pam_Control_ECTRL matchgroup=pam_Keyword start="PLASTICITY_1D" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Control_ECTRL_PLASTICITY_1D_arg,pam_Continue,pam_Error,pam_FreeError,pam_FreeVar
       syn keyword     pam_Control_ECTRL_PLASTICITY_1D_arg  contained containedin=pam_Control_ECTRL_PLASTICITY_1D REDUCED FULL
       hi def link pam_Control_ECTRL_PLASTICITY_1D_arg pam_Argument
+   syn region      pam_Control_ECTRL_ELEMENT_ELIMINATION_CYCLE      contained containedin=pam_Control_ECTRL matchgroup=pam_Keyword start="ELEMENT_ELIMINATION_CYCLE" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Integer,pam_Control_ECTRL_ELEMENT_ELIMINATION_arg,pam_Continue,pam_Error,pam_FreeError,pam_FreeVar
+   syn region      pam_Control_ECTRL_ELEMENT_ELIMINATION_TIME      contained containedin=pam_Control_ECTRL matchgroup=pam_Keyword start="ELEMENT_ELIMINATION_TIME" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Float,pam_Control_ECTRL_ELEMENT_ELIMINATION_arg,pam_Continue,pam_Error,pam_FreeError,pam_FreeVar
+      syn keyword     pam_Control_ECTRL_ELEMENT_ELIMINATION_arg  contained containedin=pam_Control_ECTRL_ELEMENT_ELIMINATION_CYCLE,pam_Control_ECTRL_ELEMENT_ELIMINATION_TIME BEAM BAR BSHEL HEXA8 HEXA20 PENTA6 PENTA15 PYRA5 PYRA13 SHEL3 SHEL4 TETR4 TETR10 ALL_1D ALL_2D ALL_3D
+      hi def link pam_Control_ECTRL_ELEMENT_ELIMINATION_arg pam_Argument
    syn region    pam_Control_ECTRL_SHELL_ENHANCED_STRAIN       contained containedin=pam_Control_ECTRL matchgroup=pam_Keyword start="SHELL_ENHANCED_STRAIN" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_CONTROL_YESNO,pam_Continue,pam_Error,pam_FreeError,pam_FreeVar
    syn region    pam_Control_ECTRL_FLEXIBILITY       contained containedin=pam_Control_ECTRL matchgroup=pam_Keyword start="FLEXIBILITY" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_CONTROL_YESNO,pam_Continue,pam_Error,pam_FreeError,pam_FreeVar
    syn region    pam_Control_ECTRL_TRIANGLE_HYBRID_STRAIN       contained containedin=pam_Control_ECTRL matchgroup=pam_Keyword start="TRIANGLE_HYBRID_STRAIN" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_CONTROL_YESNO,pam_Continue,pam_Error,pam_FreeError,pam_FreeVar
@@ -2094,6 +2100,9 @@ syn region      pam_Control_ECTRL                matchgroup=pam_CardTag start="^
    syn region    pam_Control_ECTRL_MEMB_STABILIZATION       contained containedin=pam_Control_ECTRL matchgroup=pam_Keyword start="MEMB_STABILIZATION" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_CONTROL_YESNO,pam_Float,pam_Continue,pam_Error,pam_FreeError,pam_FreeVar
    syn region    pam_Control_ECTRL_TETRA_STABILIZATION       contained containedin=pam_Control_ECTRL matchgroup=pam_Keyword start="TETRA_STABILIZATION" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_CONTROL_YESNO,pam_Continue,pam_Error,pam_FreeError,pam_FreeVar
    syn region    pam_Control_ECTRL_OTMCO_FORMULATION       contained containedin=pam_Control_ECTRL matchgroup=pam_Keyword start="OTMCO_FORMULATION" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Integer,pam_Continue,pam_Error,pam_FreeError,pam_FreeVar
+   syn region      pam_Control_ECTRL_BEAM_MASS      contained containedin=pam_Control_ECTRL matchgroup=pam_Keyword start="BEAM_MASS" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Control_ECTRL_BEAM_MASS_arg,pam_Continue,pam_Error,pam_FreeError,pam_FreeVar
+      syn keyword    pam_Control_ECTRL_BEAM_MASS_arg contained containedin=pam_Control_ECTRL_BEAM_MASS STANDARD-CO EULER-BERNOULLI
+      hi def link pam_Control_ECTRL_BEAM_MASS_arg pam_Argument
    syn region    pam_Control_ECTRL_STRAINRATE       contained containedin=pam_Control_ECTRL matchgroup=pam_Keyword start="STRAINRATE" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_CONTROL_YESNO,pam_Continue,pam_Error,pam_FreeError,pam_FreeVar
    syn region    pam_Control_ECTRL_RATEFILTER       contained containedin=pam_Control_ECTRL matchgroup=pam_Keyword start="RATEFILTER" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Integer,pam_Continue
    syn region    pam_Control_ECTRL_RATEFILTER_CYCLE       contained containedin=pam_Control_ECTRL matchgroup=pam_Keyword start="RATEFILTER_CYCLE" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Integer,pam_Continue
@@ -2176,6 +2185,8 @@ syn region      pam_Control_DIRECT_OUT_OF_CORE_PATH        contained containedin
 syn region      pam_Control_DIRECT_SOLUTION        contained containedin=pam_Control_LACTRL matchgroup=pam_HeaderKW start="\CDIRECT_SOLUTION" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Control_DIRECT_SOLUTION_arg,pam_Float,pam_Continue keepend
    syn keyword     pam_Control_DIRECT_SOLUTION_arg         contained containedin=pam_Control_DIRECT_SOLUTION MUMPS MKL
    hi def link pam_Control_DIRECT_SOLUTION_arg pam_Argument
+syn region      pam_Control_DIRECT_MUMPS_DISTRIBUTED_RHS        contained containedin=pam_Control_LACTRL matchgroup=pam_HeaderKW start="\CDIRECT_MUMPS_DISTRIBUTED_RHS" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Control_YESNO,pam_Error,pam_FreeError,pam_FreeVar,pam_Control_DIRECT_MUMPS_DISTRIBUTED_RHS_arg,pam_Float,pam_Continue keepend
+syn region      pam_Control_DIRECT_MUMPS_SCHUR_COMPLEMENT        contained containedin=pam_Control_LACTRL matchgroup=pam_HeaderKW start="\CDIRECT_MUMPS_SCHUR_COMPLEMENT" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Control_YESNO,pam_Error,pam_FreeError,pam_FreeVar,pam_Control_DIRECT_MUMPS_SCHUR_COMPLEMENT_arg,pam_Float,pam_Continue keepend
 syn region      pam_Control_DIRECT_ORDERING_TYPE        contained containedin=pam_Control_LACTRL matchgroup=pam_HeaderKW start="\CDIRECT_ORDERING_TYPE" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Control_DIRECT_ORDERING_TYPE_arg,pam_Float,pam_Continue keepend
    syn keyword     pam_Control_DIRECT_ORDERING_TYPE_arg         contained containedin=pam_Control_DIRECT_ORDERING_TYPE NODES DOF
    hi def link pam_Control_DIRECT_ORDERING_TYPE_arg pam_Argument
@@ -2283,7 +2294,7 @@ syn region      pam_Control_GENERAL_MATRIX        contained containedin=pam_Cont
    hi def link pam_Control_GENERAL_MATRIX_arg pam_Argument
 syn region      pam_Control_SHIFT_FREQUENCY        contained containedin=pam_Control_EIGEN matchgroup=pam_HeaderKW start="\CSHIFT_FREQUENCY" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Float,pam_Continue keepend
 syn region      pam_Control_MASS_MATRIX        contained containedin=pam_Control_EIGEN,pam_Control_TRANS matchgroup=pam_HeaderKW start="\CMASS_MATRIX" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Integer,pam_Control_MASS_MATRIX_arg,pam_Continue keepend
-   syn keyword     pam_Control_MASS_MATRIX_arg         contained containedin=pam_Control_MASS_MATRIX CONSISTENT LUMPED
+   syn keyword     pam_Control_MASS_MATRIX_arg         contained containedin=pam_Control_MASS_MATRIX CONSISTENT LUMPED ALL ELEMENT
    hi def link pam_Control_MASS_MATRIX_arg pam_Argument
 syn region      pam_Control_IMPORT_MATRIX        contained containedin=pam_Control_EIGEN,pam_Control_GFRP matchgroup=pam_HeaderKW start="\CIMPORT_MATRIX" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Integer,pam_Control_IMPORT_MATRIX_arg,pam_Continue keepend
    syn keyword     pam_Control_IMPORT_MATRIX_arg         contained containedin=pam_Control_IMPORT_MATRIX NO STIFG MASSG SDAMG VDAMG
@@ -10262,6 +10273,7 @@ syn cluster     pam_Ident          contains=pam_FreeError,pam_FreeVar,pam_Empty,
 syn cluster     pam_Ident_16          contains=pam_FreeError,pam_FreeVar,pam_Empty_16,pam_Element_16,pam_Grp_16,pam_OGrp_16,pam_Part_16,pam_Nod_16,pam_Seg_16,pam_Edg_16,pam_Surf_16,pam_SurfBoth_16,pam_SurfUp_16,pam_SurfDown_16,pam_EleNod_16,pam_PartNod_16,pam_GrpNod_16,pam_DelNod_16,pam_DelEle_16,pam_DelPart_16,pam_DelGrp_16,pam_DelOGrp_16,pam_DelTNod_16,pam_DelTPart_16,pam_DelTGrp_16
 
 syn region      pam_Modular           contained matchgroup=pam_Modular start="^[ ]\{8\}\CMOD" end="^[ ]\{8\}\CEND_MOD" contains=pam_FreeError,pam_EndModular,pam_Integer,pam_Point,pam_ModString,pam_Element,pam_Grp,pam_OGrp,pam_Part,pam_Nod,pam_Seg,pam_Edg,pam_EleNod,pam_PartNod,pam_GrpNod,pam_DelNod,pam_DelEle,pam_DelPart,pam_DelGrp,pam_DelOGrp,pam_DelTNod,pam_DelTPart,pam_DelTGrp,pam_ModALL keepend
+syn region      pam_Modular           contained matchgroup=pam_Modular start="^[ ]\{8\}\COMOD" end="^[ ]\{8\}\CEND_OMOD" contains=pam_FreeError,pam_EndModular,pam_Integer,pam_Point,pam_ModString,pam_Element,pam_Grp,pam_OGrp,pam_Part,pam_Nod,pam_Seg,pam_Edg,pam_EleNod,pam_PartNod,pam_GrpNod,pam_DelNod,pam_DelEle,pam_DelPart,pam_DelGrp,pam_DelOGrp,pam_DelTNod,pam_DelTPart,pam_DelTGrp,pam_ModALL keepend
    syn keyword     pam_ModALL         contained containedin=pam_Modular ALL
    hi def link pam_ModALL pam_Modular
 " Ident end}}}
