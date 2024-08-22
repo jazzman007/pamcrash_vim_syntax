@@ -91,10 +91,12 @@ function! pamcomplete#Complete(findstart, base)
             " IDPRT
             if synIDattr(slist[2], "name") =~ "pam_17.*"
                let start = 16
-            endif
-            " ITPR
-            if synIDattr(slist[2], "name") =~ "pam_33.*"
+            " MORE
+            elseif synIDattr(slist[2], "name") =~ "pam_33.*"
                let start = 32
+            " IEDGPLK
+            elseif synIDattr(slist[2], "name") =~ "pam_65.*"
+               let start = 64
             endif
          endif
 " }}}
@@ -164,12 +166,15 @@ function! pamcomplete#Complete(findstart, base)
             " IDPRT
             if synIDattr(slist[2], "name") =~ "pam_17.*"
                let start = 16
-            " ITPR
+            " IPCHK
             elseif synIDattr(slist[2], "name") =~ "pam_25.*"
                let start = 24
             " IPROJ
             elseif synIDattr(slist[2], "name") =~ "pam_33.*"
                let start = 32
+            " ISURF
+            elseif synIDattr(slist[2], "name") =~ "pam_41.*"
+               let start = 40
             endif
          endif
 " }}}
@@ -4125,6 +4130,11 @@ function! pamcomplete#Complete(findstart, base)
                call add (items,{'word':'       0','abbr':'0 (default)','menu':'Slave Node is Projected onto 2D Faces or 3D External Faces'})
                call add (items,{'word':'       1','abbr':'1 (default)','menu':'Slave Node is Projected onto 2D Faces or 3D External Faces'})
                call add (items,{'word':'       2','abbr':'2','menu':'Slave Node is Projected onto 2D Faces or all 3D Faces'})
+            " ISURF
+            elseif synIDattr(slist[2], "name") =~ "pam_41.*"
+               call add (items,{'word':'       0','abbr':'0 (default)','menu':'Node-to-Segment'})
+               call add (items,{'word':'       1','abbr':'1 (default)','menu':'Node-to-Segment'})
+               call add (items,{'word':'       2','abbr':'2','menu':'Point-to-Segment'})
             endif
          endif
 " }}}
@@ -4147,10 +4157,14 @@ function! pamcomplete#Complete(findstart, base)
             " IDPRT
             if synIDattr(slist[2], "name") =~ "pam_17.*"
                let items = s:getTags("PART",8)
-            " ITPRT
+            " MORE
             elseif synIDattr(slist[2], "name") =~ "pam_33.*"
-               call add (items,{'word':'       0','menu':'No Preselection'})
-               call add (items,{'word':'       1','menu':'Preselection Specified in Next Keyword'})
+               call add (items,{'word':'       0','abbr':'0(default)','menu':'No Preselection'})
+               call add (items,{'word':'       1','abbr':'1','menu':'Preselection Specified in Next Keyword'})
+            " IEDGPLK
+            elseif synIDattr(slist[2], "name") =~ "pam_65.*"
+               call add (items,{'word':'       0','abbr':'0 (default)','menu':'Standard Projection'})
+               call add (items,{'word':'       1','abbr':'1','menu':'Mesh Free Edges Projection'})
             endif
          endif
 " }}}
@@ -19241,6 +19255,8 @@ function! pamcomplete#pamHints()
             return "IPCHK - Check on TIED Connections (menu)"
          elseif synIDattr(slist[2], "name") =~ "pam_33.*"
             return "IPROJ - Projection method (menu)"
+         elseif synIDattr(slist[2], "name") =~ "pam_41.*"
+            return "ISURF - To Check TIED Connections (menu)"
          endif
       endif
 "  }}}
@@ -19315,6 +19331,8 @@ function! pamcomplete#pamHints()
             return "NLAYR - Number of Layers"
          elseif synIDattr(slist[2], "name") =~ "pam_57.*"
             return "IDNOD2"
+         elseif synIDattr(slist[2], "name") =~ "pam_65.*"
+            return "IEDGPLK - Free Edge Projection PLINK ID (menu)"
          endif
       endif
 "  }}}
