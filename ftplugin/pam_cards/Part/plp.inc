@@ -5,8 +5,8 @@ $#                                                                         TITLE
 NAME PART_1                                                                     
 $#  DTELIM    TSCALF   DTRATIO
                               
-$#   TCONT    EPSINI  COULFRIC
-                              
+$#   TCONT    EPSINI  COULFRICIFRED IE2E
+                                        
 $#   RSEAR     NLAYR     SPWLG     NGESP    SPOTRA     THETA  IMPLKMET    PHYRAD
                                                                                 
 $#      

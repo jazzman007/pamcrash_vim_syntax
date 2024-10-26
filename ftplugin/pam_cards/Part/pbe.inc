@@ -5,8 +5,8 @@ $#                                                                         TITLE
 NAME PART_1                                                                     
 $#  DTELIM    TSCALF   DTRATIO
                               
-$#   TCONT    EPSINI  COULFRIC
-                              
+$#   TCONT    EPSINI  COULFRICIFRED IE2E
+                                        
 $#       A      Ashs        Is        It        Ir IJMT ITPR      Asht
                                                            0          
 $#     Ist      COGs      COGt    RT1RR1    RT2RR2

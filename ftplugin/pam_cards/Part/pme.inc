@@ -5,8 +5,8 @@ $#                                                                         TITLE
 NAME PART_1                                                                     
 $#  DTELIM    TSCALF   DTRATIO
                               
-$#   TCONT    EPSINI  COULFRIC
-                              
+$#   TCONT    EPSINI  COULFRICIFRED IE2E
+                                        
 $#       H     NDOFs
                     
 $#RT1            VX1       VY1       VZ1   ALPHof1       TX1       TY1       TZ1

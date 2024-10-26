@@ -5,8 +5,8 @@ $#                                                                         TITLE
 NAME PART_1                                                                     
 $#  DTELIM    TSCALF   DTRATIO
                               
-$#   TCONT    EPSINI  COULFRIC
-                              
+$#   TCONT    EPSINI  COULFRICIFRED IE2E
+                                        
 $#RT1          XDIR1     YDIR1     ZDIR1
                                         
 $#RT2          XDIR2     YDIR2     ZDIR2

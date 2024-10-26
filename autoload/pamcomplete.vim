@@ -1170,6 +1170,14 @@ function! pamcomplete#Complete(findstart, base)
             elseif synIDattr(slist[2], "name") =~ "pam_57.*"
                let start = 56
             endif
+         elseif synIDattr(slist[1], "name") =~ "pam_PART.*_r4"
+            " IFRED
+            if synIDattr(slist[2], "name") =~ "pam_31.*"
+               let start = 30
+            " IE2E
+            elseif synIDattr(slist[2], "name") =~ "pam_36.*"
+               let start = 35
+            endif
          " {{{ SOLID
          elseif synIDattr(slist[1], "name") =~ "pam_PART_SOLID_r5"
             " IORT1
@@ -5588,6 +5596,18 @@ function! pamcomplete#Complete(findstart, base)
             elseif synIDattr(slist[2], "name") =~ "pam_57.*"
                let items = s:getTags("NUMPAR",10)
             endif
+         elseif synIDattr(slist[1], "name") =~ "pam_PART.*_r4"
+            " IFRED
+            if synIDattr(slist[2], "name") =~ "pam_31.*"
+               call add (items,{'word':'    0','abbr':'0 (default)','menu':'Deactivated'})
+               call add (items,{'word':'    1','abbr':'1','menu':'Activated'})
+               call add (items,{'word':'    2','abbr':'2','menu':'Deactivated'})
+            " IE2E
+            elseif synIDattr(slist[2], "name") =~ "pam_36.*"
+               call add (items,{'word':'    0','abbr':'0 (default)','menu':'Deactivated'})
+               call add (items,{'word':'    1','abbr':'1','menu':'Activated'})
+               call add (items,{'word':'    2','abbr':'2','menu':'Deactivated'})
+            endif
          " {{{ MEMBR
          elseif synIDattr(slist[1], "name") =~ "pam_PART_MEMBR_r[67]"
             " IORT12
@@ -8758,6 +8778,10 @@ function! pamcomplete#pamHints()
             return "EPSINI - Initial Equivalent Plastic Strain"
          elseif synIDattr(slist[2], "name") =~ "pam_21.*"
             return "COULFRIC - Coulomb Friction Ciefficient"
+         elseif synIDattr(slist[2], "name") =~ "pam_31.*"
+            return "IFRED - Flag to Activate Free Edge Treatment (menu)"
+         elseif synIDattr(slist[2], "name") =~ "pam_36.*"
+            return "IE2E - Flag to Activate Edge-to-Edge Treatment (menu)"
          endif
       " {{{ SOLID/TETRA
       elseif synIDattr(slist[1], "name") =~ "pam_PART_SOLID_r5"
