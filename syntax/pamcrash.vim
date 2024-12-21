@@ -4460,6 +4460,66 @@ syn region      pam_PART_COS3D     matchgroup=pam_CardTag start="^\CPART  / .\{8
 hi def link pam_PART_COS3D_r1_a2 pam_evenArgument
 "=== PART Typ COS3D end}}}
 
+" {{{=== PART Typ COS3D (Multi-Block definition)
+   "Row 3 (META)
+   syn region      pam_MBPART_COS3D_r3     transparent contained containedin=pam_MBPART_COS3D start="^[\$\#]" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position nextgroup=pam_MBPART_COS3D_r3 skipnl keepend
+   syn region      pam_MBPART_COS3D_r3     transparent contained containedin=pam_MBPART_COS3D start="^META" end="^END_META" contains=pam_GroupMeta nextgroup=pam_MBPART_COS3D_r3 skipnl keepend
+   " Row 2 (Name)
+   syn region      pam_MBPART_COS3D_r2     transparent contained containedin=pam_MBPART_COS3D start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_MBPART_COS3D_r3,pam_MBPART_COS3D_CONTACT,pam_MBPART_COS3D_GEOMETRY skipnl keepend
+   " Row 1
+   syn region      pam_MBPART_COS3D_r1     transparent contained containedin=pam_MBPART_COS3D start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@25i8,@33i8,@41i8,@49i8,@57i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_MBPART_COS3D_r2 skipnl keepend
+      " GEOMETRY Row 1
+      syn region      pam_MBPART_COS3D_GEOMETRY_r1 transparent contained containedin=pam_MBPART_COS3D_GEOMETRY start="\%1c[^\$\#]" start="^$\n" end="\n[\$\#]\@!" contains=@1f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
+         syn match       pam_MBPART_COS3D_GEOMETRY_r1_e1             display contained containedin=pam_MBPART_COS3D_GEOMETRY_r1 "\%11c.\{1,10\}"
+         syn match       pam_MBPART_COS3D_GEOMETRY_r1_a1             display contained containedin=pam_MBPART_COS3D_GEOMETRY_r1 "\%11c[ ]\{10\}"
+         syn match       pam_MBPART_COS3D_GEOMETRY_r1_a1             display contained containedin=pam_MBPART_COS3D_GEOMETRY_r1 "\%11c[ ]*\(\CMIN_EDGE\|\CMAX_EDGE\|\CLOCAL_Z\)[ ]*\%21c"
+         hi def link pam_MBPART_COS3D_GEOMETRY_r1_a1 pam_evenArgument
+         hi def link pam_MBPART_COS3D_GEOMETRY_r1_e1 pam_evenError
+   " GEOMETRY
+   syn region      pam_MBPART_COS3D_GEOMETRY transparent contained containedin=pam_MBPART_COS3D matchgroup=pam_CardTag start="^\CGEOMETRY" end="^\CEND_GEOMETRY" contains=pam_Comment,pam_Comment_Position,pam_Error,pam_MBPART_COS3D_GEOMETRY_r1 skipnl keepend
+      " CONTACT Row 1
+      syn region      pam_MBPART_COS3D_CONTACT_r1 transparent contained containedin=pam_MBPART_COS3D_CONTACT start="\%1c[^\$\#]" start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,@21f5,@26f5,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
+   " CONTACT
+   syn region      pam_MBPART_COS3D_CONTACT transparent contained containedin=pam_MBPART_COS3D,pam_PART_MODULAR_SHELL matchgroup=pam_CardTag start="^\CCONTACT" end="^\CEND_CONTACT" contains=pam_MBPART_COS3D_CONTACT_r1,pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
+syn region      pam_MBPART_COS3D        matchgroup=pam_CardTag start="^\CPART  / .\{8\}[ ]*\CCOS3D[ ]*\%25c.*\%73c\(\CMMAT\|\CMATER\|\CANY\)"rs=s+8 end="^\CEND_PART" contains=pam_Comment,pam_Comment_Position keepend
+syn match       pam_MBPART_COS3D_r1_a2             display contained containedin=pam_MBPART_COS3D_r1 "\%17c[ ]*\CCOS3D[ ]*\%25c"
+hi def link pam_MBPART_COS3D_r1_a2 pam_evenArgument
+syn match       pam_MBPART_COS3D_r1_e3             display contained containedin=pam_MBPART_COS3D_r1 "\%73c.\{1,8\}"
+syn match       pam_MBPART_COS3D_r1_a3             display contained containedin=pam_MBPART_COS3D_r1 "\%73c\(\CMATER\|MMAT\|ANY\)[ ]*\%81c"
+hi def link pam_MBPART_COS3D_r1_a3 pam_evenArgument
+hi def link pam_MBPART_COS3D_r1_e3 pam_evenError
+" === PART Typ SHELL end}}}
+
+" {{{=== PART Typ COS2D (Multi-Block definition)
+   "Row 3 (META)
+   syn region      pam_MBPART_COS2D_r3     transparent contained containedin=pam_MBPART_COS2D start="^[\$\#]" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position nextgroup=pam_MBPART_COS2D_r3 skipnl keepend
+   syn region      pam_MBPART_COS2D_r3     transparent contained containedin=pam_MBPART_COS2D start="^META" end="^END_META" contains=pam_GroupMeta nextgroup=pam_MBPART_COS2D_r3 skipnl keepend
+   " Row 2 (Name)
+   syn region      pam_MBPART_COS2D_r2     transparent contained containedin=pam_MBPART_COS2D start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_MBPART_COS2D_r3,pam_MBPART_COS2D_CONTACT,pam_MBPART_COS2D_GEOMETRY skipnl keepend
+   " Row 1
+   syn region      pam_MBPART_COS2D_r1     transparent contained containedin=pam_MBPART_COS2D start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@25i8,@33i8,@41i8,@49i8,@57i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_MBPART_COS2D_r2 skipnl keepend
+      " GEOMETRY Row 1
+      syn region      pam_MBPART_COS2D_GEOMETRY_r1 transparent contained containedin=pam_MBPART_COS2D_GEOMETRY start="\%1c[^\$\#]" start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
+         syn match       pam_MBPART_COS2D_GEOMETRY_r1_e1             display contained containedin=pam_MBPART_COS2D_GEOMETRY_r1 "\%21c.\{1,10\}"
+         syn match       pam_MBPART_COS2D_GEOMETRY_r1_a1             display contained containedin=pam_MBPART_COS2D_GEOMETRY_r1 "\%21c[ ]\{10\}"
+         syn match       pam_MBPART_COS2D_GEOMETRY_r1_a1             display contained containedin=pam_MBPART_COS2D_GEOMETRY_r1 "\%21c[ ]*\(\CMIN_EDGE\|\CMAX_EDGE\)[ ]*\%31c"
+         hi def link pam_MBPART_COS2D_GEOMETRY_r1_a1 pam_oddArgument
+         hi def link pam_MBPART_COS2D_GEOMETRY_r1_e1 pam_oddError
+   " GEOMETRY
+   syn region      pam_MBPART_COS2D_GEOMETRY transparent contained containedin=pam_MBPART_COS2D matchgroup=pam_CardTag start="^\CGEOMETRY" end="^\CEND_GEOMETRY" contains=pam_Comment,pam_Comment_Position,pam_Error,pam_MBPART_COS2D_GEOMETRY_r1 skipnl keepend
+      " CONTACT Row 1
+      syn region      pam_MBPART_COS2D_CONTACT_r1 transparent contained containedin=pam_MBPART_COS2D_CONTACT start="\%1c[^\$\#]" start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,@21f5,@26f5,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
+   " CONTACT
+   syn region      pam_MBPART_COS2D_CONTACT transparent contained containedin=pam_MBPART_COS2D,pam_PART_MODULAR_SHELL matchgroup=pam_CardTag start="^\CCONTACT" end="^\CEND_CONTACT" contains=pam_MBPART_COS2D_CONTACT_r1,pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
+syn region      pam_MBPART_COS2D        matchgroup=pam_CardTag start="^\CPART  / .\{8\}[ ]*\CCOS2D[ ]*\%25c.*\%73c\(\CMMAT\|\CMATER\|\CANY\)"rs=s+8 end="^\CEND_PART" contains=pam_Comment,pam_Comment_Position keepend
+syn match       pam_MBPART_COS2D_r1_a2             display contained containedin=pam_MBPART_COS2D_r1 "\%17c[ ]*\CCOS2D[ ]*\%25c"
+hi def link pam_MBPART_COS2D_r1_a2 pam_evenArgument
+syn match       pam_MBPART_COS2D_r1_e3             display contained containedin=pam_MBPART_COS2D_r1 "\%73c.\{1,8\}"
+syn match       pam_MBPART_COS2D_r1_a3             display contained containedin=pam_MBPART_COS2D_r1 "\%73c\(\CMATER\|MMAT\|ANY\)[ ]*\%81c"
+hi def link pam_MBPART_COS2D_r1_a3 pam_evenArgument
+hi def link pam_MBPART_COS2D_r1_e3 pam_evenError
+" === PART Typ SHELL end}}}
+
 "{{{=== PART Typ SOLID/TETRA begin
    " Row 6
    syn region      pam_PART_SOLID_r6     transparent contained containedin=pam_PART_SOLID start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1i5x,@11f10,@21f10,@31f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position,pam_EndPart skipnl keepend
@@ -4487,6 +4547,35 @@ syn region      pam_PART_SOLID     matchgroup=pam_CardTag start="^\CPART  / .\{8
 hi def link pam_PART_SOLID_r1_a2 pam_evenArgument
 "=== PART Typ SOLID end}}}
 
+" {{{=== PART Typ SOLID (Multi-Block definition)
+   "Row 3 (META)
+   syn region      pam_MBPART_SOLID_r3     transparent contained containedin=pam_MBPART_SOLID start="^[\$\#]" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position nextgroup=pam_MBPART_SOLID_r3 skipnl keepend
+   syn region      pam_MBPART_SOLID_r3     transparent contained containedin=pam_MBPART_SOLID start="^META" end="^END_META" contains=pam_GroupMeta nextgroup=pam_MBPART_SOLID_r3 skipnl keepend
+   " Row 2 (Name)
+   syn region      pam_MBPART_SOLID_r2     transparent contained containedin=pam_MBPART_SOLID start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_MBPART_SOLID_r3,pam_MBPART_SOLID_CONTACT,pam_MBPART_SOLID_GEOMETRY skipnl keepend
+   " Row 1
+   syn region      pam_MBPART_SOLID_r1     transparent contained containedin=pam_MBPART_SOLID start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@25i8,@33i8,@41i8,@49i8,@57i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_MBPART_SOLID_r2 skipnl keepend
+      " GEOMETRY Row 3
+      syn region      pam_MBPART_SOLID_GEOMETRY_r3 transparent contained containedin=pam_MBPART_SOLID_GEOMETRY matchgroup=pam_Keyword start="\%1c\CLOCAL_ORI " start="^$\n" end="\n[\$\#]\@!" contains=@11f10,@21f10,@31f10,@41f10,@51f10,@61f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
+      " GEOMETRY Row 2
+      syn region      pam_MBPART_SOLID_GEOMETRY_r2 transparent contained containedin=pam_MBPART_SOLID_GEOMETRY start="\%1c[^\$\#]" start="^$\n" end="\n[\$\#]\@!" contains=@1i10,@11f10,@21f10,@31f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_MBPART_SOLID_GEOMETRY_r3,pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
+      " GEOMETRY Row 1
+      syn region      pam_MBPART_SOLID_GEOMETRY_r1 transparent contained containedin=pam_MBPART_SOLID_GEOMETRY start="\%1c[^\$\#]" start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,@21f10,@31f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_MBPART_SOLID_GEOMETRY_r2 skipnl keepend
+   " GEOMETRY
+   syn region      pam_MBPART_SOLID_GEOMETRY transparent contained containedin=pam_MBPART_SOLID,pam_PART_MODULAR_SOLID matchgroup=pam_CardTag start="^\CGEOMETRY" end="^\CEND_GEOMETRY" contains=pam_Comment,pam_Comment_Position,pam_Error,pam_MBPART_SOLID_GEOMETRY_r[123] skipnl keepend
+      " CONTACT Row 1
+      syn region      pam_MBPART_SOLID_CONTACT_r1 transparent contained containedin=pam_MBPART_SOLID_CONTACT start="\%1c[^\$\#]" start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,@21f5,@26f5,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
+   " CONTACT
+   syn region      pam_MBPART_SOLID_CONTACT transparent contained containedin=pam_MBPART_SOLID,pam_PART_MODULAR_SOLID matchgroup=pam_CardTag start="^\CCONTACT" end="^\CEND_CONTACT" contains=pam_MBPART_SOLID_CONTACT_r1,pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
+syn region      pam_MBPART_SOLID        matchgroup=pam_CardTag start="^\CPART  / .\{8\}[ ]*\CSOLID[ ]*\%25c.*\%73c\(\CMMAT\|\CMATER\|\CANY\)"rs=s+8 end="^\CEND_PART" contains=pam_Comment,pam_Comment_Position keepend
+syn match       pam_MBPART_SOLID_r1_a2             display contained containedin=pam_MBPART_SOLID_r1 "\%17c[ ]*\CSOLID[ ]*\%25c"
+hi def link pam_MBPART_SOLID_r1_a2 pam_evenArgument
+syn match       pam_MBPART_SOLID_r1_e3             display contained containedin=pam_MBPART_SOLID_r1 "\%73c.\{1,8\}"
+syn match       pam_MBPART_SOLID_r1_a3             display contained containedin=pam_MBPART_SOLID_r1 "\%73c\(\CMATER\|MMAT\|ANY\)[ ]*\%81c"
+hi def link pam_MBPART_SOLID_r1_a3 pam_evenArgument
+hi def link pam_MBPART_SOLID_r1_e3 pam_evenError
+" === PART Typ SOLID (Multi-Block definition) end}}}
+
 "{{{=== PART Typ SHELL begin
    " Row 6
    syn region      pam_PART_SHELL_r6     transparent contained containedin=pam_PART_SHELL start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1i5x,@11f10,@21f10,@31f10,@41f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position,pam_EndPart skipnl keepend
@@ -4513,6 +4602,47 @@ hi def link pam_PART_SOLID_r1_a2 pam_evenArgument
    hi def link pam_PART_SHELL_r1_v2 pam_evenVar
    hi def link pam_PART_SHELL_r1_e2 pam_evenError
 "=== PART Typ SOLID end}}}
+
+" {{{=== PART Typ SHELL (Multi-Block definition)
+   "Row 3 (META)
+   syn region      pam_MBPART_SHELL_r3     transparent contained containedin=pam_MBPART_SHELL start="^[\$\#]" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position nextgroup=pam_MBPART_SHELL_r3 skipnl keepend
+   syn region      pam_MBPART_SHELL_r3     transparent contained containedin=pam_MBPART_SHELL start="^META" end="^END_META" contains=pam_GroupMeta nextgroup=pam_MBPART_SHELL_r3 skipnl keepend
+   " Row 2 (Name)
+   syn region      pam_MBPART_SHELL_r2     transparent contained containedin=pam_MBPART_SHELL start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_MBPART_SHELL_r3,pam_MBPART_SHELL_CONTACT,pam_MBPART_SHELL_GEOMETRY skipnl keepend
+   " Row 1
+   syn region      pam_MBPART_SHELL_r1     transparent contained containedin=pam_MBPART_SHELL start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@25i8,@33i8,@41i8,@49i8,@57i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_MBPART_SHELL_r2 skipnl keepend
+      " MONITORING Row 1
+      syn region      pam_MBPART_SHELL_MONITORING_r1 transparent contained containedin=pam_MBPART_SHELL_MONITORING start="\%1c[^\$\#]" start="^$\n" end="\n[\$\#]\@!" contains=pam_Float,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
+      syn keyword     pam_MBPART_SHELL_MONITORING_r1_a1         contained containedin=pam_MBPART_SHELL_MONITORING_r1 GRUC
+      syn keyword     pam_MBPART_SHELL_MONITORING_r1_a2         contained containedin=pam_MBPART_SHELL_MONITORING_r1 EPMX DMG THIC
+      hi def link pam_MBPART_SHELL_MONITORING_r1_a1 pam_Keyword
+      hi def link pam_MBPART_SHELL_MONITORING_r1_a2 pam_Argument
+   " MONITORING
+   syn region      pam_MBPART_SHELL_MONITORING transparent contained containedin=pam_MBPART_SHELL,pam_PART_MODULAR_SHELL matchgroup=pam_CardTag start="^\CMONITORING" end="^\CEND_MONITORING" contains=pam_MBPART_SHELL_MONITORING_r1,pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
+      " INIT_CONDITIONS Row 1
+      syn region      pam_MBPART_SHELL_INIT_CONDITIONS_r1 transparent contained containedin=pam_MBPART_SHELL_INIT_CONDITIONS start="\%1c[^\$\#]" start="^$\n" end="\n[\$\#]\@!" contains=@1f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
+   " INIT_CONDITIONS
+   syn region      pam_MBPART_SHELL_INIT_CONDITIONS transparent contained containedin=pam_MBPART_SHELL,pam_PART_MODULAR_SHELL matchgroup=pam_CardTag start="^\CINIT_CONDITIONS" end="^\CEND_INIT_CONDITIONS" contains=pam_Comment,pam_Comment_Position,pam_Error,pam_MBPART_SHELL_INIT_CONDITIONS_r1 skipnl keepend
+      " GEOMETRY Row 3
+      syn region      pam_MBPART_SHELL_GEOMETRY_r3 transparent contained containedin=pam_MBPART_SHELL_GEOMETRY matchgroup=pam_Keyword start="\%1c\CLOCAL_ORI " start="^$\n" end="\n[\$\#]\@!" contains=@11f10,@21f10,@31f10,@41f10,@51f10,@61f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
+      " GEOMETRY Row 2
+      syn region      pam_MBPART_SHELL_GEOMETRY_r2 transparent contained containedin=pam_MBPART_SHELL_GEOMETRY start="\%1c[^\$\#]" start="^$\n" end="\n[\$\#]\@!" contains=@1i10,@11f10,@21f10,@31f10,@41f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_MBPART_SHELL_GEOMETRY_r3,pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
+      " GEOMETRY Row 1
+      syn region      pam_MBPART_SHELL_GEOMETRY_r1 transparent contained containedin=pam_MBPART_SHELL_GEOMETRY start="\%1c[^\$\#]" start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_MBPART_SHELL_GEOMETRY_r2 skipnl keepend
+   " GEOMETRY
+   syn region      pam_MBPART_SHELL_GEOMETRY transparent contained containedin=pam_MBPART_SHELL,pam_PART_MODULAR_SHELL matchgroup=pam_CardTag start="^\CGEOMETRY" end="^\CEND_GEOMETRY" contains=pam_Comment,pam_Comment_Position,pam_Error,pam_MBPART_SHELL_GEOMETRY_r[123] skipnl keepend
+      " CONTACT Row 1
+      syn region      pam_MBPART_SHELL_CONTACT_r1 transparent contained containedin=pam_MBPART_SHELL_CONTACT start="\%1c[^\$\#]" start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,@21f5,@26f5,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
+   " CONTACT
+   syn region      pam_MBPART_SHELL_CONTACT transparent contained containedin=pam_MBPART_SHELL,pam_PART_MODULAR_SHELL matchgroup=pam_CardTag start="^\CCONTACT" end="^\CEND_CONTACT" contains=pam_MBPART_SHELL_CONTACT_r1,pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
+syn region      pam_MBPART_SHELL        matchgroup=pam_CardTag start="^\CPART  / .\{8\}[ ]*\CSHELL[ ]*\%25c.*\%73c\(\CMMAT\|\CMATER\|\CANY\)"rs=s+8 end="^\CEND_PART" contains=pam_Comment,pam_Comment_Position keepend
+syn match       pam_MBPART_SHELL_r1_a2             display contained containedin=pam_MBPART_SHELL_r1 "\%17c[ ]*\CSHELL[ ]*\%25c"
+hi def link pam_MBPART_SHELL_r1_a2 pam_evenArgument
+syn match       pam_MBPART_SHELL_r1_e3             display contained containedin=pam_MBPART_SHELL_r1 "\%73c.\{1,8\}"
+syn match       pam_MBPART_SHELL_r1_a3             display contained containedin=pam_MBPART_SHELL_r1 "\%73c\(\CMATER\|MMAT\|ANY\)[ ]*\%81c"
+hi def link pam_MBPART_SHELL_r1_a3 pam_evenArgument
+hi def link pam_MBPART_SHELL_r1_e3 pam_evenError
+" === PART Typ SHELL (Multi-Block definition) end}}}
 
 "{{{=== PART Typ MEMBR begin
 " Row 6
@@ -4616,6 +4746,31 @@ hi def link pam_PART_BAR_r1_a2 pam_evenArgument
 hi def link pam_PART_BAR_r1_v2 pam_evenVar
 hi def link pam_PART_BAR_r1_e2 pam_evenError
 "=== PART Typ BAR end}}}
+
+" {{{=== PART Typ BAR (Multi-Block definition)
+   "Row 3 (META)
+   syn region      pam_MBPART_BAR_r3     transparent contained containedin=pam_MBPART_BAR start="^[\$\#]" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position nextgroup=pam_MBPART_BAR_r3 skipnl keepend
+   syn region      pam_MBPART_BAR_r3     transparent contained containedin=pam_MBPART_BAR start="^META" end="^END_META" contains=pam_GroupMeta nextgroup=pam_MBPART_BAR_r3 skipnl keepend
+   " Row 2 (Name)
+   syn region      pam_MBPART_BAR_r2     transparent contained containedin=pam_MBPART_BAR start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_MBPART_BAR_r3,pam_MBPART_BAR_CONTACT,pam_MBPART_BAR_GEOMETRY skipnl keepend
+   " Row 1
+   syn region      pam_MBPART_BAR_r1     transparent contained containedin=pam_MBPART_BAR start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@25i8,@33i8,@41i8,@49i8,@57i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_MBPART_BAR_r2 skipnl keepend
+      " GEOMETRY Row 1
+      syn region      pam_MBPART_BAR_GEOMETRY_r1 transparent contained containedin=pam_MBPART_BAR_GEOMETRY start="\%1c[^\$\#]" start="^$\n" end="\n[\$\#]\@!" contains=@1f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
+   " GEOMETRY
+   syn region      pam_MBPART_BAR_GEOMETRY transparent contained containedin=pam_MBPART_BAR matchgroup=pam_CardTag start="^\CGEOMETRY" end="^\CEND_GEOMETRY" contains=pam_Comment,pam_Comment_Position,pam_Error,pam_MBPART_BAR_GEOMETRY_r1 skipnl keepend
+      " CONTACT Row 1
+      syn region      pam_MBPART_BAR_CONTACT_r1 transparent contained containedin=pam_MBPART_BAR_CONTACT start="\%1c[^\$\#]" start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,@21f5,@26f5,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
+   " CONTACT
+   syn region      pam_MBPART_BAR_CONTACT transparent contained containedin=pam_MBPART_BAR,pam_PART_MODULAR_SHELL matchgroup=pam_CardTag start="^\CCONTACT" end="^\CEND_CONTACT" contains=pam_MBPART_BAR_CONTACT_r1,pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
+syn region      pam_MBPART_BAR        matchgroup=pam_CardTag start="^\CPART  / .\{8\}[ ]*\CBAR[ ]*\%25c.*\%73c\(\CMMAT\|\CMATER\|\CANY\)"rs=s+8 end="^\CEND_PART" contains=pam_Comment,pam_Comment_Position keepend
+syn match       pam_MBPART_BAR_r1_a2             display contained containedin=pam_MBPART_BAR_r1 "\%17c[ ]*\CBAR[ ]*\%25c"
+hi def link pam_MBPART_BAR_r1_a2 pam_evenArgument
+syn match       pam_MBPART_BAR_r1_e3             display contained containedin=pam_MBPART_BAR_r1 "\%73c.\{1,8\}"
+syn match       pam_MBPART_BAR_r1_a3             display contained containedin=pam_MBPART_BAR_r1 "\%73c\(\CMATER\|MMAT\|ANY\)[ ]*\%81c"
+hi def link pam_MBPART_BAR_r1_a3 pam_evenArgument
+hi def link pam_MBPART_BAR_r1_e3 pam_evenError
+" === PART Typ BAR (Multi-Block definition) end}}}
 
 "{{{=== PART Typ TSHEL begin
    " Row 5
@@ -4812,6 +4967,53 @@ hi def link pam_PART_BEAM_r1_a2 pam_evenArgument
 hi def link pam_PART_BEAM_r1_v2 pam_evenVar
 hi def link pam_PART_BEAM_r1_e2 pam_evenError
 "=== PART Typ BEAM end}}}
+
+" {{{=== PART Typ BEAM (Multi-Block definition)
+   "Row 3 (META)
+   syn region      pam_MBPART_BEAM_r3     transparent contained containedin=pam_MBPART_BEAM start="^[\$\#]" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position nextgroup=pam_MBPART_BEAM_r3 skipnl keepend
+   syn region      pam_MBPART_BEAM_r3     transparent contained containedin=pam_MBPART_BEAM start="^META" end="^END_META" contains=pam_GroupMeta nextgroup=pam_MBPART_BEAM_r3 skipnl keepend
+   " Row 2 (Name)
+   syn region      pam_MBPART_BEAM_r2     transparent contained containedin=pam_MBPART_BEAM start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_MBPART_BEAM_r3,pam_MBPART_BEAM_CONTACT,pam_MBPART_BEAM_GEOMETRYP skipnl keepend
+   " Row 1
+   syn region      pam_MBPART_BEAM_r1     transparent contained containedin=pam_MBPART_BEAM start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@25i8,@33i8,@41i8,@49i8,@57i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_MBPART_BEAM_r2 skipnl keepend
+      " GEOMETRY ADVANCED Row 3
+      syn region      pam_MBPART_BEAM_GEOMETRYA_r3 transparent contained containedin=pam_MBPART_BEAM_GEOMETRYA start="\%1c[^\$\#]" start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,@21f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_MBPART_BEAM_GEOMETRYA_r3,pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
+      " GEOMETRY ADVANCED Row 2
+      syn region      pam_MBPART_BEAM_GEOMETRYA_r2 transparent contained containedin=pam_MBPART_BEAM_GEOMETRYA start="\%1c[^\$\#]" start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,@21f10,@31f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_MBPART_BEAM_GEOMETRYA_r3  skipnl keepend
+      " GEOMETRY ADVANCED Row 1
+      syn region      pam_MBPART_BEAM_GEOMETRYA_r1 transparent contained containedin=pam_MBPART_BEAM_GEOMETRYA start="\%1c[^\$\#]" start="^$\n" end="\n[\$\#]\@!" contains=@1f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_MBPART_BEAM_GEOMETRYA_r2  skipnl keepend
+   " GEOMETRY ADVANCED
+   syn region      pam_MBPART_BEAM_GEOMETRYA transparent contained containedin=pam_MBPART_BEAM matchgroup=pam_CardTag start="^\CGEOMETRY[ ]*\CADVANCED" end="^\CEND_GEOMETRY" contains=pam_Comment,pam_Comment_Position,pam_Error,pam_MBPART_BEAM_GEOMETRY_r1 skipnl keepend
+      " GEOMETRY INERTIA Row 2
+      syn region      pam_MBPART_BEAM_GEOMETRYI_r2 transparent contained containedin=pam_MBPART_BEAM_GEOMETRYI start="\%1c[^\$\#]" start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,@21f10,@31f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
+      " GEOMETRY INERTIA Row 1
+      syn region      pam_MBPART_BEAM_GEOMETRYI_r1 transparent contained containedin=pam_MBPART_BEAM_GEOMETRYI start="\%1c[^\$\#]" start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,@21f10,@31f10,@41f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_MBPART_BEAM_GEOMETRYI_r2  skipnl keepend
+   " GEOMETRY INERTIA
+   syn region      pam_MBPART_BEAM_GEOMETRYI transparent contained containedin=pam_MBPART_BEAM matchgroup=pam_CardTag start="^\CGEOMETRY[ ]*\CINERTIA" end="^\CEND_GEOMETRY" contains=pam_Comment,pam_Comment_Position,pam_Error,pam_MBPART_BEAM_GEOMETRY_r1 skipnl keepend
+      " GEOMETRY PREDEFINED Row 4
+      syn region      pam_MBPART_BEAM_GEOMETRYP_r4 transparent contained containedin=pam_MBPART_BEAM_GEOMETRYP start="\%1c[^\$\#]" start="^$\n" end="\n[\$\#]\@!" contains=@1f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
+      " GEOMETRY PREDEFINED Row 3
+      syn region      pam_MBPART_BEAM_GEOMETRYP_r3 transparent contained containedin=pam_MBPART_BEAM_GEOMETRYP start="\%1c[^\$\#]" start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,@21f10,@31f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_MBPART_BEAM_GEOMETRYP_r4 skipnl keepend
+      " GEOMETRY PREDEFINED Row 2
+      syn region      pam_MBPART_BEAM_GEOMETRYP_r2 transparent contained containedin=pam_MBPART_BEAM_GEOMETRYP start="\%1c[^\$\#]" start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,@21f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_MBPART_BEAM_GEOMETRYP_r3 skipnl keepend
+      " GEOMETRY PREDEFINED Row 1
+      syn region      pam_MBPART_BEAM_GEOMETRYP_r1 transparent contained containedin=pam_MBPART_BEAM_GEOMETRYP start="\%1c[^\$\#]" start="^$\n" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_MBPART_BEAM_GEOMETRYP_r2  skipnl keepend
+         syn keyword pam_MBPART_BEAM_GEOMETRYP_r1_a1 display contained containedin=pam_MBPART_BEAM_GEOMETRYP_r1 THIN_CIRCULAR SOLID_CIRCULAR THIN_RECTANGULAR SOLID_RECTANGULAR
+         hi def link pam_MBPART_BEAM_GEOMETRYP_r1_a1 pam_Argument
+   " GEOMETRY PREDEFINED
+   syn region      pam_MBPART_BEAM_GEOMETRYP transparent contained containedin=pam_MBPART_BEAM matchgroup=pam_CardTag start="^\CGEOMETRY[ ]*\CPREDEFINED" end="^\CEND_GEOMETRY" contains=pam_Comment,pam_Comment_Position,pam_Error,pam_MBPART_BEAM_GEOMETRY_r1 skipnl keepend
+      " CONTACT Row 1
+      syn region      pam_MBPART_BEAM_CONTACT_r1 transparent contained containedin=pam_MBPART_BEAM_CONTACT start="\%1c[^\$\#]" start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,@21f5,@26f5,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
+   " CONTACT
+   syn region      pam_MBPART_BEAM_CONTACT transparent contained containedin=pam_MBPART_BEAM,pam_PART_MODULAR_SHELL matchgroup=pam_CardTag start="^\CCONTACT" end="^\CEND_CONTACT" contains=pam_MBPART_BEAM_CONTACT_r1,pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
+syn region      pam_MBPART_BEAM        matchgroup=pam_CardTag start="^\CPART  / .\{8\}[ ]*\CBEAM[ ]*\%25c.*\%73c\(\CMMAT\|\CMATER\|\CANY\)"rs=s+8 end="^\CEND_PART" contains=pam_Comment,pam_Comment_Position keepend
+syn match       pam_MBPART_BEAM_r1_a2             display contained containedin=pam_MBPART_BEAM_r1 "\%17c[ ]*\CBEAM[ ]*\%25c"
+hi def link pam_MBPART_BEAM_r1_a2 pam_evenArgument
+syn match       pam_MBPART_BEAM_r1_e3             display contained containedin=pam_MBPART_BEAM_r1 "\%73c.\{1,8\}"
+syn match       pam_MBPART_BEAM_r1_a3             display contained containedin=pam_MBPART_BEAM_r1 "\%73c\(\CMATER\|MMAT\|ANY\)[ ]*\%81c"
+hi def link pam_MBPART_BEAM_r1_a3 pam_evenArgument
+hi def link pam_MBPART_BEAM_r1_e3 pam_evenError
+" === PART Typ BEAM (Multi-Block Definition) end}}}
 
 "{{{=== PART Typ MUSCLE begin
    " Row 5

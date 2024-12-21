@@ -1269,6 +1269,77 @@ function! pamcomplete#Complete(findstart, base)
          " }}}
          endif
 "  }}}
+"  {{{ MBPART
+      elseif synIDattr(slist[0], "name") =~ "pam_MBPART.*"
+         if synIDattr(slist[1], "name") =~ "pam_MBPART.*_r1"
+            " ATYPE
+            if synIDattr(slist[2], "name") =~ "pam_MBPART.*_r1_[ae]2"
+               let start = 16
+            " IDMAT
+            elseif synIDattr(slist[2], "name") =~ "pam_25.*"
+               let start = 24
+            " IDVAMAT
+            elseif synIDattr(slist[2], "name") =~ "pam_33.*"
+               let start = 32
+            " IDTHMAT
+            elseif synIDattr(slist[2], "name") =~ "pam_41.*"
+               let start = 40
+            " IDPMAT
+            elseif synIDattr(slist[2], "name") =~ "pam_49.*"
+               let start = 48
+            " IDNUMPAR
+            elseif synIDattr(slist[2], "name") =~ "pam_57.*"
+               let start = 56
+            endif
+         elseif synIDattr(slist[1], "name") =~ "pam_MBPART_.*_CONTACT"
+            if synIDattr(slist[2], "name") =~ "pam_MBPART_.*_CONTACT_r1"
+                " IFRED
+                if synIDattr(slist[3], "name") =~ "pam_21.*"
+                   let start = 20
+                " IE2E
+                elseif synIDattr(slist[3], "name") =~ "pam_26.*"
+                   let start = 25
+                endif
+            endif
+         " {{{ COS2D
+         elseif synIDattr(slist[1], "name") =~ "pam_MBPART_COS2D_GEOMETRY"
+            if synIDattr(slist[2], "name") =~ "pam_MBPART_COS2D_GEOMETRY_r1"
+                " KEYWORD
+                if synIDattr(slist[3], "name") =~ "pam_MBPART_COS2D_GEOMETRY_r1_[ae]1"
+                   let start = 20
+                endif
+            endif
+      " }}}
+         " {{{ COS3D
+         elseif synIDattr(slist[1], "name") =~ "pam_MBPART_COS3D_GEOMETRY"
+            if synIDattr(slist[2], "name") =~ "pam_MBPART_COS3D_GEOMETRY_r1"
+                " KEYWORD
+                if synIDattr(slist[3], "name") =~ "pam_MBPART_COS3D_GEOMETRY_r1_[ae]1"
+                   let start = 10
+                endif
+            endif
+      " }}}
+         " {{{ SHELL
+         elseif synIDattr(slist[1], "name") =~ "pam_MBPART_SHELL_r6"
+            " IORT1
+            if synIDattr(slist[2], "name") =~ "pam_1.5.*"
+               let start = 0
+            endif
+         " }}}
+         " {{{ SOLID
+         elseif synIDattr(slist[1], "name") =~ "pam_MBPART_SOLID_r5"
+            " IORT1
+            if synIDattr(slist[2], "name") =~ "pam_1.5.*"
+               let start = 0
+            endif
+         elseif synIDattr(slist[1], "name") =~ "pam_MBPART_SOLID_r6"
+            " IORT2
+            if synIDattr(slist[2], "name") =~ "pam_1.5.*"
+               let start = 0
+            endif
+         " }}}
+         endif
+"  }}}
 "  {{{ MATER 1D+LINK
       elseif synIDattr(slist[0], "name") =~ "pam_Mater[23][0-9][0-9]"
          if synIDattr(slist[1], "name") =~ "pam_Mater.*_r1$"
@@ -5723,6 +5794,92 @@ function! pamcomplete#Complete(findstart, base)
          " }}}
          endif
 "  }}}
+"  {{{ MBPART
+      elseif synIDattr(slist[0], "name") =~ "pam_MBPART.*"
+         if synIDattr(slist[1], "name") =~ "pam_MBPART.*_r1"
+            " ATYPE
+            if synIDattr(slist[2], "name") =~ "pam_MBPART.*_r1_[ae]2"
+               call add (items,'     BAR')
+               call add (items,'    BEAM')
+               call add (items,'   COS2D')
+               call add (items,'   COS3D')
+               call add (items,'   SHELL')
+               call add (items,'   SOLID')
+            " IDMAT
+            elseif synIDattr(slist[2], "name") =~ "pam_25.*"
+               let items = s:getTags("MATER",8)
+            " IDVAMAT
+            elseif synIDattr(slist[2], "name") =~ "pam_33.*"
+               let items = s:getTags("VAMAT",8)
+            " IDTHMAT
+            elseif synIDattr(slist[2], "name") =~ "pam_41.*"
+               let items = s:getTags("THMAT",8)
+            " IDPMAT
+            elseif synIDattr(slist[2], "name") =~ "pam_49.*"
+               let items = s:getTags("PFMAT",8)
+            " IDNUMPAR
+            elseif synIDattr(slist[2], "name") =~ "pam_57.*"
+               let items = s:getTags("NUMPAR",10)
+            endif
+         elseif synIDattr(slist[1], "name") =~ "pam_MBPART_.*_CONTACT"
+            if synIDattr(slist[2], "name") =~ "pam_MBPART_.*_CONTACT_r1"
+                " IFRED
+                if synIDattr(slist[3], "name") =~ "pam_21.*"
+                   call add (items,{'word':'    0','abbr':'0 (default)','menu':'Deactivated'})
+                   call add (items,{'word':'    1','abbr':'1','menu':'Activated'})
+                   call add (items,{'word':'    2','abbr':'2','menu':'Deactivated'})
+                " IE2E
+                elseif synIDattr(slist[3], "name") =~ "pam_26.*"
+                   call add (items,{'word':'    0','abbr':'0 (default)','menu':'Deactivated'})
+                   call add (items,{'word':'    1','abbr':'1','menu':'Activated'})
+                   call add (items,{'word':'    2','abbr':'2','menu':'Deactivated'})
+                endif
+             endif
+         " {{{ COS2D
+         elseif synIDattr(slist[1], "name") =~ "pam_MBPART_COS2D_GEOMETRY"
+            if synIDattr(slist[2], "name") =~ "pam_MBPART_COS2D_GEOMETRY_r1"
+                " IMETH
+                if synIDattr(slist[3], "name") =~ "pam_MBPART_COS2D_GEOMETRY_r1_[ae]1"
+                   call add (items,{'word':'MIN_EDGE  ','abbr':'MIN_EDGE (default)','menu':'Minimal Edge Direction'})
+                   call add (items,{'word':'MAX_EDGE  ','abbr':'MAX_EDGE','menu':'Maximal Edge Direction'})
+                endif
+            endif
+      " }}}
+         " {{{ COS3D
+         elseif synIDattr(slist[1], "name") =~ "pam_MBPART_COS3D_GEOMETRY"
+            if synIDattr(slist[2], "name") =~ "pam_MBPART_COS3D_GEOMETRY_r1"
+                " IMETH
+                if synIDattr(slist[3], "name") =~ "pam_MBPART_COS3D_GEOMETRY_r1_[ae]1"
+                   call add (items,{'word':'LOCAL_Z   ','abbr':'LOCAL_Z (default)','menu':'Local Frame Z Direction'})
+                   call add (items,{'word':'MIN_EDGE  ','abbr':'MIN_EDGE','menu':'Minimal Edge Direction'})
+                   call add (items,{'word':'MAX_EDGE  ','abbr':'MAX_EDGE','menu':'Maximal Edge Direction'})
+                endif
+            endif
+      " }}}
+         " {{{ SHELL
+         elseif synIDattr(slist[1], "name") =~ "pam_MBPART_SHELL_r6"
+            " IORT1
+            if synIDattr(slist[2], "name") =~ "pam_1.5.*"
+               call add (items,{'word':'    0','menu':'Definition via Global Vector'})
+               call add (items,{'word':'    1','menu':'Definition via Local Element Frame'})
+            endif
+         " }}}
+         " {{{ SOLID
+         elseif synIDattr(slist[1], "name") =~ "pam_MBPART_SOLID_r5"
+            " IORT1
+            if synIDattr(slist[2], "name") =~ "pam_1.5.*"
+               call add (items,{'word':'    0','menu':'Definition via Global Vector'})
+               call add (items,{'word':'    1','menu':'Definition via Local Vector'})
+            endif
+         elseif synIDattr(slist[1], "name") =~ "pam_MBPART_SOLID_r6"
+            " IORT2
+            if synIDattr(slist[2], "name") =~ "pam_1.5.*"
+               call add (items,{'word':'    0','menu':'Definition via Global Vector'})
+               call add (items,{'word':'    1','menu':'Definition via Local Vector'})
+            endif
+         " }}}
+         endif
+"  }}}
 "  {{{ MATER 1D+LINK
       elseif synIDattr(slist[0], "name") =~ "pam_Mater[23][0-9][0-9]"
          if synIDattr(slist[1], "name") =~ "pam_Mater.*_r1$"
@@ -8745,6 +8902,220 @@ function! pamcomplete#pamHints()
          endif
       endif
 "  }}}
+"  {{{ MBPART
+   elseif synIDattr(slist[0], "name") =~ "pam_MBPART.*"
+      if synIDattr(slist[1], "name") =~ "pam_MBPART.*_r1$"
+         if synIDattr(slist[2], "name") =~ "pam_9.*"
+            return "IDPRT - Part ID"
+         elseif synIDattr(slist[2], "name") =~ "pam_MBPART.*_r1_[ae]2"
+            return "ATYPE - Part Type (menu)"
+         elseif synIDattr(slist[2], "name") =~ "pam_25.*"
+            return "IDMAT - Material ID (tag)"
+         elseif synIDattr(slist[2], "name") =~ "pam_33.*"
+            return "IDVAMAT - Vibroacoustic Material ID (tag)"
+         elseif synIDattr(slist[2], "name") =~ "pam_41.*"
+            return "IDTHMAT - Thermal Material ID (tag)"
+         elseif synIDattr(slist[2], "name") =~ "pam_49.*"
+            return "IDPMAT - Porous Material ID (tag)"
+         elseif synIDattr(slist[2], "name") =~ "pam_57.*"
+            return "IDNUMPAR - Numerical Parameter ID (tag)"
+         elseif synIDattr(slist[2], "name") =~ "pam_MBPART.*_r1_[ae]3"
+            return "MKEY - Multiblock part input"
+         endif
+      elseif synIDattr(slist[1], "name") =~ "pam_MBPART_.*_CONTACT"
+         if synIDattr(slist[2], "name") =~ "pam_MBPART_.*_CONTACT_r1"
+            if synIDattr(slist[3], "name") =~ "pam_1.10.*"
+               return "TCONT - Thickness For Contact"
+            elseif synIDattr(slist[3], "name") =~ "pam_11.*"
+               return "COULFRIC - Coulomb Friction Coefficient"
+            elseif synIDattr(slist[3], "name") =~ "pam_21.*"
+               return "IFRED - Flag to Activate Free Edge Treatment (menu)"
+            elseif synIDattr(slist[3], "name") =~ "pam_26.*"
+               return "IE2E - Flag to Activate Edge2Edge Treatment (menu)"
+            endif
+         endif
+"     {{{ BAR 
+      elseif synIDattr(slist[1], "name") =~ "pam_MBPART_BAR_GEOMETRY"
+         if synIDattr(slist[2], "name") =~ "pam_MBPART_BAR_GEOMETRY_r1"
+            if synIDattr(slist[3], "name") =~ "pam_1.10.*"
+               return "A - Cross Section Area"
+            endif
+         endif 
+"     }}} 
+"     {{{ BEAM 
+      elseif synIDattr(slist[1], "name") =~ "pam_MBPART_BEAM_GEOMETRYP"
+         if synIDattr(slist[2], "name") =~ "pam_MBPART_BEAM_GEOMETRYP_r2"
+            if synIDattr(slist[3], "name") =~ "pam_1.10.*"
+               return "a - Cross Section Dimension parameter a"
+            elseif synIDattr(slist[3], "name") =~ "pam_11.*"
+               return "b - Cross Section Dimension parameter b"
+            elseif synIDattr(slist[3], "name") =~ "pam_21.*"
+               return "c - Cross Section Dimension parameter c"
+            endif
+         elseif synIDattr(slist[2], "name") =~ "pam_MBPART_BEAM_GEOMETRYP_r3"
+            if synIDattr(slist[3], "name") =~ "pam_1.10.*"
+               return "COGs - s-Coordinate of the Beam Section's Center of Gravity"
+            elseif synIDattr(slist[3], "name") =~ "pam_11.*"
+               return "COGt - t-Coordinate of the Beam Section's Center of Gravity"
+            elseif synIDattr(slist[3], "name") =~ "pam_21.*"
+               return "SHEARs - s-Coordinate of the Beam Section's Shear Center"
+            elseif synIDattr(slist[3], "name") =~ "pam_31.*"
+               return "SHEARt - t-Coordinate of the Beam Section's Shear Center"
+            endif
+         endif
+      elseif synIDattr(slist[1], "name") =~ "pam_MBPART_BEAM_GEOMETRYI"
+         if synIDattr(slist[2], "name") =~ "pam_MBPART_BEAM_GEOMETRYI_r1"
+            if synIDattr(slist[3], "name") =~ "pam_1.10.*"
+               return "A - Beam Cross-Section Area"
+            elseif synIDattr(slist[3], "name") =~ "pam_11.*"
+               return "Is - Bending Moment of Inertia About s-Axis"
+            elseif synIDattr(slist[3], "name") =~ "pam_21.*"
+               return "It - Bending Moment of Inertia About t-Axis"
+            elseif synIDattr(slist[3], "name") =~ "pam_31.*"
+               return "Ir - Bending Moment of Inertia About r-Axis"
+            elseif synIDattr(slist[3], "name") =~ "pam_41.*"
+               return "Ist - Mixed Moment of Inertia"
+            endif
+         elseif synIDattr(slist[2], "name") =~ "pam_MBPART_BEAM_GEOMETRYI_r2"
+            if synIDattr(slist[3], "name") =~ "pam_1.10.*"
+               return "COGs - s-Coordinate of the Beam Section's Center of Gravity"
+            elseif synIDattr(slist[3], "name") =~ "pam_11.*"
+               return "COGt - t-Coordinate of the Beam Section's Center of Gravity"
+            elseif synIDattr(slist[3], "name") =~ "pam_21.*"
+               return "SHEARs - s-Coordinate of the Beam Section's Shear Center"
+            elseif synIDattr(slist[3], "name") =~ "pam_31.*"
+               return "SHEARt - t-Coordinate of the Beam Section's Shear Center"
+            endif
+         endif 
+      elseif synIDattr(slist[1], "name") =~ "pam_MBPART_BEAM_GEOMETRYA"
+         if synIDattr(slist[2], "name") =~ "pam_MBPART_BEAM_GEOMETRYA_r1"
+            if synIDattr(slist[3], "name") =~ "pam_1.10.*"
+               return "A - Beam Cross-Section Area"
+            endif
+         elseif synIDattr(slist[2], "name") =~ "pam_MBPART_BEAM_GEOMETRYA_r2"
+            if synIDattr(slist[3], "name") =~ "pam_1.10.*"
+               return "COGs - s-Coordinate of the Beam Section's Center of Gravity"
+            elseif synIDattr(slist[3], "name") =~ "pam_11.*"
+               return "COGt - t-Coordinate of the Beam Section's Center of Gravity"
+            elseif synIDattr(slist[3], "name") =~ "pam_21.*"
+               return "SHEARs - s-Coordinate of the Beam Section's Shear Center"
+            elseif synIDattr(slist[3], "name") =~ "pam_31.*"
+               return "SHEARt - t-Coordinate of the Beam Section's Shear Center"
+            endif
+         elseif synIDattr(slist[2], "name") =~ "pam_MBPART_BEAM_GEOMETRYA_r3"
+            if synIDattr(slist[3], "name") =~ "pam_1.10.*"
+               return "LCOORDsi - Local s-Component of Integration Point i"
+            elseif synIDattr(slist[3], "name") =~ "pam_11.*"
+               return "LCOORDti - Local t-Component of Integration Point i"
+            elseif synIDattr(slist[3], "name") =~ "pam_21.*"
+               return "WFACTi - Weighting Factor of the integration Point i"
+            endif
+         endif 
+"     }}} 
+"     {{{ COS2D
+      elseif synIDattr(slist[1], "name") =~ "pam_MBPART_COS2D_GEOMETRY"
+         if synIDattr(slist[2], "name") =~ "pam_MBPART_COS2D_GEOMETRY_r1"
+            if synIDattr(slist[3], "name") =~ "pam_1.10.*"
+               return "BENDTHK - Element Bending Thickness Definition"
+            elseif synIDattr(slist[3], "name") =~ "pam_11.*"
+               return "COSTHK - Element Cohesive Thickness Definition"
+            elseif synIDattr(slist[3], "name") =~ "pam_MBPART_COS2D_GEOMETRY_r1_[ae]1"
+               return "KEYWORD - Method to Define the Mid-Plane Dorection of the Cohesive Element (menu)"
+            endif
+         endif
+"     }}} 
+"     {{{ COS3D
+      elseif synIDattr(slist[1], "name") =~ "pam_MBPART_COS3D_GEOMETRY"
+         if synIDattr(slist[2], "name") =~ "pam_MBPART_COS3D_GEOMETRY_r1"
+            if synIDattr(slist[3], "name") =~ "pam_1.10.*"
+               return "COSTHK - Element Cohesive Thickness Definition"
+            elseif synIDattr(slist[3], "name") =~ "pam_MBPART_COS3D_GEOMETRY_r1_[ae]1"
+               return "KEYWORD - Method to Define the Mid-Plane Dorection of the Cohesive Element (menu)"
+            endif
+         endif
+"     }}} 
+"     {{{ SHELL
+      elseif synIDattr(slist[1], "name") =~ "pam_MBPART_SHELL_GEOMETRY"
+         if synIDattr(slist[2], "name") =~ "pam_MBPART_SHELL_GEOMETRY_r1"
+            if synIDattr(slist[3], "name") =~ "pam_1.10.*"
+               return "H - Shell Element Thickness"
+            elseif synIDattr(slist[3], "name") =~ "pam_11.*"
+               return "OFFSET - Shell Element Offset"
+            endif
+         elseif synIDattr(slist[2], "name") =~ "pam_MBPART_SHELL_GEOMETRY_r2"
+            if synIDattr(slist[3], "name") =~ "pam_1.10.*"
+               return "IORT - Orthotropic Axis Definition (menu)"
+            elseif synIDattr(slist[3], "name") =~ "pam_11.*"
+               return "XDIR - X-Component of the Orthotropic Orientation Axis"
+            elseif synIDattr(slist[3], "name") =~ "pam_21.*"
+               return "YDIR - Y-Component of the Orthotropic Orientation Axis"
+            elseif synIDattr(slist[3], "name") =~ "pam_31.*"
+               return "ZDIR - Z-Component of the Orthotropic Orientation Axis"
+            elseif synIDattr(slist[3], "name") =~ "pam_41.*"
+               return "Aoff - Offset Angle of the Orthotropic Orientation Axis"
+            endif
+         elseif synIDattr(slist[2], "name") =~ "pam_MBPART_SHELL_GEOMETRY_r3"
+            if synIDattr(slist[3], "name") =~ "pam_11.*"
+               return "DIR11 - First Component of the Orientation Tensor"
+            elseif synIDattr(slist[3], "name") =~ "pam_21.*"
+               return "DIR22 - Second Component of the Orientation Tensor"
+            elseif synIDattr(slist[3], "name") =~ "pam_31.*"
+               return "DIR33 - Third Component of the Orientation Tensor"
+            elseif synIDattr(slist[3], "name") =~ "pam_41.*"
+               return "DIR21 - Fourth Component of the Orientation Tensor"
+            elseif synIDattr(slist[3], "name") =~ "pam_51.*"
+               return "DIR23 - Fifth Component of the Orientation Tensor"
+            elseif synIDattr(slist[3], "name") =~ "pam_61.*"
+               return "DIR13 - Sixth Component of the Orientation Tensor"
+            endif
+         endif
+      elseif synIDattr(slist[1], "name") =~ "pam_MBPART_SHELL_INIT_CONDITIONS"
+         if synIDattr(slist[2], "name") =~ "pam_MBPART_SHELL_INIT_CONDITIONS_r1"
+            if synIDattr(slist[3], "name") =~ "pam_1.10.*"
+               return "EPSINI - Initial Equivalent "
+            endif
+         endif
+"     }}} 
+"     {{{ SOLID
+      elseif synIDattr(slist[1], "name") =~ "pam_MBPART_SOLID_GEOMETRY"
+         if synIDattr(slist[2], "name") =~ "pam_MBPART_SOLID_GEOMETRY_r1"
+            if synIDattr(slist[3], "name") =~ "pam_1.10.*"
+               return "IORT1 - Orthotropic Axis Definition in the First Dorection (menu)"
+            elseif synIDattr(slist[3], "name") =~ "pam_11.*"
+               return "XDIR1 - X-Component of the First Orthotropic Orientation Axis"
+            elseif synIDattr(slist[3], "name") =~ "pam_21.*"
+               return "YDIR1 - Y-Component of the First Orthotropic Orientation Axis"
+            elseif synIDattr(slist[3], "name") =~ "pam_31.*"
+               return "ZDIR1 - Z-Component of the First Orthotropic Orientation Axis"
+            endif
+         elseif synIDattr(slist[2], "name") =~ "pam_MBPART_SOLID_GEOMETRY_r2"
+            if synIDattr(slist[3], "name") =~ "pam_1.10.*"
+               return "IORT2 - Orthotropic Axis Definition in the First Dorection (menu)"
+            elseif synIDattr(slist[3], "name") =~ "pam_11.*"
+               return "XDIR2 - X-Component of the Second Orthotropic Orientation Axis"
+            elseif synIDattr(slist[3], "name") =~ "pam_21.*"
+               return "YDIR2 - Y-Component of the Second Orthotropic Orientation Axis"
+            elseif synIDattr(slist[3], "name") =~ "pam_31.*"
+               return "ZDIR2 - Z-Component of the Second Orthotropic Orientation Axis"
+            endif
+         elseif synIDattr(slist[2], "name") =~ "pam_MBPART_SOLID_GEOMETRY_r3"
+            if synIDattr(slist[3], "name") =~ "pam_11.*"
+               return "DIR11 - First Component of the Orientation Tensor"
+            elseif synIDattr(slist[3], "name") =~ "pam_21.*"
+               return "DIR22 - Second Component of the Orientation Tensor"
+            elseif synIDattr(slist[3], "name") =~ "pam_31.*"
+               return "DIR33 - Third Component of the Orientation Tensor"
+            elseif synIDattr(slist[3], "name") =~ "pam_41.*"
+               return "DIR21 - Fourth Component of the Orientation Tensor"
+            elseif synIDattr(slist[3], "name") =~ "pam_51.*"
+               return "DIR23 - Fifth Component of the Orientation Tensor"
+            elseif synIDattr(slist[3], "name") =~ "pam_61.*"
+               return "DIR13 - Sixth Component of the Orientation Tensor"
+            endif
+         endif
+      endif
+"     }}}
+"  }}} MBPART
 "  {{{ PART
    elseif synIDattr(slist[0], "name") =~ "pam_PART.*"
       if synIDattr(slist[1], "name") =~ "pam_PART.*_r1$"
