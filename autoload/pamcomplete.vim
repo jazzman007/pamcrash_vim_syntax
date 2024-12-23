@@ -4706,6 +4706,7 @@ function! pamcomplete#Complete(findstart, base)
                call add (items,{'word':'      54','menu':'Non-Symmetric Node-to-Segment Oriented Contact with Edge Treatment'})
                call add (items,{'word':'      61','menu':'Note-to-Analytical Surface Contact'})
                call add (items,{'word':'     154','menu':'Implicit Small Sliding Contact'})
+               call add (items,{'word':'MCNTAC  ','menu':'Multi-Block Contact Definition'})
             endif
          endif
          " {{{ CNTAC 37/43/46

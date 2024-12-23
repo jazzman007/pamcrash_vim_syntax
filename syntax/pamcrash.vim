@@ -3992,7 +3992,7 @@ syn region      pam_CNTAC61        matchgroup=pam_CardTag start="^\CCNTAC / .\{8
    " Row 7
    syn region      pam_CNTAC154_r7     transparent contained containedin=pam_CNTAC154 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_CNTAC154_r8 skipnl keepend
    " Row 6 
-   syn region      pam_CNTAC154_r6     transparent contained containedin=pam_CNTAC154 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1i5x,@16i5x,@36i5,@51f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_CNTAC154_r7 skipnl keepend
+   syn region      pam_CNTAC154_r6     transparent contained containedin=pam_CNTAC154 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1i5x,@16i5x,@36i5,@51f10,@61i5x,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_CNTAC154_r7 skipnl keepend
    " Row 5
    syn region      pam_CNTAC154_r5     transparent contained containedin=pam_CNTAC154 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@11f10,@51i10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_CNTAC154_r6 skipnl keepend
       syn match       pam_CNTAC154_r5_e1             display contained containedin=pam_CNTAC154_r5 "\%1c.\{,10\}"
@@ -4009,6 +4009,226 @@ syn region      pam_CNTAC61        matchgroup=pam_CardTag start="^\CCNTAC / .\{8
    syn region      pam_CNTAC154_r1     transparent contained containedin=pam_CNTAC154 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_CNTAC154_r2 skipnl keepend
 syn region      pam_CNTAC154        matchgroup=pam_CardTag start="^\CCNTAC / .\{8\}[ ]\{5\}154"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_CNTAC154_r[1-9] keepend
 " === CNTAC 154 end}}}
+
+"{{{ === CNTAC new begin
+   "Row 3 
+   syn region      pam_CNTACnew_r3     transparent contained containedin=pam_CNTACnew start="^[\$\#]" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position nextgroup=pam_CNTACnew_r3 skipnl keepend
+   "Row 2 (Name)
+   syn region      pam_CNTACnew_r2     transparent contained containedin=pam_CNTACnew start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_CNTACnew_r3 skipnl keepend
+   "Row 1
+   syn region      pam_CNTACnew_r1     transparent contained containedin=pam_CNTACnew start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,pam_CNTACnew_r1_a1,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_CNTACnew_r2 skipnl keepend
+       syn keyword       pam_CNTACnew_r1_a1             contained containedin=pam_CNTACnew_r1 MCNTAC
+       hi def link pam_CNTACnew_r1_a1 pam_Keyword
+   " {{{ PHYSICS 
+       " {{{ MECHANICAL
+          " {{{ MESH_TO_MESH
+          syn region      pam_CNTACnew_MECHANICAL_M2M   transparent contained matchgroup=pam_Keyword start="\CMESH_TO_MESH" end="\%$" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
+          " }}}
+       syn region      pam_CNTACnew_MECHANICAL   transparent contained containedin=pam_CNTACnew matchgroup=pam_CardTag start="^[ ]*\CMECHANICAL" end="^[ ]*\CEND_MECHANICAL" contains=pam_CNTACnew_MECHANICAL_M2M,pam_Comment,pam_Comment_Position,pam_Error keepend
+       " }}}
+   " }}}
+   " {{{ MODULES
+      " {{{ GENERAL_DEFINITION
+       syn region      pam_CNTACnew_MODULE_GENERAL_DEFINITION   transparent contained containedin=pam_CNTACnew_MECHANICAL_M2M matchgroup=pam_CardTag start="^[ ]*\CGENERAL_DEFINITION" end="^[ ]*\CEND_GENERAL_DEFINITION" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+           " {{{ CONTACT_TYPE
+           syn region      pam_CNTACnew_MODULE_GENERAL_DEFINITION_CONTACT_TYPE   transparent contained containedin=pam_CNTACnew_MODULE_GENERAL_DEFINITION matchgroup=pam_CardTag start="^[ ]*\CCONTACT_TYPE" end="^[ ]*\CEND_CONTACT_TYPE" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+             " {{{ MODEL
+             syn region      pam_CNTACnew_GENERAL_DEFINITION_CONTACT_TYPE_MODEL transparent contained containedin=pam_CNTACnew_MODULE_GENERAL_DEFINITION_CONTACT_TYPE matchgroup=pam_CardTag start="^[ ]*\CMODEL" end="^[ ]*\CEND_MODEL" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
+                " {{{ SELF
+                syn region      pam_CNTACnew_GENERAL_DEFINITION_CONTACT_TYPE_MODEL_SELF transparent contained containedin=pam_CNTACnew_GENERAL_DEFINITION_CONTACT_TYPE_MODEL matchgroup=pam_Keyword start="\CSELF" end="\%$" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
+                   
+                " }}} 
+           " }}}
+         " }}} 
+           " {{{ CONTACT_ENTITIES
+           syn region      pam_CNTACnew_MODULE_GENERAL_DEFINITION_CONTACT_ENTITIES   transparent contained containedin=pam_CNTACnew_MODULE_GENERAL_DEFINITION matchgroup=pam_CardTag start="^[ ]*\CCONTACT_ENTITIES" end="^[ ]*\CEND_CONTACT_ENTITIES" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+             " {{{ MODEL
+             syn region      pam_CNTACnew_GENERAL_DEFINITION_CONTACT_ENTITIES_MODEL transparent contained containedin=pam_CNTACnew_MODULE_GENERAL_DEFINITION_CONTACT_ENTITIES matchgroup=pam_CardTag start="^[ ]*\CMODEL" end="^[ ]*\CEND_MODEL" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
+                " {{{ EDGE_TO_EDGE
+                syn region      pam_CNTACnew_GENERAL_DEFINITION_CONTACT_ENTITIES_MODEL_EDGE_TO_EDGE transparent contained containedin=pam_CNTACnew_GENERAL_DEFINITION_CONTACT_ENTITIES_MODEL matchgroup=pam_Keyword start="\CEDGE_TO_EDGE" end="\%$" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
+                " }}} 
+                " {{{ NODE_TO_SEGMENT
+                syn region      pam_CNTACnew_GENERAL_DEFINITION_CONTACT_ENTITIES_MODEL_NODE_TO_SEGMENT transparent contained containedin=pam_CNTACnew_GENERAL_DEFINITION_CONTACT_ENTITIES_MODEL matchgroup=pam_Keyword start="\CNODE_TO_SEGMENT" end="\%$" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
+                " }}} 
+                " {{{ EDGE_TO_EDGE_NODE_TO_SEGMENT
+                syn region      pam_CNTACnew_GENERAL_DEFINITION_CONTACT_ENTITIES_MODEL_EDGE_TO_EDGE_NODE_TO_SEGMENT transparent contained containedin=pam_CNTACnew_GENERAL_DEFINITION_CONTACT_ENTITIES_MODEL matchgroup=pam_Keyword start="\CEDGE_TO_EDGE_NODE_TO_SEGMENT" end="\%$" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
+                " }}} 
+           " }}}
+         " }}} 
+      " }}}
+      " {{{ SURFACE_PROPERTIES
+       syn region      pam_CNTACnew_MODULE_SURFACE_PROPERTIES   transparent contained containedin=pam_CNTACnew_MECHANICAL_M2M matchgroup=pam_CardTag start="^[ ]*\CSURFACE_PROPERTIES" end="^[ ]*\CEND_SURFACE_PROPERTIES" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+           " {{{ CONTACT_THICKNESS
+           syn region      pam_CNTACnew_MODULE_SURFACE_PROPERTIES_CONTACT_THICKNESS   transparent contained containedin=pam_CNTACnew_MODULE_SURFACE_PROPERTIES matchgroup=pam_CardTag start="^[ ]*\CCONTACT_THICKNESS" end="^[ ]*\CEND_CONTACT_THICKNESS" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+             " {{{ MODEL
+             syn region      pam_CNTACnew_SURFACE_PROPERTIES_CONTACT_THICKNESS_MODEL transparent contained containedin=pam_CNTACnew_MODULE_SURFACE_PROPERTIES_CONTACT_THICKNESS matchgroup=pam_CardTag start="^[ ]*\CMODEL" end="^[ ]*\CEND_MODEL" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
+                " {{{ CONSTANT
+                syn region      pam_CNTACnew_SURFACE_PROPERTIES_CONTACT_THICKNESS_MODEL_CONSTANT transparent contained containedin=pam_CNTACnew_SURFACE_PROPERTIES_CONTACT_THICKNESS_MODEL matchgroup=pam_Keyword start="\CCONSTANT" end="\%$" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
+                    syn region   pam_CNTACnew_SURFACE_PROPERTIES_CONTACT_THICKNESS_MODEL_CONSTANT_HCONT  transparent contained containedin=pam_CNTACnew_SURFACE_PROPERTIES_CONTACT_THICKNESS_MODEL_CONSTANT matchgroup=pam_Argument start="^[ ]*\CHCONT" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                " }}} 
+                " {{{ PART_ZERO
+                syn region      pam_CNTACnew_SURFACE_PROPERTIES_CONTACT_THICKNESS_MODEL_PART_ZERO transparent contained containedin=pam_CNTACnew_SURFACE_PROPERTIES_CONTACT_THICKNESS_MODEL matchgroup=pam_Keyword start="\CPART_ZERO" end="\%$" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
+                    syn region   pam_CNTACnew_SURFACE_PROPERTIES_CONTACT_THICKNESS_MODEL_PART_ZERO_HCONT  transparent contained containedin=pam_CNTACnew_SURFACE_PROPERTIES_CONTACT_THICKNESS_MODEL_PART_ZERO matchgroup=pam_Argument start="^[ ]*\CHCONT" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                    syn region   pam_CNTACnew_SURFACE_PROPERTIES_CONTACT_THICKNESS_MODEL_PART_ZERO_TSCAL  transparent contained containedin=pam_CNTACnew_SURFACE_PROPERTIES_CONTACT_THICKNESS_MODEL_PART_ZERO matchgroup=pam_Argument start="^[ ]*\CTSCAL" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                " }}} 
+                " {{{ PART_NONZERO
+                syn region      pam_CNTACnew_SURFACE_PROPERTIES_CONTACT_THICKNESS_MODEL_PART_NONZERO transparent contained containedin=pam_CNTACnew_SURFACE_PROPERTIES_CONTACT_THICKNESS_MODEL matchgroup=pam_Keyword start="\CPART_NONZERO" end="\%$" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
+                    syn region   pam_CNTACnew_SURFACE_PROPERTIES_CONTACT_THICKNESS_MODEL_PART_NONZERO_HCONT  transparent contained containedin=pam_CNTACnew_SURFACE_PROPERTIES_CONTACT_THICKNESS_MODEL_PART_NONZERO matchgroup=pam_Argument start="^[ ]*\CHCONT" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                " }}} 
+           " }}}
+         " }}} 
+           " {{{ FREE_EDGE
+           syn region      pam_CNTACnew_MODULE_SURFACE_PROPERTIES_FREE_EDGE   transparent contained containedin=pam_CNTACnew_MODULE_SURFACE_PROPERTIES matchgroup=pam_CardTag start="^[ ]*\CFREE_EDGE" end="^[ ]*\CEND_FREE_EDGE" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+             " {{{ MODEL
+             syn region      pam_CNTACnew_SURFACE_PROPERTIES_FREE_EDGE_MODEL transparent contained containedin=pam_CNTACnew_MODULE_SURFACE_PROPERTIES_FREE_EDGE matchgroup=pam_CardTag start="^[ ]*\CMODEL" end="^[ ]*\CEND_MODEL" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
+                " {{{ INDENTION_REDUCTION
+                syn region      pam_CNTACnew_SURFACE_PROPERTIES_FREE_EDGE_MODEL_INDENTION_REDUCTION transparent contained containedin=pam_CNTACnew_SURFACE_PROPERTIES_FREE_EDGE_MODEL matchgroup=pam_Keyword start="\CINDENTION_REDUCTION" end="\%$" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
+                " }}} 
+           " }}}
+         " }}} 
+           " {{{ EROSION
+           syn region      pam_CNTACnew_MODULE_SURFACE_PROPERTIES_EROSION   transparent contained containedin=pam_CNTACnew_MODULE_SURFACE_PROPERTIES matchgroup=pam_CardTag start="^[ ]*\CEROSION" end="^[ ]*\CEND_EROSION" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+             " {{{ MODEL
+             syn region      pam_CNTACnew_SURFACE_PROPERTIES_EROSION_MODEL transparent contained containedin=pam_CNTACnew_MODULE_SURFACE_PROPERTIES_EROSION matchgroup=pam_CardTag start="^[ ]*\CMODEL" end="^[ ]*\CEND_MODEL" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
+                " {{{ INTERNAL_FACES
+                syn region      pam_CNTACnew_SURFACE_PROPERTIES_EROSION_MODEL_INTERNAL_FACES transparent contained containedin=pam_CNTACnew_SURFACE_PROPERTIES_EROSION_MODEL matchgroup=pam_Keyword start="\CINTERNAL_FACES" end="\%$" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
+                " }}} 
+           " }}}
+         " }}} 
+           " {{{ PENETRATION_REMOVAL
+           syn region      pam_CNTACnew_MODULE_SURFACE_PROPERTIES_PENETRATION_REMOVAL   transparent contained containedin=pam_CNTACnew_MODULE_SURFACE_PROPERTIES matchgroup=pam_CardTag start="^[ ]*\CPENETRATION_REMOVAL" end="^[ ]*\CEND_PENETRATION_REMOVAL" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+             " {{{ MODEL
+             syn region      pam_CNTACnew_SURFACE_PROPERTIES_PENETRATION_REMOVAL_MODEL transparent contained containedin=pam_CNTACnew_MODULE_SURFACE_PROPERTIES_PENETRATION_REMOVAL matchgroup=pam_CardTag start="^[ ]*\CMODEL" end="^[ ]*\CEND_MODEL" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
+                " {{{ THICKNESS_REDUCTION
+                syn region      pam_CNTACnew_SURFACE_PROPERTIES_PENETRATION_REMOVAL_MODEL_THICKNESS_REDUCTION transparent contained containedin=pam_CNTACnew_SURFACE_PROPERTIES_PENETRATION_REMOVAL_MODEL matchgroup=pam_Keyword start="\CTHICKNESS_REDUCTION" end="\%$" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
+                    syn region   pam_CNTACnew_SURFACE_PROPERTIES_PENETRATION_REMOVAL_MODEL_THICKNESS_REDUCTION_GAP_BY_LENGTH transparent contained containedin=pam_CNTACnew_SURFACE_PROPERTIES_PENETRATION_REMOVAL_MODEL_THICKNESS_REDUCTION matchgroup=pam_Argument start="^[ ]*\CGAP_BY_LENGTH" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                    syn region   pam_CNTACnew_SURFACE_PROPERTIES_PENETRATION_REMOVAL_MODEL_THICKNESS_REDUCTION_GAP_BY_SCALING transparent contained containedin=pam_CNTACnew_SURFACE_PROPERTIES_PENETRATION_REMOVAL_MODEL_THICKNESS_REDUCTION matchgroup=pam_Argument start="^[ ]*\CGAP_BY_SCALING" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                " }}} 
+                " {{{ PAIR_REMOVAL
+                syn region      pam_CNTACnew_SURFACE_PROPERTIES_PENETRATION_REMOVAL_MODEL_PAIR_REMOVAL transparent contained containedin=pam_CNTACnew_SURFACE_PROPERTIES_PENETRATION_REMOVAL_MODEL matchgroup=pam_Keyword start="\CPAIR_REMOVAL" end="\%$" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
+                    syn region   pam_CNTACnew_SURFACE_PROPERTIES_PENETRATION_REMOVAL_MODEL_PAIR_REMOVAL_GAP_BY_LENGTH transparent contained containedin=pam_CNTACnew_SURFACE_PROPERTIES_PENETRATION_REMOVAL_MODEL_PAIR_REMOVAL matchgroup=pam_Argument start="^[ ]*\CGAP_BY_LENGTH" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                    syn region   pam_CNTACnew_SURFACE_PROPERTIES_PENETRATION_REMOVAL_MODEL_PAIR_REMOVAL_GAP_BY_SCALING transparent contained containedin=pam_CNTACnew_SURFACE_PROPERTIES_PENETRATION_REMOVAL_MODEL_PAIR_REMOVAL matchgroup=pam_Argument start="^[ ]*\CGAP_BY_SCALING" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                " }}} 
+           " }}}
+         " }}} 
+           " {{{ INTERSECTION
+           syn region      pam_CNTACnew_MODULE_SURFACE_PROPERTIES_INTERSECTION   transparent contained containedin=pam_CNTACnew_MODULE_SURFACE_PROPERTIES matchgroup=pam_CardTag start="^[ ]*\CINTERSECTION" end="^[ ]*\CEND_INTERSECTION" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+             " {{{ MODEL
+             syn region      pam_CNTACnew_SURFACE_PROPERTIES_INTERSECTION_MODEL transparent contained containedin=pam_CNTACnew_MODULE_SURFACE_PROPERTIES_INTERSECTION matchgroup=pam_CardTag start="^[ ]*\CMODEL" end="^[ ]*\CEND_MODEL" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
+                " {{{ CHECK
+                syn region      pam_CNTACnew_SURFACE_PROPERTIES_INTERSECTION_MODEL_CHECK transparent contained containedin=pam_CNTACnew_SURFACE_PROPERTIES_INTERSECTION_MODEL matchgroup=pam_Keyword start="\CCHECK" end="\%$" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
+                " }}} 
+           " }}}
+         " }}} 
+           " {{{ SMALL_ELEMENTS
+           syn region      pam_CNTACnew_MODULE_SURFACE_PROPERTIES_SMALL_ELEMENTS   transparent contained containedin=pam_CNTACnew_MODULE_SURFACE_PROPERTIES matchgroup=pam_CardTag start="^[ ]*\CSMALL_ELEMENTS" end="^[ ]*\CEND_SMALL_ELEMENTS" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+             " {{{ MODEL
+             syn region      pam_CNTACnew_SURFACE_PROPERTIES_SMALL_ELEMENTS_MODEL transparent contained containedin=pam_CNTACnew_MODULE_SURFACE_PROPERTIES_SMALL_ELEMENTS matchgroup=pam_CardTag start="^[ ]*\CMODEL" end="^[ ]*\CEND_MODEL" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
+                " {{{ SURFACE_TOPOLOGY
+                syn region      pam_CNTACnew_SURFACE_PROPERTIES_SMALL_ELEMENTS_MODEL_SURFACE_TOPOLOGY transparent contained containedin=pam_CNTACnew_SURFACE_PROPERTIES_SMALL_ELEMENTS_MODEL matchgroup=pam_Keyword start="\CSURFACE_TOPOLOGY" end="\%$" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
+                " }}} 
+                " {{{ MESH_TOPOLOGY
+                syn region      pam_CNTACnew_MESH_PROPERTIES_SMALL_ELEMENTS_MODEL_MESH_TOPOLOGY transparent contained containedin=pam_CNTACnew_MESH_PROPERTIES_SMALL_ELEMENTS_MODEL matchgroup=pam_Keyword start="\CMESH_TOPOLOGY" end="\%$" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
+                " }}} 
+                " {{{ MESH_TOPOLOGY_DISTANCE
+                syn region      pam_CNTACnew_MESH_PROPERTIES_SMALL_ELEMENTS_MODEL_MESH_TOPOLOGY_DISTANCE transparent contained containedin=pam_CNTACnew_MESH_PROPERTIES_SMALL_ELEMENTS_MODEL matchgroup=pam_Keyword start="\CMESH_TOPOLOGY_DISTANCE" end="\%$" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
+                " }}} 
+                " {{{ USER_MESH_TOPOLOGY
+                syn region      pam_CNTACnew_MESH_PROPERTIES_SMALL_ELEMENTS_MODEL_USER_MESH_TOPOLOGY transparent contained containedin=pam_CNTACnew_MESH_PROPERTIES_SMALL_ELEMENTS_MODEL matchgroup=pam_Keyword start="\CUSER_MESH_TOPOLOGY" end="\%$" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
+                " }}} 
+           " }}}
+         " }}} 
+      " }}}
+      " {{{ INTERACTIONS
+       syn region      pam_CNTACnew_MODULE_INTERACTIONS   transparent contained containedin=pam_CNTACnew_MECHANICAL_M2M matchgroup=pam_CardTag start="^[ ]*\CINTERACTIONS" end="^[ ]*\CEND_INTERACTIONS" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+           " {{{ CONTACT_FORMULATION
+           syn region      pam_CNTACnew_MODULE_INTERACTIONS_CONTACT_FORMULATION   transparent contained containedin=pam_CNTACnew_MODULE_INTERACTIONS matchgroup=pam_CardTag start="^[ ]*\CCONTACT_FORMULATION" end="^[ ]*\CEND_CONTACT_FORMULATION" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+             " {{{ MODEL
+             syn region      pam_CNTACnew_INTERACTIONS_CONTACT_FORMULATION_MODEL transparent contained containedin=pam_CNTACnew_MODULE_INTERACTIONS_CONTACT_FORMULATION matchgroup=pam_CardTag start="^[ ]*\CMODEL" end="^[ ]*\CEND_MODEL" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
+                " {{{ PENALTY
+                syn region      pam_CNTACnew_INTERACTIONS_CONTACT_FORMULATION_MODEL_PENALTY transparent contained containedin=pam_CNTACnew_INTERACTIONS_CONTACT_FORMULATION_MODEL matchgroup=pam_Keyword start="\CPENALTY" end="\%$" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
+                    syn region   pam_CNTACnew_INTERACTIONS_CONTACT_FORMULATION_MODEL_PENALTY_SLFACM  transparent contained containedin=pam_CNTACnew_INTERACTIONS_CONTACT_FORMULATION_MODEL_PENALTY matchgroup=pam_Argument start="^[ ]*\CSLFACM" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                    syn region   pam_CNTACnew_INTERACTIONS_CONTACT_FORMULATION_MODEL_PENALTY_TLSTIF  transparent contained containedin=pam_CNTACnew_INTERACTIONS_CONTACT_FORMULATION_MODEL_PENALTY matchgroup=pam_Argument start="^[ ]*\CTLSTIF" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                    syn region   pam_CNTACnew_INTERACTIONS_CONTACT_FORMULATION_MODEL_PENALTY_FSVNL  transparent contained containedin=pam_CNTACnew_INTERACTIONS_CONTACT_FORMULATION_MODEL_PENALTY matchgroup=pam_Argument start="^[ ]*\CFSVNL" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                    syn region   pam_CNTACnew_INTERACTIONS_CONTACT_FORMULATION_MODEL_PENALTY_SDAMP  transparent contained containedin=pam_CNTACnew_INTERACTIONS_CONTACT_FORMULATION_MODEL_PENALTY matchgroup=pam_Argument start="^[ ]*\CSDAMP" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                " }}} 
+           " }}}
+         " }}} 
+           " {{{ FRICTION
+           syn region      pam_CNTACnew_MODULE_INTERACTIONS_FRICTION   transparent contained containedin=pam_CNTACnew_MODULE_INTERACTIONS matchgroup=pam_CardTag start="^[ ]*\CFRICTION" end="^[ ]*\CEND_FRICTION" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+             " {{{ MODEL
+             syn region      pam_CNTACnew_INTERACTIONS_FRICTION_MODEL transparent contained containedin=pam_CNTACnew_MODULE_INTERACTIONS_FRICTION matchgroup=pam_CardTag start="^[ ]*\CMODEL" end="^[ ]*\CEND_MODEL" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
+                " {{{ CONSTANT
+                syn region      pam_CNTACnew_INTERACTIONS_FRICTION_MODEL_CONSTANT transparent contained containedin=pam_CNTACnew_INTERACTIONS_FRICTION_MODEL matchgroup=pam_Keyword start="\CCONSTANT" end="\%$" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
+                    syn region   pam_CNTACnew_INTERACTIONS_FRICTION_MODEL_CONSTANT_FRICT  transparent contained containedin=pam_CNTACnew_INTERACTIONS_FRICTION_MODEL_CONSTANT matchgroup=pam_Argument start="^[ ]*\CFRICT" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                " }}} 
+                " {{{ PART
+                syn region      pam_CNTACnew_INTERACTIONS_FRICTION_MODEL_PART transparent contained containedin=pam_CNTACnew_INTERACTIONS_FRICTION_MODEL matchgroup=pam_Keyword start="\CPART" end="\%$" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
+                    syn region   pam_CNTACnew_INTERACTIONS_FRICTION_MODEL_PART_FRICT  transparent contained containedin=pam_CNTACnew_INTERACTIONS_FRICTION_MODEL_PART matchgroup=pam_Argument start="^[ ]*\CFRICT" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                " }}} 
+                " {{{ FRITAB
+                syn region      pam_CNTACnew_INTERACTIONS_FRICTION_MODEL_FRITAB transparent contained containedin=pam_CNTACnew_INTERACTIONS_FRICTION_MODEL matchgroup=pam_Keyword start="\CFRITAB" end="\%$" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
+                    syn region   pam_CNTACnew_INTERACTIONS_FRICTION_MODEL_FRITAB_IDFRITB  transparent contained containedin=pam_CNTACnew_INTERACTIONS_FRICTION_MODEL_FRITAB matchgroup=pam_Argument start="^[ ]*\CIDFRITB" end="\n[\$\#]\@!" contains=pam_Integer,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                " }}} 
+                " {{{ ADVANCED
+                syn region      pam_CNTACnew_INTERACTIONS_FRICTION_MODEL_ADVANCED transparent contained containedin=pam_CNTACnew_INTERACTIONS_FRICTION_MODEL matchgroup=pam_Keyword start="\CADVANCED" end="\%$" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
+                    syn region   pam_CNTACnew_INTERACTIONS_FRICTION_MODEL_ADVANCED_IDFRIC  transparent contained containedin=pam_CNTACnew_INTERACTIONS_FRICTION_MODEL_ADVANCED matchgroup=pam_Argument start="^[ ]*\CIDFRIC" end="\n[\$\#]\@!" contains=pam_Integer,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                " }}} 
+           " }}}
+         " }}} 
+           " {{{ ACTIVATION
+           syn region      pam_CNTACnew_MODULE_INTERACTIONS_ACTIVATION   transparent contained containedin=pam_CNTACnew_MODULE_INTERACTIONS matchgroup=pam_CardTag start="^[ ]*\CACTIVATION" end="^[ ]*\CEND_ACTIVATION" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+             " {{{ MODEL
+             syn region      pam_CNTACnew_INTERACTIONS_ACTIVATION_MODEL transparent contained containedin=pam_CNTACnew_MODULE_INTERACTIONS_ACTIVATION matchgroup=pam_CardTag start="^[ ]*\CMODEL" end="^[ ]*\CEND_MODEL" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
+                " {{{ TIME_INTERVAL
+                syn region      pam_CNTACnew_INTERACTIONS_ACTIVATION_MODEL_TIME_INTERVAL transparent contained containedin=pam_CNTACnew_INTERACTIONS_ACTIVATION_MODEL matchgroup=pam_Keyword start="\CTIME_INTERVAL" end="\%$" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
+                    syn region   pam_CNTACnew_INTERACTIONS_ACTIVATION_MODEL_TIME_INTERVAL_TIME_START  transparent contained containedin=pam_CNTACnew_INTERACTIONS_ACTIVATION_MODEL_TIME_INTERVAL matchgroup=pam_Argument start="^[ ]*\CTIME_START" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                    syn region   pam_CNTACnew_INTERACTIONS_ACTIVATION_MODEL_TIME_INTERVAL_TIME_END  transparent contained containedin=pam_CNTACnew_INTERACTIONS_ACTIVATION_MODEL_TIME_INTERVAL matchgroup=pam_Argument start="^[ ]*\CTIME_END" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                " }}} 
+                " {{{ SENSOR
+                syn region      pam_CNTACnew_INTERACTIONS_ACTIVATION_MODEL_SENSOR transparent contained containedin=pam_CNTACnew_INTERACTIONS_ACTIVATION_MODEL matchgroup=pam_Keyword start="\CSENSOR" end="\%$" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
+                    syn region   pam_CNTACnew_INTERACTIONS_ACTIVATION_MODEL_SENSOR_IDSENS  transparent contained containedin=pam_CNTACnew_INTERACTIONS_ACTIVATION_MODEL_SENSOR matchgroup=pam_Argument start="^[ ]*\CIDSENS" end="\n[\$\#]\@!" contains=pam_Integer,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                " }}} 
+           " }}}
+         " }}} 
+      " }}}
+      " {{{ ADVANCED
+       syn region      pam_CNTACnew_MODULE_ADVANCED   transparent contained containedin=pam_CNTACnew_MECHANICAL_M2M matchgroup=pam_CardTag start="^[ ]*\CADVANCED" end="^[ ]*\CEND_ADVANCED" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+           " {{{ AIRBAG_LEAKAGE
+           syn region      pam_CNTACnew_MODULE_ADVANCED_AIRBAG_LEAKAGE   transparent contained containedin=pam_CNTACnew_MODULE_ADVANCED matchgroup=pam_CardTag start="^[ ]*\CAIRBAG_LEAKAGE" end="^[ ]*\CEND_AIRBAG_LEAKAGE" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+             " {{{ MODEL
+             syn region      pam_CNTACnew_ADVANCED_AIRBAG_LEAKAGE_MODEL transparent contained containedin=pam_CNTACnew_MODULE_ADVANCED_AIRBAG_LEAKAGE matchgroup=pam_CardTag start="^[ ]*\CMODEL" end="^[ ]*\CEND_MODEL" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
+                " {{{ OBSTRUCTION
+                syn region      pam_CNTACnew_ADVANCED_AIRBAG_LEAKAGE_MODEL_OBSTRUCTION transparent contained containedin=pam_CNTACnew_ADVANCED_AIRBAG_LEAKAGE_MODEL matchgroup=pam_Keyword start="\COBSTRUCTION" end="\%$" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
+                " }}} 
+           " }}}
+         " }}} 
+           " {{{ LINK_COMPATIBILITY
+           syn region      pam_CNTACnew_MODULE_ADVANCED_LINK_COMPATIBILITY   transparent contained containedin=pam_CNTACnew_MODULE_ADVANCED matchgroup=pam_CardTag start="^[ ]*\CLINK_COMPATIBILITY" end="^[ ]*\CEND_LINK_COMPATIBILITY" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+             " {{{ MODEL
+             syn region      pam_CNTACnew_ADVANCED_LINK_COMPATIBILITY_MODEL transparent contained containedin=pam_CNTACnew_MODULE_ADVANCED_LINK_COMPATIBILITY matchgroup=pam_CardTag start="^[ ]*\CMODEL" end="^[ ]*\CEND_MODEL" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
+                " {{{ LINK_OMISSION
+                syn region      pam_CNTACnew_ADVANCED_LINK_COMPATIBILITY_MODEL_LINK_OMISSION transparent contained containedin=pam_CNTACnew_ADVANCED_LINK_COMPATIBILITY_MODEL matchgroup=pam_Keyword start="\CLINK_OMISSION" end="\%$" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
+                " }}} 
+                " {{{ TIED_EXCLUSION
+                syn region      pam_CNTACnew_ADVANCED_LINK_COMPATIBILITY_MODEL_TIED_EXCLUSION transparent contained containedin=pam_CNTACnew_ADVANCED_LINK_COMPATIBILITY_MODEL matchgroup=pam_Keyword start="\CTIED_EXCLUSION" end="\%$" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
+                " }}} 
+           " }}}
+         " }}} 
+           " {{{ MONITORING
+           syn region      pam_CNTACnew_MODULE_ADVANCED_MONITORING   transparent contained containedin=pam_CNTACnew_MODULE_ADVANCED matchgroup=pam_CardTag start="^[ ]*\CMONITORING" end="^[ ]*\CEND_MONITORING" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+             " {{{ MODEL
+             syn region      pam_CNTACnew_ADVANCED_MONITORING_MODEL transparent contained containedin=pam_CNTACnew_MODULE_ADVANCED_MONITORING matchgroup=pam_CardTag start="^[ ]*\CMODEL" end="^[ ]*\CEND_MODEL" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
+                " {{{ INTERFACE
+                syn region      pam_CNTACnew_ADVANCED_MONITORING_MODEL_INTERFACE transparent contained containedin=pam_CNTACnew_ADVANCED_MONITORING_MODEL matchgroup=pam_Keyword start="\CINTERFACE" end="\%$" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
+                    syn region   pam_CNTACnew_ADVANCED_MONITORING_MODEL_INTERFACE_CNTAC_ELEMENTS transparent contained containedin=pam_CNTACnew_ADVANCED_MONITORING_MODEL_INTERFACE matchgroup=pam_Argument start="^[ ]*\CCNTAC_ELEMENTS" end="\n[\$\#]\@!" contains=pam_Control_YESNO,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                " }}} 
+           " }}}
+         " }}} 
+      " }}}
+   " }}}
+syn region      pam_CNTACnew        matchgroup=pam_CardTag start="^\CCNTAC / .*\%17c[ ]*MCNTAC[ ]*\%25c.*$"rs=s+8 end="^\CEND_CNTAC" keepend
+"}}} CNTAC new end
 
 " {{{=== CNTPTY begin
    syn match      pam_End_CNTPTY   "\CEND_CNTPTY"
