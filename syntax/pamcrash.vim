@@ -9821,10 +9821,13 @@ syn region      pam_MMAT        matchgroup=pam_CardTag start="^\CMMAT  /"rs=s+8 
           " {{{ ELASTO_VISCO_PLASTICITY
           syn region      pam_MMATnew_MECHANICAL_EVP   transparent contained matchgroup=pam_Keyword start="\CELASTO_VISCO_PLASTICITY" end="\%$" contains=pam_Comment,pam_Comment_Position,pam_Error,pam_MMATnew_DEPENDENCY_PHASE keepend
           " }}}
+          " {{{ VISCO_ELASTICITY
+          syn region      pam_MMATnew_MECHANICAL_VE   transparent contained matchgroup=pam_Keyword start="\CVISCO_ELASTICITY" end="\%$" contains=pam_Comment,pam_Comment_Position,pam_Error,pam_MMATnew_DEPENDENCY_PHASE keepend
+          " }}}
           " {{{ VISCO_HYPER_ELASTICITY
           syn region      pam_MMATnew_MECHANICAL_VHE   transparent contained matchgroup=pam_Keyword start="\CVISCO_HYPER_ELASTICITY" end="\%$" contains=pam_Comment,pam_Comment_Position,pam_Error,pam_MMATnew_DEPENDENCY_PHASE keepend
           " }}}
-       syn region      pam_MMATnew_MECHANICAL   transparent contained containedin=pam_MMATnew matchgroup=pam_CardTag start="^[ ]*\CMECHANICAL" end="^[ ]*\CEND_MECHANICAL" contains=pam_MMATnew_MECHANICAL_EVP,pam_MMATnew_MECHANICAL_VHE,pam_Comment,pam_Comment_Position,pam_Error keepend
+       syn region      pam_MMATnew_MECHANICAL   transparent contained containedin=pam_MMATnew matchgroup=pam_CardTag start="^[ ]*\CMECHANICAL" end="^[ ]*\CEND_MECHANICAL" contains=pam_MMATnew_MECHANICAL_EVP,pam_MMATnew_MECHANICAL_VHE,pam_MMATnew_MECHANICAL_VE,pam_Comment,pam_Comment_Position,pam_Error keepend
        " }}}
        " {{{ THERMAL
           " {{{ CONTINUUM
@@ -9843,18 +9846,19 @@ syn region      pam_MMAT        matchgroup=pam_CardTag start="^\CMMAT  /"rs=s+8 
    " }}}
    " {{{ MODULES
       " {{{ MASS DENSITY
-       syn region      pam_MMATnew_MODULE_MASS_DENSITY   transparent contained containedin=pam_MMATnew_MECHANICAL_EVP,pam_MMATnew_MECHANICAL_VHE matchgroup=pam_CardTag start="^[ ]*\CMASS_DENSITY" end="^[ ]*\CEND_MASS_DENSITY" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
+       syn region      pam_MMATnew_MODULE_MASS_DENSITY   transparent contained containedin=pam_MMATnew_MECHANICAL_EVP,pam_MMATnew_MECHANICAL_VHE,pam_MMATnew_MECHANICAL_VE matchgroup=pam_CardTag start="^[ ]*\CMASS_DENSITY" end="^[ ]*\CEND_MASS_DENSITY" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
          " {{{ MODEL
          syn region      pam_MMATnew_MASS_DENSITY_MODEL transparent contained containedin=pam_MMATnew_MODULE_MASS_DENSITY matchgroup=pam_CardTag start="^[ ]*\CMODEL" end="^[ ]*\CEND_MODEL" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
             " {{{ HOMOGENEOUS
-            syn region      pam_MMATnew_MASS_DENSITY_MODEL_HOMOGENEOUS transparent contained containedin=pam_MMATnew_MASS_DENSITY_MODEL matchgroup=pam_Keyword start="\CHOMOGENEOUS" end="\%$" contains=pam_MMATnew_MASS_DENSITY_MODEL_HOMOGENEOUS_RHO,pam_Comment,pam_Comment_Position,pam_Error keepend
+            syn region      pam_MMATnew_MASS_DENSITY_MODEL_HOMOGENEOUS transparent contained containedin=pam_MMATnew_MASS_DENSITY_MODEL matchgroup=pam_Keyword start="\CHOMOGENEOUS" end="\%$" contains=pam_MMATnew_MASS_DENSITY_MODEL_HOMOGENEOUS_RHO,pam_MMATnew_MASS_DENSITY_MODEL_HOMOGENEOUS_TABLE,pam_Comment,pam_Comment_Position,pam_Error keepend
                syn region      pam_MMATnew_MASS_DENSITY_MODEL_HOMOGENEOUS_RHO transparent contained matchgroup=pam_Argument start="^[ ]*\CRHO" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               syn region      pam_MMATnew_MASS_DENSITY_MODEL_HOMOGENEOUS_TABLE transparent contained matchgroup=pam_Argument start="^[ ]*\CRHO[ ]*\CTABLE" end="\n[\$\#]\@!" contains=pam_Integer,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
                
             " }}} 
          " }}} 
       " }}}
       " {{{ DAMPING
-       syn region      pam_MMATnew_MODULE_DAMPING   transparent contained containedin=pam_MMATnew_MECHANICAL_EVP,pam_MMATnew_MECHANICAL_VHE matchgroup=pam_CardTag start="^[ ]*\CDAMPING" end="^[ ]*\CEND_DAMPING" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
+       syn region      pam_MMATnew_MODULE_DAMPING   transparent contained containedin=pam_MMATnew_MECHANICAL_EVP,pam_MMATnew_MECHANICAL_VHE,pam_MMATnew_MECHANICAL_VE matchgroup=pam_CardTag start="^[ ]*\CDAMPING" end="^[ ]*\CEND_DAMPING" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
          " {{{ MODEL
          syn region      pam_MMATnew_DAMPING_MODEL transparent contained containedin=pam_MMATnew_MODULE_DAMPING matchgroup=pam_CardTag start="^[ ]*\CMODEL" end="^[ ]*\CEND_MODEL" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
             " {{{ STIFFNESS_PROPORTIONAL
@@ -9871,9 +9875,9 @@ syn region      pam_MMAT        matchgroup=pam_CardTag start="^\CMMAT  /"rs=s+8 
          " }}} 
       " }}}
       " {{{ THERMAL_EXPANSION
-       syn region      pam_MMATnew_MODULE_THERMAL_EXPANSION   transparent contained containedin=pam_MMATnew_MECHANICAL_EVP,pam_MMATnew_MECHANICAL_VHE matchgroup=pam_CardTag start="^[ ]*\CTHERMAL_EXPANSION" end="^[ ]*\CEND_THERMAL_EXPANSION" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
+       syn region      pam_MMATnew_MODULE_THERMAL_EXPANSION   transparent contained containedin=pam_MMATnew_MECHANICAL_EVP,pam_MMATnew_MECHANICAL_VHE,pam_MMATnew_MECHANICAL_VE matchgroup=pam_CardTag start="^[ ]*\CTHERMAL_EXPANSION" end="^[ ]*\CEND_THERMAL_EXPANSION" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
          " {{{ MODEL
-         syn region      pam_MMATnew_THERMAL_EXPANSION_MODEL transparent contained containedin=pam_MMATnew_MODULE_THERMAL_EXPANSION matchgroup=pam_CardTag start="^[ ]*\CMODEL" end="^[ ]*\CEND_MODEL" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
+         syn region      pam_MMATnew_THERMAL_EXPANSION_MODEL transparent contained containedin=pam_MMATnew_MODULE_THERMAL_EXPANSION matchgroup=pam_CardTag start="^[ ]*\CMODEL" end="^[ ]*\CEND_MODEL" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
             " {{{ ISOTROPIC_COEFFICIENT
             syn region      pam_MMATnew_THERMAL_EXPANSION_MODEL_ISOTROPIC_COEFFICIENT transparent contained containedin=pam_MMATnew_THERMAL_EXPANSION_MODEL matchgroup=pam_Keyword start="\CISOTROPIC_COEFFICIENT" end="\%$" contains=pam_MMATnew_THERMAL_EXPANSION_MODEL_ISOTROPIC_COEFFICIENT_params,pam_Comment,pam_Comment_Position,pam_Error keepend
                syn region      pam_MMATnew_THERMAL_EXPANSION_MODEL_ISOTROPIC_COEFFICIENT_params transparent contained matchgroup=pam_Argument start="^[ ]*\CALPHA" end="\n[\$\#]\@!" contains=pam_MMATnew_TABLE_kw,pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
@@ -9901,7 +9905,7 @@ syn region      pam_MMAT        matchgroup=pam_CardTag start="^\CMMAT  /"rs=s+8 
       " {{{ VISCOUS_FLOW
        syn region      pam_MMATnew_MODULE_VISCOUS_FLOW   transparent contained containedin=pam_MMATnew_MECHANICAL_EVP matchgroup=pam_CardTag start="^[ ]*\CVISCOUS_FLOW" end="^[ ]*\CEND_VISCOUS_FLOW" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
          " {{{ MODEL
-         syn region      pam_MMATnew_VISCOUS_FLOW_MODEL transparent contained containedin=pam_MMATnew_MODULE_VISCOUS_FLOW matchgroup=pam_CardTag start="^[ ]*\CMODEL" end="^[ ]*\CEND_MODEL" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
+         syn region      pam_MMATnew_VISCOUS_FLOW_MODEL transparent contained containedin=pam_MMATnew_MODULE_VISCOUS_FLOW matchgroup=pam_CardTag start="^[ ]*\CMODEL" end="^[ ]*\CEND_MODEL" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
             " {{{ POWER_STRAIN
             syn region      pam_MMATnew_VISCOUS_FLOW_MODEL_POWER_STRAIN transparent contained containedin=pam_MMATnew_VISCOUS_FLOW_MODEL matchgroup=pam_Keyword start="\CPOWER_STRAIN" end="\%$" contains=pam_MMATnew_VISCOUS_FLOW_MODEL_POWER_STRAIN_params,pam_Comment,pam_Comment_Position,pam_Error keepend
                syn region      pam_MMATnew_VISCOUS_FLOW_MODEL_POWER_STRAIN_params transparent contained matchgroup=pam_Argument start="^[ ]*\CK" end="\n[\$\#]\@!" contains=pam_MMATnew_TABLE_kw,pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
@@ -9929,6 +9933,14 @@ syn region      pam_MMAT        matchgroup=pam_CardTag start="^\CMMAT  /"rs=s+8 
                syn region      pam_MMATnew_VISCOUS_FLOW_MODEL_HYPERBOLIC_SINE_ANAND_params transparent contained matchgroup=pam_Argument start="^[ ]*\CT0" end="\n[\$\#]\@!" contains=pam_MMATnew_TABLE_kw,pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
                syn region      pam_MMATnew_VISCOUS_FLOW_MODEL_HYPERBOLIC_SINE_ANAND_params transparent contained matchgroup=pam_Argument start="^[ ]*\CS0" end="\n[\$\#]\@!" contains=pam_MMATnew_TABLE_kw,pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
             " }}} 
+            " {{{ POWER_KINETIC_SERIAL
+            syn region      pam_MMATnew_VISCOUS_FLOW_MODEL_POWER_KINETIC_SERIAL transparent contained containedin=pam_MMATnew_VISCOUS_FLOW_MODEL matchgroup=pam_Keyword start="\CPOWER_KINETIC_SERIAL" end="\%$" contains=pam_MMATnew_VISCOUS_FLOW_MODEL_POWER_KINETIC_SERIAL_params,pam_Comment,pam_Comment_Position,pam_Error keepend
+               syn region      pam_MMATnew_VISCOUS_FLOW_MODEL_POWER_KINETIC_SERIAL_params transparent contained matchgroup=pam_Argument start="^[ ]*\CKLOG10" end="\n[\$\#]\@!" contains=pam_MMATnew_TABLE_kw,pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               syn region      pam_MMATnew_VISCOUS_FLOW_MODEL_POWER_KINETIC_SERIAL_params transparent contained matchgroup=pam_Argument start="^[ ]*\CN" end="\n[\$\#]\@!" contains=pam_MMATnew_TABLE_kw,pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               syn region      pam_MMATnew_VISCOUS_FLOW_MODEL_POWER_KINETIC_SERIAL_params transparent contained matchgroup=pam_Argument start="^[ ]*\CH" end="\n[\$\#]\@!" contains=pam_MMATnew_TABLE_kw,pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               syn region      pam_MMATnew_VISCOUS_FLOW_MODEL_POWER_KINETIC_SERIAL_params transparent contained matchgroup=pam_Argument start="^[ ]*\CCLOG10" end="\n[\$\#]\@!" contains=pam_MMATnew_TABLE_kw,pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               syn region      pam_MMATnew_VISCOUS_FLOW_MODEL_POWER_KINETIC_SERIAL_params transparent contained matchgroup=pam_Argument start="^[ ]*\CP" end="\n[\$\#]\@!" contains=pam_MMATnew_TABLE_kw,pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+            " }}}
          " }}} 
       " }}}
       " {{{ PHASE_CONSTITUENT
@@ -9986,7 +9998,7 @@ syn region      pam_MMAT        matchgroup=pam_CardTag start="^\CMMAT  /"rs=s+8 
             " }}} 
             " {{{ HILL48
             syn region      pam_MMATnew_PLASTICITY_YIELD_CONDITION_MODEL_HILL48 transparent contained containedin=pam_MMATnew_PLASTICITY_YIELD_CONDITION_MODEL,pam_MMATnew_PLASTICITY_POTENTIAL_MODEL matchgroup=pam_Keyword start="\CHILL48" end="\%$" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
-               syn region      pam_MMATnew_PLASTICITY_YIELD_CONDITION_MODEL_HILL48_1 transparent contained containedin=pam_MMATnew_PLASTICITY_YIELD_CONDITION_MODEL_HILL48 matchgroup=pam_Argument start="^[ ]*\C[FGHLMN]" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               syn region      pam_MMATnew_PLASTICITY_YIELD_CONDITION_MODEL_HILL48_1 transparent contained containedin=pam_MMATnew_PLASTICITY_YIELD_CONDITION_MODEL_HILL48 matchgroup=pam_Argument start="^[ ]*\C[FGHLMN]" end="\n[\$\#]\@!" contains=pam_MMATnew_TABLE_kw,pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
             " }}} 
             " {{{ KARAFILLIS_BOYCE
             syn region      pam_MMATnew_PLASTICITY_YIELD_CONDITION_MODEL_KARAFILLIS_BOYCE transparent contained containedin=pam_MMATnew_PLASTICITY_YIELD_CONDITION_MODEL matchgroup=pam_Keyword start="\CKARAFILLIS_BOYCE" end="\%$" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
@@ -10003,7 +10015,7 @@ syn region      pam_MMAT        matchgroup=pam_CardTag start="^\CMMAT  /"rs=s+8 
             " }}} 
             " {{{ USER
             syn region      pam_MMATnew_PLASTICITY_YIELD_CONDITION_MODEL_USER transparent contained containedin=pam_MMATnew_PLASTICITY_YIELD_CONDITION_MODEL,pam_MMATnew_PLASTICITY_POTENTIAL_MODEL,pam_MMATnew_PLASTICITY_ISOTROPIC_HARDENING_MODEL,pam_MMATnew_DAMAGE_MODEL,pam_MMATnew_FAILURE_INSTABILITY_RISK_MODEL matchgroup=pam_Keyword start="\CUSER" end="\%$" contains=pam_MMATnew_PLASTICITY_YIELD_CONDITION_MODEL_USER_PARAMS,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
-               syn region      pam_MMATnew_PLASTICITY_YIELD_CONDITION_MODEL_USER_PARAMS transparent contained matchgroup=pam_Argument start="^[ ]*\CULIB" end="\n[\$\#]\@!" contains=pam_String,pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               syn region      pam_MMATnew_PLASTICITY_YIELD_CONDITION_MODEL_USER_PARAMS transparent contained matchgroup=pam_Argument start="^[ ]*\CULIB" end="\n[\$\#]\@!" contains=pam_MMATnew_TABLE_kw,pam_String,pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
             " }}} 
          " }}} 
       " }}}
@@ -10072,8 +10084,8 @@ syn region      pam_MMAT        matchgroup=pam_CardTag start="^\CMMAT  /"rs=s+8 
          syn region      pam_MMATnew_PLASTICITY_HARDENING_RATE_MODEL transparent contained containedin=pam_MMATnew_MODULE_PLASTICITY_HARDENING_RATE matchgroup=pam_CardTag start="^[ ]*\CMODEL" end="^[ ]*\CEND_MODEL" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
             " {{{ JOHNSON_COOK
             syn region      pam_MMATnew_PLASTICITY_HARDENING_RATE_MODEL_JOHNSON_COOK transparent contained containedin=pam_MMATnew_PLASTICITY_HARDENING_RATE_MODEL matchgroup=pam_Keyword start="\CJOHNSON_COOK" end="\%$" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
-               syn region      pam_MMATnew_PLASTICITY_HARDENING_RATE_MODEL_JOHNSON_COOK_1 transparent contained containedin=pam_MMATnew_PLASTICITY_HARDENING_RATE_MODEL_JOHNSON_COOK matchgroup=pam_Argument start="^[ ]*\C[AC]" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
-               syn region      pam_MMATnew_PLASTICITY_HARDENING_RATE_MODEL_JOHNSON_COOK_1 transparent contained containedin=pam_MMATnew_PLASTICITY_HARDENING_RATE_MODEL_JOHNSON_COOK matchgroup=pam_Argument start="^[ ]*\CPSR_REF" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               syn region      pam_MMATnew_PLASTICITY_HARDENING_RATE_MODEL_JOHNSON_COOK_1 transparent contained containedin=pam_MMATnew_PLASTICITY_HARDENING_RATE_MODEL_JOHNSON_COOK matchgroup=pam_Argument start="^[ ]*\C[AC]" end="\n[\$\#]\@!" contains=pam_MMATnew_TABLE_kw,pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               syn region      pam_MMATnew_PLASTICITY_HARDENING_RATE_MODEL_JOHNSON_COOK_1 transparent contained containedin=pam_MMATnew_PLASTICITY_HARDENING_RATE_MODEL_JOHNSON_COOK matchgroup=pam_Argument start="^[ ]*\CPSR_REF" end="\n[\$\#]\@!" contains=pam_MMATnew_TABLE_kw,pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
             " }}} 
             " {{{ MODIFIED_COWPER_SYMONDS
             syn region      pam_MMATnew_PLASTICITY_HARDENING_RATE_MODEL_MODIFIED_COWPER_SYMONDS transparent contained containedin=pam_MMATnew_PLASTICITY_HARDENING_RATE_MODEL matchgroup=pam_Keyword start="\CMODIFIED_COWPER_SYMONDS" end="\%$" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
@@ -10124,7 +10136,7 @@ syn region      pam_MMAT        matchgroup=pam_CardTag start="^\CMMAT  /"rs=s+8 
          syn region      pam_MMATnew_DAMAGE_MODEL transparent contained containedin=pam_MMATnew_MODULE_DAMAGE matchgroup=pam_CardTag start="^[ ]*\CMODEL" end="^[ ]*\CEND_MODEL" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
             " {{{ PLASTIC_STRAIN
             syn region      pam_MMATnew_DAMAGE_MODEL_PLASTIC_STRAIN transparent contained containedin=pam_MMATnew_DAMAGE_MODEL matchgroup=pam_Keyword start="\CPLASTIC_STRAIN" end="\%$" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
-               syn region      pam_MMATnew_DAMAGE_MODEL_PLASTIC_STRAIN_1 transparent contained containedin=pam_MMATnew_DAMAGE_MODEL_PLASTIC_STRAIN matchgroup=pam_Argument start="^[ ]*\CEPSI_[I1U]" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               syn region      pam_MMATnew_DAMAGE_MODEL_PLASTIC_STRAIN_1 transparent contained containedin=pam_MMATnew_DAMAGE_MODEL_PLASTIC_STRAIN matchgroup=pam_Argument start="^[ ]*\CEPSI_[I1U]" end="\n[\$\#]\@!" contains=pam_MMATnew_TABLE_kw,pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
                syn region      pam_MMATnew_DAMAGE_MODEL_PLASTIC_STRAIN_1 transparent contained containedin=pam_MMATnew_DAMAGE_MODEL_PLASTIC_STRAIN matchgroup=pam_Argument start="^[ ]*\CD_[1U]" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
                syn region      pam_MMATnew_DAMAGE_MODEL_PLASTIC_STRAIN_1 transparent contained containedin=pam_MMATnew_DAMAGE_MODEL_PLASTIC_STRAIN matchgroup=pam_Argument start="^[ ]*\CREDUCTION" end="\n[\$\#]\@!" contains=pam_MMATnew_DAMAGE_MODEL_PLASTIC_STRAIN_REDUCTION,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
                   syn keyword pam_MMATnew_DAMAGE_MODEL_PLASTIC_STRAIN_REDUCTION contained MAX MULT 
@@ -10145,8 +10157,26 @@ syn region      pam_MMAT        matchgroup=pam_CardTag start="^\CMMAT  /"rs=s+8 
             " }}} 
          " }}} 
       " }}}
+      " {{{ STRESS
+       syn region      pam_MMATnew_MODULE_STRESS   transparent contained containedin=pam_MMATnew_MECHANICAL_VE matchgroup=pam_CardTag start="^[ ]*\CSTRESS" end="^[ ]*\CEND_STRESS" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+         " {{{ MODEL
+         syn region      pam_MMATnew_STRESS_MODEL transparent contained containedin=pam_MMATnew_MODULE_STRESS matchgroup=pam_CardTag start="^[ ]*\CMODEL" end="^[ ]*\CEND_MODEL" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+            " {{{ GENERALIZED_NON_LINEAR_FOAM
+            syn region      pam_MMATnew_STRESS_MODEL_GENERALIZED_NON_LINEAR_FOAM transparent contained containedin=pam_MMATnew_STRESS_MODEL matchgroup=pam_Keyword start="\CGENERALIZED_NON_LINEAR_FOAM" end="\%$" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               syn region      pam_MMATnew_STRESS_MODEL_GENERALIZED_NON_LINEAR_FOAM_1 transparent contained containedin=pam_MMATnew_STRESS_MODEL_GENERALIZED_NON_LINEAR_FOAM matchgroup=pam_Argument start="^[ ]*\CINITIAL_YOUNG_MODULUS" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               syn region      pam_MMATnew_STRESS_MODEL_GENERALIZED_NON_LINEAR_FOAM_1 transparent contained containedin=pam_MMATnew_STRESS_MODEL_GENERALIZED_NON_LINEAR_FOAM matchgroup=pam_Argument start="^[ ]*\CCOMPRESSION_LOADING" end="\n[\$\#]\@!" contains=pam_MMATnew_TABLE_kw,pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               syn region      pam_MMATnew_STRESS_MODEL_GENERALIZED_NON_LINEAR_FOAM_1 transparent contained containedin=pam_MMATnew_STRESS_MODEL_GENERALIZED_NON_LINEAR_FOAM matchgroup=pam_Argument start="^[ ]*\CTENSION_LOADING" end="\n[\$\#]\@!" contains=pam_MMATnew_TABLE_kw,pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               syn region      pam_MMATnew_STRESS_MODEL_GENERALIZED_NON_LINEAR_FOAM_1 transparent contained containedin=pam_MMATnew_STRESS_MODEL_GENERALIZED_NON_LINEAR_FOAM matchgroup=pam_Argument start="^[ ]*\CCOMPRESSION_UNLOADING_DISSIPATION" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               syn region      pam_MMATnew_STRESS_MODEL_GENERALIZED_NON_LINEAR_FOAM_1 transparent contained containedin=pam_MMATnew_STRESS_MODEL_GENERALIZED_NON_LINEAR_FOAM matchgroup=pam_Argument start="^[ ]*\CTENSION_UNLOADING_DISSIPATION" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               syn region      pam_MMATnew_STRESS_MODEL_GENERALIZED_NON_LINEAR_FOAM_1 transparent contained containedin=pam_MMATnew_STRESS_MODEL_GENERALIZED_NON_LINEAR_FOAM matchgroup=pam_Argument start="^[ ]*\CTRANSITION_SLOPE_PROGRESSIVE_FACTOR" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               syn region      pam_MMATnew_STRESS_MODEL_GENERALIZED_NON_LINEAR_FOAM_1 transparent contained containedin=pam_MMATnew_STRESS_MODEL_GENERALIZED_NON_LINEAR_FOAM matchgroup=pam_Argument start="^[ ]*\CHYDROSTATIC_STRAIN_ACTIVATION" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               syn region      pam_MMATnew_STRESS_MODEL_GENERALIZED_NON_LINEAR_FOAM_1 transparent contained containedin=pam_MMATnew_STRESS_MODEL_GENERALIZED_NON_LINEAR_FOAM matchgroup=pam_Argument start="^[ ]*\CHYDROSTATIC_STRESS_REDUCTION_FACTOR" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               syn region      pam_MMATnew_STRESS_MODEL_GENERALIZED_NON_LINEAR_FOAM_1 transparent contained containedin=pam_MMATnew_STRESS_MODEL_GENERALIZED_NON_LINEAR_FOAM matchgroup=pam_Argument start="^[ ]*\CD_[1U]" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+            " }}} 
+         " }}} 
+      " }}}
       " {{{ FAILURE
-       syn region      pam_MMATnew_FAILURE   transparent contained containedin=pam_MMATnew_MECHANICAL_EVP,pam_MMATnew_MECHANICAL_VHE matchgroup=pam_CardTag start="^[ ]*\CFAILURE" end="^[ ]*\CEND_FAILURE" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+       syn region      pam_MMATnew_FAILURE   transparent contained containedin=pam_MMATnew_MECHANICAL_EVP,pam_MMATnew_MECHANICAL_VHE,pam_MMATnew_MECHANICAL_VE matchgroup=pam_CardTag start="^[ ]*\CFAILURE" end="^[ ]*\CEND_FAILURE[\s\n]" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
          " {{{ INSTABILITY_RISK
          syn region      pam_MMATnew_FAILURE_INSTABILITY_RISK   transparent contained containedin=pam_MMATnew_FAILURE matchgroup=pam_CardTag start="^[ ]*\CINSTABILITY_RISK" end="^[ ]*\CEND_INSTABILITY_RISK" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
             " {{{ MODEL
@@ -10157,6 +10187,22 @@ syn region      pam_MMAT        matchgroup=pam_CardTag start="^\CMMAT  /"rs=s+8 
                   syn region      pam_MMATnew_FAILURE_INSTABILITY_RISK_HILL_STOEREN_RICE_1 transparent contained containedin=pam_MMATnew_FAILURE_INSTABILITY_RISK_HILL_STOEREN_RICE matchgroup=pam_Argument start="^[ ]*\CSTRAIN_RATE_RATIO" end="\n[\$\#]\@!" contains=pam_MMATnew_FAILURE_INSTABILITY_RISK_HILL_STOEREN_RICE_1_PARAM,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
                      syn keyword pam_MMATnew_FAILURE_INSTABILITY_RISK_HILL_STOEREN_RICE_1_PARAM contained PLASTIC_STRAIN_RATE STRESS_TRIAXIALITY TOTAL_STRAIN_RATE
                      hi def link pam_MMATnew_FAILURE_INSTABILITY_RISK_HILL_STOEREN_RICE_1_PARAM pam_Keyword
+               " }}} 
+               " {{{ MUESCHENBORN_SONNE
+               syn region      pam_MMATnew_FAILURE_INSTABILITY_RISK_MUESCHENBORN_SONNE transparent contained containedin=pam_MMATnew_FAILURE_INSTABILITY_RISK_MODEL matchgroup=pam_Keyword start="\CMUESCHENBORN_SONNE" end="\%$" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                  syn region      pam_MMATnew_FAILURE_INSTABILITY_RISK_MUESCHENBORN_SONNE_1 transparent contained containedin=pam_MMATnew_FAILURE_INSTABILITY_RISK_MUESCHENBORN_SONNE matchgroup=pam_Argument start="^[ ]*\CMSFLD" end="\n[\$\#]\@!" contains=pam_MMATnew_TABLE_kw,pam_Integer,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                  syn region      pam_MMATnew_FAILURE_INSTABILITY_RISK_MUESCHENBORN_SONNE_1 transparent contained containedin=pam_MMATnew_FAILURE_INSTABILITY_RISK_MUESCHENBORN_SONNE matchgroup=pam_Argument start="^[ ]*\CFILTERING_PARAMETER" end="\n[\$\#]\@!" contains=pam_MMATnew_TABLE_kw,pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                  syn region      pam_MMATnew_FAILURE_INSTABILITY_RISK_MUESCHENBORN_SONNE_1 transparent contained containedin=pam_MMATnew_FAILURE_INSTABILITY_RISK_MUESCHENBORN_SONNE matchgroup=pam_Argument start="^[ ]*\CFILTERING_OPTION" end="\n[\$\#]\@!" contains=pam_MMATnew_FAILURE_INSTABILITY_RISK_MUESCHENBORN_SONNE_1_PARAM,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                     syn keyword pam_MMATnew_FAILURE_INSTABILITY_RISK_MUESCHENBORN_SONNE_1_PARAM contained CONSTANT PLASTIC_STRAIN
+                     hi def link pam_MMATnew_FAILURE_INSTABILITY_RISK_MUESCHENBORN_SONNE_1_PARAM pam_Keyword
+               " }}} 
+               " {{{ CUMULATIVE_MUESCHENBORN_SONNE
+               syn region      pam_MMATnew_FAILURE_INSTABILITY_RISK_CUMULATIVE_MUESCHENBORN_SONNE transparent contained containedin=pam_MMATnew_FAILURE_INSTABILITY_RISK_MODEL matchgroup=pam_Keyword start="\CCUMULATIVE_MUESCHENBORN_SONNE" end="\%$" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                  syn region      pam_MMATnew_FAILURE_INSTABILITY_RISK_CUMULATIVE_MUESCHENBORN_SONNE_1 transparent contained containedin=pam_MMATnew_FAILURE_INSTABILITY_RISK_CUMULATIVE_MUESCHENBORN_SONNE matchgroup=pam_Argument start="^[ ]*\CMSFLD" end="\n[\$\#]\@!" contains=pam_MMATnew_TABLE_kw,pam_Integer,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               " }}} 
+               " {{{ FORMING_LIMIT_DIAGRAM
+               syn region      pam_MMATnew_FAILURE_INSTABILITY_RISK_FORMING_LIMIT_DIAGRAM transparent contained containedin=pam_MMATnew_FAILURE_INSTABILITY_RISK_MODEL matchgroup=pam_Keyword start="\CFORMING_LIMIT_DIAGRAM" end="\%$" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                  syn region      pam_MMATnew_FAILURE_INSTABILITY_RISK_FORMING_LIMIT_DIAGRAM_1 transparent contained containedin=pam_MMATnew_FAILURE_INSTABILITY_RISK_FORMING_LIMIT_DIAGRAM matchgroup=pam_Argument start="^[ ]*\CFLD" end="\n[\$\#]\@!" contains=pam_MMATnew_TABLE_kw,pam_Integer,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
                " }}} 
                " {{{ GENERALIZED_NECKING
                syn region      pam_MMATnew_FAILURE_INSTABILITY_RISK_GENERALIZED_NECKING transparent contained containedin=pam_MMATnew_FAILURE_INSTABILITY_RISK_MODEL matchgroup=pam_Keyword start="\CGENERALIZED_NECKING" end="\%$" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
@@ -10186,16 +10232,51 @@ syn region      pam_MMAT        matchgroup=pam_CardTag start="^\CMMAT  /"rs=s+8 
             syn region      pam_MMATnew_FAILURE_FAILURE_RISK_MODEL transparent contained containedin=pam_MMATnew_FAILURE_FAILURE_RISK matchgroup=pam_CardTag start="^[ ]*\CMODEL" end="^[ ]*\CEND_MODEL" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
                " {{{ MODIFIED_MOHR_COULOMB
                syn region      pam_MMATnew_FAILURE_FAILURE_RISK_MODIFIED_MOHR_COULOMB transparent contained containedin=pam_MMATnew_FAILURE_FAILURE_RISK_MODEL matchgroup=pam_Keyword start="\CMODIFIED_MOHR_COULOMB" end="\%$" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
-                  syn region      pam_MMATnew_FAILURE_FAILURE_RISK_MODIFIED_MOHR_COULOMB_1 transparent contained containedin=pam_MMATnew_FAILURE_FAILURE_RISK_MODIFIED_MOHR_COULOMB matchgroup=pam_Argument start="^[ ]*\C[KN]" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                  syn region      pam_MMATnew_FAILURE_FAILURE_RISK_MODIFIED_MOHR_COULOMB_1 transparent contained containedin=pam_MMATnew_FAILURE_FAILURE_RISK_MODIFIED_MOHR_COULOMB matchgroup=pam_Argument start="^[ ]*\C[KNAC]" end="\n[\$\#]\@!" contains=pam_MMATnew_TABLE_kw,pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                  syn region      pam_MMATnew_FAILURE_FAILURE_RISK_MODIFIED_MOHR_COULOMB_1 transparent contained containedin=pam_MMATnew_FAILURE_FAILURE_RISK_MODIFIED_MOHR_COULOMB matchgroup=pam_Argument start="^[ ]*\CCUTOFF" end="\n[\$\#]\@!" contains=pam_Control_YESNO,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                  syn region      pam_MMATnew_FAILURE_FAILURE_RISK_MODIFIED_MOHR_COULOMB_1 transparent contained containedin=pam_MMATnew_FAILURE_FAILURE_RISK_MODIFIED_MOHR_COULOMB matchgroup=pam_Argument start="^[ ]*\CJC_MIN" end="\n[\$\#]\@!" contains=pam_MMATnew_TABLE_kw,pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
                   syn region      pam_MMATnew_FAILURE_FAILURE_RISK_MODIFIED_MOHR_COULOMB_1 transparent contained containedin=pam_MMATnew_FAILURE_FAILURE_RISK_MODIFIED_MOHR_COULOMB matchgroup=pam_Argument start="^[ ]*\CC[1-4]" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
                " }}} 
                " {{{ RELATIVE_THICKNESS
                syn region      pam_MMATnew_FAILURE_FAILURE_RISK_RELATIVE_THICKNESS transparent contained containedin=pam_MMATnew_FAILURE_FAILURE_RISK_MODEL matchgroup=pam_Keyword start="\CRELATIVE_THICKNESS" end="\%$" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
-                  syn region      pam_MMATnew_FAILURE_FAILURE_RISK_RELATIVE_THICKNESS_1 transparent contained containedin=pam_MMATnew_FAILURE_FAILURE_RISK_RELATIVE_THICKNESS matchgroup=pam_Argument start="^[ ]*\CREL_THI[CN]" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                  syn region      pam_MMATnew_FAILURE_FAILURE_RISK_RELATIVE_THICKNESS_1 transparent contained containedin=pam_MMATnew_FAILURE_FAILURE_RISK_RELATIVE_THICKNESS matchgroup=pam_Argument start="^[ ]*\CREL_THI[CN]" end="\n[\$\#]\@!" contains=pam_MMATnew_TABLE_kw,pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
                " }}} 
                " {{{ MAXIMUM_STRAINING
                syn region      pam_MMATnew_FAILURE_FAILURE_RISK_MAXIMUM_STRAINING transparent contained containedin=pam_MMATnew_FAILURE_FAILURE_RISK_MODEL matchgroup=pam_Keyword start="\CMAXIMUM_STRAINING" end="\%$" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
-                  syn region      pam_MMATnew_FAILURE_FAILURE_RISK_MAXIMUM_STRAINING_1 transparent contained containedin=pam_MMATnew_FAILURE_FAILURE_RISK_MAXIMUM_STRAINING matchgroup=pam_Argument start="^[ ]*\CEPSLIM" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                  syn region      pam_MMATnew_FAILURE_FAILURE_RISK_MAXIMUM_STRAINING_1 transparent contained containedin=pam_MMATnew_FAILURE_FAILURE_RISK_MAXIMUM_STRAINING matchgroup=pam_Argument start="^[ ]*\CEPSLIM" end="\n[\$\#]\@!" contains=pam_MMATnew_TABLE_kw,pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               " }}} 
+               " {{{ EXTENDED_COCKCROFT_LATHAM
+               syn region      pam_MMATnew_FAILURE_FAILURE_RISK_EXTENDED_COCKCROFT_LATHAM transparent contained containedin=pam_MMATnew_FAILURE_FAILURE_RISK_MODEL matchgroup=pam_Keyword start="\CEXTENDED_COCKCROFT_LATHAM" end="\%$" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                  syn region      pam_MMATnew_FAILURE_FAILURE_RISK_EXTENDED_COCKCROFT_LATHAM_1 transparent contained containedin=pam_MMATnew_FAILURE_FAILURE_RISK_EXTENDED_COCKCROFT_LATHAM matchgroup=pam_Argument start="^[ ]*\CPHI" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                  syn region      pam_MMATnew_FAILURE_FAILURE_RISK_EXTENDED_COCKCROFT_LATHAM_1 transparent contained containedin=pam_MMATnew_FAILURE_FAILURE_RISK_EXTENDED_COCKCROFT_LATHAM matchgroup=pam_Argument start="^[ ]*\CALPHA" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                  syn region      pam_MMATnew_FAILURE_FAILURE_RISK_EXTENDED_COCKCROFT_LATHAM_1 transparent contained containedin=pam_MMATnew_FAILURE_FAILURE_RISK_EXTENDED_COCKCROFT_LATHAM matchgroup=pam_Argument start="^[ ]*\CWC[BSL]" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                  syn region      pam_MMATnew_FAILURE_FAILURE_RISK_EXTENDED_COCKCROFT_LATHAM_1 transparent contained containedin=pam_MMATnew_FAILURE_FAILURE_RISK_EXTENDED_COCKCROFT_LATHAM matchgroup=pam_Argument start="^[ ]*\CC" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               " }}} 
+               " {{{ HANCOCK_MACKENZIE
+               syn region      pam_MMATnew_FAILURE_FAILURE_RISK_HANCOCK_MACKENZIE transparent contained containedin=pam_MMATnew_FAILURE_FAILURE_RISK_MODEL matchgroup=pam_Keyword start="\CHANCOCK_MACKENZIE" end="\%$" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                  syn region      pam_MMATnew_FAILURE_FAILURE_RISK_HANCOCK_MACKENZIE_1 transparent contained containedin=pam_MMATnew_FAILURE_FAILURE_RISK_HANCOCK_MACKENZIE matchgroup=pam_Argument start="^[ ]*\CD[1-3]" end="\n[\$\#]\@!" contains=pam_MMATnew_TABLE_kw,pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                  syn region      pam_MMATnew_FAILURE_FAILURE_RISK_HANCOCK_MACKENZIE_1 transparent contained containedin=pam_MMATnew_FAILURE_FAILURE_RISK_HANCOCK_MACKENZIE matchgroup=pam_Argument start="^[ ]*\C[AC]" end="\n[\$\#]\@!" contains=pam_MMATnew_TABLE_kw,pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                  syn region      pam_MMATnew_FAILURE_FAILURE_RISK_HANCOCK_MACKENZIE_1 transparent contained containedin=pam_MMATnew_FAILURE_FAILURE_RISK_HANCOCK_MACKENZIE matchgroup=pam_Argument start="^[ ]*\CPSR_REF" end="\n[\$\#]\@!" contains=pam_MMATnew_TABLE_kw,pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                  syn region      pam_MMATnew_FAILURE_FAILURE_RISK_HANCOCK_MACKENZIE_1 transparent contained containedin=pam_MMATnew_FAILURE_FAILURE_RISK_HANCOCK_MACKENZIE matchgroup=pam_Argument start="^[ ]*\JC_MIN" end="\n[\$\#]\@!" contains=pam_MMATnew_TABLE_kw,pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               " }}} 
+               " {{{ MODIFIED_BAI_WIERZBICKI
+               syn region      pam_MMATnew_FAILURE_FAILURE_RISK_MODIFIED_BAI_WIERZBICKI transparent contained containedin=pam_MMATnew_FAILURE_FAILURE_RISK_MODEL matchgroup=pam_Keyword start="\CMODIFIED_BAI_WIERZBICKI" end="\%$" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                  syn region      pam_MMATnew_FAILURE_FAILURE_RISK_MODIFIED_BAI_WIERZBICKI_1 transparent contained containedin=pam_MMATnew_FAILURE_FAILURE_RISK_MODIFIED_BAI_WIERZBICKI matchgroup=pam_Argument start="^[ ]*\CD[0-6]" end="\n[\$\#]\@!" contains=pam_MMATnew_TABLE_kw,pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                  syn region      pam_MMATnew_FAILURE_FAILURE_RISK_MODIFIED_BAI_WIERZBICKI_1 transparent contained containedin=pam_MMATnew_FAILURE_FAILURE_RISK_MODIFIED_BAI_WIERZBICKI matchgroup=pam_Argument start="^[ ]*\C[AC]" end="\n[\$\#]\@!" contains=pam_MMATnew_TABLE_kw,pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                  syn region      pam_MMATnew_FAILURE_FAILURE_RISK_MODIFIED_BAI_WIERZBICKI_1 transparent contained containedin=pam_MMATnew_FAILURE_FAILURE_RISK_MODIFIED_BAI_WIERZBICKI matchgroup=pam_Argument start="^[ ]*\CPSR_REF" end="\n[\$\#]\@!" contains=pam_MMATnew_TABLE_kw,pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                  syn region      pam_MMATnew_FAILURE_FAILURE_RISK_MODIFIED_BAI_WIERZBICKI_1 transparent contained containedin=pam_MMATnew_FAILURE_FAILURE_RISK_MODIFIED_BAI_WIERZBICKI matchgroup=pam_Argument start="^[ ]*\JC_MIN" end="\n[\$\#]\@!" contains=pam_MMATnew_TABLE_kw,pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               " }}} 
+               " {{{ CUMULATIVE_TABULAR
+               syn region      pam_MMATnew_FAILURE_FAILURE_RISK_CUMULATIVE_TABULAR transparent contained containedin=pam_MMATnew_FAILURE_FAILURE_RISK_MODEL matchgroup=pam_Keyword start="\CCUMULATIVE_TABULAR" end="\%$" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                  syn region      pam_MMATnew_FAILURE_FAILURE_RISK_CUMULATIVE_TABULAR_1 transparent contained containedin=pam_MMATnew_FAILURE_FAILURE_RISK_CUMULATIVE_TABULAR matchgroup=pam_Argument start="^[ ]*\CEF" end="\n[\$\#]\@!" contains=pam_MMATnew_TABLE_kw,pam_Integer,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               " }}} 
+               " {{{ MAXIMUM_HYDROSTATIC_STRESS
+               syn region      pam_MMATnew_FAILURE_FAILURE_RISK_MAXIMUM_HYDROSTATIC_STRESS transparent contained containedin=pam_MMATnew_FAILURE_FAILURE_RISK_MODEL matchgroup=pam_Keyword start="\CMAXIMUM_HYDROSTATIC_STRESS" end="\%$" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                  syn region      pam_MMATnew_FAILURE_FAILURE_RISK_MAXIMUM_HYDROSTATIC_STRESS_1 transparent contained containedin=pam_MMATnew_FAILURE_FAILURE_RISK_MAXIMUM_HYDROSTATIC_STRESS matchgroup=pam_Argument start="^[ ]*\CTHRESHOLD" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               " }}} 
+               " {{{ MAXIMUM_PRINCIPAL_STRESS
+               syn region      pam_MMATnew_FAILURE_FAILURE_RISK_MAXIMUM_PRINCIPAL_STRESS transparent contained containedin=pam_MMATnew_FAILURE_FAILURE_RISK_MODEL matchgroup=pam_Keyword start="\CMAXIMUM_PRINCIPAL_STRESS" end="\%$" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                  syn region      pam_MMATnew_FAILURE_FAILURE_RISK_MAXIMUM_PRINCIPAL_STRESS_1 transparent contained containedin=pam_MMATnew_FAILURE_FAILURE_RISK_MAXIMUM_PRINCIPAL_STRESS matchgroup=pam_Argument start="^[ ]*\CTHRESHOLD" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
                " }}} 
             " }}}
          " }}} 
@@ -10208,8 +10289,17 @@ syn region      pam_MMAT        matchgroup=pam_CardTag start="^\CMMAT  /"rs=s+8 
                " }}} 
                " {{{ LINEAR_PLASTIC_DISPLACEMENT
                syn region      pam_MMATnew_FAILURE_FAILURE_EVOLUTION_LINEAR_PLASTIC_DISPLACEMENT transparent contained containedin=pam_MMATnew_FAILURE_FAILURE_EVOLUTION_MODEL matchgroup=pam_Keyword start="\CLINEAR_PLASTIC_DISPLACEMENT" end="\%$" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
-                  syn region      pam_MMATnew_FAILURE_FAILURE_EVOLUTION_LINEAR_PLASTIC_DISPLACEMENT_1 transparent contained containedin=pam_MMATnew_FAILURE_FAILURE_EVOLUTION_LINEAR_PLASTIC_DISPLACEMENT matchgroup=pam_Argument start="^[ ]*\CUPF" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
-                  syn region      pam_MMATnew_FAILURE_FAILURE_EVOLUTION_LINEAR_PLASTIC_DISPLACEMENT_1 transparent contained containedin=pam_MMATnew_FAILURE_FAILURE_EVOLUTION_LINEAR_PLASTIC_DISPLACEMENT matchgroup=pam_Argument start="^[ ]*\CREDUCTION" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                  syn region      pam_MMATnew_FAILURE_FAILURE_EVOLUTION_LINEAR_PLASTIC_DISPLACEMENT_1 transparent contained containedin=pam_MMATnew_FAILURE_FAILURE_EVOLUTION_LINEAR_PLASTIC_DISPLACEMENT matchgroup=pam_Argument start="^[ ]*\CUPF" end="\n[\$\#]\@!" contains=pam_MMATnew_TABLE_kw,pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                  syn region      pam_MMATnew_FAILURE_FAILURE_EVOLUTION_LINEAR_PLASTIC_DISPLACEMENT_1 transparent contained containedin=pam_MMATnew_FAILURE_FAILURE_EVOLUTION_LINEAR_PLASTIC_DISPLACEMENT matchgroup=pam_Argument start="^[ ]*\CREDUCTION" end="\n[\$\#]\@!" contains=pam_MMATnew_FAILURE_FAILURE_EVOLUTION_LINEAR_PLASTIC_DISPLACEMENT_REDUCTION,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                  syn keyword pam_MMATnew_FAILURE_FAILURE_EVOLUTION_LINEAR_PLASTIC_DISPLACEMENT_REDUCTION contained MAX MULT OFF
+                  hi def link pam_MMATnew_FAILURE_FAILURE_EVOLUTION_LINEAR_PLASTIC_DISPLACEMENT_REDUCTION pam_Keyword
+               " }}} 
+               " {{{ TABULAR
+               syn region      pam_MMATnew_FAILURE_FAILURE_EVOLUTION_TABULAR transparent contained containedin=pam_MMATnew_FAILURE_FAILURE_EVOLUTION_MODEL matchgroup=pam_Keyword start="\CTABULAR" end="\%$" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                  syn region      pam_MMATnew_FAILURE_FAILURE_EVOLUTION_TABULAR_1 transparent contained containedin=pam_MMATnew_FAILURE_FAILURE_EVOLUTION_TABULAR matchgroup=pam_Argument start="^[ ]*\CINDICATOR" end="\n[\$\#]\@!" contains=pam_MMATnew_TABLE_kw,pam_Integer,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                  syn region      pam_MMATnew_FAILURE_FAILURE_EVOLUTION_TABULAR_1 transparent contained containedin=pam_MMATnew_FAILURE_FAILURE_EVOLUTION_TABULAR matchgroup=pam_Argument start="^[ ]*\CREDUCTION" end="\n[\$\#]\@!" contains=pam_MMATnew_FAILURE_FAILURE_EVOLUTION_TABULAR_REDUCTION,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                  syn keyword pam_MMATnew_FAILURE_FAILURE_EVOLUTION_TABULAR_REDUCTION contained MAX MULT OFF
+                  hi def link pam_MMATnew_FAILURE_FAILURE_EVOLUTION_TABULAR_REDUCTION pam_Keyword
                " }}} 
             " }}}
          " }}} 

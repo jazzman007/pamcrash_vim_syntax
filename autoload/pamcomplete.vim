@@ -1320,22 +1320,26 @@ function! pamcomplete#Complete(findstart, base)
             endif
       " }}}
          " {{{ SHELL
-         elseif synIDattr(slist[1], "name") =~ "pam_MBPART_SHELL_r6"
-            " IORT1
-            if synIDattr(slist[2], "name") =~ "pam_1.5.*"
-               let start = 0
+         elseif synIDattr(slist[1], "name") =~ "pam_MBPART_SHELL_GEOMETRY"
+            if synIDattr(slist[2], "name") =~ "pam_MBPART_SHELL_GEOMETRY_r2"
+                " IORT
+                if synIDattr(slist[3], "name") =~ "pam_1.10.*"
+                   let start = 0
+                endif
             endif
          " }}}
          " {{{ SOLID
-         elseif synIDattr(slist[1], "name") =~ "pam_MBPART_SOLID_r5"
-            " IORT1
-            if synIDattr(slist[2], "name") =~ "pam_1.5.*"
-               let start = 0
-            endif
-         elseif synIDattr(slist[1], "name") =~ "pam_MBPART_SOLID_r6"
-            " IORT2
-            if synIDattr(slist[2], "name") =~ "pam_1.5.*"
-               let start = 0
+         elseif synIDattr(slist[1], "name") =~ "pam_MBPART_SOLID_GEOMETRY"
+            if synIDattr(slist[2], "name") =~ "pam_MBPART_SOLID_GEOMETRY_r1"
+                " IORT1
+                if synIDattr(slist[3], "name") =~ "pam_1.10.*"
+                   let start = 0
+                endif
+            elseif synIDattr(slist[2], "name") =~ "pam_MBPART_SOLID_GEOMETRY_r2"
+                " IORT2
+                if synIDattr(slist[3], "name") =~ "pam_1.10.*"
+                   let start = 0
+                endif
             endif
          " }}}
          endif
@@ -5857,25 +5861,29 @@ function! pamcomplete#Complete(findstart, base)
             endif
       " }}}
          " {{{ SHELL
-         elseif synIDattr(slist[1], "name") =~ "pam_MBPART_SHELL_r6"
-            " IORT1
-            if synIDattr(slist[2], "name") =~ "pam_1.5.*"
-               call add (items,{'word':'    0','menu':'Definition via Global Vector'})
-               call add (items,{'word':'    1','menu':'Definition via Local Element Frame'})
+         elseif synIDattr(slist[1], "name") =~ "pam_MBPART_SHELL_GEOMETRY"
+            if synIDattr(slist[2], "name") =~ "pam_MBPART_SHELL_GEOMETRY_r2"
+                " IMETH
+                if synIDattr(slist[3], "name") =~ "pam_1.10.*"
+                   call add (items,{'word':'         0','menu':'Definition via Global Vector'})
+                   call add (items,{'word':'         1','menu':'Definition via Local Vector'})
+                endif
             endif
          " }}}
          " {{{ SOLID
-         elseif synIDattr(slist[1], "name") =~ "pam_MBPART_SOLID_r5"
-            " IORT1
-            if synIDattr(slist[2], "name") =~ "pam_1.5.*"
-               call add (items,{'word':'    0','menu':'Definition via Global Vector'})
-               call add (items,{'word':'    1','menu':'Definition via Local Vector'})
-            endif
-         elseif synIDattr(slist[1], "name") =~ "pam_MBPART_SOLID_r6"
-            " IORT2
-            if synIDattr(slist[2], "name") =~ "pam_1.5.*"
-               call add (items,{'word':'    0','menu':'Definition via Global Vector'})
-               call add (items,{'word':'    1','menu':'Definition via Local Vector'})
+         elseif synIDattr(slist[1], "name") =~ "pam_MBPART_SOLID_GEOMETRY"
+            if synIDattr(slist[2], "name") =~ "pam_MBPART_SOLID_GEOMETRY_r1"
+                " IORT1
+                if synIDattr(slist[3], "name") =~ "pam_1.10.*"
+                   call add (items,{'word':'         0','menu':'Definition via Global Vector'})
+                   call add (items,{'word':'         1','menu':'Definition via Local Vector'})
+                endif
+            elseif synIDattr(slist[2], "name") =~ "pam_MBPART_SOLID_GEOMETRY_r2"
+                " IORT2
+                if synIDattr(slist[3], "name") =~ "pam_1.10.*"
+                   call add (items,{'word':'         0','menu':'Definition via Global Vector'})
+                   call add (items,{'word':'         1','menu':'Definition via Local Vector'})
+                endif
             endif
          " }}}
          endif
