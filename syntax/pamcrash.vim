@@ -1,9 +1,9 @@
 " ====================================================================
 " Vim syntax file
 " Language: PAM-CRASH,PAM-STAMP,PAM-COMFORT Input Deck
-" Syntax File Version: 12.0 (dedicated to Bram (1961-2023))
+" Syntax File Version: 13.0
 " Author: Roman Firt (roman.firt@yahoo.de)
-" Latest Revision: 22. December 2023
+" Latest Revision: 24. December 2024
 " ====================================================================
 "             DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
 "                    Version 2, December 2004
@@ -18,10 +18,6 @@
 "   TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
 "
 "  0. You just DO WHAT THE FUCK YOU WANT TO.
-"
-" ====================================================================
-"
-" ToDo: Checkout the beta features in MAT 151 in 2023
 "
 " ====================================================================
 "
@@ -80,6 +76,7 @@
 "        - Minor Bugfixes
 "   11.0 - VPS 2021 Syntax Implemented
 "   12.0 - VPS 2022 Syntax Implemented
+"   13.0 - VPS 2023 Syntax Implemented
 " =========================================================
 if exists("b:current_syntax")
   finish
@@ -2858,6 +2855,7 @@ syn region      pam_Control_MSTAGE                matchgroup=pam_HeaderKW start=
          syn match pam_BAG_TURBULENCE_r1_arg display contained containedin=pam_BAG_TURBULENCE_r1 "KEPSILON"
          hi def link pam_BAG_TURBULENCE_r1_arg pam_Argument
    syn region      pam_BAG_TURBULENCE        contained containedin=pam_BAGIN matchgroup=pam_HeaderKW start="^[ ]\{16\}\CTURBULENCE" end="^[ ]\{16\}\CEND_TURBULENCE" contains=pam_BAG_TURBULENCE_r[12],pam_Error,pam_FreeError keepend
+      syn region      pam_BAG_FPM_GAS_DYN_CORRECTION_SCHEME   transparent contained containedin=pam_BAG_FPM_GAS_DYN matchgroup=pam_Keyword start="^[ ]\{16,\}\CCORRECTION_SCHEME" end="\n[\$\#]\@!" contains=pam_Integer,pam_FreeError,pam_FreeVar,pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
       syn region      pam_BAG_FPM_GAS_DYN_FPM_LIMITER   transparent contained containedin=pam_BAG_FPM_GAS_DYN matchgroup=pam_Keyword start="^[ ]\{15,\}\CFPM_LIMITER" end="\n[\$\#]\@!" contains=pam_Control_YESNO,pam_FreeError,pam_FreeVar,pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
       syn region      pam_BAG_FPM_GAS_DYN_FPM_TRANGE   transparent contained containedin=pam_BAG_FPM_GAS_DYN matchgroup=pam_Keyword start="^[ ]\{16,\}\CFPM_TRANGE" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeError,pam_FreeVar,pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
       syn region      pam_BAG_FPM_GAS_DYN_NOSLIP   transparent contained containedin=pam_BAG_FPM_GAS_DYN matchgroup=pam_Keyword start="^[ ]\{16,\}\CNOSLIP" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeError,pam_FreeVar,pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
@@ -3519,6 +3517,9 @@ syn region      pam_RETRA2               matchgroup=pam_CardTag start="^\CRETRA 
       syn region      pam_RETRA_PYROTECHNIC_arg     transparent contained containedin=pam_RETRA_PYROTECHNIC matchgroup=pam_Argument start="\%1c[ ]*\CREEL_IN_RATE" start="^$\n" end="\n[\$\#]\@!" contains=pam_FreeVar,pam_FreeError,pam_Integer,pam_Comment,pam_Comment_Position,pam_Error keepend
       syn region      pam_RETRA_PYROTECHNIC_arg     transparent contained containedin=pam_RETRA_PYROTECHNIC matchgroup=pam_Argument start="\%1c[ ]*\CREEL_IN_LENGTH" start="^$\n" end="\n[\$\#]\@!" contains=pam_FreeVar,pam_FreeError,pam_Integer,pam_Comment,pam_Comment_Position,pam_Error keepend
       syn region      pam_RETRA_PYROTECHNIC_arg     transparent contained containedin=pam_RETRA_PYROTECHNIC matchgroup=pam_Argument start="\%1c[ ]*\CREEL_IN_FORCE_LIMIT" start="^$\n" end="\n[\$\#]\@!" contains=pam_FreeVar,pam_FreeError,pam_Integer,pam_Comment,pam_Comment_Position,pam_Error keepend
+      syn region      pam_RETRA_PYROTECHNIC_arg     transparent contained containedin=pam_RETRA_PYROTECHNIC matchgroup=pam_Argument start="\%1c[ ]*\CREEL_IN_FORCE_TYPE" start="^$\n" end="\n[\$\#]\@!" contains=pam_RETRA_PYROTECHNIC_REEL_IN_FORCE_TYPE_arg,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+        syn keyword   pam_RETRA_PYROTECHNIC_REEL_IN_FORCE_TYPE_arg   contained STOP_RATE EVALUATE_RATE
+        hi def link pam_RETRA_PYROTECHNIC_REEL_IN_FORCE_TYPE_arg pam_Keyword
    " }}} END PYROTECHNIC
    " {{{ LOAD_LIMITER
    syn region      pam_RETRA_LOAD_LIMITER     transparent contained containedin=pam_RETRA1_r3,pam_RETRA2_r3 matchgroup=pam_Keyword start="\%1c[ ]*\CLOAD_LIMITER" end="^[ ]*END_LOAD_LIMITER" contains=pam_RETRA_LOAD_LIMITER_arg,pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
@@ -5657,10 +5658,14 @@ syn region      pam_THNAC            matchgroup=pam_CardTag start="^\CTHNAC /" e
    "Row 3
    syn region      pam_SELOUT_r3     transparent contained containedin=pam_SELOUT matchgroup=pam_Keyword start="\%1c[ ]\{4,\}SOLPLOT" start="^$\n" end="\n[\$\#]\@!" contains=pam_Control_OCTRL_SOLPLOT_arg,pam_Comment,pam_Comment_Position nextgroup=pam_SELOUT_r3,pam_SELOUT_r4,pam_SELOUT_r5,pam_SELOUT_r6,pam_SELOUT_r7 skipnl keepend
    "Row 2 (Name)
-   syn region      pam_SELOUT_r2     transparent contained containedin=pam_SELOUT start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_SELOUT_r3,pam_SELOUT_r4,pam_SELOUT_r5,pam_SELOUT_r6,pam_SELOUT_r7 skipnl keepend
+   syn region      pam_SELOUT_r2     transparent contained containedin=pam_SELOUT start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_SELOUT_VAR,pam_SELOUT_r3,pam_SELOUT_r4,pam_SELOUT_r5,pam_SELOUT_r6,pam_SELOUT_r7 skipnl keepend
    " Row 1     
-   syn region      pam_SELOUT_r1     transparent contained containedin=pam_SELOUT start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_SELOUT_r2 skipnl keepend
-syn region      pam_SELOUT            matchgroup=pam_CardTag start="^\CSELOUT/" end="^\CEND_SELOUT" contains=pam_SELOUT_r[1-5] keepend
+   syn region      pam_SELOUT_r1     transparent contained containedin=pam_SELOUT start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@41i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_SELOUT_r2 skipnl keepend
+   "UVAR
+   syn region      pam_SELOUT_UVAR     transparent contained containedin=pam_SELOUT matchgroup=pam_CardTag start="^\CUSER_VAR" start="^$\n" matchgroup=pam_CardTag end="^\CEND_USER_VAR" contains=pam_String,pam_Comment,pam_Comment_Position nextgroup=pam_SELOUT_r7 skipnl keepend
+   "VAR
+   syn region      pam_SELOUT_VAR     transparent contained containedin=pam_SELOUT matchgroup=pam_CardTag start="^\CVAR" start="^$\n" matchgroup=pam_CardTag end="^\CEND_VAR" contains=pam_Control_OCTRL_SHLPLOT_arg,pam_Control_OCTRL_SOLPLOT_arg,pam_Control_OCTRL_BEAPLOT_arg,pam_Control_OCTRL_NODPLOT_arg,pam_Control_OCTRL_LAYPLOT_arg,pam_Comment,pam_Comment_Position nextgroup=pam_SELOUT_UVAR skipnl keepend
+syn region      pam_SELOUT            matchgroup=pam_CardTag start="^\CSELOUT/" end="^\CEND_SELOUT" contains=pam_SELOUT_r[1-5],pam_Comment,pam_Comment_Position keepend
 " === SELOUT end}}}
 
 "{{{ === FRICT begin
@@ -6581,6 +6586,24 @@ syn region      pam_DOMAIN_ABM            matchgroup=pam_CardTag start="^\CDOMAI
       hi def link  pam_TURBL_r1_v1  pam_evenVar
 syn region      pam_TURBL            matchgroup=pam_CardTag start="^\CTURBL /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_TURBL_r[1-6] keepend
 " === TURBL end}}}
+
+"{{{ === ERFPRO begin
+   " Row 4 
+   syn region      pam_ERFPRO_r4     transparent contained containedin=pam_ERFPRO matchgroup=pam_CardTag start="\%1c[ ]*\CCONTOUR_PLOT" start="^$\n" matchgroup=pam_CardTag end="^[ ]*\CEND_CONTOUR_PLOT" contains=pam_Comment,pam_Comment_Position,pam_End,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position keepend
+      syn region      pam_ERFPRO_FREQUENCY     transparent contained containedin=pam_ERFPRO_r4 matchgroup=pam_Argument start="\%1c[ ]*\CFREQUENCY" start="^$\n" matchgroup=pam_Argument end="\n[\$\#]\@!" contains=pam_ERFPRO_FREQUENCY_arg,pam_FreeVar,pam_Float,pam_Comment,pam_Comment_Position,pam_End,pam_Error keepend
+       syn keyword      pam_ERFPRO_FREQUENCY_arg contained containedin=pam_ERFPRO_FREQUENCY INTERVAL STATE
+       hi def link pam_ERFPRO_FREQUENCY_arg pam_Keyword
+      syn region      pam_ERFPRO_ACTIVATION     transparent contained containedin=pam_ERFPRO_r4 matchgroup=pam_Argument start="\%1c[ ]*\CACTIVATION" start="^$\n" matchgroup=pam_Argument end="\n[\$\#]\@!" contains=pam_ERFPRO_ACTIVATION_arg,pam_FreeVar,pam_Float,pam_Comment,pam_Comment_Position,pam_End,pam_Error keepend
+       syn keyword      pam_ERFPRO_ACTIVATION_arg contained containedin=pam_ERFPRO_ACTIVATION TIME
+       hi def link pam_ERFPRO_ACTIVATION_arg pam_Keyword
+   "Row 3 (File)
+   syn region      pam_ERFPRO_r3     transparent contained containedin=pam_ERFPRO start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Control_FILE,pam_Comment,pam_Comment_Position nextgroup=pam_ERFPRO_r4 skipnl keepend
+   "Row 2 (Name)
+   syn region      pam_ERFPRO_r2     transparent contained containedin=pam_ERFPRO start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_ERFPRO_r3 skipnl keepend
+   " Row 1   
+   syn region      pam_ERFPRO_r1     transparent contained containedin=pam_ERFPRO start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_ERFPRO_r2 skipnl keepend
+syn region      pam_ERFPRO            matchgroup=pam_CardTag start="^\CERFPRO/" end="^\CEND_ERFPRO" contains=pam_ERFPRO_r[1-6] keepend
+" === ERFPRO end}}}
 
 " {{{ Materialien
 
