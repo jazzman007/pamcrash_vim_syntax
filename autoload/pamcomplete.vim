@@ -3524,7 +3524,7 @@ function! pamcomplete#Complete(findstart, base)
       elseif synIDattr(slist[0], "name") =~ "pam_RETRA"
          if synIDattr(slist[1], "name") =~ "pam_RETRA[12X]_r1"
             " RETTYP
-            if synIDattr(slist[2], "name") =~ "pam_17.*"
+            if synIDattr(slist[2], "name") =~ "pam_RETRA_r1_[ae]1"
                let start = 16
             endif
          endif
@@ -8047,9 +8047,9 @@ function! pamcomplete#Complete(findstart, base)
       elseif synIDattr(slist[0], "name") =~ "pam_RETRA"
          if synIDattr(slist[1], "name") =~ "pam_RETRA[12X]_r1"
             " RETTYP
-            if synIDattr(slist[2], "name") =~ "pam_17.*"
-               call add (items,{'word':'       1','menu':'1D Retractor/Pretensioner'})
-               call add (items,{'word':'       2','menu':'2D Retractor/Pretensioner'})
+            if synIDattr(slist[2], "name") =~ "pam_RETRA_r1_[ae]1"
+               call add (items,{'word':'      1D','menu':'1D Retractor/Pretensioner'})
+               call add (items,{'word':'      2D','menu':'2D Retractor/Pretensioner'})
             endif
          endif
 "  }}}
@@ -18809,6 +18809,42 @@ function! pamcomplete#pamHints()
          elseif synIDattr(slist[3], "name") =~ "pam_71.*"
             return "Ifelim - Element Elimination Behavior Flag (menu)"
          endif
+      elseif synIDattr(slist[2], "name") =~ "pam_PLYFAIL12_r3"
+         if synIDattr(slist[3], "name") =~ "pam_1.10.*"
+            return "USER1 - User-defined parameter 1"
+         elseif synIDattr(slist[3], "name") =~ "pam_11.*"
+            return "USER2 - User-defined parameter 2"
+         elseif synIDattr(slist[3], "name") =~ "pam_21.*"
+            return "USER3 - User-defined parameter 3"
+         elseif synIDattr(slist[3], "name") =~ "pam_31.*"
+            return "USER4 - User-defined parameter 4"
+         elseif synIDattr(slist[3], "name") =~ "pam_41.*"
+            return "USER5 - User-defined parameter 5"
+         elseif synIDattr(slist[3], "name") =~ "pam_51.*"
+            return "USER6 - User-defined parameter 6"
+         elseif synIDattr(slist[3], "name") =~ "pam_61.*"
+            return "USER7 - User-defined parameter 7"
+         elseif synIDattr(slist[3], "name") =~ "pam_71.*"
+            return "USER8 - User-defined parameter 8"
+         endif
+      elseif synIDattr(slist[2], "name") =~ "pam_PLYFAIL12_r4"
+         if synIDattr(slist[3], "name") =~ "pam_1.10.*"
+            return "USER9 - User-defined parameter 9"
+         elseif synIDattr(slist[3], "name") =~ "pam_11.*"
+            return "USER10 - User-defined parameter 10"
+         elseif synIDattr(slist[3], "name") =~ "pam_21.*"
+            return "USER11 - User-defined parameter 11"
+         elseif synIDattr(slist[3], "name") =~ "pam_31.*"
+            return "USER12 - User-defined parameter 12"
+         elseif synIDattr(slist[3], "name") =~ "pam_41.*"
+            return "USER13 - User-defined parameter 13"
+         elseif synIDattr(slist[3], "name") =~ "pam_51.*"
+            return "USER14 - User-defined parameter 14"
+         elseif synIDattr(slist[3], "name") =~ "pam_61.*"
+            return "USER15 - User-defined parameter 15"
+         elseif synIDattr(slist[3], "name") =~ "pam_71.*"
+            return "USER16 - User-defined parameter 16"
+         endif
       " }}}
       " {{{ PLYFAILX
       elseif synIDattr(slist[1], "name") =~ "pam_PLYFAIL"
@@ -21393,7 +21429,7 @@ function! pamcomplete#pamHints()
       if synIDattr(slist[1], "name") =~ "pam_RETRA[12X]_r1"
          if synIDattr(slist[2], "name") =~ "pam_9.*"
             return "IDRET"
-         elseif synIDattr(slist[2], "name") =~ "pam_17.*"
+         elseif synIDattr(slist[1], "name") =~ "pam_RETRA[12X]_r1"
             return "RETTYP - Rectractor Type (menu)"
          endif
       endif

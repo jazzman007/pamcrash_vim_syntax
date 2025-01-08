@@ -104,6 +104,7 @@ syn match       pam_FreeVar        display contained "\[[^\[]\{-}\]"
 syn match       pam_FreeVar        display contained "<[^<]\{-}>"
 syn match       pam_FreeVar        display contained "{[^{]\{-}}"
 syn keyword     pam_Control_YESNO  contained YES NO
+syn keyword     pam_Control_QYESNO  contained 'YES' 'NO'
 "Basic atoms end}}}
 
 "{{{ general field definition begin
@@ -1670,7 +1671,7 @@ syn region      pam_Control_ERFFIL               matchgroup=pam_CardTag start="^
 syn region      pam_Control_TITLE                matchgroup=pam_CardTag start="^\CTITLE /" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_String,pam_Continue keepend
 
 syn region      pam_Control_UNIT                matchgroup=pam_HeaderKW start="^\CUNIT" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Control_UNIT_arg keepend
-   syn keyword     pam_Control_UNIT_arg            contained containedin=pam_Control_UNIT M CM mm FOOT INCH KG HKG GRAM TON DTON KG/G SLUG POUND SLINCH S MS US KELVIN CELSIUS FAHR RANK
+   syn keyword     pam_Control_UNIT_arg            contained containedin=pam_Control_UNIT M CM MM FOOT INCH KG HKG GRAM TON DTON KG/G SLUG POUND SLINCH S MS US KELVIN CELSIUS FAHR RANK
 
 syn region      pam_Control_DRAPP                matchgroup=pam_CardTag start="^\CDRAPP   " end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_String,pam_Continue keepend
 
@@ -1709,7 +1710,7 @@ hi def link pam_Control_PICK_arg pam_Argument
    syn region      pam_Control_CATEXP_r3     transparent contained containedin=pam_Control_CATEXP matchgroup=pam_Keyword start="\%1c[ ]*\CWRITE" start="^$\n" end="\n[\$\#]\@!" contains=pam_String,pam_Comment,pam_Comment_Position,pam_FreeVar nextgroup=pam_Control_CATEXP_r4,pam_Control_CATEXP_r5 skipnl keepend
    syn region      pam_Control_CATEXP_r2     transparent contained containedin=pam_Control_CATEXP start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position,pam_FreeVar nextgroup=pam_Control_CATEXP_r3 skipnl keepend
    syn region      pam_Control_CATEXP_r2     transparent contained containedin=pam_Control_CATEXP start="^[\$\#]" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position nextgroup=pam_Control_CATEXP_r2 skipnl keepend
-   syn region      pam_Control_CATEXP_r2     transparent contained containedin=pam_Control_CATEXP start="^META" end="^END_META" contains=pam_GroupMeta nextgroup=pam_Control_CATEXP_r2 skipnl keepend
+   syn region      pam_Control_CATEXP_r2     transparent contained containedin=pam_Control_CATEXP start="^META" end="^END_META" contains=pam_GroupMeta nextgroup=pam_Control_CATEXP_r3 skipnl keepend
    syn region      pam_Control_CATEXP_r1         transparent contained containedin=pam_Control_CATEXP start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Control_CATEXP_r2 skipnl keepend
 syn region      pam_Control_CATEXP               matchgroup=pam_CardTag start="^\CCATEXP/" end="^\CEND_CATEXP" contains=pam_Control_CATEXP_r[1-6] keepend
 syn keyword     pam_Control_CATEXP_arg          contained FINAL INTERVAL
@@ -1866,6 +1867,8 @@ syn region      pam_Control_OCTRL                matchgroup=pam_CardTag start="^
    syn region      pam_Control_OCTRL_PREFILTER_NO_SHIFT          contained containedin=pam_Control_OCTRL matchgroup=pam_Keyword start="PREFILTER_NO_SHIFT" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Continue
    syn region      pam_Control_OCTRL_GLBTHP          contained containedin=pam_Control_OCTRL matchgroup=pam_Keyword start="GLBTHP" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Control_OCTRL_GLBTHP_arg,pam_Control_YESNO,pam_Error,pam_FreeError,pam_FreeVar,pam_Continue
       syn keyword     pam_Control_OCTRL_GLBTHP_arg  contained containedin=pam_Control_OCTRL_GLBTHP ALL ACOE ACOI AREA AVGX AVGY AVGZ BAG6 BAGE BAGS CACC CDIS CNTE CNTF CNTP CNTS CONV CPRE CRAC CRAN CRFO CRVE CVEL DAMP DLOC DMAS DMSC FACR FPMG FPML FPMP INJP INTE KINE MEAS MHGL MINT MKIN MLEA MLSI MMEM MOUT MSCL MSMS MSQV NLAVE_ENERD PABS PFUN PRAY PRES PSCL PSMS RACC RANG RETR RFOR RVEL RWLE RWLF SDEN SECF SECM SENSS SLPR SPRE SSLD SSML STEP SECF TCNT TDMP TEMP TEMS TEMX TEXT THGL TIMER_ALL TIMER_CNSTRT TIMER_CONTAC TIMER_FPMSLV TIMER_INPINI TIMER_INTFOR TIMER_KJTMBS TIMER_NODPOS TIMER_OUTPUT TIMER_SMSSLV TIMER_SYSSLV TKED TOTE TRWL TSLP DFLT NO
+   syn region      pam_Control_OCTRL_NODTHP          contained containedin=pam_Control_OCTRL matchgroup=pam_Keyword start="NODTHP" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Control_OCTRL_NODTHP_arg,pam_Control_YESNO,pam_Error,pam_FreeError,pam_FreeVar,pam_Continue
+      syn keyword     pam_Control_OCTRL_NODTHP_arg  contained containedin=pam_Control_OCTRL_NODTHP RKIN NO
    syn region      pam_Control_OCTRL_SHLTHP          contained containedin=pam_Control_OCTRL matchgroup=pam_Keyword start="SHLTHP" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Control_OCTRL_SHLTHP_arg,pam_Control_YESNO,pam_Error,pam_FreeError,pam_FreeVar,pam_Continue
       syn keyword     pam_Control_OCTRL_SHLTHP_arg  contained containedin=pam_Control_OCTRL_SHLTHP ACOI ALL BETS BSTR CPRE DAMF DAMX DMAX DFLT DMG ENER ENTH EPME EPMI EPMX EPSE EPSF EPSI EPSI_ORTHO EPSL EPSL_ORTHO EPSP EPSP_EQUIV ESMA ESME ESMI FANG FDMG FFAIL FIB_FRAC FIB_LEN FIB_ORI FINST FLUX FMAX FRSK HSMS GRUC LODE_ANGLE MLEA MSQV MXYZ NXYZ OFFSET PABS PATH PEPTH PEPTH_ORTHO PEPS PEPTH PRAY PRUP0 PRUP1 PRUP2 PRUP3 PRUP4 PRUP5 PRUP6 PRUP7 PRUP8 PRUP9 PRUP10 PSIG RISK SHPR SIGF SIGL SIGL_ORTHO SIGM SIGM_ORTHO SMAX SRAL SRMS STRA STRESS_TRIAXIALITY TEMP THIC THIN USRP USRV USRV0 USRV1 USRV2 USRV3 USRV4 USRV5 USRV6 USRV7 USRV8 USRV9 USRV10 USRV11 USRV12 USRV13 USRV14 USRV15 USRV16 USRV17 USRV18 USRV19 USRV20 USRV21 USRV22 USRV23 USRV24 USRV25 USRV26 USRV27 USRV28 USRV29 USRV30 USRV31 USRV32 USRV33 USRV34 USRV35 USRV36 USRV37 USRV38 USRV39 USRV40 USRV41 USRV42 USRV43 USRV44 USRV45 USRV46 USRV47 USRV48 VAUX WRIN DFLT ENTH FLUX NO
    syn region      pam_Control_OCTRL_RANTHP          contained containedin=pam_Control_OCTRL matchgroup=pam_Keyword start="RANTHP" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Control_OCTRL_RANTHP_arg,pam_Control_YESNO,pam_Error,pam_FreeError,pam_FreeVar,pam_Continue
@@ -1955,6 +1958,7 @@ hi def link pam_Control_OCTRL_RANPLOT_arg pam_Argument
 hi def link pam_Control_OCTRL_PREFILTER_arg pam_Argument
 hi def link pam_Control_OCTRL_GLBTHP_arg pam_Argument
 hi def link pam_Control_OCTRL_SHLTHP_arg pam_Argument
+hi def link pam_Control_OCTRL_NODTHP_arg pam_Argument
 hi def link pam_Control_OCTRL_BEATHP_arg pam_Argument
 hi def link pam_Control_OCTRL_RANTHP_arg pam_Argument
 hi def link pam_Control_OCTRL_PRINT_arg pam_Argument
@@ -3477,35 +3481,44 @@ syn region      pam_BELTS                matchgroup=pam_CardTag start="^\CBELTS 
 " === BELTS end}}}
 
 " {{{=== RETRA begin
+      syn match       pam_RETRA_r1_e1             display contained containedin=pam_RETRAX_r1,pam_RETRA1_r1,pam_RETRA2_r1 "\%17c.\{,8\}"
+      syn match       pam_RETRA_r1_a1             display contained containedin=pam_RETRAX_r1,pam_RETRA1_r1,pam_RETRA2_r1 "\%17c      [12]\CD"
+      hi def link pam_RETRA_r1_e1 pam_evenError
+      hi def link pam_RETRA_r1_a1 pam_evenArgument
    "Row 2 (Name)
    syn region      pam_RETRAX_r2     transparent contained containedin=pam_RETRAX start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_Comment,pam_Comment_Position skipnl keepend
    "Row 1
-   syn region      pam_RETRAX_r1     transparent contained containedin=pam_RETRAX start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_RETRAX_r2 skipnl keepend
+   syn region      pam_RETRAX_r1     transparent contained containedin=pam_RETRAX start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_RETRAX_r2 skipnl keepend
    syn region      pam_RETRAX               matchgroup=pam_CardTag start="^\CRETRA /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_RETRAX_r[1-2] keepend
    "Row 3
    syn region      pam_RETRA1_r3     transparent contained containedin=pam_RETRA1 start="\%1c." start="^$\n" end="\%$" contains=pam_Comment,pam_Comment_Position keepend
    "Row 2 (Name)
    syn region      pam_RETRA1_r2     transparent contained containedin=pam_RETRA1 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_RETRA1_r3 skipnl keepend
    "Row 1
-   syn region      pam_RETRA1_r1     transparent contained containedin=pam_RETRA1 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_RETRA1_r2 skipnl keepend
-syn region      pam_RETRA1               matchgroup=pam_CardTag start="^\CRETRA / .\{8\}[ ]\{7\}1"rs=s+8 end="^\CEND_RETRA" contains=pam_RETRA1_r[1-3] keepend
+   syn region      pam_RETRA1_r1     transparent contained containedin=pam_RETRA1 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_RETRA1_r2 skipnl keepend
+syn region      pam_RETRA1               matchgroup=pam_CardTag start="^\CRETRA / .\{8\}[ ]\{6\}1\CD"rs=s+8 end="^\CEND_RETRA" contains=pam_RETRA1_r[1-3] keepend
    "Row 3
    syn region      pam_RETRA2_r3     transparent contained containedin=pam_RETRA2 start="\%1c." start="^$\n" end="\%$" contains=pam_Comment,pam_Comment_Position keepend
    "Row 2 (Name)
    syn region      pam_RETRA2_r2     transparent contained containedin=pam_RETRA2 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_RETRA2_r3 skipnl keepend
    "Row 1
-   syn region      pam_RETRA2_r1     transparent contained containedin=pam_RETRA2 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_RETRA2_r2 skipnl keepend
-syn region      pam_RETRA2               matchgroup=pam_CardTag start="^\CRETRA / .\{8\}[ ]\{7\}2"rs=s+8 end="^\CEND_RETRA" contains=pam_RETRA2_r[1-3] keepend
+   syn region      pam_RETRA2_r1     transparent contained containedin=pam_RETRA2 start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_RETRA2_r2 skipnl keepend
+syn region      pam_RETRA2               matchgroup=pam_CardTag start="^\CRETRA / .\{8\}[ ]\{6\}2\CD"rs=s+8 end="^\CEND_RETRA" contains=pam_RETRA2_r[1-3] keepend
    " {{{ SLOT
-   syn region      pam_RETRA_SLOT     transparent contained containedin=pam_RETRA1_r3,pam_RETRA2_r3 matchgroup=pam_Keyword start="\%1c[ ]*\CSLOT" end="^[ ]*END_SLOT" contains=pam_RETRA_SLOT_arg,pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
-      syn region      pam_RETRA_SLOT_arg     transparent contained containedin=pam_RETRA_SLOT matchgroup=pam_Argument start="\%1c[ ]*\CATTACHEMENT_NODE" start="^$\n" end="\n[\$\#]\@!" contains=pam_FreeVar,pam_FreeError,pam_Integer,pam_Comment,pam_Comment_Position,pam_Error keepend
-      syn region      pam_RETRA_SLOT_arg     transparent contained containedin=pam_RETRA_SLOT matchgroup=pam_Argument start="\%1c[ ]*\CELEMENT_PULL_OUT_FRACTION" start="^$\n" end="\n[\$\#]\@!" contains=pam_FreeVar,pam_FreeError,pam_Float,pam_Comment,pam_Comment_Position,pam_Error keepend
-      syn region      pam_RETRA_SLOT_arg     transparent contained  containedin=pam_RETRA_SLOT matchgroup=pam_Argument start="\%1c[ ]*\CELEMENT_PULL_IN_FRACTION" start="^$\n" end="\n[\$\#]\@!" contains=pam_FreeVar,pam_FreeError,pam_Float,pam_Comment,pam_Comment_Position,pam_Error keepend
+   syn region      pam_RETRA_SLOT1     transparent contained containedin=pam_RETRA1_r3 matchgroup=pam_Keyword start="\%1c[ ]*\CSLOT" end="^[ ]*END_SLOT" contains=pam_RETRA_SLOT_arg,pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
+      syn region      pam_RETRA_SLOT1_arg     transparent contained containedin=pam_RETRA_SLOT1 matchgroup=pam_Argument start="\%1c[ ]*\CATTACHEMENT_NODE" start="^$\n" end="\n[\$\#]\@!" contains=pam_FreeVar,pam_FreeError,pam_Integer,pam_Comment,pam_Comment_Position,pam_Error keepend
+      syn region      pam_RETRA_SLOT1_arg     transparent contained containedin=pam_RETRA_SLOT1 matchgroup=pam_Argument start="\%1c[ ]*\CELEMENT_PULL_OUT_FRACTION" start="^$\n" end="\n[\$\#]\@!" contains=pam_FreeVar,pam_FreeError,pam_Float,pam_Comment,pam_Comment_Position,pam_Error keepend
+      syn region      pam_RETRA_SLOT1_arg     transparent contained  containedin=pam_RETRA_SLOT1 matchgroup=pam_Argument start="\%1c[ ]*\CELEMENT_PULL_IN_FRACTION" start="^$\n" end="\n[\$\#]\@!" contains=pam_FreeVar,pam_FreeError,pam_Float,pam_Comment,pam_Comment_Position,pam_Error keepend
+   syn region      pam_RETRA_SLOT2     transparent contained containedin=pam_RETRA2_r3 matchgroup=pam_Keyword start="\%1c[ ]*\CSLOT" end="^[ ]*END_SLOT" contains=pam_RETRA_SLOT_arg,pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
+      syn region      pam_RETRA_SLOT2_arg   transparent contained containedin=pam_RETRA_SLOT2 start="\%1c." start="^$\n" matchgroup=pam_CardTag end="\%$" contains=@pam_Ident,pam_Comment,pam_Comment_Position,pam_End,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position keepend
+      syn region      pam_RETRA_SLOT2_arg     transparent contained containedin=pam_RETRA_SLOT2 matchgroup=pam_Argument start="\%1c[ ]*\CATTACHMENT_NODE" start="^$\n" end="\n[\$\#]\@!" contains=pam_FreeVar,pam_FreeError,pam_Integer,pam_Comment,pam_Comment_Position,pam_Error keepend
+      syn region      pam_RETRA_SLOT2_arg     transparent contained containedin=pam_RETRA_SLOT2 matchgroup=pam_Argument start="\%1c[ ]*\CDIRECTION_TAIL_NODE" start="^$\n" end="\n[\$\#]\@!" contains=pam_FreeVar,pam_FreeError,pam_Float,pam_Comment,pam_Comment_Position,pam_Error keepend
+      syn region      pam_RETRA_SLOT2_arg     transparent contained  containedin=pam_RETRA_SLOT2 matchgroup=pam_Argument start="\%1c[ ]*\CDIRECTION_HEAD_NODE" start="^$\n" end="\n[\$\#]\@!" contains=pam_FreeVar,pam_FreeError,pam_Float,pam_Comment,pam_Comment_Position,pam_Error keepend
    " }}} END SLOT
-   " {{{ PRETENSIONER
-   syn region      pam_RETRA_PRETENSIONER     transparent contained containedin=pam_RETRA1_r3,pam_RETRA2_r3 matchgroup=pam_Keyword start="\%1c[ ]*\CPRETENSIONER" end="^[ ]*END_PRETENSIONER" contains=pam_RETRA_PRETENSIONER_arg,pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
-      syn region      pam_RETRA_PRETENSIONER_arg     transparent contained containedin=pam_RETRA_PRETENSIONER matchgroup=pam_Argument start="\%1c[ ]*\CPRETENSION_FORCE" start="^$\n" end="\n[\$\#]\@!" contains=pam_FreeVar,pam_FreeError,pam_Float,pam_Comment,pam_Comment_Position,pam_Error keepend
-   " }}} END PRETENSIONER
+   " {{{ PRETENSION
+   syn region      pam_RETRA_PRETENSION     transparent contained containedin=pam_RETRA1_r3,pam_RETRA2_r3 matchgroup=pam_Keyword start="\%1c[ ]*\CPRETENSION" end="^[ ]*END_PRETENSION" contains=pam_RETRA_PRETENSION_arg,pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
+      syn region      pam_RETRA_PRETENSION_arg     transparent contained containedin=pam_RETRA_PRETENSION matchgroup=pam_Argument start="\%1c[ ]*\CPRETENSION_FORCE" start="^$\n" end="\n[\$\#]\@!" contains=pam_FreeVar,pam_FreeError,pam_Float,pam_Comment,pam_Comment_Position,pam_Error keepend
+   " }}} END PRETENSION
    " {{{ LOCKING
    syn region      pam_RETRA_LOCKING     transparent contained containedin=pam_RETRA1_r3,pam_RETRA2_r3 matchgroup=pam_Keyword start="\%1c[ ]*\CLOCKING" end="^[ ]*END_LOCKING" contains=pam_RETRA_LOCKING_arg,pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
       syn region      pam_RETRA_LOCKING_arg     transparent contained containedin=pam_RETRA_LOCKING matchgroup=pam_Argument start="\%1c[ ]*\CLOCKING_SENSOR" start="^$\n" end="\n[\$\#]\@!" contains=pam_FreeVar,pam_FreeError,pam_Integer,pam_Comment,pam_Comment_Position,pam_Error keepend
@@ -4194,7 +4207,7 @@ syn region      pam_CNTAC154        matchgroup=pam_CardTag start="^\CCNTAC / .\{
          " }}} 
       " }}}
       " {{{ ADVANCED
-       syn region      pam_CNTACnew_MODULE_ADVANCED   transparent contained containedin=pam_CNTACnew_MECHANICAL_M2M matchgroup=pam_CardTag start="^[ ]*\CADVANCED" end="^[ ]*\CEND_ADVANCED" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+       syn region      pam_CNTACnew_MODULE_ADVANCED   transparent contained containedin=pam_CNTACnew_MECHANICAL_M2M matchgroup=pam_CardTag start="^[ ]*\CADVANCED_OPTIONS" end="^[ ]*\CEND_ADVANCED_OPTIONS" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
            " {{{ AIRBAG_LEAKAGE
            syn region      pam_CNTACnew_MODULE_ADVANCED_AIRBAG_LEAKAGE   transparent contained containedin=pam_CNTACnew_MODULE_ADVANCED matchgroup=pam_CardTag start="^[ ]*\CAIRBAG_LEAKAGE" end="^[ ]*\CEND_AIRBAG_LEAKAGE" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
              " {{{ MODEL
@@ -4222,7 +4235,7 @@ syn region      pam_CNTAC154        matchgroup=pam_CardTag start="^\CCNTAC / .\{
              syn region      pam_CNTACnew_ADVANCED_MONITORING_MODEL transparent contained containedin=pam_CNTACnew_MODULE_ADVANCED_MONITORING matchgroup=pam_CardTag start="^[ ]*\CMODEL" end="^[ ]*\CEND_MODEL" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
                 " {{{ INTERFACE
                 syn region      pam_CNTACnew_ADVANCED_MONITORING_MODEL_INTERFACE transparent contained containedin=pam_CNTACnew_ADVANCED_MONITORING_MODEL matchgroup=pam_Keyword start="\CINTERFACE" end="\%$" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
-                    syn region   pam_CNTACnew_ADVANCED_MONITORING_MODEL_INTERFACE_CNTAC_ELEMENTS transparent contained containedin=pam_CNTACnew_ADVANCED_MONITORING_MODEL_INTERFACE matchgroup=pam_Argument start="^[ ]*\CCNTAC_ELEMENTS" end="\n[\$\#]\@!" contains=pam_Control_YESNO,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                    syn region   pam_CNTACnew_ADVANCED_MONITORING_MODEL_INTERFACE_CNTAC_ELEMENTS transparent contained containedin=pam_CNTACnew_ADVANCED_MONITORING_MODEL_INTERFACE matchgroup=pam_Argument start="^[ ]*\CCNTAC_ELEMENTS" end="\n[\$\#]\@!" contains=pam_Control_QYESNO,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
                 " }}} 
            " }}}
          " }}} 
@@ -4702,11 +4715,11 @@ hi def link pam_PART_COS3D_r1_a2 pam_evenArgument
       syn region      pam_MBPART_COS3D_CONTACT_r1 transparent contained containedin=pam_MBPART_COS3D_CONTACT start="\%1c[^\$\#]" start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,@21f5,@26f5,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
    " CONTACT
    syn region      pam_MBPART_COS3D_CONTACT transparent contained containedin=pam_MBPART_COS3D,pam_PART_MODULAR_SHELL matchgroup=pam_CardTag start="^\CCONTACT" end="^\CEND_CONTACT" contains=pam_MBPART_COS3D_CONTACT_r1,pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
-syn region      pam_MBPART_COS3D        matchgroup=pam_CardTag start="^\CPART  / .\{8\}[ ]*\CCOS3D[ ]*\%25c.*\%73c\(\CMMAT\|\CMATER\|\CANY\)"rs=s+8 end="^\CEND_PART" contains=pam_Comment,pam_Comment_Position keepend
+syn region      pam_MBPART_COS3D        matchgroup=pam_CardTag start="^\CPART  / .\{8\}[ ]*\CCOS3D[ ]*\%25c.*\%73c[ ]*\(\CMMAT\|\CMATER\|\CANY\)[ ]*\%81c"rs=s+8 end="^\CEND_PART" contains=pam_Comment,pam_Comment_Position keepend
 syn match       pam_MBPART_COS3D_r1_a2             display contained containedin=pam_MBPART_COS3D_r1 "\%17c[ ]*\CCOS3D[ ]*\%25c"
 hi def link pam_MBPART_COS3D_r1_a2 pam_evenArgument
 syn match       pam_MBPART_COS3D_r1_e3             display contained containedin=pam_MBPART_COS3D_r1 "\%73c.\{1,8\}"
-syn match       pam_MBPART_COS3D_r1_a3             display contained containedin=pam_MBPART_COS3D_r1 "\%73c\(\CMATER\|MMAT\|ANY\)[ ]*\%81c"
+syn match       pam_MBPART_COS3D_r1_a3             display contained containedin=pam_MBPART_COS3D_r1 "\%73c[ ]*\(\CMATER\|MMAT\|ANY\)[ ]*\%81c"
 hi def link pam_MBPART_COS3D_r1_a3 pam_evenArgument
 hi def link pam_MBPART_COS3D_r1_e3 pam_evenError
 " === PART Typ SHELL end}}}
@@ -4732,11 +4745,11 @@ hi def link pam_MBPART_COS3D_r1_e3 pam_evenError
       syn region      pam_MBPART_COS2D_CONTACT_r1 transparent contained containedin=pam_MBPART_COS2D_CONTACT start="\%1c[^\$\#]" start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,@21f5,@26f5,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
    " CONTACT
    syn region      pam_MBPART_COS2D_CONTACT transparent contained containedin=pam_MBPART_COS2D,pam_PART_MODULAR_SHELL matchgroup=pam_CardTag start="^\CCONTACT" end="^\CEND_CONTACT" contains=pam_MBPART_COS2D_CONTACT_r1,pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
-syn region      pam_MBPART_COS2D        matchgroup=pam_CardTag start="^\CPART  / .\{8\}[ ]*\CCOS2D[ ]*\%25c.*\%73c\(\CMMAT\|\CMATER\|\CANY\)"rs=s+8 end="^\CEND_PART" contains=pam_Comment,pam_Comment_Position keepend
+syn region      pam_MBPART_COS2D        matchgroup=pam_CardTag start="^\CPART  / .\{8\}[ ]*\CCOS2D[ ]*\%25c.*\%73c[ ]*\(\CMMAT\|\CMATER\|\CANY\)[ ]*\%81c"rs=s+8 end="^\CEND_PART" contains=pam_Comment,pam_Comment_Position keepend
 syn match       pam_MBPART_COS2D_r1_a2             display contained containedin=pam_MBPART_COS2D_r1 "\%17c[ ]*\CCOS2D[ ]*\%25c"
 hi def link pam_MBPART_COS2D_r1_a2 pam_evenArgument
 syn match       pam_MBPART_COS2D_r1_e3             display contained containedin=pam_MBPART_COS2D_r1 "\%73c.\{1,8\}"
-syn match       pam_MBPART_COS2D_r1_a3             display contained containedin=pam_MBPART_COS2D_r1 "\%73c\(\CMATER\|MMAT\|ANY\)[ ]*\%81c"
+syn match       pam_MBPART_COS2D_r1_a3             display contained containedin=pam_MBPART_COS2D_r1 "\%73c[ ]*\(\CMATER\|MMAT\|ANY\)[ ]*\%81c"
 hi def link pam_MBPART_COS2D_r1_a3 pam_evenArgument
 hi def link pam_MBPART_COS2D_r1_e3 pam_evenError
 " === PART Typ SHELL end}}}
@@ -4788,11 +4801,11 @@ hi def link pam_PART_SOLID_r1_a2 pam_evenArgument
       syn region      pam_MBPART_SOLID_CONTACT_r1 transparent contained containedin=pam_MBPART_SOLID_CONTACT start="\%1c[^\$\#]" start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,@21f5,@26f5,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
    " CONTACT
    syn region      pam_MBPART_SOLID_CONTACT transparent contained containedin=pam_MBPART_SOLID,pam_PART_MODULAR_SOLID matchgroup=pam_CardTag start="^\CCONTACT" end="^\CEND_CONTACT" contains=pam_MBPART_SOLID_CONTACT_r1,pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
-syn region      pam_MBPART_SOLID        matchgroup=pam_CardTag start="^\CPART  / .\{8\}[ ]*\CSOLID[ ]*\%25c.*\%73c\(\CMMAT\|\CMATER\|\CANY\)"rs=s+8 end="^\CEND_PART" contains=pam_Comment,pam_Comment_Position keepend
+syn region      pam_MBPART_SOLID        matchgroup=pam_CardTag start="^\CPART  / .\{8\}[ ]*\CSOLID[ ]*\%25c.*\%73c[ ]*\(\CMMAT\|\CMATER\|\CANY\)[ ]*\%81c"rs=s+8 end="^\CEND_PART" contains=pam_Comment,pam_Comment_Position keepend
 syn match       pam_MBPART_SOLID_r1_a2             display contained containedin=pam_MBPART_SOLID_r1 "\%17c[ ]*\CSOLID[ ]*\%25c"
 hi def link pam_MBPART_SOLID_r1_a2 pam_evenArgument
 syn match       pam_MBPART_SOLID_r1_e3             display contained containedin=pam_MBPART_SOLID_r1 "\%73c.\{1,8\}"
-syn match       pam_MBPART_SOLID_r1_a3             display contained containedin=pam_MBPART_SOLID_r1 "\%73c\(\CMATER\|MMAT\|ANY\)[ ]*\%81c"
+syn match       pam_MBPART_SOLID_r1_a3             display contained containedin=pam_MBPART_SOLID_r1 "\%73c[ ]*\(\CMATER\|MMAT\|ANY\)[ ]*\%81c"
 hi def link pam_MBPART_SOLID_r1_a3 pam_evenArgument
 hi def link pam_MBPART_SOLID_r1_e3 pam_evenError
 " === PART Typ SOLID (Multi-Block definition) end}}}
@@ -4856,11 +4869,11 @@ hi def link pam_MBPART_SOLID_r1_e3 pam_evenError
       syn region      pam_MBPART_SHELL_CONTACT_r1 transparent contained containedin=pam_MBPART_SHELL_CONTACT start="\%1c[^\$\#]" start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,@21f5,@26f5,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
    " CONTACT
    syn region      pam_MBPART_SHELL_CONTACT transparent contained containedin=pam_MBPART_SHELL,pam_PART_MODULAR_SHELL matchgroup=pam_CardTag start="^\CCONTACT" end="^\CEND_CONTACT" contains=pam_MBPART_SHELL_CONTACT_r1,pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
-syn region      pam_MBPART_SHELL        matchgroup=pam_CardTag start="^\CPART  / .\{8\}[ ]*\CSHELL[ ]*\%25c.*\%73c\(\CMMAT\|\CMATER\|\CANY\)"rs=s+8 end="^\CEND_PART" contains=pam_Comment,pam_Comment_Position keepend
+syn region      pam_MBPART_SHELL        matchgroup=pam_CardTag start="^\CPART  / .\{8\}[ ]*\CSHELL[ ]*\%25c.*\%73c[ ]*\(\CMMAT\|\CMATER\|\CANY\)[ ]*\%81c"rs=s+8 end="^\CEND_PART" contains=pam_Comment,pam_Comment_Position keepend
 syn match       pam_MBPART_SHELL_r1_a2             display contained containedin=pam_MBPART_SHELL_r1 "\%17c[ ]*\CSHELL[ ]*\%25c"
 hi def link pam_MBPART_SHELL_r1_a2 pam_evenArgument
 syn match       pam_MBPART_SHELL_r1_e3             display contained containedin=pam_MBPART_SHELL_r1 "\%73c.\{1,8\}"
-syn match       pam_MBPART_SHELL_r1_a3             display contained containedin=pam_MBPART_SHELL_r1 "\%73c\(\CMATER\|MMAT\|ANY\)[ ]*\%81c"
+syn match       pam_MBPART_SHELL_r1_a3             display contained containedin=pam_MBPART_SHELL_r1 "\%73c[ ]*\(\CMATER\|MMAT\|ANY\)[ ]*\%81c"
 hi def link pam_MBPART_SHELL_r1_a3 pam_evenArgument
 hi def link pam_MBPART_SHELL_r1_e3 pam_evenError
 " === PART Typ SHELL (Multi-Block definition) end}}}
@@ -4984,11 +4997,11 @@ hi def link pam_PART_BAR_r1_e2 pam_evenError
       syn region      pam_MBPART_BAR_CONTACT_r1 transparent contained containedin=pam_MBPART_BAR_CONTACT start="\%1c[^\$\#]" start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,@21f5,@26f5,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
    " CONTACT
    syn region      pam_MBPART_BAR_CONTACT transparent contained containedin=pam_MBPART_BAR,pam_PART_MODULAR_SHELL matchgroup=pam_CardTag start="^\CCONTACT" end="^\CEND_CONTACT" contains=pam_MBPART_BAR_CONTACT_r1,pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
-syn region      pam_MBPART_BAR        matchgroup=pam_CardTag start="^\CPART  / .\{8\}[ ]*\CBAR[ ]*\%25c.*\%73c\(\CMMAT\|\CMATER\|\CANY\)"rs=s+8 end="^\CEND_PART" contains=pam_Comment,pam_Comment_Position keepend
+syn region      pam_MBPART_BAR        matchgroup=pam_CardTag start="^\CPART  / .\{8\}[ ]*\CBAR[ ]*\%25c.*\%73c[ ]*\(\CMMAT\|\CMATER\|\CANY\)[ ]*\%81c"rs=s+8 end="^\CEND_PART" contains=pam_Comment,pam_Comment_Position keepend
 syn match       pam_MBPART_BAR_r1_a2             display contained containedin=pam_MBPART_BAR_r1 "\%17c[ ]*\CBAR[ ]*\%25c"
 hi def link pam_MBPART_BAR_r1_a2 pam_evenArgument
 syn match       pam_MBPART_BAR_r1_e3             display contained containedin=pam_MBPART_BAR_r1 "\%73c.\{1,8\}"
-syn match       pam_MBPART_BAR_r1_a3             display contained containedin=pam_MBPART_BAR_r1 "\%73c\(\CMATER\|MMAT\|ANY\)[ ]*\%81c"
+syn match       pam_MBPART_BAR_r1_a3             display contained containedin=pam_MBPART_BAR_r1 "\%73c[ ]*\(\CMATER\|MMAT\|ANY\)[ ]*\%81c"
 hi def link pam_MBPART_BAR_r1_a3 pam_evenArgument
 hi def link pam_MBPART_BAR_r1_e3 pam_evenError
 " === PART Typ BAR (Multi-Block definition) end}}}
@@ -5227,11 +5240,11 @@ hi def link pam_PART_BEAM_r1_e2 pam_evenError
       syn region      pam_MBPART_BEAM_CONTACT_r1 transparent contained containedin=pam_MBPART_BEAM_CONTACT start="\%1c[^\$\#]" start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,@21f5,@26f5,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
    " CONTACT
    syn region      pam_MBPART_BEAM_CONTACT transparent contained containedin=pam_MBPART_BEAM,pam_PART_MODULAR_SHELL matchgroup=pam_CardTag start="^\CCONTACT" end="^\CEND_CONTACT" contains=pam_MBPART_BEAM_CONTACT_r1,pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
-syn region      pam_MBPART_BEAM        matchgroup=pam_CardTag start="^\CPART  / .\{8\}[ ]*\CBEAM[ ]*\%25c.*\%73c\(\CMMAT\|\CMATER\|\CANY\)"rs=s+8 end="^\CEND_PART" contains=pam_Comment,pam_Comment_Position keepend
+syn region      pam_MBPART_BEAM        matchgroup=pam_CardTag start="^\CPART  / .\{8\}[ ]*\CBEAM[ ]*\%25c.*\%73c[ ]*\(\CMMAT\|\CMATER\|\CANY\)[ ]*\%81c"rs=s+8 end="^\CEND_PART" contains=pam_Comment,pam_Comment_Position keepend
 syn match       pam_MBPART_BEAM_r1_a2             display contained containedin=pam_MBPART_BEAM_r1 "\%17c[ ]*\CBEAM[ ]*\%25c"
 hi def link pam_MBPART_BEAM_r1_a2 pam_evenArgument
 syn match       pam_MBPART_BEAM_r1_e3             display contained containedin=pam_MBPART_BEAM_r1 "\%73c.\{1,8\}"
-syn match       pam_MBPART_BEAM_r1_a3             display contained containedin=pam_MBPART_BEAM_r1 "\%73c\(\CMATER\|MMAT\|ANY\)[ ]*\%81c"
+syn match       pam_MBPART_BEAM_r1_a3             display contained containedin=pam_MBPART_BEAM_r1 "\%73c[ ]*\(\CMATER\|MMAT\|ANY\)[ ]*\%81c"
 hi def link pam_MBPART_BEAM_r1_a3 pam_evenArgument
 hi def link pam_MBPART_BEAM_r1_e3 pam_evenError
 " === PART Typ BEAM (Multi-Block Definition) end}}}
@@ -6215,7 +6228,7 @@ syn region      pam_PLink          matchgroup=pam_CardTag start="^\CPLINK /" end
 
 "{{{ === PLY begin
    syn cluster        pam_PLY          contains=pam_PLY0,pam_PLY1,pam_PLY2,pam_PLY6,pam_PLY7,pam_PLY8
-   syn cluster        pam_PLYFAIL      contains=pam_PLYFAILX,pam_PLYFAIL0,pam_PLYFAIL1,pam_PLYFAIL6,pam_PLYFAIL7,pam_PLYFAIL8,pam_PLYFAIL10,pam_PLYFAIL11
+   syn cluster        pam_PLYFAIL      contains=pam_PLYFAILX,pam_PLYFAIL0,pam_PLYFAIL1,pam_PLYFAIL6,pam_PLYFAIL7,pam_PLYFAIL8,pam_PLYFAIL10,pam_PLYFAIL11,pam_PLYFAIL12
    " PLY FAIL X
       syn region      pam_PLYFAILX      transparent contained containedin=@pam_PLY start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1i10,@11i10,@21i10,@31i10,@41i10,@51i10,@61i10,@71i10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PLYX_r2 skipnl keepend
    " PLYFAIL 0,9
@@ -6256,9 +6269,10 @@ syn region      pam_PLink          matchgroup=pam_CardTag start="^\CPLINK /" end
       syn region      pam_PLYFAIL11_r1      transparent contained containedin=pam_PLYFAIL11 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1i10,@11i10,@21i10,@31i10,@41i10,@51i10,@61i10,@71i10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PLYFAIL11_r2 skipnl keepend
       syn region      pam_PLYFAIL11      transparent contained containedin=@pam_PLY start="\%1c.\{18\}11"rs=s+10 start="^$\n" end="\%$" contains=pam_PLYFAIL11_r[1-2] skipnl keepend
    " PLYFAIL 12
-      syn region      pam_PLYFAIL12_r3      transparent contained containedin=pam_PLYFAIL12 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@12f10,@21f10,@31f10,@41f10,@51f10,@61f10,@71f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
-      syn region      pam_PLYFAIL12_r2      transparent contained containedin=pam_PLYFAIL12 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@12f10,@21f10,@31f10,@41f10,@51f10,@61f10,@71f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PLYFAIL12_r3 skipnl keepend
-      syn region      pam_PLYFAIL12_r1      transparent contained containedin=pam_PLYFAIL12 start="\%1c\CULIB" start="^$\n" end="\n[\$\#]\@!" contains=pam_String,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PLYFAIL12_r2 skipnl keepend
+      syn region      pam_PLYFAIL12_r4      transparent contained containedin=pam_PLYFAIL12 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,@12f10,@21f10,@31f10,@41f10,@51f10,@61f10,@71f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
+      syn region      pam_PLYFAIL12_r3      transparent contained containedin=pam_PLYFAIL12 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,@12f10,@21f10,@31f10,@41f10,@51f10,@61f10,@71f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PLYFAIL12_r4 skipnl keepend
+      syn region      pam_PLYFAIL12_r2      transparent contained containedin=pam_PLYFAIL12 matchgroup=pam_Keyword start="^\CULIB" start="^$\n" end="\n[\$\#]\@!" contains=pam_String,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PLYFAIL12_r3 skipnl keepend
+      syn region      pam_PLYFAIL12_r1      transparent contained containedin=pam_PLYFAIL12 start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@1i10,@11i10,@21i10,@31i10,@41i10,@51i10,@61i10,@71i10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_PLYFAIL12_r2 skipnl keepend
       syn region      pam_PLYFAIL12      transparent contained containedin=@pam_PLY start="\%1c.\{18\}12"rs=s+10 start="^$\n" end="\%$" contains=pam_PLYFAIL12_r[1-2] skipnl keepend
    " PLY X
       syn region      pam_PLYX_r2      transparent contained containedin=pam_PLYX start="\%1c." start="^$\n" end="\%$" contains=pam_Name,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_Comment,pam_Comment_Position skipnl keepend
@@ -10026,9 +10040,9 @@ syn region      pam_Mater371        matchgroup=pam_CardTag start="^\CMATER / .\{
             syn region      pam_MMAT_FAILURE_DUCTILE_CURVES_r2     transparent contained containedin=pam_MMAT_FAILURE_DUCTILE_CURVES start="\%1c[^\$\#]" start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,@21f10,@31f10,@41f10,@51f10,@61f10,@71f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_MMAT_FAILURE_DUCTILE_CURVES_r3 skipnl keepend
             syn region      pam_MMAT_FAILURE_DUCTILE_CURVES_r1     transparent contained containedin=pam_MMAT_FAILURE_DUCTILE_CURVES start="\%1c[^\$\#]" start="^$\n" end="\n[\$\#]\@!" contains=@1i10,@11i10,@21i10,@31i10,@41i10,@51i10,@61i10,@71i10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_MMAT_FAILURE_DUCTILE_CURVES_r2 skipnl keepend
          syn region      pam_MMAT_FAILURE_DUCTILE_CURVES   transparent contained containedin=pam_MMAT_FAILURE matchgroup=pam_Keyword start="^[ ]*\CDUCTILE_CURVES" end="^[ ]*[A-Z]"me=s-1 contains=pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
-            syn region      pam_MMAT_FAILURE_GLOBAL_BEHAVIOR_r2     transparent contained containedin=pam_MMAT_FAILURE_GLOBAL_BEHAVIOR start="\%1c[^\$\#]" start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,@21f10,@31f10,@41f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
-            syn region      pam_MMAT_FAILURE_GLOBAL_BEHAVIOR_r1     transparent contained containedin=pam_MMAT_FAILURE_GLOBAL_BEHAVIOR start="\%1c[^\$\#]" start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,@21i10,@31f10,@41i10,@51f10,@61f10,@71f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_MMAT_FAILURE_GLOBAL_BEHAVIOR_r2 skipnl keepend
-         syn region      pam_MMAT_FAILURE_GLOBAL_BEHAVIOR   transparent contained containedin=pam_MMAT_FAILURE matchgroup=pam_Keyword start="^[ ]*\CGLOBAL_BEHAVIOR" end="^[ ]*[A-Z]"me=s-1 contains=pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
+            syn region      pam_MMAT_FAILURE_GLOBAL_BEHAVIOUR_r2     transparent contained containedin=pam_MMAT_FAILURE_GLOBAL_BEHAVIOUR start="\%1c[^\$\#]" start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,@21f10,@31f10,@41f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
+            syn region      pam_MMAT_FAILURE_GLOBAL_BEHAVIOUR_r1     transparent contained containedin=pam_MMAT_FAILURE_GLOBAL_BEHAVIOUR start="\%1c[^\$\#]" start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,@21i10,@31f10,@41i10,@51f10,@61f10,@71f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_MMAT_FAILURE_GLOBAL_BEHAVIOUR_r2 skipnl keepend
+         syn region      pam_MMAT_FAILURE_GLOBAL_BEHAVIOUR   transparent contained containedin=pam_MMAT_FAILURE matchgroup=pam_Keyword start="^[ ]*\CGLOBAL_BEHAVIOUR" end="^[ ]*[A-Z]"me=s-1 contains=pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
             syn region      pam_MMAT_FAILURE_EXTENDED_COCKCROFT_LATHAM_r2     transparent contained containedin=pam_MMAT_FAILURE_EXTENDED_COCKCROFT_LATHAM start="\%1c[^\$\#]" start="^$\n" end="\n[\$\#]\@!" contains=@1f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
             syn region      pam_MMAT_FAILURE_EXTENDED_COCKCROFT_LATHAM_r1     transparent contained containedin=pam_MMAT_FAILURE_EXTENDED_COCKCROFT_LATHAM start="\%1c[^\$\#]" start="^$\n" end="\n[\$\#]\@!" contains=@1f10,@11f10,@21f10,@31f10,@41f10,@51f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_MMAT_FAILURE_EXTENDED_COCKCROFT_LATHAM_r2 skipnl keepend
          syn region      pam_MMAT_FAILURE_EXTENDED_COCKCROFT_LATHAM   transparent contained containedin=pam_MMAT_FAILURE matchgroup=pam_Keyword start="^[ ]*\CEXTENDED_COCKCROFT_LATHAM" end="^[ ]*[A-Z]"me=s-1 contains=pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
@@ -10419,17 +10433,19 @@ syn region      pam_MMAT        matchgroup=pam_CardTag start="^\CMMAT  /"rs=s+8 
          " }}} 
       " }}}
       " {{{ FAILURE
-       syn region      pam_MMATnew_FAILURE   transparent contained containedin=pam_MMATnew_MECHANICAL_EVP,pam_MMATnew_MECHANICAL_VHE,pam_MMATnew_MECHANICAL_VE matchgroup=pam_CardTag start="^[ ]*\CFAILURE" end="^[ ]*\CEND_FAILURE[\s\n]" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+       syn region      pam_MMATnew_FAILURE   transparent contained containedin=pam_MMATnew_MECHANICAL_EVP,pam_MMATnew_MECHANICAL_VHE,pam_MMATnew_MECHANICAL_VE matchgroup=pam_CardTag start="^[ ]*\CFAILURE" end="^[ ]*\CEND_FAILURE\S\@!" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
          " {{{ INSTABILITY_RISK
          syn region      pam_MMATnew_FAILURE_INSTABILITY_RISK   transparent contained containedin=pam_MMATnew_FAILURE matchgroup=pam_CardTag start="^[ ]*\CINSTABILITY_RISK" end="^[ ]*\CEND_INSTABILITY_RISK" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
             " {{{ MODEL
             syn region      pam_MMATnew_FAILURE_INSTABILITY_RISK_MODEL transparent contained containedin=pam_MMATnew_FAILURE_INSTABILITY_RISK matchgroup=pam_CardTag start="^[ ]*\CMODEL" end="^[ ]*\CEND_MODEL" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
                " {{{ HILL_STOEREN_RICE
                syn region      pam_MMATnew_FAILURE_INSTABILITY_RISK_HILL_STOEREN_RICE transparent contained containedin=pam_MMATnew_FAILURE_INSTABILITY_RISK_MODEL matchgroup=pam_Keyword start="\CHILL_STOEREN_RICE" end="\%$" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
-                  syn region      pam_MMATnew_FAILURE_INSTABILITY_RISK_HILL_STOEREN_RICE_1 transparent contained containedin=pam_MMATnew_FAILURE_INSTABILITY_RISK_HILL_STOEREN_RICE matchgroup=pam_Argument start="^[ ]*\C[CN]" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                  syn region      pam_MMATnew_FAILURE_INSTABILITY_RISK_HILL_STOEREN_RICE_1 transparent contained containedin=pam_MMATnew_FAILURE_INSTABILITY_RISK_HILL_STOEREN_RICE matchgroup=pam_Argument start="^[ ]*\C[CN]" end="\n[\$\#]\@!" contains=pam_Float,pam_MMATnew_FAILURE_INSTABILITY_RISK_HILL_STOEREN_RICE_1_TABLE,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
                   syn region      pam_MMATnew_FAILURE_INSTABILITY_RISK_HILL_STOEREN_RICE_1 transparent contained containedin=pam_MMATnew_FAILURE_INSTABILITY_RISK_HILL_STOEREN_RICE matchgroup=pam_Argument start="^[ ]*\CSTRAIN_RATE_RATIO" end="\n[\$\#]\@!" contains=pam_MMATnew_FAILURE_INSTABILITY_RISK_HILL_STOEREN_RICE_1_PARAM,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
-                     syn keyword pam_MMATnew_FAILURE_INSTABILITY_RISK_HILL_STOEREN_RICE_1_PARAM contained PLASTIC_STRAIN_RATE STRESS_TRIAXIALITY TOTAL_STRAIN_RATE
+                     syn keyword pam_MMATnew_FAILURE_INSTABILITY_RISK_HILL_STOEREN_RICE_1_PARAM contained 'PLASTIC_STRAIN_RATE' 'STRESS_TRIAXIALITY' 'TOTAL_STRAIN_RATE'
                      hi def link pam_MMATnew_FAILURE_INSTABILITY_RISK_HILL_STOEREN_RICE_1_PARAM pam_Keyword
+                     syn keyword pam_MMATnew_FAILURE_INSTABILITY_RISK_HILL_STOEREN_RICE_1_TABLE contained TABLE
+                     hi def link pam_MMATnew_FAILURE_INSTABILITY_RISK_HILL_STOEREN_RICE_1_TABLE pam_Keyword
                " }}} 
                " {{{ MUESCHENBORN_SONNE
                syn region      pam_MMATnew_FAILURE_INSTABILITY_RISK_MUESCHENBORN_SONNE transparent contained containedin=pam_MMATnew_FAILURE_INSTABILITY_RISK_MODEL matchgroup=pam_Keyword start="\CMUESCHENBORN_SONNE" end="\%$" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
@@ -10465,7 +10481,9 @@ syn region      pam_MMAT        matchgroup=pam_CardTag start="^\CMMAT  /"rs=s+8 
             syn region      pam_MMATnew_FAILURE_INSTABILITY_EVOLUTION_MODEL transparent contained containedin=pam_MMATnew_FAILURE_INSTABILITY_EVOLUTION matchgroup=pam_CardTag start="^[ ]*\CMODEL" end="^[ ]*\CEND_MODEL" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
                " {{{ POSTNECKING_GREVE_ANDRES
                syn region      pam_MMATnew_FAILURE_INSTABILITY_EVOLUTION_POSTNECKING_GREVE_ANDRES transparent contained containedin=pam_MMATnew_FAILURE_INSTABILITY_EVOLUTION_MODEL matchgroup=pam_Keyword start="\CPOSTNECKING_GREVE_ANDRES" end="\%$" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
-                  syn region      pam_MMATnew_FAILURE_INSTABILITY_EVOLUTION_POSTNECKING_GREVE_ANDRES_1 transparent contained containedin=pam_MMATnew_FAILURE_INSTABILITY_EVOLUTION_POSTNECKING_GREVE_ANDRES matchgroup=pam_Argument start="^[ ]*\CLC" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                  syn region      pam_MMATnew_FAILURE_INSTABILITY_EVOLUTION_POSTNECKING_GREVE_ANDRES_1 transparent contained containedin=pam_MMATnew_FAILURE_INSTABILITY_EVOLUTION_POSTNECKING_GREVE_ANDRES matchgroup=pam_Argument start="^[ ]*\CLC" end="\n[\$\#]\@!" contains=pam_Float,pam_MMATnew_FAILURE_INSTABILITY_EVOLUTION_POSTNECKING_GREVE_ANDRES_1_TABLE,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                     syn keyword pam_MMATnew_FAILURE_INSTABILITY_EVOLUTION_POSTNECKING_GREVE_ANDRES_1_TABLE contained TABLE
+                     hi def link pam_MMATnew_FAILURE_INSTABILITY_EVOLUTION_POSTNECKING_GREVE_ANDRES_1_TABLE pam_Keyword
                " }}} 
             " }}}
          " }}} 
@@ -10517,9 +10535,9 @@ syn region      pam_MMAT        matchgroup=pam_CardTag start="^\CMMAT  /"rs=s+8 
                syn region      pam_MMATnew_FAILURE_FAILURE_RISK_MAXIMUM_HYDROSTATIC_STRESS transparent contained containedin=pam_MMATnew_FAILURE_FAILURE_RISK_MODEL matchgroup=pam_Keyword start="\CMAXIMUM_HYDROSTATIC_STRESS" end="\%$" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
                   syn region      pam_MMATnew_FAILURE_FAILURE_RISK_MAXIMUM_HYDROSTATIC_STRESS_1 transparent contained containedin=pam_MMATnew_FAILURE_FAILURE_RISK_MAXIMUM_HYDROSTATIC_STRESS matchgroup=pam_Argument start="^[ ]*\CTHRESHOLD" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
                " }}} 
-               " {{{ MAXIMUM_PRINCIPAL_STRESS
-               syn region      pam_MMATnew_FAILURE_FAILURE_RISK_MAXIMUM_PRINCIPAL_STRESS transparent contained containedin=pam_MMATnew_FAILURE_FAILURE_RISK_MODEL matchgroup=pam_Keyword start="\CMAXIMUM_PRINCIPAL_STRESS" end="\%$" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
-                  syn region      pam_MMATnew_FAILURE_FAILURE_RISK_MAXIMUM_PRINCIPAL_STRESS_1 transparent contained containedin=pam_MMATnew_FAILURE_FAILURE_RISK_MAXIMUM_PRINCIPAL_STRESS matchgroup=pam_Argument start="^[ ]*\CTHRESHOLD" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               " {{{ MAXIMUM_PRINCIPAL_STRETCH
+               syn region      pam_MMATnew_FAILURE_FAILURE_RISK_MAXIMUM_PRINCIPAL_STRETCH transparent contained containedin=pam_MMATnew_FAILURE_FAILURE_RISK_MODEL matchgroup=pam_Keyword start="\CMAXIMUM_PRINCIPAL_STRETCH" end="\%$" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                  syn region      pam_MMATnew_FAILURE_FAILURE_RISK_MAXIMUM_PRINCIPAL_STRETCH_1 transparent contained containedin=pam_MMATnew_FAILURE_FAILURE_RISK_MAXIMUM_PRINCIPAL_STRETCH matchgroup=pam_Argument start="^[ ]*\CTHRESHOLD" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
                " }}} 
             " }}}
          " }}} 
@@ -10534,7 +10552,7 @@ syn region      pam_MMAT        matchgroup=pam_CardTag start="^\CMMAT  /"rs=s+8 
                syn region      pam_MMATnew_FAILURE_FAILURE_EVOLUTION_LINEAR_PLASTIC_DISPLACEMENT transparent contained containedin=pam_MMATnew_FAILURE_FAILURE_EVOLUTION_MODEL matchgroup=pam_Keyword start="\CLINEAR_PLASTIC_DISPLACEMENT" end="\%$" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
                   syn region      pam_MMATnew_FAILURE_FAILURE_EVOLUTION_LINEAR_PLASTIC_DISPLACEMENT_1 transparent contained containedin=pam_MMATnew_FAILURE_FAILURE_EVOLUTION_LINEAR_PLASTIC_DISPLACEMENT matchgroup=pam_Argument start="^[ ]*\CUPF" end="\n[\$\#]\@!" contains=pam_MMATnew_TABLE_kw,pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
                   syn region      pam_MMATnew_FAILURE_FAILURE_EVOLUTION_LINEAR_PLASTIC_DISPLACEMENT_1 transparent contained containedin=pam_MMATnew_FAILURE_FAILURE_EVOLUTION_LINEAR_PLASTIC_DISPLACEMENT matchgroup=pam_Argument start="^[ ]*\CREDUCTION" end="\n[\$\#]\@!" contains=pam_MMATnew_FAILURE_FAILURE_EVOLUTION_LINEAR_PLASTIC_DISPLACEMENT_REDUCTION,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
-                  syn keyword pam_MMATnew_FAILURE_FAILURE_EVOLUTION_LINEAR_PLASTIC_DISPLACEMENT_REDUCTION contained MAX MULT OFF
+                  syn keyword pam_MMATnew_FAILURE_FAILURE_EVOLUTION_LINEAR_PLASTIC_DISPLACEMENT_REDUCTION contained 'MAX' 'MULT' 'OFF'
                   hi def link pam_MMATnew_FAILURE_FAILURE_EVOLUTION_LINEAR_PLASTIC_DISPLACEMENT_REDUCTION pam_Keyword
                " }}} 
                " {{{ TABULAR
@@ -10558,14 +10576,14 @@ syn region      pam_MMAT        matchgroup=pam_CardTag start="^\CMMAT  /"rs=s+8 
             " }}} 
          " }}} 
       " }}}
-      " {{{ ISOCHORIC_VISCOELASTICITY
-       syn region      pam_MMATnew_MODULE_ISOCHORIC_VISCOELASTICITY   transparent contained containedin=pam_MMATnew_MECHANICAL_VHE matchgroup=pam_CardTag start="^[ ]*\CISOCHORIC_VISCOELASTICITY" end="^[ ]*\CEND_ISOCHORIC_VISCOELASTICITY" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+      " {{{ ISOCHORIC_VISCO_ELASTICITY
+       syn region      pam_MMATnew_MODULE_ISOCHORIC_VISCO_ELASTICITY   transparent contained containedin=pam_MMATnew_MECHANICAL_VHE matchgroup=pam_CardTag start="^[ ]*\CISOCHORIC_VISCO_ELASTICITY" end="^[ ]*\CEND_ISOCHORIC_VISCO_ELASTICITY" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
          " {{{ MODEL
-         syn region      pam_MMATnew_ISOCHORIC_VISCOELASTICITY_MODEL transparent contained containedin=pam_MMATnew_MODULE_ISOCHORIC_VISCOELASTICITY matchgroup=pam_CardTag start="^[ ]*\CMODEL" end="^[ ]*\CEND_MODEL" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+         syn region      pam_MMATnew_ISOCHORIC_VISCO_ELASTICITY_MODEL transparent contained containedin=pam_MMATnew_MODULE_ISOCHORIC_VISCO_ELASTICITY matchgroup=pam_CardTag start="^[ ]*\CMODEL" end="^[ ]*\CEND_MODEL" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
             " {{{ PRONY_RELAXATION
-            syn region      pam_MMATnew_ISOCHORIC_VISCOELASTICITY_MODEL_PRONY_RELAXATION transparent contained containedin=pam_MMATnew_ISOCHORIC_VISCOELASTICITY_MODEL matchgroup=pam_Keyword start="\CPRONY_RELAXATION" end="\%$" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
-               syn region      pam_MMATnew_ISOCHORIC_VISCOELASTICITY_MODEL_PRONY_RELAXATION_1 transparent contained containedin=pam_MMATnew_ISOCHORIC_VISCOELASTICITY_MODEL_PRONY_RELAXATION matchgroup=pam_Argument start="^[ ]*\CGAMMA[1i]" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
-               syn region      pam_MMATnew_ISOCHORIC_VISCOELASTICITY_MODEL_PRONY_RELAXATION_1 transparent contained containedin=pam_MMATnew_ISOCHORIC_VISCOELASTICITY_MODEL_PRONY_RELAXATION matchgroup=pam_Argument start="^[ ]*\CTAU[1i]" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+            syn region      pam_MMATnew_ISOCHORIC_VISCO_ELASTICITY_MODEL_PRONY_RELAXATION transparent contained containedin=pam_MMATnew_ISOCHORIC_VISCO_ELASTICITY_MODEL matchgroup=pam_Keyword start="\CPRONY_RELAXATION" end="\%$" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               syn region      pam_MMATnew_ISOCHORIC_VISCO_ELASTICITY_MODEL_PRONY_RELAXATION_1 transparent contained containedin=pam_MMATnew_ISOCHORIC_VISCO_ELASTICITY_MODEL_PRONY_RELAXATION matchgroup=pam_Argument start="^[ ]*\CGAMMA[1-8i]" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               syn region      pam_MMATnew_ISOCHORIC_VISCO_ELASTICITY_MODEL_PRONY_RELAXATION_1 transparent contained containedin=pam_MMATnew_ISOCHORIC_VISCO_ELASTICITY_MODEL_PRONY_RELAXATION matchgroup=pam_Argument start="^[ ]*\CTAU[1-8i]" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
             " }}} 
          " }}} 
       " }}}
@@ -10583,14 +10601,14 @@ syn region      pam_MMAT        matchgroup=pam_CardTag start="^\CMMAT  /"rs=s+8 
             " }}} 
          " }}} 
       " }}}
-      " {{{ VOLUMETRIC_VISCOELASTICITY
-       syn region      pam_MMATnew_MODULE_VOLUMETRIC_VISCOELASTICITY   transparent contained containedin=pam_MMATnew_MECHANICAL_VHE matchgroup=pam_CardTag start="^[ ]*\CVOLUMETRIC_VISCOELASTICITY" end="^[ ]*\CEND_VOLUMETRIC_VISCOELASTICITY" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+      " {{{ VOLUMETRIC_VISCO_ELASTICITY
+       syn region      pam_MMATnew_MODULE_VOLUMETRIC_VISCO_ELASTICITY   transparent contained containedin=pam_MMATnew_MECHANICAL_VHE matchgroup=pam_CardTag start="^[ ]*\CVOLUMETRIC_VISCO_ELASTICITY" end="^[ ]*\CEND_VOLUMETRIC_VISCO_ELASTICITY" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
          " {{{ MODEL
-         syn region      pam_MMATnew_VOLUMETRIC_VISCOELASTICITY_MODEL transparent contained containedin=pam_MMATnew_MODULE_VOLUMETRIC_VISCOELASTICITY matchgroup=pam_CardTag start="^[ ]*\CMODEL" end="^[ ]*\CEND_MODEL" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+         syn region      pam_MMATnew_VOLUMETRIC_VISCO_ELASTICITY_MODEL transparent contained containedin=pam_MMATnew_MODULE_VOLUMETRIC_VISCO_ELASTICITY matchgroup=pam_CardTag start="^[ ]*\CMODEL" end="^[ ]*\CEND_MODEL" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
             " {{{ PRONY_RELAXATION
-            syn region      pam_MMATnew_VOLUMETRIC_VISCOELASTICITY_MODEL_PRONY_RELAXATION transparent contained containedin=pam_MMATnew_VOLUMETRIC_VISCOELASTICITY_MODEL matchgroup=pam_Keyword start="\CPRONY_RELAXATION" end="\%$" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
-               syn region      pam_MMATnew_VOLUMETRIC_VISCOELASTICITY_MODEL_PRONY_RELAXATION_1 transparent contained containedin=pam_MMATnew_VOLUMETRIC_VISCOELASTICITY_MODEL_PRONY_RELAXATION matchgroup=pam_Argument start="^[ ]*\CTAU[1i]" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
-               syn region      pam_MMATnew_VOLUMETRIC_VISCOELASTICITY_MODEL_PRONY_RELAXATION_1 transparent contained containedin=pam_MMATnew_VOLUMETRIC_VISCOELASTICITY_MODEL_PRONY_RELAXATION matchgroup=pam_Argument start="^[ ]*\CBETA[1i]" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+            syn region      pam_MMATnew_VOLUMETRIC_VISCO_ELASTICITY_MODEL_PRONY_RELAXATION transparent contained containedin=pam_MMATnew_VOLUMETRIC_VISCO_ELASTICITY_MODEL matchgroup=pam_Keyword start="\CPRONY_RELAXATION" end="\%$" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               syn region      pam_MMATnew_VOLUMETRIC_VISCO_ELASTICITY_MODEL_PRONY_RELAXATION_1 transparent contained containedin=pam_MMATnew_VOLUMETRIC_VISCO_ELASTICITY_MODEL_PRONY_RELAXATION matchgroup=pam_Argument start="^[ ]*\CTAU[1-8i]" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+               syn region      pam_MMATnew_VOLUMETRIC_VISCO_ELASTICITY_MODEL_PRONY_RELAXATION_1 transparent contained containedin=pam_MMATnew_VOLUMETRIC_VISCO_ELASTICITY_MODEL_PRONY_RELAXATION matchgroup=pam_Argument start="^[ ]*\CBETA[1-8i]" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
             " }}} 
          " }}} 
       " }}}
@@ -10599,7 +10617,7 @@ syn region      pam_MMAT        matchgroup=pam_CardTag start="^\CMMAT  /"rs=s+8 
        syn keyword       pam_MMATnew_TABLE_kw  contained TABLE 
        hi def link pam_MMATnew_TABLE_kw pam_Keyword
        syn region      pam_MMATnew_TABLE   transparent contained containedin=pam_MMATnew matchgroup=pam_CardTag start="^[ ]*\CTABLE" end="^[ ]*\CEND_TABLE" contains=pam_Integer,pam_Comment,pam_Comment_Position,pam_Error keepend
-          syn region      pam_MMATnew_TABLE_Values   transparent contained containedin=pam_MMATnew_TABLE matchgroup=pam_Keyword start="\%1c." start="^$\n" end="\%$" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position keepend
+          syn region      pam_MMATnew_TABLE_Values   transparent contained containedin=pam_MMATnew_TABLE start="\%1c." start="^$\n" end="\%$" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position keepend
           syn region      pam_MMATnew_TABLE_FUNCTION   transparent contained containedin=pam_MMATnew_TABLE matchgroup=pam_Keyword start="^[ ]*\CFUNCTION" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position nextgroup=pam_MMATnew_TABLE_Values keepend
           syn region      pam_MMATnew_TABLE_LOCAL_SHIFT_SCALE   transparent contained containedin=pam_MMATnew_TABLE matchgroup=pam_Keyword start="^[ ]*\CLOCAL_SHIFT_SCALE" end="^[ ]*\CEND_LOCAL_SHIFT_SCALE" contains=pam_String,pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position nextgroup=pam_MMATnew_TABLE_LOCAL_SHIFT_SCALE,pam_MMATnew_TABLE_FUNCTION keepend
           syn region      pam_MMATnew_TABLE_ARGUMENT   transparent contained containedin=pam_MMATnew_TABLE matchgroup=pam_Keyword start="^[ ]*\CARGUMENT" end="\n[\$\#]\@!" contains=pam_String,pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position nextgroup=pam_MMATnew_TABLE_ARGUMENT,pam_MMATnew_TABLE_LOCAL_SHIFT_SCALE,pam_MMATnew_TABLE_FUNCTION keepend
@@ -11098,6 +11116,7 @@ endif
 
 " Highlight Links
 hi def link pam_Control_YESNO pam_Argument
+hi def link pam_Control_QYESNO pam_Argument
 hi def link pam_Colon pam_Integer
 hi def link pam_Point pam_Integer
 hi def link pam_Integer15 pam_Integer
