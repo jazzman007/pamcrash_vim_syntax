@@ -4076,7 +4076,7 @@ syn region      pam_CNTAC154        matchgroup=pam_CardTag start="^\CCNTAC / .\{
    syn region      pam_CNTACnew_r2     transparent contained containedin=pam_CNTACnew start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_CNTACnew_r3 skipnl keepend
    "Row 1
    syn region      pam_CNTACnew_r1     transparent contained containedin=pam_CNTACnew start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,pam_CNTACnew_r1_a1,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_CNTACnew_r2 skipnl keepend
-       syn keyword       pam_CNTACnew_r1_a1             contained containedin=pam_CNTACnew_r1 MCNTAC
+       syn match       pam_CNTACnew_r1_a1             contained containedin=pam_CNTACnew_r1 "\CMCNTAC"
        hi def link pam_CNTACnew_r1_a1 pam_Keyword
    " {{{ PHYSICS 
        " {{{ MECHANICAL
@@ -4095,6 +4095,14 @@ syn region      pam_CNTAC154        matchgroup=pam_CardTag start="^\CCNTAC / .\{
              syn region      pam_CNTACnew_GENERAL_DEFINITION_CONTACT_TYPE_MODEL transparent contained containedin=pam_CNTACnew_MODULE_GENERAL_DEFINITION_CONTACT_TYPE matchgroup=pam_CardTag start="^[ ]*\CMODEL" end="^[ ]*\CEND_MODEL" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
                 " {{{ SELF
                 syn region      pam_CNTACnew_GENERAL_DEFINITION_CONTACT_TYPE_MODEL_SELF transparent contained containedin=pam_CNTACnew_GENERAL_DEFINITION_CONTACT_TYPE_MODEL matchgroup=pam_Keyword start="\CSELF" end="\%$" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
+                   
+                " }}} 
+                " {{{ UNSYMMETRIC
+                syn region      pam_CNTACnew_GENERAL_DEFINITION_CONTACT_TYPE_MODEL_UNSYMMETRIC transparent contained containedin=pam_CNTACnew_GENERAL_DEFINITION_CONTACT_TYPE_MODEL matchgroup=pam_Keyword start="\CUNSYMMETRIC" end="\%$" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
+                   
+                " }}} 
+                " {{{ SYMMETRIC
+                syn region      pam_CNTACnew_GENERAL_DEFINITION_CONTACT_TYPE_MODEL_SYMMETRIC transparent contained containedin=pam_CNTACnew_GENERAL_DEFINITION_CONTACT_TYPE_MODEL matchgroup=pam_Keyword start="\CSYMMETRIC" end="\%$" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
                    
                 " }}} 
            " }}}
@@ -4211,6 +4219,13 @@ syn region      pam_CNTAC154        matchgroup=pam_CardTag start="^\CCNTAC / .\{
                     syn region   pam_CNTACnew_INTERACTIONS_CONTACT_FORMULATION_MODEL_PENALTY_FSVNL  transparent contained containedin=pam_CNTACnew_INTERACTIONS_CONTACT_FORMULATION_MODEL_PENALTY matchgroup=pam_Argument start="^[ ]*\CFSVNL" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
                     syn region   pam_CNTACnew_INTERACTIONS_CONTACT_FORMULATION_MODEL_PENALTY_SDAMP  transparent contained containedin=pam_CNTACnew_INTERACTIONS_CONTACT_FORMULATION_MODEL_PENALTY matchgroup=pam_Argument start="^[ ]*\CSDAMP" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
                 " }}} 
+                " {{{ PENALTY_AREA
+                syn region      pam_CNTACnew_INTERACTIONS_CONTACT_FORMULATION_MODEL_PENALTY_AREA transparent contained containedin=pam_CNTACnew_INTERACTIONS_CONTACT_FORMULATION_MODEL matchgroup=pam_Keyword start="\CPENALTY_AREA" end="\%$" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
+                    syn region   pam_CNTACnew_INTERACTIONS_CONTACT_FORMULATION_MODEL_PENALTY_AREA_SLFACM  transparent contained containedin=pam_CNTACnew_INTERACTIONS_CONTACT_FORMULATION_MODEL_PENALTY_AREA matchgroup=pam_Argument start="^[ ]*\CSLFACM" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                    syn region   pam_CNTACnew_INTERACTIONS_CONTACT_FORMULATION_MODEL_PENALTY_AREA_TLSTIF  transparent contained containedin=pam_CNTACnew_INTERACTIONS_CONTACT_FORMULATION_MODEL_PENALTY_AREA matchgroup=pam_Argument start="^[ ]*\CTLSTIF" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                    syn region   pam_CNTACnew_INTERACTIONS_CONTACT_FORMULATION_MODEL_PENALTY_AREA_FSVNL  transparent contained containedin=pam_CNTACnew_INTERACTIONS_CONTACT_FORMULATION_MODEL_PENALTY_AREA matchgroup=pam_Argument start="^[ ]*\CFSVNL" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                    syn region   pam_CNTACnew_INTERACTIONS_CONTACT_FORMULATION_MODEL_PENALTY_AREA_SDAMP  transparent contained containedin=pam_CNTACnew_INTERACTIONS_CONTACT_FORMULATION_MODEL_PENALTY_AREA matchgroup=pam_Argument start="^[ ]*\CSDAMP" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                " }}} 
            " }}}
          " }}} 
            " {{{ FRICTION
@@ -4250,6 +4265,17 @@ syn region      pam_CNTAC154        matchgroup=pam_CardTag start="^\CCNTAC / .\{
                 " }}} 
            " }}}
          " }}} 
+           " {{{ ADHESIVENESS
+           syn region      pam_CNTACnew_MODULE_INTERACTIONS_ADHESIVENESS   transparent contained containedin=pam_CNTACnew_MODULE_INTERACTIONS matchgroup=pam_CardTag start="^[ ]*\CADHESIVENESS" end="^[ ]*\CEND_ADHESIVENESS" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+             " {{{ MODEL
+             syn region      pam_CNTACnew_INTERACTIONS_ADHESIVENESS_MODEL transparent contained containedin=pam_CNTACnew_MODULE_INTERACTIONS_ADHESIVENESS matchgroup=pam_CardTag start="^[ ]*\CMODEL" end="^[ ]*\CEND_MODEL" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
+                " {{{ SEPARATION
+                syn region      pam_CNTACnew_INTERACTIONS_ADHESIVENESS_MODEL_SEPARATION transparent contained containedin=pam_CNTACnew_INTERACTIONS_ADHESIVENESS_MODEL matchgroup=pam_Keyword start="\CSEPARATION" end="\%$" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
+                    syn region   pam_CNTACnew_INTERACTIONS_ADHESIVENESS_MODEL_SEPARATION_TIME_START  transparent contained containedin=pam_CNTACnew_INTERACTIONS_ADHESIVENESS_MODEL_SEPARATION matchgroup=pam_Argument start="^[ ]*\CSTRESS_LIMIT" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                    syn region   pam_CNTACnew_INTERACTIONS_ADHESIVENESS_MODEL_SEPARATION_TIME_END  transparent contained containedin=pam_CNTACnew_INTERACTIONS_ADHESIVENESS_MODEL_SEPARATION matchgroup=pam_Argument start="^[ ]*\CTHICKNESS_SCALE" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+                " }}} 
+           " }}}
+         " }}} 
       " }}}
       " {{{ ADVANCED
        syn region      pam_CNTACnew_MODULE_ADVANCED   transparent contained containedin=pam_CNTACnew_MECHANICAL_M2M matchgroup=pam_CardTag start="^[ ]*\CADVANCED_OPTIONS" end="^[ ]*\CEND_ADVANCED_OPTIONS" contains=pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
@@ -4267,6 +4293,8 @@ syn region      pam_CNTAC154        matchgroup=pam_CardTag start="^\CCNTAC / .\{
              " {{{ MODEL
              syn region      pam_CNTACnew_ADVANCED_LINK_COMPATIBILITY_MODEL transparent contained containedin=pam_CNTACnew_MODULE_ADVANCED_LINK_COMPATIBILITY matchgroup=pam_CardTag start="^[ ]*\CMODEL" end="^[ ]*\CEND_MODEL" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
                 " {{{ LINK_OMISSION
+                    syn region   pam_CNTACnew_ADVANCED_LINK_COMPATIBILITY_MODEL_LINK_OMISSION_REACTIVATION transparent contained containedin=pam_CNTACnew_ADVANCED_LINK_COMPATIBILITY_MODEL_LINK_OMISSION matchgroup=pam_Argument start="^[ ]*\CREACTIVATION" end="\n[\$\#]\@!" contains=pam_Control_YESNO,pam_FreeVar,pam_FreeError,pam_Comment,pam_Comment_Position,pam_Error keepend
+
                 syn region      pam_CNTACnew_ADVANCED_LINK_COMPATIBILITY_MODEL_LINK_OMISSION transparent contained containedin=pam_CNTACnew_ADVANCED_LINK_COMPATIBILITY_MODEL matchgroup=pam_Keyword start="\CLINK_OMISSION" end="\%$" contains=pam_Comment,pam_Comment_Position,pam_Error keepend
                 " }}} 
                 " {{{ TIED_EXCLUSION
@@ -4286,6 +4314,12 @@ syn region      pam_CNTAC154        matchgroup=pam_CardTag start="^\CCNTAC / .\{
          " }}} 
       " }}}
    " }}}
+   " {{{ SURFACE_1
+       syn region      pam_CNTACnew_SURFACE_1   transparent contained containedin=pam_CNTACnew matchgroup=pam_CardTag start="^[ ]*\CSURFACE_1" end="^[ ]*\CEND_SURFACE_1" contains=@pam_Ident,pam_End,pam_Comment,pam_Comment_Position,pam_Error keepend
+   " }}} 
+   " {{{ SURFACE_2
+       syn region      pam_CNTACnew_SURFACE_2   transparent contained containedin=pam_CNTACnew matchgroup=pam_CardTag start="^[ ]*\CSURFACE_2" end="^[ ]*\CEND_SURFACE_2" contains=@pam_Ident,pam_End,pam_Comment,pam_Comment_Position,pam_Error keepend
+   " }}} 
 syn region      pam_CNTACnew        matchgroup=pam_CardTag start="^\CCNTAC / .*\%17c[ ]*MCNTAC[ ]*\%25c.*$"rs=s+8 end="^\CEND_CNTAC" keepend
 "}}} CNTAC new end
 
@@ -5571,7 +5605,7 @@ syn region      pam_THLOC            matchgroup=pam_CardTag start="^\CTHLOC /" e
    syn region      pam_VAMPSO_r4     transparent contained containedin=pam_VAMPSO start="\%1c." start="^$\n" matchgroup=pam_CardTag end="\%$" contains=@pam_Ident,pam_Comment,pam_Comment_Position,pam_End,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position keepend
    " Row 3     
       syn match       pam_VAMPSO_r3_e1             display contained containedin=pam_VAMPSO_r3 "\%9c.\{,8\}"
-      syn match       pam_VAMPSO_r3_a1             display contained containedin=pam_VAMPSO_r3 "\%9c\CPRESSURE\|\CFLOW    "
+      syn match       pam_VAMPSO_r3_a1             display contained containedin=pam_VAMPSO_r3 "\%9c[ ]*\(\CPRESSURE\|\CFLOW\|\CPOWER\)[ ]*\%17c"
       hi def link pam_VAMPSO_r3_a1 pam_oddArgument
       hi def link pam_VAMPSO_r3_e1 pam_oddError
    syn region      pam_VAMPSO_r3     transparent contained containedin=pam_VAMPSO start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@17i8,@25f8,@33f8,@41f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_VAMPSO_r4 skipnl keepend
@@ -5768,8 +5802,15 @@ syn region      pam_THNAC            matchgroup=pam_CardTag start="^\CTHNAC /" e
    syn region      pam_SELOUT_r2     transparent contained containedin=pam_SELOUT start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_SELOUT_VAR,pam_SELOUT_r3,pam_SELOUT_r4,pam_SELOUT_r5,pam_SELOUT_r6,pam_SELOUT_r7 skipnl keepend
    " Row 1     
    syn region      pam_SELOUT_r1     transparent contained containedin=pam_SELOUT start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@41i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_SELOUT_r2 skipnl keepend
+      syn match       pam_SELOUT_r1_e1             display contained containedin=pam_SELOUT_r1 "\%17c.\{,17\}"
+      syn match       pam_SELOUT_r1_a1             display contained containedin=pam_SELOUT_r1 "\%17c[ ]\{17\}"
+      syn match       pam_SELOUT_r1_a1             display contained containedin=pam_SELOUT_r1 "\%17c[ ]*\(\CCONTOUR\|\CMESH_DEACTIVATION\|\CHISTORY\)[ ]*\%34c" 
+      hi def link pam_SELOUT_r1_a1 pam_evenArgument
+      hi def link pam_SELOUT_r1_e1 pam_evenError
+   "OPTLIS_SELECTION
+   syn region      pam_SELOUT_OPTLIS_SELECTION     transparent contained containedin=pam_SELOUT matchgroup=pam_CardTag start="^\C[ ]*OPTLIS_SELECTION" start="^$\n" end="\n[\$\#]\@!" contains=pam_Integer,pam_String,pam_Comment,pam_Comment_Position nextgroup=pam_SELOUT_r7 skipnl keepend
    "UVAR
-   syn region      pam_SELOUT_UVAR     transparent contained containedin=pam_SELOUT matchgroup=pam_CardTag start="^\CUSER_VAR" start="^$\n" matchgroup=pam_CardTag end="^\CEND_USER_VAR" contains=pam_String,pam_Comment,pam_Comment_Position nextgroup=pam_SELOUT_r7 skipnl keepend
+   syn region      pam_SELOUT_UVAR     transparent contained containedin=pam_SELOUT matchgroup=pam_CardTag start="^\CUSER_VAR" start="^$\n" matchgroup=pam_CardTag end="^\CEND_USER_VAR" contains=pam_String,pam_Comment,pam_Comment_Position nextgroup=pam_SELOUT_OPTLIS_SELECTION,pam_SELOUT_r7 skipnl keepend
    "VAR
    syn region      pam_SELOUT_VAR     transparent contained containedin=pam_SELOUT matchgroup=pam_CardTag start="^\CVAR" start="^$\n" matchgroup=pam_CardTag end="^\CEND_VAR" contains=pam_Control_OCTRL_SHLPLOT_arg,pam_Control_OCTRL_SOLPLOT_arg,pam_Control_OCTRL_BEAPLOT_arg,pam_Control_OCTRL_NODPLOT_arg,pam_Control_OCTRL_LAYPLOT_arg,pam_Comment,pam_Comment_Position nextgroup=pam_SELOUT_UVAR skipnl keepend
 syn region      pam_SELOUT            matchgroup=pam_CardTag start="^\CSELOUT/" end="^\CEND_SELOUT" contains=pam_SELOUT_r[1-5],pam_Comment,pam_Comment_Position keepend
@@ -5858,6 +5899,11 @@ syn region      pam_LOOKU            matchgroup=pam_CardTag start="^\CLOOKU /" e
    syn region      pam_THELE_r2     transparent contained containedin=pam_THELE start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_THELE_r3 skipnl keepend
    " Row 1   
    syn region      pam_THELE_r1     transparent contained containedin=pam_THELE start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_THELE_r2 skipnl keepend
+      syn match       pam_THELE_r1_e1             display contained containedin=pam_THELE_r1,pam_THLOC_r1,pam_THNAC_r1,pam_THNOD_r1 "\%73c.\{,8\}"
+      syn match       pam_THELE_r1_a1             display contained containedin=pam_THELE_r1,pam_THLOC_r1,pam_THNAC_r1,pam_THNOD_r1 "\%73c[ ]\{8\}"
+      syn match       pam_THELE_r1_a1             display contained containedin=pam_THELE_r1,pam_THLOC_r1,pam_THNAC_r1,pam_THNOD_r1 "\%73c[ ]*\CGES[ ]*\%81c" 
+      hi def link pam_THELE_r1_a1 pam_oddArgument
+      hi def link pam_THELE_r1_e1 pam_oddError
 syn region      pam_THELE            matchgroup=pam_CardTag start="^\CTHELE /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_THELE_r[1-2] keepend
 " === THELE end}}}
 
@@ -6720,12 +6766,14 @@ syn region      pam_TURBL            matchgroup=pam_CardTag start="^\CTURBL /" e
 " === TURBL end}}}
 
 "{{{ === ERFPRO begin
+   " Row 5 
+   syn region      pam_ERFPRO_r5     transparent contained containedin=pam_ERFPRO matchgroup=pam_CardTag start="\%1c[ ]*\CTIME_HISTORY" start="^$\n" matchgroup=pam_CardTag end="^[ ]*\CEND_TIME_HISTORY" contains=pam_Comment,pam_Comment_Position,pam_End,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position keepend
    " Row 4 
-   syn region      pam_ERFPRO_r4     transparent contained containedin=pam_ERFPRO matchgroup=pam_CardTag start="\%1c[ ]*\CCONTOUR_PLOT" start="^$\n" matchgroup=pam_CardTag end="^[ ]*\CEND_CONTOUR_PLOT" contains=pam_Comment,pam_Comment_Position,pam_End,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position keepend
-      syn region      pam_ERFPRO_FREQUENCY     transparent contained containedin=pam_ERFPRO_r4 matchgroup=pam_Argument start="\%1c[ ]*\CFREQUENCY" start="^$\n" matchgroup=pam_Argument end="\n[\$\#]\@!" contains=pam_ERFPRO_FREQUENCY_arg,pam_FreeVar,pam_Float,pam_Comment,pam_Comment_Position,pam_End,pam_Error keepend
+   syn region      pam_ERFPRO_r4     transparent contained containedin=pam_ERFPRO matchgroup=pam_CardTag start="\%1c[ ]*\CCONTOUR_PLOT" start="^$\n" matchgroup=pam_CardTag end="^[ ]*\CEND_CONTOUR_PLOT" contains=pam_Comment,pam_Comment_Position,pam_End,pam_Error nextgroup=pam_ERFPRO_r5,pam_Comment,pam_Comment_Position keepend
+      syn region      pam_ERFPRO_FREQUENCY     transparent contained containedin=pam_ERFPRO_r4,pam_ERFPRO_r5 matchgroup=pam_Argument start="\%1c[ ]*\CFREQUENCY" start="^$\n" matchgroup=pam_Argument end="\n[\$\#]\@!" contains=pam_ERFPRO_FREQUENCY_arg,pam_FreeVar,pam_Float,pam_Comment,pam_Comment_Position,pam_End,pam_Error keepend
        syn keyword      pam_ERFPRO_FREQUENCY_arg contained containedin=pam_ERFPRO_FREQUENCY INTERVAL STATE
        hi def link pam_ERFPRO_FREQUENCY_arg pam_Keyword
-      syn region      pam_ERFPRO_ACTIVATION     transparent contained containedin=pam_ERFPRO_r4 matchgroup=pam_Argument start="\%1c[ ]*\CACTIVATION" start="^$\n" matchgroup=pam_Argument end="\n[\$\#]\@!" contains=pam_ERFPRO_ACTIVATION_arg,pam_FreeVar,pam_Float,pam_Comment,pam_Comment_Position,pam_End,pam_Error keepend
+      syn region      pam_ERFPRO_ACTIVATION     transparent contained containedin=pam_ERFPRO_r4,pam_ERFPRO_r5 matchgroup=pam_Argument start="\%1c[ ]*\CACTIVATION" start="^$\n" matchgroup=pam_Argument end="\n[\$\#]\@!" contains=pam_ERFPRO_ACTIVATION_arg,pam_FreeVar,pam_Float,pam_Comment,pam_Comment_Position,pam_End,pam_Error keepend
        syn keyword      pam_ERFPRO_ACTIVATION_arg contained containedin=pam_ERFPRO_ACTIVATION TIME
        hi def link pam_ERFPRO_ACTIVATION_arg pam_Keyword
    "Row 3 (File)
@@ -10993,6 +11041,7 @@ syn region      pam_FPMIN        matchgroup=pam_CardTag start="^\CFPMIN /"rs=s+8
          syn region      pam_NUMBLOCK_2D_HOURGLASS_COEFFICIENTS   transparent contained containedin=pam_NUMBLOCK matchgroup=pam_Keyword start="^[ ]*\C2D_HOURGLASS_COEFFICIENTS" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeError,pam_FreeVar,pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
          syn region      pam_NUMBLOCK_3D_VISCOSITY_HOURGLASS_COEFFICIENTS   transparent contained containedin=pam_NUMBLOCK matchgroup=pam_Keyword start="^[ ]*\C3D_VISCOSITY_HOURGLASS_COEFFICIENTS" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeError,pam_FreeVar,pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
          syn region      pam_NUMBLOCK_THICKNESS_INTEGRATION   transparent contained containedin=pam_NUMBLOCK matchgroup=pam_Keyword start="^[ ]*\CTHICKNESS_INTEGRATION" end="\n[\$\#]\@!" contains=pam_Integer,pam_FreeError,pam_FreeVar,pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
+         syn region      pam_NUMBLOCK_MIDPLANE_INTEGRATION   transparent contained containedin=pam_NUMBLOCK matchgroup=pam_Keyword start="^[ ]*\CMIDPLANE_INTEGRATION" end="\n[\$\#]\@!" contains=pam_Integer,pam_FreeError,pam_FreeVar,pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
          syn region      pam_NUMBLOCK_HOURGLASS_COEFFICIENTS   transparent contained containedin=pam_NUMBLOCK matchgroup=pam_Keyword start="^[ ]*\CHOURGLASS_COEFFICIENTS" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeError,pam_FreeVar,pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
          syn region      pam_NUMBLOCK_SHEAR_COEFFICIENT_FACTOR   transparent contained containedin=pam_NUMBLOCK matchgroup=pam_Keyword start="^[ ]*\CSHEAR_COEFFICIENT_FACTOR" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeError,pam_FreeVar,pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
          syn region      pam_NUMBLOCK_SECTION_INTEGRATION   transparent contained containedin=pam_NUMBLOCK matchgroup=pam_Keyword start="^[ ]*\CSECTION_INTEGRATION" end="\n[\$\#]\@!" contains=pam_Integer,pam_FreeError,pam_FreeVar,pam_Comment,pam_Comment_Position,pam_Error skipnl keepend

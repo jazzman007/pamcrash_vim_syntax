@@ -8229,6 +8229,7 @@ function! pamcomplete#Complete(findstart, base)
             if synIDattr(slist[2], "name") =~ "pam_VAMPSO_r3_[ae]1"
                call add (items,{'word':'PRESSURE','menu':'Pressure Source'})
                call add (items,{'word':'FLOW    ','menu':'Flow Source'})
+               call add (items,{'word':'POWER   ','menu':'Power Source'})
             " IFUNC
             elseif synIDattr(slist[2], "name") =~ "pam_17.*"
                let items = s:getTags("FUNCT",8)
