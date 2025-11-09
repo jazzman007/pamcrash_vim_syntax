@@ -109,6 +109,17 @@ function! pamcomplete#Complete(findstart, base)
             " ICOMP
             elseif synIDattr(slist[2], "name") =~ "pam_65.*"
                let start = 64
+            " REGUL
+            endif
+         elseif synIDattr(slist[1], "name") =~ "pam_FUNCT_r3r"
+            if synIDattr(slist[2], "name") =~ "pam_FUNCT_r3r_[aev]1"
+               let start = 16
+            elseif synIDattr(slist[2], "name") =~ "pam_33.*"
+               let start = 32
+            elseif synIDattr(slist[2], "name") =~ "pam_FUNCT_r3r_[aev]2"
+               let start = 40
+            elseif synIDattr(slist[2], "name") =~ "pam_57.*"
+               let start = 56
             endif
          endif
 " }}}
@@ -219,6 +230,8 @@ function! pamcomplete#Complete(findstart, base)
             " ICOUFR
             if synIDattr(slist[2], "name") =~ "pam_33.*"
                let start = 32
+            elseif synIDattr(slist[2], "name") =~ "pam_41.*"
+               let start = 40 
             endif
          endif
 " }}}
@@ -3929,6 +3942,29 @@ function! pamcomplete#Complete(findstart, base)
             let items = s:getTags("PART",8)
          endif
 " }}}
+" {{{ FUNCT
+      elseif synIDattr(slist[0], "name") =~ "pam_FUNCT"
+         if synIDattr(slist[1], "name") =~ "pam_FUNCT_r3r"
+            if synIDattr(slist[2], "name") =~ "pam_FUNCT_r3r_[aev]1"
+               call add (items,{'word':'SECFO   ','menu':'Section Force Target'})
+            elseif synIDattr(slist[2], "name") =~ "pam_33.*"
+               call add (items,{'word':'       1','abbr':'1','menu':'Force in X'})
+               call add (items,{'word':'       2','abbr':'2','menu':'Force in Y'})
+               call add (items,{'word':'       3','abbr':'3','menu':'Force in Z'})
+               call add (items,{'word':'       4','abbr':'4','menu':'Moment in X'})
+               call add (items,{'word':'       5','abbr':'5','menu':'Moment in Y'})
+               call add (items,{'word':'       6','abbr':'6','menu':'Moment in Z'})
+               call add (items,{'word':'       7','abbr':'7','menu':'Force Magnitude'})
+               call add (items,{'word':'       8','abbr':'8','menu':'Moment Magnitude'})
+            elseif synIDattr(slist[2], "name") =~ "pam_FUNCT_r3r_[aev]2"
+               call add (items,{'word':'CRSMATCH','menu':'Regulated Curve Shifted to Match Target Value'})
+               call add (items,{'word':'STOPMAX ','menu':'Solver Stop is Target Value Exceeded'})
+               call add (items,{'word':'STOPMIN ','menu':'Solver Stop is Target Value Falls Short'})
+            elseif synIDattr(slist[2], "name") =~ "pam_57.*"
+               let items = s:getTags("FUNCT",8)
+            endif
+         endif
+" }}}
 " {{{ SPRING
       elseif synIDattr(slist[0], "name") =~ "pam_Spring"
          " IDPRT
@@ -4071,6 +4107,7 @@ function! pamcomplete#Complete(findstart, base)
             if synIDattr(slist[2], "name") =~ "pam_NLAVE_r1_[ae]1*"
                call add (items,{'word':'GLASS_EN','menu':'Non-Local Refinement for MAT 126'})
                call add (items,{'word':'GLASS_SD','menu':'Sudden Elimination Non-Local Average for MAT 126'})
+               call add (items,{'word':'GLASS_MC','menu':'Non-local Refinement for MAT 126'})
             endif
          elseif synIDattr(slist[1], "name") =~ "pam_NLAVE_r3"
             if synIDattr(slist[2], "name") =~ "pam_NLAVE_r3_[ae]1"
@@ -4086,9 +4123,23 @@ function! pamcomplete#Complete(findstart, base)
             if synIDattr(slist[3], "name") =~ "pam_OPTLIS_r3_[ae]1"
                call add (items,{'word':'BAGIN','menu':'Selection by Airbag ID'})
                call add (items,{'word':'CNTAC','menu':'Selection by Interface ID'})
+               call add (items,{'word':'FPMIN','menu':'Selection by Incompressible Fluid Coupling ID'})
+               call add (items,{'word':'TRSFM','menu':'Selection by Transformation ID'})
+               call add (items,{'word':'THNOD','menu':'Selection by Node History ID'})
+               call add (items,{'word':'THLOC','menu':'Selection by Local History ID'})
+               call add (items,{'word':'THELE','menu':'Selection by Element History ID'})
+               call add (items,{'word':'SENPT','menu':'Selection by Sensor Point ID'})
+               call add (items,{'word':'SENPTG','menu':'Selection by Global Sensor Point ID'})
             elseif synIDattr(slist[4], "name") =~ "pam_OPTLIS_r3_[ae]1"
                call add (items,{'word':'BAGIN','menu':'Selection by Airbag ID'})
                call add (items,{'word':'CNTAC','menu':'Selection by Interface ID'})
+               call add (items,{'word':'FPMIN','menu':'Selection by Incompressible Fluid Coupling ID'})
+               call add (items,{'word':'TRSFM','menu':'Selection by Transformation ID'})
+               call add (items,{'word':'THNOD','menu':'Selection by Node History ID'})
+               call add (items,{'word':'THLOC','menu':'Selection by Local History ID'})
+               call add (items,{'word':'THELE','menu':'Selection by Element History ID'})
+               call add (items,{'word':'SENPT','menu':'Selection by Sensor Point ID'})
+               call add (items,{'word':'SENPTG','menu':'Selection by Global Sensor Point ID'})
             endif
          endif
 "  }}}
@@ -4109,6 +4160,8 @@ function! pamcomplete#Complete(findstart, base)
             if synIDattr(slist[2], "name") =~ "pam_33.*"
                call add (items,{'word':'       0','abbr':'0 (default)','menu':'Coulomb Friction per Part Deactivated'})
                call add (items,{'word':'       1','abbr':'1','menu':'Coulomb Friction per Part Activated'})
+            elseif synIDattr(slist[2], "name") =~ "pam_41.*"
+               let items = s:getTags("FUNCT",8)
             endif
          endif
 " }}}
@@ -19719,6 +19772,8 @@ function! pamcomplete#pamHints()
             return "FRICT - Constant Friction Coefficient"
          elseif synIDattr(slist[2], "name") =~ "pam_33.*"
             return "ICOURF - Flag to Control the Coulomb Friction Type per Part (menu)"
+         elseif synIDattr(slist[2], "name") =~ "pam_41.*"
+            return "IFUNSCL - Function ID for Friction Scale Factor vs. Relative Tangential Velocity (tag)"
          endif
       endif
 "  }}}
@@ -20724,7 +20779,7 @@ function! pamcomplete#pamHints()
          elseif col('.') >= 17 && col('.') <= 24 && synIDattr(slist[2], "name") =~ "pam_NLAVE_r1_a1*"
             return "QUALIFIER - Non-Average Type (menu)"
          endif
-      elseif synIDattr(slist[1], "name") =~ "pam_NLAVE_r3"
+      elseif (synIDattr(slist[1], "name") =~ "pam_NLAVE_r3") || (synIDattr(slist[1], "name") =~ "pam_NLAVE_M_r3")
          if synIDattr(slist[2], "name") =~ "pam_1.16*"
             return "RADIUSave - Averaging Radius"
          elseif synIDattr(slist[2], "name") =~ "pam_17.*"
@@ -20743,6 +20798,10 @@ function! pamcomplete#pamHints()
       elseif synIDattr(slist[1], "name") =~ "pam_NLAVE_S_r3"
          if synIDattr(slist[2], "name") =~ "pam_1.16*"
             return "TIMEelim - Time Duration for Sudden Elimination of Elements"
+         endif
+      elseif synIDattr(slist[1], "name") =~ "pam_NLAVE_M_r4"
+         if synIDattr(slist[2], "name") =~ "pam_1.8*"
+            return "MAXcent - Maximum Number of Created Centers"
          endif
       endif
 "  }}}
@@ -20853,6 +20912,22 @@ function! pamcomplete#pamHints()
             return "IFLMEAS - Measured Value Dependence Switch (menu)"
          elseif synIDattr(slist[2], "name") =~ "pam_65.*"
             return "ICOMP - Real/Complex Function Switch (menu)"
+         endif
+      elseif synIDattr(slist[1], "name") =~ "pam_FUNCT_r3r"
+         if synIDattr(slist[2], "name") =~ "pam_FUNCT_r3r_[aev]1"
+            return "OUTTYP - Target Output Type (menu)"
+         elseif synIDattr(slist[2], "name") =~ "pam_25.*"
+            return "IDOUT - Target Output ID"
+         elseif synIDattr(slist[2], "name") =~ "pam_33.*"
+            return "IOCOMP - Target Output Component Flag (menu)"
+         elseif synIDattr(slist[2], "name") =~ "pam_FUNCT_r3r_[aev]2"
+            return "RGULMOD - Regulation Mode Type (menu)"
+         elseif synIDattr(slist[2], "name") =~ "pam_49.*"
+            return "TRGTCST - Constant Value Defining Target to be Matched by Selected Output"
+         elseif synIDattr(slist[2], "name") =~ "pam_57.*"
+            return "TRGTFUN - Target Function ID to be Matched by Selected Output Component (tag)"
+         elseif synIDattr(slist[2], "name") =~ "pam_65.*"
+            return "TOL - Absolute Tolerance on the Selected Output Component"
          endif
       elseif synIDattr(slist[1], "name") =~ "pam_FUNCT_r3d"
          if synIDattr(slist[2], "name") =~ "pam_17.*"
