@@ -5863,6 +5863,7 @@ function! pamcomplete#Complete(findstart, base)
                call add (items,'   COS3D')
                call add (items,'   SHELL')
                call add (items,'   SOLID')
+               call add (items,'   PLINK')
             " IDMAT
             elseif synIDattr(slist[2], "name") =~ "pam_25.*"
                let items = s:getTags("MATER",8)
@@ -6813,6 +6814,7 @@ function! pamcomplete#Complete(findstart, base)
                if synIDattr(slist[2], "name") =~ "pam_1.10.*"
                   call add (items,{'word':'         0','menu':'Eliminate Elements with Two Cracks'})
                   call add (items,{'word':'         1','menu':'Retain Elements with Two Cracks'})
+                  call add (items,{'word':'         2','menu':'Remove Elements with One Cracks'})
                " ICC
                elseif synIDattr(slist[2], "name") =~ "pam_11.*"
                   call add (items,{'word':'         0','menu':'Ignore Crack Closure'})
