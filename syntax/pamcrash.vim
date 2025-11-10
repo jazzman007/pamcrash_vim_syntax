@@ -1,9 +1,9 @@
 " ====================================================================
 " Vim syntax file
 " Language: PAM-CRASH,PAM-STAMP,PAM-COMFORT Input Deck
-" Syntax File Version: 13.0
+" Syntax File Version: 14.0
 " Author: Roman Firt (roman.firt@yahoo.de)
-" Latest Revision: 24. December 2024
+" Latest Revision: 10. November 2025
 " ====================================================================
 "             DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
 "                    Version 2, December 2004
@@ -77,6 +77,7 @@
 "   11.0 - VPS 2021 Syntax Implemented
 "   12.0 - VPS 2022 Syntax Implemented
 "   13.0 - VPS 2023 Syntax Implemented
+"   14.0 - VPS 2024 Syntax Implemented
 " =========================================================
 if exists("b:current_syntax")
   finish
@@ -1826,10 +1827,10 @@ syn region      pam_Control_OCTRL                matchgroup=pam_CardTag start="^
    syn region      pam_Control_OCTRL_CONTOUR_PLOT      contained containedin=pam_Control_OCTRL matchgroup=pam_Keyword start="CONTOUR_PLOT" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Control_OCTRL_CONTOUR_PLOT_arg,pam_FLoat,pam_Integer,pam_Error,pam_FreeError,pam_FreeVar,pam_Continue
       syn keyword     pam_Control_OCTRL_CONTOUR_PLOT_arg  contained containedin=pam_Control_OCTRL_CONTOUR_PLOT INTERVAL STATE CURVE CYCLE FIRST NO 
       hi def link pam_Control_OCTRL_CONTOUR_PLOT_arg pam_Argument
-   syn region      pam_Control_OCTRL_COLOUTPUT      contained containedin=pam_Control_OCTRL matchgroup=pam_Keyword start="COLOUTPUT" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Control_OCTRL_COLOUTPUT_arg,pam_Continue
+   syn region      pam_Control_OCTRL_COLOUTPUT      contained containedin=pam_Control_OCTRL matchgroup=pam_Keyword start="COLOUTPUT" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Control_OCTRL_COLOUTPUT_arg,pam_Continue,pam_FreeError
       syn keyword     pam_Control_OCTRL_COLOUTPUT_arg  contained containedin=pam_Control_OCTRL_COLOUTPUT ALL BAGIN MTOCO MUSCL DFLT OTMCO PLINK RBODY TIED NO
    syn region      pam_Control_OCTRL_MESH_OUTPUT          contained containedin=pam_Control_OCTRL matchgroup=pam_Keyword start="MESH_OUTPUT" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Control_YESNO,pam_Error,pam_FreeError,pam_FreeVar,pam_Continue
-   syn region      pam_Control_OCTRL_THPOUTPUT      contained containedin=pam_Control_OCTRL matchgroup=pam_Keyword start="THPOUTPUT" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Control_OCTRL_THPOUTPUT_arg,pam_FLoat,pam_Integer,pam_Error,pam_FreeError,pam_FreeVar,pam_Continue
+   syn region      pam_Control_OCTRL_THPOUTPUT      contained containedin=pam_Control_OCTRL matchgroup=pam_Keyword start="THPOUTPUT" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Control_OCTRL_THPOUTPUT_arg,pam_Float,pam_Integer,pam_Error,pam_FreeError,pam_FreeVar,pam_Continue
       syn keyword     pam_Control_OCTRL_THPOUTPUT_arg  contained containedin=pam_Control_OCTRL_THPOUTPUT INTERVAL CYCLE CURVE POINT NO 
    syn region      pam_Control_OCTRL_DSYOUTPUT      contained containedin=pam_Control_OCTRL matchgroup=pam_Keyword start="DSYOUTPUT" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Control_OCTRL_DSYOUTPUT_arg,pam_Float,pam_Integer,pam_Error,pam_FreeError,pam_FreeVar,pam_Continue
       syn keyword     pam_Control_OCTRL_DSYOUTPUT_arg  contained containedin=pam_Control_OCTRL_DSYOUTPUT INTERVAL STATE CYCLE CURVE POINT NO FIRST
@@ -1869,7 +1870,7 @@ syn region      pam_Control_OCTRL                matchgroup=pam_CardTag start="^
    syn region      pam_Control_OCTRL_GLBTHP          contained containedin=pam_Control_OCTRL matchgroup=pam_Keyword start="GLBTHP" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Control_OCTRL_GLBTHP_arg,pam_Control_YESNO,pam_Error,pam_FreeError,pam_FreeVar,pam_Continue
       syn keyword     pam_Control_OCTRL_GLBTHP_arg  contained containedin=pam_Control_OCTRL_GLBTHP ALL ACOE ACOI AREA AVGX AVGY AVGZ BAG6 BAGE BAGS CACC CDIS CNTE CNTF CNTP CNTS CONV CPRE CRAC CRAN CRFO CRVE CVEL DAMP DLOC DMAS DMSC FACR FPMG FPML FPMP INJP INTE KINE MEAS MHGL MINT MKIN MLEA MLSI MMEM MOUT MSCL MSMS MSQV NLAVE_ENERD PABS PFUN PRAY PRES PSCL PSMS RACC RANG RETR RFOR RVEL RWLE RWLF SDEN SECF SECM SENSS SLPR SPRE SSLD SSML STEP SECF TCNT TDMP TEMP TEMS TEMX TEXT THGL TIMER_ALL TIMER_CNSTRT TIMER_CONTAC TIMER_FPMSLV TIMER_INPINI TIMER_INTFOR TIMER_KJTMBS TIMER_NODPOS TIMER_OUTPUT TIMER_SMSSLV TIMER_SYSSLV TKED TOTE TRWL TSLP DFLT NO
    syn region      pam_Control_OCTRL_NODTHP          contained containedin=pam_Control_OCTRL matchgroup=pam_Keyword start="NODTHP" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Control_OCTRL_NODTHP_arg,pam_Control_YESNO,pam_Error,pam_FreeError,pam_FreeVar,pam_Continue
-      syn keyword     pam_Control_OCTRL_NODTHP_arg  contained containedin=pam_Control_OCTRL_NODTHP RKIN NO
+      syn keyword     pam_Control_OCTRL_NODTHP_arg  contained containedin=pam_Control_OCTRL_NODTHP ACOI CACC CDIS CPRE CRAC CRAN CRFO CRVE CVEL DLOC PCNT PRES RACC RANG RFOR RKIN RVEL TEMP TEMS TEMX NO
    syn region      pam_Control_OCTRL_SHLTHP          contained containedin=pam_Control_OCTRL matchgroup=pam_Keyword start="SHLTHP" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Control_OCTRL_SHLTHP_arg,pam_Control_YESNO,pam_Error,pam_FreeError,pam_FreeVar,pam_Continue
       syn keyword     pam_Control_OCTRL_SHLTHP_arg  contained containedin=pam_Control_OCTRL_SHLTHP ACOI ALL BETS BSTR CPRE DAMF DAMX DMAX DFLT DMG ENER ENTH EPME EPMI EPMX EPSE EPSF EPSI EPSI_ORTHO EPSL EPSL_ORTHO EPSP EPSP_EQUIV ESMA ESME ESMI FANG FDMG FFAIL FIB_FRAC FIB_LEN FIB_ORI FINST FLUX FMAX FRSK HSMS GRUC LODE_ANGLE MLEA MSQV MXYZ NXYZ OFFSET PABS PATH PEPTH PEPTH_ORTHO PEPS PEPTH PRAY PRUP0 PRUP1 PRUP2 PRUP3 PRUP4 PRUP5 PRUP6 PRUP7 PRUP8 PRUP9 PRUP10 PSIG RISK SHPR SIGF SIGL SIGL_ORTHO SIGM SIGM_ORTHO SMAX SRAL SRMS STRA STRESS_TRIAXIALITY TEMP THIC THIN USRP USRV USRV0 USRV1 USRV2 USRV3 USRV4 USRV5 USRV6 USRV7 USRV8 USRV9 USRV10 USRV11 USRV12 USRV13 USRV14 USRV15 USRV16 USRV17 USRV18 USRV19 USRV20 USRV21 USRV22 USRV23 USRV24 USRV25 USRV26 USRV27 USRV28 USRV29 USRV30 USRV31 USRV32 USRV33 USRV34 USRV35 USRV36 USRV37 USRV38 USRV39 USRV40 USRV41 USRV42 USRV43 USRV44 USRV45 USRV46 USRV47 USRV48 VAUX WRIN DFLT ENTH FLUX NO
    syn region      pam_Control_OCTRL_RANTHP          contained containedin=pam_Control_OCTRL matchgroup=pam_Keyword start="RANTHP" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Control_OCTRL_RANTHP_arg,pam_Control_YESNO,pam_Error,pam_FreeError,pam_FreeVar,pam_Continue
