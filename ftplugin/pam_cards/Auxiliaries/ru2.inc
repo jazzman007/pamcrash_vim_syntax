@@ -1,6 +1,6 @@
 $RUPMO Type 2
-$#        IDRUPT   IRUPT   IFMON  FILTER
-RUPMO /        1       2                
+$#        IDRUPT   IRUPT   IFMON  FILTER IFRCDIR
+RUPMO /        1       2                        
 $#                                                                         TITLE
 NAME RUPMO / ->1                                                                
 $# BLANK    USR1   FAILD    USR2    USR3    USR4    USR5    INTF      D1      D2

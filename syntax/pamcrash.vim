@@ -1746,6 +1746,7 @@ hi def link pam_Control_PICEXP_arg pam_Argument
    syn region      pam_Control_CATIMP_r4     transparent contained containedin=pam_Control_CATIMP matchgroup=pam_Keyword start="^[ ]*\CIMPORT_VAR" start="^$\n" end="\n[\$\#]\@!" contains=pam_Control_CATIMP_IMPORT_VAR_arg,pam_Comment,pam_Comment_Position,pam_FreeVar,pam_Integer nextgroup=pam_Control_CATIMP_r4,pam_Control_CATIMP_r5 skipnl keepend
    syn region      pam_Control_CATIMP_r4     transparent contained containedin=pam_Control_CATIMP matchgroup=pam_Keyword start="^[ ]*\CIMPORT_USER_VAR" start="^$\n" end="\n[\$\#]\@!" contains=pam_String,pam_Control_CATIMP_IMPORT_VAR_arg,pam_Comment,pam_Comment_Position,pam_FreeVar nextgroup=pam_Control_CATIMP_r4,pam_Control_CATIMP_r5 skipnl keepend
    syn region      pam_Control_CATIMP_r4     transparent contained containedin=pam_Control_CATIMP matchgroup=pam_Keyword start="^[ ]*\CMAPPING_CONTROL" start="^$\n" end="\n[\$\#]\@!" contains=pam_Control_CATIMP_MAPPING_CONTROL_arg,pam_Float,pam_Comment,pam_Comment_Position,pam_FreeVar nextgroup=pam_Control_CATIMP_r4,pam_Control_CATIMP_r5 skipnl keepend
+   syn region      pam_Control_CATIMP_r4     transparent contained containedin=pam_Control_CATIMP matchgroup=pam_Keyword start="^[ ]*\CTHICK_THINNING" start="^$\n" end="\n[\$\#]\@!" contains=pam_Control_YESNO,pam_Comment,pam_Comment_Position,pam_FreeVar nextgroup=pam_Control_CATIMP_r4,pam_Control_CATIMP_r5 skipnl keepend
    syn region      pam_Control_CATIMP_r4     transparent contained containedin=pam_Control_CATIMP matchgroup=pam_Keyword start="^[ ]*\CMAPPING_METHOD" start="^$\n" end="\n[\$\#]\@!" contains=pam_Control_CATIMP_MAPPING_METHOD_arg,pam_Comment,pam_Comment_Position,pam_FreeVar nextgroup=pam_Control_CATIMP_r4,pam_Control_CATIMP_r5 skipnl keepend
      syn keyword     pam_Control_CATIMP_MAPPING_METHOD_arg           contained INTERPOLATION INTEGRAL INTERSECTION
      hi def link pam_Control_CATIMP_MAPPING_METHOD_arg pam_Argument
@@ -1795,7 +1796,7 @@ hi def link pam_Control_CATIMP_IMPORT_VAR_arg pam_Argument
 syn region      pam_Control_PICIMP               matchgroup=pam_CardTag start="^\CPICIMP/" end="^\CEND_PICIMP" contains=pam_Error,pam_Float,pam_Integer,pam_Comment,pam_Comment_Position,pam_FreeVar keepend
 syn keyword     pam_Control_PICIMP_arg           contained containedin=pam_Control_PICIMP_r3 READ
 hi def link pam_Control_PICIMP_arg pam_Keyword
-syn keyword     pam_Control_PICIMP_SOURCE_CONTROL_arg           contained VELOCITY TEMPERATURE 
+syn keyword     pam_Control_PICIMP_SOURCE_CONTROL_arg           contained COORDINATE VELOCITY TEMPERATURE 
 hi def link pam_Control_PICIMP_SOURCE_CONTROL_arg pam_Argument
 " PICIMP end }}}
 
@@ -3362,11 +3363,11 @@ syn region      pam_SENSOR14      matchgroup=pam_CardTag start="^\CSENSOR/ .\{8\
 " {{{=== RUPMO begin
    " Common
       "FILTER
-      syn match       pam_RUPMO_r1_e4             display contained containedin=pam_RUPMOX_r1,pam_RUPMO0_r1,pam_RUPMO2_r1,pam_RUPMO3_r1,pam_RUPMO5_r1,pam_RUPMO6_r1,pam_RUPMO7_r1,pam_RUPMO15_r1 "\%33c.\{,8\}"
-      syn match       pam_RUPMO_r1_a4             display contained containedin=pam_RUPMOX_r1,pam_RUPMO0_r1,pam_RUPMO2_r1,pam_RUPMO3_r1,pam_RUPMO5_r1,pam_RUPMO6_r1,pam_RUPMO7_r1,pam_RUPMO15_r1 "\%33c[ ]*\CCYCLE[ ]*\%41c"
-      syn match       pam_RUPMO_r1_a4             display contained containedin=pam_RUPMOX_r1,pam_RUPMO0_r1,pam_RUPMO2_r1,pam_RUPMO3_r1,pam_RUPMO5_r1,pam_RUPMO6_r1,pam_RUPMO7_r1,pam_RUPMO15_r1 "\%33c[ ]*\%41c"
-      syn match       pam_RUPMO_r1_a4             display contained containedin=pam_RUPMOX_r1,pam_RUPMO0_r1,pam_RUPMO1_r1,pam_RUPMO2_r1,pam_RUPMO5_r1,pam_RUPMO7_r1 "\%33c[ ]*\CTIME[ ]*\%41c"
-      syn match       pam_RUPMO_r1_v4             display contained containedin=pam_RUPMOX_r1,pam_RUPMO0_r1,pam_RUPMO2_r1,pam_RUPMO3_r1,pam_RUPMO5_r1,pam_RUPMO6_r1,pam_RUPMO7_r1,pam_RUPMO15_r1 "\%33c[ ]*\[[^\[]\{-}\]\%41c"
+      syn match       pam_RUPMO_r1_e4             display contained containedin=pam_RUPMOX_r1,pam_RUPMO0_r1,pam_RUPMO2_r1,pam_RUPMO3_r1,pam_RUPMO5_r1,pam_RUPMO6_r1,pam_RUPMO7_r1,pam_RUPMO8_r1,pam_RUPMO9_r1,pam_RUPMO15_r1 "\%33c.\{,8\}"
+      syn match       pam_RUPMO_r1_a4             display contained containedin=pam_RUPMOX_r1,pam_RUPMO0_r1,pam_RUPMO2_r1,pam_RUPMO3_r1,pam_RUPMO5_r1,pam_RUPMO6_r1,pam_RUPMO7_r1,pam_RUPMO8_r1,pam_RUPMO9_r1,pam_RUPMO15_r1 "\%33c[ ]*\CCYCLE[ ]*\%41c"
+      syn match       pam_RUPMO_r1_a4             display contained containedin=pam_RUPMOX_r1,pam_RUPMO0_r1,pam_RUPMO2_r1,pam_RUPMO3_r1,pam_RUPMO5_r1,pam_RUPMO6_r1,pam_RUPMO7_r1,pam_RUPMO8_r1,pam_RUPMO9_r1,pam_RUPMO15_r1 "\%33c[ ]*\%41c"
+      syn match       pam_RUPMO_r1_a4             display contained containedin=pam_RUPMOX_r1,pam_RUPMO0_r1,pam_RUPMO2_r1,pam_RUPMO3_r1,pam_RUPMO5_r1,pam_RUPMO6_r1,pam_RUPMO7_r1,pam_RUPMO8_r1,pam_RUPMO9_r1,pam_RUPMO15_r1 "\%33c[ ]*\CTIME[ ]*\%41c"
+      syn match       pam_RUPMO_r1_v4             display contained containedin=pam_RUPMOX_r1,pam_RUPMO0_r1,pam_RUPMO2_r1,pam_RUPMO3_r1,pam_RUPMO5_r1,pam_RUPMO6_r1,pam_RUPMO7_r1,pam_RUPMO8_r1,pam_RUPMO9_r1,pam_RUPMO15_r1 "\%33c[ ]*\[[^\[]\{-}\]\%41c"
       syn match       pam_RUPMO_r1_v4             display contained containedin=pam_RUPMOX_r1,pam_RUPMO0_r1,pam_RUPMO2_r1,pam_RUPMO3_r1,pam_RUPMO5_r1,pam_RUPMO6_r1 "\%33c[ ]*<[^<]\{-}>\%41c"
       hi def link pam_RUPMO_r1_a4 pam_evenArgument
       hi def link pam_RUPMO_r1_v4 pam_evenVar
@@ -3432,6 +3433,52 @@ syn region      pam_RUPMO6      matchgroup=pam_CardTag start="^\CRUPMO / .\{8\}[
    " Row 1
    syn region      pam_RUPMO7_r1     transparent contained  start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25i8,@41i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_RUPMO7_r2 skipnl keepend
 syn region      pam_RUPMO7      matchgroup=pam_CardTag start="^\CRUPMO / .\{8\}[ ]\{7\}7"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_RUPMO7_r[1-4] keepend
+" RUPMO 8
+   " Row 7
+   syn region      pam_RUPMO8_r7     transparent contained start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
+   syn region      pam_RUPMO8_r7d     transparent contained start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@11f10,@21f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
+   syn region      pam_RUPMO8_r7l     transparent contained start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@11f10,@21f10,@31f10,@41f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
+   " Row 6
+   syn region      pam_RUPMO8_r6     transparent contained start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@11i10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_RUPMO8_r7 skipnl keepend
+   syn region      pam_RUPMO8_r6d     transparent contained start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@11i10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_RUPMO8_r7d skipnl keepend
+   syn region      pam_RUPMO8_r6l     transparent contained start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@11i10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_RUPMO8_r7l skipnl keepend
+   " Row 5
+   syn region      pam_RUPMO8_r5     transparent contained start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_RUPMO8_r6 skipnl keepend
+   syn region      pam_RUPMO8_r5d     transparent contained start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_RUPMO8_r6d skipnl keepend
+   syn region      pam_RUPMO8_r5l     transparent contained start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_RUPMO8_r6l skipnl keepend
+   " Row 4
+   syn region      pam_RUPMO8_r4     transparent contained start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@11f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_RUPMO8_r5 skipnl keepend
+   syn region      pam_RUPMO8_r4d     transparent contained start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@11f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_RUPMO8_r5d skipnl keepend
+   syn region      pam_RUPMO8_r4l     transparent contained start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@11f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_RUPMO8_r5l skipnl keepend
+   " Row 3
+   syn region      pam_RUPMO8_r3      transparent contained start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@11i10,@31i10,@41f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_RUPMO8_r4 skipnl keepend
+   syn region      pam_RUPMO8_r3d     transparent contained start="\%1c.*\%40c[1]" start="^$\n" end="\n[\$\#]\@!" contains=@11i10,@31i10,@41f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_RUPMO8_r4d skipnl keepend
+   syn region      pam_RUPMO8_r3l     transparent contained start="\%1c.*\%40c[2]" start="^$\n" end="\n[\$\#]\@!" contains=@11i10,@31i10,@41f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_RUPMO8_r4l skipnl keepend
+   " Row 2
+   syn region      pam_RUPMO8_r2     transparent contained start="\%1c." start="^$\n" end="\(\%81c&\|\%81c\-\)\@<!$\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_RUPMO8_r3,pam_RUPMO8_r3d,pam_RUPMO8_r3l skipnl keepend
+   " Row 1
+   syn region      pam_RUPMO8_r1     transparent contained  start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25i8,@41i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_RUPMO8_r2 skipnl keepend
+syn region      pam_RUPMO8      matchgroup=pam_CardTag start="^\CRUPMO / .\{8\}[ ]\{7\}8"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_RUPMO8_r[1-7] keepend
+" RUPMO 9
+   " Row 9
+   syn region      pam_RUPMO9_r9     transparent contained start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@11f10,@21f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
+   " Row 8
+   syn region      pam_RUPMO9_r8     transparent contained start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@11f10,@21f10,@31f10,@41f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_RUPMO9_r9 skipnl keepend
+   " Row 7
+   syn region      pam_RUPMO9_r7     transparent contained start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@11f10,@21f10,@31f10,@41f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_RUPMO9_r8 skipnl keepend
+   " Row 6
+   syn region      pam_RUPMO9_r6     transparent contained start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@11i10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_RUPMO9_r7 skipnl keepend
+   " Row 5
+   syn region      pam_RUPMO9_r5     transparent contained start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@11f10,@21f10,@31f10,@41f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_RUPMO9_r6 skipnl keepend
+   " Row 4
+   syn region      pam_RUPMO9_r4     transparent contained start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@11f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_RUPMO9_r5 skipnl keepend
+   " Row 3
+   syn region      pam_RUPMO9_r3      transparent contained start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=@11i10,@21i10,@31i10,@41f10,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_RUPMO9_r4 skipnl keepend
+   " Row 2
+   syn region      pam_RUPMO9_r2     transparent contained start="\%1c." start="^$\n" end="\(\%81c&\|\%81c\-\)\@<!$\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_RUPMO9_r3 skipnl keepend
+   " Row 1
+   syn region      pam_RUPMO9_r1     transparent contained  start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25i8,@41i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_RUPMO9_r2 skipnl keepend
+syn region      pam_RUPMO9      matchgroup=pam_CardTag start="^\CRUPMO / .\{8\}[ ]\{7\}9"rs=s+8 end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_RUPMO9_r[1-7] keepend
 " RUPMO 15
    " Row 4
    syn region      pam_RUPMO15_r4     transparent contained start="\%1c." start="^$\n" end="\%$" contains=pam_Comment,pam_Comment_Position skipnl keepend
@@ -4638,7 +4685,7 @@ syn region      pam_FRITAB          matchgroup=pam_CardTag start="^\CFRITAB/" en
    " Row 3 
    syn region      pam_OPTLIS_r3     transparent contained containedin=pam_OPTLIS start="\%1c." start="^$\n" matchgroup=pam_CardTag end="\%$" contains=pam_OPTLIS_Modular,pam_OPTLIS_Line,pam_Comment,pam_Comment_Position,pam_End,pam_Error,pam_FreeError,pam_FreeVar nextgroup=pam_OPTLIS_r3,pam_End,pam_TrailingError,pam_Comment,pam_Comment_Position skipnl keepend
       syn match       pam_OPTLIS_r3_e1             display contained containedin=pam_OPTLIS_r3,pam_OPTLIS_Modular "\%9c.\{,5\}"
-      syn match       pam_OPTLIS_r3_a1             display contained containedin=pam_OPTLIS_r3,pam_OPTLIS_Modular "\%9c\(BAGIN\|CNTAC\|FPMIN\|TRSFM\|THNOD\|THLOC\|THELE\|SENPT\|SENPTG\)"
+      syn match       pam_OPTLIS_r3_a1             display contained containedin=pam_OPTLIS_r3,pam_OPTLIS_Modular "\%9c\(BAGIN\|CNTAC\|FPMIN\|MBSYS\|RETRA1D\|RETRA2D\|SECFO\|SENPT\|SENPTG\|SENSOR\|SLIPR\|TRSFM\|THNOD\|THLOC\|THELE\)"
       hi def link pam_OPTLIS_r3_a1 pam_oddArgument
       hi def link pam_OPTLIS_r3_e1 pam_oddError
     syn region      pam_OPTLIS_Modular    transparent contained matchgroup=pam_Modular start="^[ ]\{8\}\CMOD" end="^[ ]\{8\}\CEND_MOD" contains=pam_EndModular,pam_OPTLIS_Line,pam_Integer,pam_Point,pam_ModString,pam_Error,pam_Comment,pam_Comment_Position nextgroup=pam_OPTLIS_r3,pam_End,pam_TrailingError,pam_Comment,pam_Comment_Position keepend

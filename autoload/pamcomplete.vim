@@ -3044,6 +3044,25 @@ function! pamcomplete#Complete(findstart, base)
             elseif synIDattr(slist[2], "name") =~ "pam_41.*"
                let start = 40
             endif
+         elseif synIDattr(slist[1], "name") =~ "pam_RUPMO8_r3"
+            " ILAYCRK
+            if synIDattr(slist[2], "name") =~ "pam_11.*"
+               let start = 10
+            " IPSTFAIL
+            elseif synIDattr(slist[2], "name") =~ "pam_31.*"
+               let start = 30
+            endif
+         elseif synIDattr(slist[1], "name") =~ "pam_RUPMO9_r3"
+            " ILAYCRK
+            if synIDattr(slist[2], "name") =~ "pam_11.*"
+               let start = 10
+            " ICONFAIL
+            elseif synIDattr(slist[2], "name") =~ "pam_21.*"
+               let start = 20
+            " IPSTFAIL
+            elseif synIDattr(slist[2], "name") =~ "pam_31.*"
+               let start = 30
+            endif
          endif
 " }}}
 " {{{ SENSOR
@@ -5090,6 +5109,8 @@ function! pamcomplete#Complete(findstart, base)
                call add (items,{'word':'       5','menu':'Uses Loads Criterion'})
                call add (items,{'word':'       6','menu':'EWK Rupture Criterion'})
                call add (items,{'word':'       7','menu':'Uses Loads Criterion'})
+               call add (items,{'word':'       8','menu':'Uses Non-Local Layer Criterion (Spotweld)'})
+               call add (items,{'word':'       9','menu':'Uses Non-Local Layer Criterion (Rivet)'})
                call add (items,{'word':'      11','menu':'User-Defined Rupture Criterion'})
                call add (items,{'word':'      12','menu':'User-Defined Rupture Criterion'})
                call add (items,{'word':'      13','menu':'User-Defined Rupture Criterion'})
@@ -5107,6 +5128,31 @@ function! pamcomplete#Complete(findstart, base)
                call add (items,{'word':'       0','abbr':'0 (default)','menu':'Normal Direction is one of the Line connecting the Two Nodes dirung the Computation'})
                call add (items,{'word':'       1','abbr':'1 (default)','menu':'Normal Direction is one of the Line connecting the Two Nodes dirung the Computation'})
                call add (items,{'word':'       2','abbr':'2','menu':'Normal Direction is one of the Line connection the nodes at initialization and updated according to MPC mean Rotation '})
+            endif
+         elseif synIDattr(slist[1], "name") =~ "pam_RUPMO8_r3"
+            " ILAYCRK
+            if synIDattr(slist[2], "name") =~ "pam_11.*"
+               call add (items,{'word':'         0','abbr':'0 (default)','menu':'No Layer Failure'})
+               call add (items,{'word':'         1','abbr':'1','menu':'Layer Failure Enabled'})
+            " IPSTFAIL
+            elseif synIDattr(slist[2], "name") =~ "pam_31.*"
+               call add (items,{'word':'         0','abbr':'0 (default)','menu':'Standard Cycle Number or Time Duration Based Load Degradation'})
+               call add (items,{'word':'         1','abbr':'1','menu':'Distance Based Energy Absorption Model'})
+               call add (items,{'word':'         2','abbr':'2','menu':'Load Dependent Post Failure Model'})
+            endif
+         elseif synIDattr(slist[1], "name") =~ "pam_RUPMO9_r3"
+            " ILAYCRK
+            if synIDattr(slist[2], "name") =~ "pam_11.*"
+               call add (items,{'word':'         0','abbr':'0 (default)','menu':'No Layer Failure'})
+               call add (items,{'word':'         1','abbr':'1','menu':'Layer Failure Enabled'})
+            " ICONFAIL
+            elseif synIDattr(slist[2], "name") =~ "pam_21.*"
+               call add (items,{'word':'         0','abbr':'0 (default)','menu':'No Failure of the Connector'})
+               call add (items,{'word':'         1','abbr':'1','menu':'Loading Criterion Failure Model (Weighted Bending)'})
+            " IPSTFAIL
+            elseif synIDattr(slist[2], "name") =~ "pam_31.*"
+               call add (items,{'word':'         0','abbr':'0 (default)','menu':'Standard Cycle Number or Time Duration Based Load Degradation'})
+               call add (items,{'word':'         1','abbr':'1','menu':'Distance Based Energy Absorption Model'})
             endif
          endif
 " }}}
@@ -19241,6 +19287,92 @@ function! pamcomplete#pamHints()
             return "A4 - Fourth Exponent in Failure Model"
          elseif synIDattr(slist[2], "name") =~ "pam_41.*"
             return "ASCALF - Scaling Factor Exponent"
+         endif
+      elseif synIDattr(slist[1], "name") =~ "pam_RUPMO8_r3"
+         if synIDattr(slist[2], "name") =~ "pam_11.*"
+            return "ILAYCRK - Layer Crack Activation Flag (menu)"
+         elseif synIDattr(slist[2], "name") =~ "pam_31.*"
+            return "IPSTFAIL - Connector Post-Failure Model (menu)"
+         elseif synIDattr(slist[2], "name") =~ "pam_41.*"
+            return "CONRADscl - Connector Radius Size Scale Ratio"
+         endif
+      elseif synIDattr(slist[1], "name") =~ "pam_RUPMO8_r4"
+         if synIDattr(slist[2], "name") =~ "pam_11.*"
+            return "LCRKlen - Layer Crack Length Limit"
+         endif
+      elseif synIDattr(slist[1], "name") =~ "pam_RUPMO8_r6"
+         if synIDattr(slist[2], "name") =~ "pam_11.*"
+            return "INTF - Failure Criterion Time Window in Number of Cycles"
+         endif
+      elseif synIDattr(slist[1], "name") =~ "pam_RUPMO8_r7d"
+         if synIDattr(slist[2], "name") =~ "pam_11.*"
+            return "D1 - Energy Absorbtion Distance After Failure Initiated"
+         elseif synIDattr(slist[2], "name") =~ "pam_21.*"
+            return "D2 - Ultimate Distance at Complete Failure"
+         endif
+      elseif synIDattr(slist[1], "name") =~ "pam_RUPMO8_r7l"
+         if synIDattr(slist[2], "name") =~ "pam_11.*"
+            return "D1min - Minimum Energy Absorption Distance After Failure Initiated"
+         elseif synIDattr(slist[2], "name") =~ "pam_21.*"
+            return "D1max - Maximum Energy Absorption Distance After Failure Initiated"
+         elseif synIDattr(slist[2], "name") =~ "pam_31.*"
+            return "D2min - Minimum Ultimate Distance at Complete Failure"
+         elseif synIDattr(slist[2], "name") =~ "pam_41.*"
+            return "D2max - Maximum Ultimate Distance at Complete Failure"
+         endif
+      elseif synIDattr(slist[1], "name") =~ "pam_RUPMO9_r3"
+         if synIDattr(slist[2], "name") =~ "pam_11.*"
+            return "ILAYCRK - Layer Crack Activation Flag (menu)"
+         elseif synIDattr(slist[2], "name") =~ "pam_21.*"
+            return "ICONFAIL - Connector Falure Model (menu)"
+         elseif synIDattr(slist[2], "name") =~ "pam_31.*"
+            return "IPSTFAIL - Connector Post-Failure Model (menu)"
+         elseif synIDattr(slist[2], "name") =~ "pam_41.*"
+            return "RIVRAD - Rivet Nugget Radius"
+         endif
+      elseif synIDattr(slist[1], "name") =~ "pam_RUPMO9_r4"
+         if synIDattr(slist[2], "name") =~ "pam_11.*"
+            return "LCRKlen - Layer Crack Length Limit"
+         endif
+      elseif synIDattr(slist[1], "name") =~ "pam_RUPMO9_r5"
+         if synIDattr(slist[2], "name") =~ "pam_11.*"
+            return "RDLSscal - Scale Reduction Factor for Plastic Law of a Low Strength Material"
+         elseif synIDattr(slist[2], "name") =~ "pam_21.*"
+            return "WLSscal - Failure Stress Scale Weight Factor for a Low Strength Material"
+         elseif synIDattr(slist[2], "name") =~ "pam_31.*"
+            return "RDHSscal - Scale Reduction Factor for Plastic Law of a High Strength Material"
+         elseif synIDattr(slist[2], "name") =~ "pam_41.*"
+            return "WHSscal - Failure Stress Scale Weight Factor for a High Strength Material"
+         endif
+      elseif synIDattr(slist[1], "name") =~ "pam_RUPMO9_r6"
+         if synIDattr(slist[2], "name") =~ "pam_11.*"
+            return "INTF - Failure Criterion Time Window in Number of Cycles"
+         endif
+      elseif synIDattr(slist[1], "name") =~ "pam_RUPMO9_r7"
+         if synIDattr(slist[2], "name") =~ "pam_11.*"
+            return "AFAILN - Ultimate Tensile Strength in Failure Model"
+         elseif synIDattr(slist[2], "name") =~ "pam_21.*"
+            return "AFAILS - Ultimate Shear Strength in Failure Model"
+         elseif synIDattr(slist[2], "name") =~ "pam_31.*"
+            return "AFAILT - Ultimate Torsion Strength in Failure Model"
+         elseif synIDattr(slist[2], "name") =~ "pam_41.*"
+            return "AFAILB - Ultimate Bending Strength in Failure Model"
+         endif
+      elseif synIDattr(slist[1], "name") =~ "pam_RUPMO9_r8"
+         if synIDattr(slist[2], "name") =~ "pam_11.*"
+            return "AN - Normal Exponent in Failure Model"
+         elseif synIDattr(slist[2], "name") =~ "pam_21.*"
+            return "AS - Shear Exponent in Failure Model"
+         elseif synIDattr(slist[2], "name") =~ "pam_31.*"
+            return "AT - Torsion Exponent in Failure Model"
+         elseif synIDattr(slist[2], "name") =~ "pam_41.*"
+            return "AB - Bending Exponent in Failure Model"
+         endif
+      elseif synIDattr(slist[1], "name") =~ "pam_RUPMO9_r9"
+         if synIDattr(slist[2], "name") =~ "pam_11.*"
+            return "D1 - Energy Absorption Distance After Failure is Initiated"
+         elseif synIDattr(slist[2], "name") =~ "pam_21.*"
+            return "D2 - Ultimate Distance at Complete Failure"
          endif
       endif
 "  }}}

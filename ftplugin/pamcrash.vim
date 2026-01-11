@@ -414,6 +414,10 @@ map <silent> ,ru5 ,,,,kk:r ~/.vim/ftplugin/pam_cards/Auxiliaries/ru5.inc<CR>dd
 map <silent> ,ru6 ,,,,kk:r ~/.vim/ftplugin/pam_cards/Auxiliaries/ru6.inc<CR>dd
 "RUPMO Type 7
 map <silent> ,ru7 ,,,,kk:r ~/.vim/ftplugin/pam_cards/Auxiliaries/ru7.inc<CR>dd
+"RUPMO Type 8
+map <silent> ,ru8 ,,,,kk:r ~/.vim/ftplugin/pam_cards/Auxiliaries/ru8.inc<CR>dd
+"RUPMO Type 9
+map <silent> ,ru9 ,,,,kk:r ~/.vim/ftplugin/pam_cards/Auxiliaries/ru9.inc<CR>dd
 "SENSOR Type 10
 map <silent> ,se10 ,,,,kk:r ~/.vim/ftplugin/pam_cards/Auxiliaries/se10.inc<CR>dd
 "SENSOR Type 11
