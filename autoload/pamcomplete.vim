@@ -1190,6 +1190,9 @@ function! pamcomplete#Complete(findstart, base)
             " IE2E
             elseif synIDattr(slist[2], "name") =~ "pam_36.*"
                let start = 35
+            " IERS
+            elseif synIDattr(slist[2], "name") =~ "pam_41.*"
+               let start = 40
             endif
          " {{{ SOLID
          elseif synIDattr(slist[1], "name") =~ "pam_PART_SOLID_r5"
@@ -1312,6 +1315,9 @@ function! pamcomplete#Complete(findstart, base)
                 " IE2E
                 elseif synIDattr(slist[3], "name") =~ "pam_26.*"
                    let start = 25
+                " IERS
+                elseif synIDattr(slist[3], "name") =~ "pam_31.*"
+                   let start = 30
                 endif
             endif
          " {{{ COS2D
@@ -5782,6 +5788,13 @@ function! pamcomplete#Complete(findstart, base)
                call add (items,{'word':'    0','abbr':'0 (default)','menu':'Deactivated'})
                call add (items,{'word':'    1','abbr':'1','menu':'Activated'})
                call add (items,{'word':'    2','abbr':'2','menu':'Deactivated'})
+            " IERS
+            elseif synIDattr(slist[2], "name") =~ "pam_41.*"
+               call add (items,{'word':'   -1','abbr':'-1','menu':'No Extraction of Internal Edges or Segments'})
+               call add (items,{'word':'    0','abbr':'0','menu':'Use the Default Value 2'})
+               call add (items,{'word':'    1','abbr':'1','menu':'Extract Internal Edges Only (Edge-to-Edge'})
+               call add (items,{'word':'    2','abbr':'2 (default)','menu':'Extract Internal Segments Only (Node-to-Segment'})
+               call add (items,{'word':'    3','abbr':'3','menu':'Extract Internal Edges and Segments'})
             endif
          " {{{ MEMBR
          elseif synIDattr(slist[1], "name") =~ "pam_PART_MEMBR_r[67]"
@@ -5938,6 +5951,13 @@ function! pamcomplete#Complete(findstart, base)
                    call add (items,{'word':'    0','abbr':'0 (default)','menu':'Deactivated'})
                    call add (items,{'word':'    1','abbr':'1','menu':'Activated'})
                    call add (items,{'word':'    2','abbr':'2','menu':'Deactivated'})
+                " IERS
+                elseif synIDattr(slist[3], "name") =~ "pam_31.*"
+                   call add (items,{'word':'   -1','abbr':'-1','menu':'No Extraction of Internal Edges or Segments'})
+                   call add (items,{'word':'    0','abbr':'0','menu':'Use the Default Value 2'})
+                   call add (items,{'word':'    1','abbr':'1','menu':'Extract Internal Edges Only (Edge-to-Edge'})
+                   call add (items,{'word':'    2','abbr':'2 (default)','menu':'Extract Internal Segments Only (Node-to-Segment'})
+                   call add (items,{'word':'    3','abbr':'3','menu':'Extract Internal Edges and Segments'})
                 endif
              endif
          " {{{ COS2D
@@ -7055,6 +7075,7 @@ function! pamcomplete#Complete(findstart, base)
                if synIDattr(slist[2], "name") =~ "pam_61.*"
                   call add (items,{'word':'    1','abbr':'1','menu':'Linear Usage'})
                   call add (items,{'word':'    2','abbr':'2 (default)','menu':'Exponential Usage'})
+                  call add (items,{'word':'    3','abbr':'3','menu':'Exponential Usage with Normalized Pressure'})
                endif
             endif
             " }}}
@@ -7129,6 +7150,7 @@ function! pamcomplete#Complete(findstart, base)
                if synIDattr(slist[2], "name") =~ "pam_61.*"
                   call add (items,{'word':'    1','abbr':'1','menu':'Linear Usage'})
                   call add (items,{'word':'    2','abbr':'2 (default)','menu':'Exponential Usage'})
+                  call add (items,{'word':'    3','abbr':'3','menu':'Exponential Usage with Normalized Pressure'})
                endif
             endif
             " }}}
@@ -9043,6 +9065,8 @@ function! pamcomplete#pamHints()
                return "IFRED - Flag to Activate Free Edge Treatment (menu)"
             elseif synIDattr(slist[3], "name") =~ "pam_26.*"
                return "IE2E - Flag to Activate Edge2Edge Treatment (menu)"
+            elseif synIDattr(slist[3], "name") =~ "pam_31.*"
+               return "IERS - Flag to Activate Extraction of Internal Edges and Segments for Erosion in Multi-Block Contacts (menu)"
             endif
          endif
 "     {{{ BAR 
@@ -9264,6 +9288,8 @@ function! pamcomplete#pamHints()
             return "IFRED - Flag to Activate Free Edge Treatment (menu)"
          elseif synIDattr(slist[2], "name") =~ "pam_36.*"
             return "IE2E - Flag to Activate Edge-to-Edge Treatment (menu)"
+         elseif synIDattr(slist[2], "name") =~ "pam_41.*"
+            return "IERS - Flag to Activate Extraction of Internal Edges and Segments for Erosion in Multi-Block Contacts (menu)"
          endif
       " {{{ SOLID/TETRA
       elseif synIDattr(slist[1], "name") =~ "pam_PART_SOLID_r5"
