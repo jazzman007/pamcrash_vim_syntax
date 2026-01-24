@@ -1,6 +1,6 @@
 $PLY Material Card
-$#         IDPLY    ITYP             RHIFAIL_INP  ISTRAT             KSI
-PLY   /        1       0              0.       0                        
+$#         IDPLY    ITYP             RHIFAIL_INP  ISTRAT             KSI IFUNksi
+PLY   /        1       0              0.       0                                
 $#                                                                         TITLE
 NAME PLY   / ->1                                                                
 $#    Et11      Et22      Et33

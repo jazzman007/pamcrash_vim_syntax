@@ -1,6 +1,6 @@
 $PLY Type 3
-$#         IDPLY    ITYP             RHIFAIL_INP  ISTRATA            KSI
-PLY   /        1       3              0.       0                        
+$#         IDPLY    ITYP             RHIFAIL_INP  ISTRATA            KSI NFUNksi
+PLY   /        1       3              0.       0                                
 $#                                                                         TITLE
 NAME PLY   / ->1                                                                
 $#       E    SIGMAy        NU     BLANK     BLANK     BLANK     BLANK        As

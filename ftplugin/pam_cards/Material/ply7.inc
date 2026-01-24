@@ -1,6 +1,6 @@
 $PLY Type 7
-$#         IDPLY    ITYP             RHIFAIL_INP  ISTRAT             KSI
-PLY   /        1       7              0.       0                        
+$#         IDPLY    ITYP             RHIFAIL_INP  ISTRAT             KSI NFUNksi
+PLY   /        1       7              0.       0                                
 $#                                                                         TITLE
 NAME PLY   / ->1                                                                
 $#     E01       E02

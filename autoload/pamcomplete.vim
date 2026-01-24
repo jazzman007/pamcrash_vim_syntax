@@ -892,6 +892,9 @@ function! pamcomplete#Complete(findstart, base)
             " ISTRAT
             elseif synIDattr(slist[2], "name") =~ "pam_49.*"
                let start = 48
+            " IFUNksi
+            elseif synIDattr(slist[2], "name") =~ "pam_73.*"
+               let start = 72
             endif
          " {{{ PLY0
          elseif synIDattr(slist[1], "name") =~ "pam_PLY0_r[56]" || synIDattr(slist[1], "name") =~ "pam_PLY0_r1[12]"
@@ -3006,6 +3009,16 @@ function! pamcomplete#Complete(findstart, base)
             " IFUNd
             elseif synIDattr(slist[2], "name") =~ "pam_51.*"
                let start = 50
+            endif
+         elseif synIDattr(slist[1], "name") =~ "pam_VAMAT2.*_r7" 
+            " IFUNnu
+            if synIDattr(slist[2], "name") =~ "pam_1.10.*"
+               let start = 0
+            endif
+         elseif synIDattr(slist[1], "name") =~ "pam_VAMAT4.*_r5" 
+            " IFUNnu
+            if synIDattr(slist[2], "name") =~ "pam_1.10.*"
+               let start = 0
             endif
          endif
 "  }}}
@@ -5405,6 +5418,9 @@ function! pamcomplete#Complete(findstart, base)
                call add (items,{'word':'       3','menu':'Modified Jones Model'})
                call add (items,{'word':'       4','menu':'Left-Shifted Curve Model'})
                call add (items,{'word':'       5','menu':'Krupowski Model'})
+            "IFUNksi
+            elseif synIDattr(slist[2], "name") =~ "pam_73.*"
+               let items = s:getTags("FUNCT",8)
             endif
          " {{{ PLY0
          elseif synIDattr(slist[1], "name") =~ "pam_PLY0_r[56]" || synIDattr(slist[1], "name") =~ "pam_PLY0_r1[12]"
@@ -7915,6 +7931,16 @@ function! pamcomplete#Complete(findstart, base)
                let items = s:getTags("FUNCT",10)
             " IFUNd
             elseif synIDattr(slist[2], "name") =~ "pam_51.*"
+               let items = s:getTags("FUNCT",10)
+            endif
+         elseif synIDattr(slist[1], "name") =~ "pam_VAMAT2.*_r7" 
+            " IFUNnu
+            if synIDattr(slist[2], "name") =~ "pam_1.10.*"
+               let items = s:getTags("FUNCT",10)
+            endif
+         elseif synIDattr(slist[1], "name") =~ "pam_VAMAT4.*_r5" 
+            " IFUNnu
+            if synIDattr(slist[2], "name") =~ "pam_1.10.*"
                let items = s:getTags("FUNCT",10)
             endif
          endif
@@ -17615,6 +17641,22 @@ function! pamcomplete#pamHints()
          elseif synIDattr(slist[2], "name") =~ "pam_71.*"
             return "ETAst - Structural Damping Coefficient"
          endif
+      elseif synIDattr(slist[1], "name") =~ "pam_VAMAT2_r7"
+         if synIDattr(slist[2], "name") =~ "pam_1.10.*"
+            return "IFUNnu - Function ID of Poissons Ratio (tag)"
+         elseif synIDattr(slist[2], "name") =~ "pam_11.*"
+            return "NUMULT - Multiplier of Poissons's Ratio Function"
+         elseif synIDattr(slist[2], "name") =~ "pam_21.*"
+            return "NUconst - Constant Value of Poisson's Ratio"
+         endif
+      elseif synIDattr(slist[1], "name") =~ "pam_VAMAT4_r5"
+         if synIDattr(slist[2], "name") =~ "pam_1.10.*"
+            return "IFUNnu - Function ID of Poissons Ratio (tag)"
+         elseif synIDattr(slist[2], "name") =~ "pam_11.*"
+            return "NUMULT - Multiplier of Poissons's Ratio Function"
+         elseif synIDattr(slist[2], "name") =~ "pam_21.*"
+            return "NUconst - Constant Value of Poisson's Ratio"
+         endif
       endif
 "  }}}
 "  {{{ THMAT
@@ -17640,6 +17682,8 @@ function! pamcomplete#pamHints()
             return "ISTRAT - Strain Rate Model Selection (menu)"
          elseif synIDattr(slist[2], "name") =~ "pam_65.*"
             return "KSI - Stiffness Proportional Damping Ratio"
+         elseif synIDattr(slist[2], "name") =~ "pam_73.*"
+            return "IFUNksi - Function ID of Frequency Dependent Stiffness Proportional Damping Ratio (tag)"
          endif
       endif
       " {{{ PLY0
