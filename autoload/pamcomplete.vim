@@ -381,8 +381,11 @@ function! pamcomplete#Complete(findstart, base)
             elseif synIDattr(slist[2], "name") =~ "pam_49.*"
                let start = 48
             " DOFTYP
-            elseif synIDattr(slist[2], "name") =~ "pam_MTOCO_r1_.2*"
+            elseif synIDattr(slist[2], "name") =~ "pam_MTOCO_r1_[eav]2"
                let start = 64
+            " POSTYP
+            elseif synIDattr(slist[2], "name") =~ "pam_MTOCO_r1_[eav]3"
+               let start = 72
             endif
          endif
 " }}}
@@ -4113,10 +4116,14 @@ function! pamcomplete#Complete(findstart, base)
             elseif synIDattr(slist[2], "name") =~ "pam_49.*"
                let items = s:getTags("SENSOR",8)
             " DOFTYP
-            elseif synIDattr(slist[2], "name") =~ "pam_MTOCO_r1_.2*"
+            elseif synIDattr(slist[2], "name") =~ "pam_MTOCO_r1_[eav]2"
                call add (items,{'word':'STRUCT  ','abbr':'STRUCT (default)','menu':'Mechanical Context'})
                call add (items,{'word':'THERM   ','abbr':'THERM','menu':'Thermal Context'})
                call add (items,{'word':'ALL     ','abbr':'ALL','menu':'All Contexts'})
+            " POSTYP
+            elseif synIDattr(slist[2], "name") =~ "pam_MTOCO_r1_[eav]3"
+               call add (items,{'word':'USER    ','abbr':'USER (default)','menu':'Position Corresponds to Input Coordinates'})
+               call add (items,{'word':'AUTO    ','abbr':'AUTO','menu':'Position Computed by Solver'})
             endif
          endif
 " }}}
@@ -20513,8 +20520,10 @@ function! pamcomplete#pamHints()
             return 'ISENS - Sensor ID to Activate/Deactivate MTOCO (tag)'
          elseif synIDattr(slist[2], "name") =~ "pam_57.8.*"
             return 'ALPHA - Constant Thermal Expansion Coefficient'
-         elseif synIDattr(slist[2], "name") =~ "pam_MTOCO_r1_.2"
+         elseif synIDattr(slist[2], "name") =~ "pam_MTOCO_r1_[eav]2"
             return 'DOFTYP - MTOCO Context Type (menu)'
+         elseif synIDattr(slist[2], "name") =~ "pam_MTOCO_r1_[eav]3"
+            return 'POSTYP - Independent Node Coordinate Treatment (menu)'
          endif
       endif 
 "  }}}
