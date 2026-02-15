@@ -3227,6 +3227,16 @@ function! pamcomplete#Complete(findstart, base)
             endif
          endif
 " }}}
+"  {{{ SELOUT
+      elseif synIDattr(slist[0], "name") =~ "pam_SELOUT.*"
+         if synIDattr(slist[1], "name") =~ "pam_SELOUT.*_r1"
+            if synIDattr(slist[2], "name") =~ "pam_SELOUT_r1_[ae]1"
+               let start = 16
+            elseif synIDattr(slist[2], "name") =~ "pam_41.*"
+               let start = 40
+            endif
+         endif
+"  }}}
 " {{{ FRAME
       elseif synIDattr(slist[0], "name") =~ "pam_FRAME.*" 
          if synIDattr(slist[1], "name") =~ "pam_FRAME.*_r1"
@@ -4075,6 +4085,18 @@ function! pamcomplete#Complete(findstart, base)
             endif
          endif
 " }}}
+"  {{{ SELOUT
+      elseif synIDattr(slist[0], "name") =~ "pam_SELOUT.*"
+         if synIDattr(slist[1], "name") =~ "pam_SELOUT.*_r1"
+            if synIDattr(slist[2], "name") =~ "pam_SELOUT_r1_[ae]1"
+               call add (items,{'word':'                        ','abbr':'<blank>','menu':'Nodal Specific Time Histoy Plot Only'})
+               call add (items,{'word':'                 CONTOUR','abbr':'CONTOUR','menu':'Contour Plot Only'})
+               call add (items,{'word':'                 HISTORY','abbr':'HISTORY','menu':'Time History Plot Only'})
+               call add (items,{'word':'       MESH_DEACTIVATION','abbr':'MESH_DEACTIVATION','menu':'Disable Mesh Input Data Output'})
+            elseif synIDattr(slist[2], "name") =~ "pam_41.*"
+               let items = s:getTags("ERFPRO",8)
+            endif
+         endif
 " {{{ MTOCO1
       elseif synIDattr(slist[0], "name") =~ "pam_MTOCO1"
          if synIDattr(slist[1], "name") =~ "pam_MTOCO1_r1"
@@ -19642,6 +19664,18 @@ function! pamcomplete#pamHints()
       elseif synIDattr(slist[1], "name") =~ "pam_SECFO_DETECT_r3"
          if synIDattr(slist[2], "name") =~ "pam_9.8.*"
             return "IDESPH - Deactivation id Associated SPH Elements (menu)"
+         endif
+      endif
+"  }}}
+"  {{{ SELOUT
+   elseif synIDattr(slist[0], "name") =~ "pam_SELOUT.*"
+      if synIDattr(slist[1], "name") =~ "pam_SELOUT.*_r1"
+         if synIDattr(slist[2], "name") =~ "pam_9.*"
+            return "IDSELOUT"
+         elseif synIDattr(slist[2], "name") =~ "pam_SELOUT_r1_[ae]1"
+            return "SELTYP - Selective Output Type (menu)" 
+         elseif synIDattr(slist[2], "name") =~ "pam_41.*"
+            return "IDERFPRO - ERF Properties Definition ID (tag)"
          endif
       endif
 "  }}}

@@ -2,7 +2,7 @@
 rm -f pamtags pamtags.tmp
 for i in *.inc *.pc *.mat; do 
    echo "XXXFILEXXX $i" >> pamtags.tmp
-   cat $i | grep -v '^[\$\#]' | grep "^\(PART\|FUNCT\|FRAME\|SENSOR\|RUPMO\|FRICT\|THMAT\|PFMAT\|MATER\|VAMAT\|GROUP\|ACFLD\|RETRA\|BELTS\|CNTAC\|BAGIN\|SEWING\|LOOKU\|LAYER\|MPD\|PLY\|MMAT\|CNTPTY\|MODULE\|VECTOR\)" -A 3 >> pamtags.tmp
+   cat $i | grep -v '^[\$\#]' | grep "^\(PART\|FUNCT\|FRAME\|SENSOR\|RUPMO\|FRICT\|THMAT\|PFMAT\|MATER\|VAMAT\|GROUP\|ACFLD\|RETRA\|BELTS\|CNTAC\|BAGIN\|SEWING\|LOOKU\|LAYER\|MPD\|PLY\|MMAT\|CNTPTY\|MODULE\|VECTOR\|ERFPRO\)" -A 3 >> pamtags.tmp
 done
 cat pamtags.tmp | gawk '
 { if ( $1 == "XXXFILEXXX" )
@@ -185,6 +185,13 @@ cat pamtags.tmp | gawk '
   if ( $1 == "FRICT" )
   {
      kw = "FRICT";
+     pid = gensub (" ","","g",substr ($0,9,8));
+     string = $0;
+     next;
+  }
+  if ( $1 == "ERFPRO" )
+  {
+     kw = "ERFPRO";
      pid = gensub (" ","","g",substr ($0,9,8));
      string = $0;
      next;

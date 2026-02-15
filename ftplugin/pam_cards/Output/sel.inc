@@ -1,6 +1,6 @@
 $SELOUT Selective Output
-$#            ID
-SELOUT/        1
+$#            ID                  SELTYPIDERFPRO
+SELOUT/        1                                
 $#                                                                         TITLE
 NAME SELOUT/ ->1                                                                
         SOLPLOT 
