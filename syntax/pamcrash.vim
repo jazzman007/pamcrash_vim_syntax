@@ -2921,6 +2921,15 @@ syn region      pam_Control_MSTAGE                matchgroup=pam_HeaderKW start=
    syn region      pam_BAG_GAS        contained containedin=pam_BAGIN,pam_CHAMBER matchgroup=pam_HeaderKW start="^[ ]\{16\}\CGAS" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Float,pam_String keepend
    syn region      pam_BAG_FPM        contained containedin=pam_BAGIN matchgroup=pam_HeaderKW start="^[ ]\{8\}\CFPM" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Float keepend
    syn region      pam_BAG_LOCAL_H        contained containedin=pam_BAGIN matchgroup=pam_HeaderKW start="^[ ]\{16\}\CLOCAL_H" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Float keepend
+   syn region      pam_BAG_LEAK_THIN_WALL        contained containedin=pam_BAGIN matchgroup=pam_HeaderKW start="^[ ]\{16\}\CLEAK_THIN_WALL" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Control_YESNO keepend
+   syn region      pam_BAG_AUTO_H        contained containedin=pam_BAGIN matchgroup=pam_HeaderKW start="^[ ]\{16\}\CAUTO_H" matchgroup=pam_End end="^[ ]\{16\}\CEND_AUTO_H" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Float,pam_Comment,pam_Comment_Position keepend
+      syn region      pam_BAG_AUTO_H_r1   transparent contained containedin=pam_BAG_AUTO_H matchgroup=pam_Keyword start="^[ ]\{16\}\CCRITERION" start="^$\n" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position,pam_Error,pam_FreeError,pam_FreeVar,pam_Float nextgroup=pam_BAG_AUTO_H_r2, pam_TrailigError,pam_Comment,pam_Comment_Position skipnl keepend
+         syn keyword pam_BAG_AUTO_H_r1_arg display contained containedin=pam_BAG_AUTO_H_r1 VELOCITY_ERROR
+         hi def link pam_BAG_AUTO_H_r1_arg pam_Argument
+      syn region      pam_BAG_AUTO_H_r2   transparent contained containedin=pam_BAG_AUTO_H matchgroup=pam_Keyword start="^[ ]\{16\}\CZONE" start="^$\n" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position,pam_Error,pam_FreeError,pam_FreeVar,pam_Float skipnl keepend
+         syn keyword pam_BAG_AUTO_H_r2_arg display contained containedin=pam_BAG_AUTO_H_r2 BND ALL
+         hi def link pam_BAG_AUTO_H_r2_arg pam_Argument
+      syn region      pam_BAG_AUTO_H_r3   transparent contained containedin=pam_BAG_AUTO_H matchgroup=pam_Keyword start="^[ ]\{16\}\CH_MIN" start="^$\n" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position,pam_Error,pam_FreeError,pam_FreeVar,pam_Float nextgroup=pam_TrailigError,pam_Comment,pam_Comment_Position skipnl keepend
    syn region      pam_BAG_VENT_MODEL        contained containedin=pam_BAGIN matchgroup=pam_HeaderKW start="^[ ]\{16\}\CVENT_MODEL" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Float keepend
    "syn region      pam_BAG_TURBULENCE        contained containedin=pam_BAGIN matchgroup=pam_HeaderKW start="^[ ]\{16\}\CTURBULENCE" end="\(\%81c&\|\%81c\-\)\@<!$" contains=pam_Error,pam_FreeError,pam_FreeVar,pam_Float keepend
       syn region      pam_BAG_TURBULENCE_r2   transparent contained containedin=pam_BAG_TURBULENCE matchgroup=pam_Argument start="^[ ]\{16\}\CWALL_BC" start="^$\n" end="^[ ]\{16\}\CEND" contains=pam_Float,pam_Comment,pam_Comment_Position,pam_Error,pam_FreeError,pam_FreeVar,@pam_Ident_16 nextgroup=pam_BAG_TURBULENCE_r2, pam_TrailigError,pam_Comment,pam_Comment_Position skipnl keepend
@@ -2929,9 +2938,9 @@ syn region      pam_Control_MSTAGE                matchgroup=pam_HeaderKW start=
       syn region      pam_BAG_TURBULENCE_r1   transparent contained containedin=pam_BAG_TURBULENCE start="\%27c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Comment,pam_Comment_Position,pam_Error,pam_FreeError,pam_FreeVar,pam_Float nextgroup=pam_BAG_TURBULENCE_r2, pam_TrailigError,pam_Comment,pam_Comment_Position skipnl keepend
          syn match pam_BAG_TURBULENCE_r1_arg display contained containedin=pam_BAG_TURBULENCE_r1 "KEPSILON"
          hi def link pam_BAG_TURBULENCE_r1_arg pam_Argument
-   syn region      pam_BAG_TURBULENCE        contained containedin=pam_BAGIN matchgroup=pam_HeaderKW start="^[ ]\{16\}\CTURBULENCE" end="^[ ]\{16\}\CEND_TURBULENCE" contains=pam_BAG_TURBULENCE_r[12],pam_Error,pam_FreeError keepend
+   syn region      pam_BAG_TURBULENCE        contained containedin=pam_BAGIN matchgroup=pam_HeaderKW start="^[ ]\{16,\}\CTURBULENCE" end="^[ ]\{16\}\CEND_TURBULENCE" contains=pam_BAG_TURBULENCE_r[12],pam_Error,pam_FreeError keepend
       syn region      pam_BAG_FPM_GAS_DYN_CORRECTION_SCHEME   transparent contained containedin=pam_BAG_FPM_GAS_DYN matchgroup=pam_Keyword start="^[ ]\{16,\}\CCORRECTION_SCHEME" end="\n[\$\#]\@!" contains=pam_Integer,pam_FreeError,pam_FreeVar,pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
-      syn region      pam_BAG_FPM_GAS_DYN_FPM_LIMITER   transparent contained containedin=pam_BAG_FPM_GAS_DYN matchgroup=pam_Keyword start="^[ ]\{15,\}\CFPM_LIMITER" end="\n[\$\#]\@!" contains=pam_Control_YESNO,pam_FreeError,pam_FreeVar,pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
+      syn region      pam_BAG_FPM_GAS_DYN_FPM_LIMITER   transparent contained containedin=pam_BAG_FPM_GAS_DYN matchgroup=pam_Keyword start="^[ ]\{16,\}\CFPM_LIMITER" end="\n[\$\#]\@!" contains=pam_Control_YESNO,pam_FreeError,pam_FreeVar,pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
       syn region      pam_BAG_FPM_GAS_DYN_FPM_TRANGE   transparent contained containedin=pam_BAG_FPM_GAS_DYN matchgroup=pam_Keyword start="^[ ]\{16,\}\CFPM_TRANGE" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeError,pam_FreeVar,pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
       syn region      pam_BAG_FPM_GAS_DYN_NOSLIP   transparent contained containedin=pam_BAG_FPM_GAS_DYN matchgroup=pam_Keyword start="^[ ]\{16,\}\CNOSLIP" end="\n[\$\#]\@!" contains=pam_Float,pam_FreeError,pam_FreeVar,pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
       syn region      pam_BAG_FPM_GAS_DYN_MODEL   transparent contained containedin=pam_BAG_FPM_GAS_DYN matchgroup=pam_Keyword start="^[ ]\{16,\}\CMODEL" end="\n[\$\#]\@!" contains=pam_Integer,pam_FreeError,pam_FreeVar,pam_Comment,pam_Comment_Position,pam_Error skipnl keepend
@@ -3737,7 +3746,7 @@ syn region      pam_GASPEC                matchgroup=pam_CardTag start="^\CGASPE
    "Row 2 (Name)
    syn region      pam_SENPT_r2     transparent contained containedin=pam_SENPT start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_SENPT_r3 skipnl keepend
    "Row 1
-   syn region      pam_SENPT_r1     transparent contained containedin=pam_SENPT start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f8,@33i8,@41i8,@49i8,@57i8,@65i8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_SENPT_r2 skipnl keepend
+   syn region      pam_SENPT_r1     transparent contained containedin=pam_SENPT start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f8,@33i8,@41i8,@49i8,@57i8,@65i8,@73f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_SENPT_r2 skipnl keepend
 syn region      pam_SENPT                matchgroup=pam_CardTag start="^\CSENPT /" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_SENPT_r[1-4] keepend
 " === SENPT end}}}
 
@@ -3749,7 +3758,7 @@ syn region      pam_SENPT                matchgroup=pam_CardTag start="^\CSENPT 
    "Row 2 (Name)
    syn region      pam_SENPTG_r2     transparent contained containedin=pam_SENPTG start="\%1c." start="^$\n" end="\n[\$\#]\@!" contains=pam_Name,pam_Comment,pam_Comment_Position nextgroup=pam_SENPTG_r3 skipnl keepend
    "Row 1
-   syn region      pam_SENPTG_r1     transparent contained containedin=pam_SENPTG start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_SENPTG_r2 skipnl keepend
+   syn region      pam_SENPTG_r1     transparent contained containedin=pam_SENPTG start="\%9c." start="^$\n" end="\n[\$\#]\@!" contains=@9i8id,@17i8,@25f8,@73f8,pam_Comment,pam_Comment_Position,pam_Error nextgroup=pam_SENPTG_r2 skipnl keepend
 syn region      pam_SENPTG                matchgroup=pam_CardTag start="^\CSENPTG/" end="^\(\$\)\@!.\{6\}\/"me=e-7 contains=pam_SENPTG_r[1-4] keepend
 " === SENPTG end}}}
 
@@ -5897,6 +5906,8 @@ syn region      pam_THNAC            matchgroup=pam_CardTag start="^\CTHNAC /" e
       hi def link pam_SELOUT_r1_e1 pam_evenError
    "OPTLIS_SELECTION
    syn region      pam_SELOUT_OPTLIS_SELECTION     transparent contained containedin=pam_SELOUT matchgroup=pam_CardTag start="^\C[ ]*OPTLIS_SELECTION" start="^$\n" end="\n[\$\#]\@!" contains=pam_Integer,pam_String,pam_Comment,pam_Comment_Position nextgroup=pam_SELOUT_r7 skipnl keepend
+   "EXTVAR
+   syn region      pam_SELOUT_UVAR     transparent contained containedin=pam_SELOUT matchgroup=pam_CardTag start="^\CEXTFLD_VAR" start="^$\n" matchgroup=pam_CardTag end="^\CEND_EXTFLD_VAR" contains=pam_Integer,pam_String,pam_Comment,pam_Comment_Position nextgroup=pam_SELOUT_OPTLIS_SELECTION,pam_SELOUT_r7 skipnl keepend
    "UVAR
    syn region      pam_SELOUT_UVAR     transparent contained containedin=pam_SELOUT matchgroup=pam_CardTag start="^\CUSER_VAR" start="^$\n" matchgroup=pam_CardTag end="^\CEND_USER_VAR" contains=pam_String,pam_Comment,pam_Comment_Position nextgroup=pam_SELOUT_OPTLIS_SELECTION,pam_SELOUT_r7 skipnl keepend
    "VAR

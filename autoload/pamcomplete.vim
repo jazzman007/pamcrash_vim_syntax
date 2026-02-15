@@ -21054,6 +21054,8 @@ function! pamcomplete#pamHints()
             return "ACFLG - Acceleration Output Correction (menu)"
          elseif synIDattr(slist[2], "name") =~ "pam_65.*"
             return "IDAFLG - Acceleration Field ID (tag)"
+         elseif synIDattr(slist[2], "name") =~ "pam_73.*"
+            return "RSEAR - Search Distance for Reference Node Projection Mesh Facet"
          endif
       elseif synIDattr(slist[1], "name") =~ "_r3"
          if synIDattr(slist[2], "name") =~ "pam_9.*"
